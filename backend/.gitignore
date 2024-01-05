@@ -1,0 +1,9 @@
+# dependencies
+.venv
+
+# environment
+.env
+.flaskenv
+
+# misc
+__pycache__
