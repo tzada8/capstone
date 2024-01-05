@@ -13,8 +13,9 @@ The following applications must be installed locally (if you don't already have 
 - Python: https://www.python.org/downloads/
 
 ### Cloning the Repo
-1. Follow GitHub's instructions [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) to setup an SSH key connecting GitHub to your local laptop (if one doesn't already exist).
-2. Copy the SSH command from the repo and run it locally.
+1. Follow GitHub's instructions [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) to setup an SSH key connecting GitHub to your local laptop (if one doesn't already exist)
+2. Copy the SSH command from the repo
+3. Locally run: `git clone <copied_key>`
 
 ## Getting Started
 
