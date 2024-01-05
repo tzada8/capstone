@@ -1,5 +1,10 @@
 # Capstone
 
+## Deployment
+All deployments are through [Render](https://dashboard.render.com/)
+- `capstone-frontend` Deploy: https://capstone-frontend-u9ds.onrender.com
+- `capstone-backend` Deploy: https://capstone-backend-zup0.onrender.com
+
 ## Local Setup
 
 ### Installations
