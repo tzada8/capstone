@@ -10,14 +10,9 @@ from src.scraper.walmart_scraper import WalmartProduct
 class TestWalmartProduct(unittest.TestCase):
     def setUp(self):
         self.mock_search = patch("src.scraper.walmart_scraper.GoogleSearch.get_dict").start()
-        self.mock_summarize = patch(
-            "src.scraper.walmart_scraper.summarize",
-            return_value="Overall some reviews are positive and some are negative."
-        ).start()
 
     def tearDown(self):
         self.mock_search.stop()
-        self.mock_summarize.stop()
 
     def test_product_specs_id_exists(self):
         self.mock_search.return_value = product_specs_exists
@@ -83,7 +78,6 @@ class TestWalmartProduct(unittest.TestCase):
                     {"count": 1000, "stars": 5}
                 ],
                 "reviews": ["Good", "Bad", "Okay", "Terrible", "The best"],
-                "summary": "Overall some reviews are positive and some are negative.",
                 "top_negative": {
                     "rating": 1, "text": "Do not buy this product", "title": "Worst Product",
                 },
@@ -115,17 +109,13 @@ class TestWalmartProduct(unittest.TestCase):
                     {"count": 1000, "stars": 5}
                 ],
                 "reviews": ["Good", "Bad", "Okay", "Terrible", "The best"],
-                "summary": "Overall some reviews are positive and some are negative.",
                 "top_negative": {"rating": None, "text": None, "title": None},
                 "top_positive": {"rating": None, "text": None, "title": None},
             }
         }
         self.assertEqual(result, expected)
 
-    @patch("src.scraper.walmart_scraper.summarize")
-    def test_aggregate_data_id_exists(self, summarize_mock):
-        summarize_mock.return_value = "Overall some reviews are positive and some are negative."
-        self.maxDiff = None
+    def test_aggregate_data_id_exists(self):
         self.mock_search.side_effect = [product_specs_exists, product_reviews_exists]
         product_id = "11111"
         result = WalmartProduct.aggregate_data(product_id)
@@ -153,7 +143,6 @@ class TestWalmartProduct(unittest.TestCase):
                     {"count": 1000, "stars": 5}
                 ],
                 "reviews": ["Good", "Bad", "Okay", "Terrible", "The best"],
-                "summary": "Overall some reviews are positive and some are negative.",
                 "top_negative": {
                     "rating": 1, "text": "Do not buy this product", "title": "Worst Product",
                 },
