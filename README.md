@@ -53,3 +53,7 @@ Frontend:
 1. Open new terminal
 2. Change directory: `cd frontend`
 3. Start service: `npm start`
+
+## Testing
+
+Backend: In `backend` folder, run `python3 -m unittest discover`
