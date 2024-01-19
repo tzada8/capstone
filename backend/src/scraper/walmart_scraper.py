@@ -2,6 +2,8 @@ from os import environ
 from serpapi import GoogleSearch
 from typing import Dict
 
+from src.summarize.summarize import summarize
+
 class WalmartProduct:
     @staticmethod
     def _product_specs(product_id: str) -> Dict:
@@ -15,8 +17,10 @@ class WalmartProduct:
 
         if "error" in results:
             return {
-                "product_id": results.get("search_parameters", {}).get("product_id"),
-                "error": results.get("error"),
+                "basic_info": {
+                    "product_id": results.get("search_parameters", {}).get("product_id"),
+                    "error": results.get("error"),
+                }
             }
         else:
             product_result = results.get("product_result", {})
@@ -54,12 +58,15 @@ class WalmartProduct:
 
         if "error" in results:
             return {
-                "error": results.get("error"),
+                "reviews": {
+                    "error": results.get("error"),
+                }
             }
         else:
             top_positive = results.get("top_positive", {})
             top_negative = results.get("top_negative", {})
             reviews = results.get("reviews", [])
+            text_reviews = [r.get("text") for r in reviews]
             return {
                 "reviews": {
                     "ratings": results.get("ratings"),
@@ -73,14 +80,15 @@ class WalmartProduct:
                         "text": top_negative.get("text"),
                         "rating": top_negative.get("rating"),
                     },
-                    "reviews": [r.get("text") for r in reviews],
+                    "summary": summarize(text_reviews),
+                    "reviews": text_reviews # TODO: This field can probably be removed.
                 }
             }
 
     @staticmethod
     def aggregate_data(product_id: str) -> Dict:
-        specs = WalmartProduct._product_specs(product_id)
-        reviews = WalmartProduct._product_reviews(product_id)
-        # TODO: Summarize reviews.
-        # TODO: Combine final JSON.
-        return specs | reviews
+        specs_dict = WalmartProduct._product_specs(product_id)
+        reviews_dict = WalmartProduct._product_reviews(product_id)
+        # TODO: Add YouTube videos.
+        # TODO: Add Expert Reviews.
+        return specs_dict | reviews_dict
