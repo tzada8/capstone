@@ -6,6 +6,7 @@ def summarize(reviews: List[str]) -> str:
     if len(reviews) == 0:
         return "Product has no reviews."
 
+    # TODO: Need to limit to under 4097 tokens.
     client = OpenAI(api_key=environ.get("OPENAI_API_KEY"))
     # TODO: Maybe can add more to prompt (e.g. "using at most 100 words").
     bullet_reviews = "\n- ".join(reviews)
