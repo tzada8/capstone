@@ -1,7 +1,14 @@
 .product-container {
     display: inline-block;
     width: 600px;
-    background: blue;
+}
+
+.selected-product {
+	background: blue;
+}
+
+.unselected-product {
+	background: red;
 }
 
 .product-content {

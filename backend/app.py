@@ -30,6 +30,7 @@ def show_number_x10():
 @app.route("/api/search-products")
 def search_products():
     q = request.args.get("q")
+    # TODO: Add new field product_id (worst case scenario, parse it from URL).
     return scrape_google_products(q)
 
 # Note: Was testing with product_id "6522416" (exists) and "0" (does not exist).
