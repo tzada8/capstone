@@ -28,16 +28,13 @@ function Home() {
 
 	return (
 		<div>
-            <header className="App-header">
+            <input type="number" onChange={handleNumberChange} />
+            <button onClick={handleNumberClick}>Change Number</button>
+            <p>The current number is {currentNumber}.</p>
 
-                <input type="number" onChange={handleNumberChange} />
-                <button onClick={handleNumberClick}>Change Number</button>
-                <p>The current number is {currentNumber}.</p>
+            <p>The current time is {currentTime}.</p>
 
-                <p>The current time is {currentTime}.</p>
-
-                <p>Environment: {process.env.REACT_APP_ENVIRONMENT}.</p>
-            </header>
+            <p>Environment: {process.env.REACT_APP_ENVIRONMENT}.</p>
 		</div>
 	);
 }
