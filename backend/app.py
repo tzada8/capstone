@@ -3,6 +3,7 @@ from flask_cors import CORS
 from os import environ
 import time
 
+from src.scraper.bestbuy_scraper import BestBuyProduct
 from src.scraper.walmart_scraper import WalmartProduct
 from src.scraper.youtube_scraper import scrape_videos
 from src.summarize.summarize import summarize
@@ -25,6 +26,22 @@ def show_number_x10():
     data = request.get_json()
     number_x10 = data["number"] * 10
     return {"number": number_x10}
+
+# Note: Was testing with product_id "6522416" (exists) and "0" (does not exist).
+@app.route("/api/bestbuy-product")
+def bestbuy_data():
+    product_id = request.args.get("product_id")
+    product_data = BestBuyProduct.aggregate_data(product_id)
+
+    # TODO: Summarize reviews.
+
+    # Scrape YouTube videos.
+    title = product_data["basic_info"].get("title")
+    if title:
+        product_data.update(scrape_videos(title))
+
+    # TODO: Scrape Expert reviews.
+    return product_data
 
 # Note: Was testing with product_id "711035416" (exists) and "123" (does not exist).
 @app.route("/api/walmart-product")
