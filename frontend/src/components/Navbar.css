@@ -16,8 +16,7 @@
 }
   
 .links a {
-    text-decoration: none;
-    color: white;
+    color: var(--WHITE);
     margin-left: 20px;
     font-size: 25px;
 }
