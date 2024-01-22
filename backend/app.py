@@ -1,8 +1,8 @@
 from flask import Flask, request
 from flask_cors import CORS
 from os import environ
-import time
 
+from src.scraper.google_shopping_scraper import scrape_google_products
 from src.scraper.bestbuy_scraper import BestBuyProduct
 from src.scraper.walmart_scraper import WalmartProduct
 from src.scraper.youtube_scraper import scrape_videos
@@ -17,15 +17,16 @@ def default_backend():
     env = environ.get("FLASK_ENV", "does not exist")
     return {"message": "Routing to backend home GET", "key": key, "env": env}
 
-@app.route("/api/time")
-def get_current_time():
-    return {"time": time.time()}
-
 @app.route("/api/number", methods=["POST"])
 def show_number_x10():
     data = request.get_json()
     number_x10 = data["number"] * 10
     return {"number": number_x10}
+
+@app.route("/api/search-products")
+def search_products():
+    q = request.args.get("q")
+    return scrape_google_products(q)
 
 # Note: Was testing with product_id "6522416" (exists) and "0" (does not exist).
 @app.route("/api/bestbuy-product")
@@ -45,7 +46,7 @@ def bestbuy_data():
 
 # Note: Was testing with product_id "711035416" (exists) and "123" (does not exist).
 @app.route("/api/walmart-product")
-def walmart_data():
+def walmart_product():
     product_id = request.args.get("product_id")
     product_data = WalmartProduct.aggregate_data(product_id)
 
