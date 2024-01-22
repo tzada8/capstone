@@ -8,6 +8,10 @@ from src.scraper.walmart_scraper import WalmartProduct
 from src.scraper.youtube_scraper import scrape_videos
 from src.summarize.summarize import summarize
 
+# TODO: DELETE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
+from dummy_data.dummy_search_products import dummy_search_products
+from dummy_data.dummy_product import dummy_product
+
 app = Flask(__name__)
 CORS(app)
 
@@ -64,6 +68,18 @@ def walmart_product():
 
     # TODO: Scrape Expert reviews.
     return product_data
+
+
+# TODO: DELETE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
+@app.route("/api/dummy/search-products")
+def dummy_api_search_products():
+    return dummy_search_products
+
+# TODO: DELETE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
+@app.route("/api/dummy/product")
+def dummy_api_product():
+    return dummy_product
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", threaded=True, port=5000)
