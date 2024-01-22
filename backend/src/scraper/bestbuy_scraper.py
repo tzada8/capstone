@@ -31,7 +31,7 @@ class BestBuyProduct:
                     "product_page_url": product_result.get("url"),
                     "price": {
                         "amount": product_result.get("regularPrice"),
-                        "currency": "CAD" if product_result.get("regularPrice") is not None else None,
+                        "currency": "USD" if product_result.get("regularPrice") is not None else None,
                     },
                     "images": product_result.get("image", []),
                     "total_reviews": product_result.get("customerReviewCount"),

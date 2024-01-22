@@ -11,7 +11,7 @@ product_specs_exists.json = mock.Mock(
             "name": "New Product Title",
             "url": "https://example.com",
             "regularPrice": 100.0,
-            "currency": "CAD",
+            "currency": "USD",
             "image": ["https://image1.png", "https://image2.jpeg"],
             "customerReviewCount": 500,
             "customerReviewAverage": 4.1,
