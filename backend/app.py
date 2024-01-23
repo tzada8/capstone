@@ -55,10 +55,10 @@ def walmart_product():
 
     # Summarize reviews.
     text_reviews = product_data["reviews"].get("reviews")
-    # if text_reviews:
-    #     # TODO: Can probably drop "reviews" field.
-    #     summary = {"summary": summarize(text_reviews)}
-    #     product_data["reviews"].update(summary)
+    if text_reviews:
+        # TODO: Can probably drop "reviews" field.
+        summary = {"summary": summarize(text_reviews)}
+        product_data["reviews"].update(summary)
 
     # Scrape YouTube videos.
     title = product_data["basic_info"].get("title")
