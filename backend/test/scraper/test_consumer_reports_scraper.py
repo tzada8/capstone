@@ -15,7 +15,7 @@ class TestConsumerReportsScraper(unittest.TestCase):
     def test_scrape_expert_reviews_upc_exists(self):
         self.mock_search.side_effect = [all_products_returned, expert_reviews_returned]
         query = "AAAAA"
-        result = scrape_expert_reviews(query, upc = 11111)
+        result = scrape_expert_reviews(query, 11111, "defaultUpc")
         expected = {
             "expert_review": {
                 "review": "It was okay.",
@@ -30,7 +30,7 @@ class TestConsumerReportsScraper(unittest.TestCase):
     def test_scrape_expert_reviews_walmart_id_exists(self):
         self.mock_search.side_effect = [all_products_returned, expert_reviews_returned]
         query = "AAAAA"
-        result = scrape_expert_reviews(query, walmart_id = "11111")
+        result = scrape_expert_reviews(query, "11111", "walmartId")
         expected = {
             "expert_review": {
                 "review": "It was okay.",
@@ -45,7 +45,7 @@ class TestConsumerReportsScraper(unittest.TestCase):
     def test_scrape_expert_reviews_no_bottomline(self):
         self.mock_search.side_effect = [all_products_returned, expert_reviews_no_bottomline]
         query = "AAAAA"
-        result = scrape_expert_reviews(query, walmart_id = "11111")
+        result = scrape_expert_reviews(query, "11111", "walmartId")
         expected = {
             "expert_review": {
                 "review": "It was okay.",
@@ -60,7 +60,7 @@ class TestConsumerReportsScraper(unittest.TestCase):
     def test_scrape_expert_reviews_upc_no_match(self):
         self.mock_search.side_effect = [all_products_returned, expert_reviews_returned]
         query = "AAAAA"
-        result = scrape_expert_reviews(query, upc = 22222)
+        result = scrape_expert_reviews(query, 22222, "defaultUpc")
         expected = {
             "expert_review": {
                 "product": "AAAAA",
@@ -72,7 +72,7 @@ class TestConsumerReportsScraper(unittest.TestCase):
     def test_scrape_expert_reviews_walmart_id_no_match(self):
         self.mock_search.side_effect = [all_products_returned, expert_reviews_returned]
         query = "AAAAA"
-        result = scrape_expert_reviews(query, walmart_id = "22222")
+        result = scrape_expert_reviews(query, "22222", "walmartId")
         expected = {
             "expert_review": {
                 "product": "AAAAA",

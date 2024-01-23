@@ -43,7 +43,7 @@ def bestbuy_product():
         product_data.update(scrape_videos(title))
 
     if title:
-        product_data.update(scrape_expert_reviews(title, upc = product_data["basic_info"].get("upc")))
+        product_data.update(scrape_expert_reviews(title, product_data["basic_info"].get("upc"), "defaultUpc"))
     
     return product_data
 
@@ -66,7 +66,7 @@ def walmart_product():
         product_data.update(scrape_videos(title))
 
     if title:
-        product_data.update(scrape_expert_reviews(title, walmart_id = product_id))
+        product_data.update(scrape_expert_reviews(title, product_id, "walmartId"))
 
     return product_data
 
