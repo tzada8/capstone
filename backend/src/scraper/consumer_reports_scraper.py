@@ -3,10 +3,6 @@ import requests
 from typing import Dict
 import difflib
 
-environ["RAPIDAPI_API_KEY"] = "00da87b01amsh100cfdd20a97210p1c74d2jsn8124f53a8371"
-environ["SERPAPI_API_KEY"] = "cb331511f8539ff12f06b853b40d4678627b366527239eda4edd52b7c4313114"
-environ["BESTBUY_API_KEY"] = "xufjkdg5sh3fyqqkgg7qadcg"
-
 def scrape_expert_reviews(q: str, **kwargs) -> Dict:
     short_title = ' '.join(q.split()[:5])
     upc = kwargs.get('upc', '')
