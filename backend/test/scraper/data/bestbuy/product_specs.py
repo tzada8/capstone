@@ -8,6 +8,8 @@ product_specs_exists.json = mock.Mock(
             "us_item_id": "11111",
             "sku": "aaaaa",
             "modelNumber": "12345",
+            "manufacturer": "AAAAA",
+            "upc": "00000",
             "name": "New Product Title",
             "url": "https://example.com",
             "regularPrice": 100.0,

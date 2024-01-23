@@ -5,6 +5,7 @@ from os import environ
 from src.scraper.google_shopping_scraper import scrape_google_products
 from src.scraper.bestbuy_scraper import BestBuyProduct
 from src.scraper.walmart_scraper import WalmartProduct
+from src.scraper.consumer_reports_scraper import scrape_expert_reviews
 from src.scraper.youtube_scraper import scrape_videos
 from src.summarize.summarize import summarize
 
@@ -30,7 +31,7 @@ def search_products():
 
 # Note: Was testing with product_id "6522416" (exists) and "0" (does not exist).
 @app.route("/api/bestbuy-product")
-def bestbuy_data():
+def bestbuy_product():
     product_id = request.args.get("product_id")
     product_data = BestBuyProduct.aggregate_data(product_id)
 
@@ -41,7 +42,9 @@ def bestbuy_data():
     if title:
         product_data.update(scrape_videos(title))
 
-    # TODO: Scrape Expert reviews.
+    if title:
+        product_data.update(scrape_expert_reviews(title, upc = product_data["basic_info"].get("upc")))
+    
     return product_data
 
 # Note: Was testing with product_id "711035416" (exists) and "123" (does not exist).
@@ -52,17 +55,19 @@ def walmart_product():
 
     # Summarize reviews.
     text_reviews = product_data["reviews"].get("reviews")
-    if text_reviews:
-        # TODO: Can probably drop "reviews" field.
-        summary = {"summary": summarize(text_reviews)}
-        product_data["reviews"].update(summary)
+    # if text_reviews:
+    #     # TODO: Can probably drop "reviews" field.
+    #     summary = {"summary": summarize(text_reviews)}
+    #     product_data["reviews"].update(summary)
 
     # Scrape YouTube videos.
     title = product_data["basic_info"].get("title")
     if title:
         product_data.update(scrape_videos(title))
 
-    # TODO: Scrape Expert reviews.
+    if title:
+        product_data.update(scrape_expert_reviews(title, walmart_id = product_id))
+
     return product_data
 
 if __name__ == "__main__":
