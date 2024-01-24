@@ -9,7 +9,7 @@ class BestBuyProduct:
             "product_id": product_id, # TODO: Figure out what to pass to API.
             "api_key": environ.get("BESTBUY_API_KEY"), # TODO: Update API Key.
         }
-        search = requests.get(f"https://api.bestbuy.com/v1/products(sku={params.get('product_id')})?apiKey={params.get('api_key')}&show=customerReviewAverage,customerReviewCount,details.name,details.value,image,manufacturer,modelNumber,name,regularPrice,sku,url&pageSize=10&format=json")
+        search = requests.get(f"https://api.bestbuy.com/v1/products(sku={params.get('product_id')})?apiKey={params.get('api_key')}&show=customerReviewAverage,customerReviewCount,details.name,details.value,image,manufacturer,modelNumber,name,regularPrice,sku,upc,url&pageSize=10&format=json")
         results = search.json()
 
         if "error" in results or results.get("total") == 0:
@@ -26,7 +26,9 @@ class BestBuyProduct:
                 "basic_info": {
                     "us_item_id": product_result.get("us_item_id", ""),
                     "product_id": product_result.get("sku"),
+                    "manufacturer": product_result.get("manufacturer"),
                     "model_number": product_result.get("modelNumber"),
+                    "upc": product_result.get("upc"),
                     "title": product_result.get("name"),
                     "product_page_url": product_result.get("url"),
                     "price": {
