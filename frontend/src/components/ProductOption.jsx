@@ -3,22 +3,24 @@ import React from "react";
 import "./ProductOption.css";
 
 function ProductOption(props) {
+    const selectedStyle = props.isSelected ? "selected-product" : "unselected-product"
+
 	return (
-		<div className="product-container">
+		<button className={"product-container " + selectedStyle} onClick={() => props.changeSelection(props.data.link)}>
             <div className="product-content">
-                <img className="product-image" src={props.thumbnail} alt=""/>
-                <h3>{props.title}</h3>
-                <p>{props.rating} {props.reviews}</p>
-                <p>{props.extensions.join(" | ")}</p>
+                <img className="product-image" src={props.data.thumbnail} alt=""/>
+                <h3>{props.data.title}</h3>
+                <p>{props.data.rating} {props.data.reviews}</p>
+                <p>{props.data.extensions.join(" | ")}</p>
                 <br/>
-                <h3>${props.price}</h3>
+                <h3>${props.data.price}</h3>
                 <a
-                    href={props.link}
+                    href={props.data.link}
                     target="_blank"
                     rel="noreferrer"
-                >{props.source}</a>
+                >{props.data.source}</a>
             </div>
-		</div>
+		</button>
 	);
 }
 
