@@ -95,12 +95,12 @@ function Comparisons() {
                 product2={<SpecificationsData specifications={product2Data.specifications} />}
                 product3={<SpecificationsData specifications={product3Data.specifications} />}
             />
-            <ComparisonSection
+            {/* <ComparisonSection
                 section_title="Summary of written reviews"
                 product1={<ReviewsData reviews={product1Data.reviews} />}
                 product2={<ReviewsData reviews={product2Data.reviews} />}
                 product3={<ReviewsData reviews={product3Data.reviews} />}
-            />
+            /> */}
             <ComparisonSection
                 section_title="Most helpful video reviews"
                 product1={<VideosData videos={product1Data.videos} />}
