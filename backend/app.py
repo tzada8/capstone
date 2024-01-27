@@ -10,7 +10,7 @@ from src.scraper.youtube_scraper import scrape_videos
 from src.summarize.summarize import summarize
 
 # TODO: DELETE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
-from dummy_data.dummy_search_products import dummy_search_products
+from dummy_data.dummy_search_products import dummy_search_products, dummy_search_products2
 from dummy_data.dummy_product import dummy_product
 
 app = Flask(__name__)
@@ -80,6 +80,11 @@ def walmart_product():
 @app.route("/api/dummy/search-products")
 def dummy_api_search_products():
     return dummy_search_products
+
+# TODO: DELETE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
+@app.route("/api/dummy/search-products2")
+def dummy_api_search_products2():
+    return dummy_search_products2
 
 # TODO: DELETE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
 @app.route("/api/dummy/product")
