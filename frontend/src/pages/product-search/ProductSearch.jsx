@@ -1,29 +1,62 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 import "./ProductSearch.css";
 import ProductOption from "../../components/ProductOption";
 import SearchBar from "../../components/search-bar/SearchBar";
 
 function ProductSearch() {
-
     const [searchQuery, setSearchQuery] = useState("");
-    const [productData, setProductData] = useState({"data": [], "pagination": {}})
-    const [selectedProducts, setSelectedProducts] = useState([]);
+    const [productData, setProductData] = useState([]);
+    // TODO: Implement pagination.
+    const [productPagination, setProductPagination] = useState({});
+    const [mainSelectedProducts, setMainSelectedProducts] = useState([]);
+    const [currentSelectedProducts, setCurrentSelectedProducts] = useState([]);
+
+    const location = useLocation();
+
+    const _searchProductsHelper = (q) => {
+        // TODO: Update from links to id (or entire product if possible).
+        const selectedLinks = [...mainSelectedProducts.map(p => p.link), ...currentSelectedProducts.map(p => p.link)];
+        const searchEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/search-products?q=${q}`;
+        fetch(searchEndpoint).then(res => res.json()).then(data => {
+            const prodData = data.shopping_results.data.filter(p => !selectedLinks.includes(p.link));
+            setProductData(prodData);
+            setProductPagination(data.shopping_results.pagination);
+        });
+        setSearchQuery(q);
+    }
+
+    useEffect(() => {
+        const q = location.state === null ? "" : location.state.query;
+        const searchEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/search-products2?q=${q}`;
+        fetch(searchEndpoint).then(res => res.json()).then(data => {
+            setProductData(data.shopping_results.data);
+            setProductPagination(data.shopping_results.pagination);
+        });
+        setSearchQuery(q);
+        // TODO: Uncomment following once no longer need to use hardcoded backend data (replacing lines above).
+        // _searchProductsHelper(searchQuery);
+    }, [location.state]);
 
     const onSearchSubmit = (event) => {
         event.preventDefault();
-        const searchEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/search-products?q=${searchQuery}`;
-        fetch(searchEndpoint).then(res => res.json()).then(data => {
-            setProductData(data.shopping_results);
-        });
+        if (currentSelectedProducts.length !== 0) {
+            setMainSelectedProducts([...mainSelectedProducts, ...currentSelectedProducts]);
+            setCurrentSelectedProducts([]);
+        }
+        _searchProductsHelper(searchQuery);
     }
 
     // TODO: Update unique product value from link to product_id.
-    const onProductSelection = (link) => {
-        if (selectedProducts.includes(link)) {
-            setSelectedProducts(selectedProducts.filter(p => p !== link));
+    const onProductSelection = (product) => {
+        if (mainSelectedProducts.includes(product)) {
+            setMainSelectedProducts(mainSelectedProducts.filter(p => p !== product));
+            setProductData([...productData, product]);
+        } else if (currentSelectedProducts.includes(product)) {
+            setCurrentSelectedProducts(currentSelectedProducts.filter(p => p !== product));
         } else {
-            setSelectedProducts([...selectedProducts, link]);
+            setCurrentSelectedProducts([...currentSelectedProducts, product]);
         }
     }
 
@@ -32,14 +65,24 @@ function ProductSearch() {
             <h1>Select products to compare</h1>
             <p>Obtain recommendations</p>
             <SearchBar onSearchSubmit={onSearchSubmit} query={searchQuery} setQuery={setSearchQuery}/>
-            <p>TEMP DISPLAY: {searchQuery}</p>
-            <p>TEMP DISPLAY: <br/> {selectedProducts}</p>
+            <p>SEARCH QUERY: {searchQuery}</p>
+            <p># MAIN SELECTED PRODUCTS: {mainSelectedProducts.length}</p>
+            <p># CURR SELECTED PRODUCTS: {currentSelectedProducts.length}</p>
+            <p># PRODUCT OPTIONS: {productData.length}</p>
             <br/>
-            {productData.data.map(product => (
+
+            {mainSelectedProducts.map(product => (
                 <ProductOption
                     data={product}
                     changeSelection={onProductSelection}
-                    isSelected={selectedProducts.includes(product.link)}
+                    isSelected={mainSelectedProducts.includes(product)}
+                />
+            ))}
+            {productData.map(product => (
+                <ProductOption
+                    data={product}
+                    changeSelection={onProductSelection}
+                    isSelected={currentSelectedProducts.includes(product)}
                 />
             ))}
             <br/>
