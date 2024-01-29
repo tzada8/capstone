@@ -83,10 +83,8 @@ class BestBuyProduct:
             name_2_set = {ps.stem(w) for w in name_2 if not w in sw} 
             rvector = name_1_set.union(name_2_set)
             for w in rvector: 
-                if w in name_1_set: l1.append(1)
-                else: l1.append(0) 
-                if w in name_2_set: l2.append(1) 
-                else: l2.append(0) 
+                l1.append(1) if w in name_1_set else l1.append(0) 
+                l2.append(1) if w in name_2_set else l2.append(0) 
             c = 0
             for i in range(len(rvector)): 
                 c += l1[i] * l2[i] 
