@@ -25,8 +25,9 @@ Setup Backend:
 3. Create local virtual environment: `python3 -m venv .venv` (or use `python`)
 4. Activate virtual environment: `source .venv/bin/activate`
 5. Install dependencies: `pip install -r requirements.txt`
-6. Request environment variables from team: `.env` file
-7. Deactivate local virtual environment (when needed): `deactivate`
+6. Install NLTK dependencies: `python3 -m nltk.downloader punkt` and `python3 -m nltk.downloader stopwords` (if you are running into an error, try running `pip install certifi /Applications/Python\ {PYTHON_VERSION}/Install\ Certificates.command` first and then re-installing the NLTK dependencies)
+7. Request environment variables from team: `.env` file
+8. Deactivate local virtual environment (when needed): `deactivate`
 
 Adding Additional Packages:
 1. Change directory: `cd backend`

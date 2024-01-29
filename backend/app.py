@@ -40,7 +40,11 @@ def bestbuy_product():
     product_id = request.args.get("product_id")
     product_data = BestBuyProduct.aggregate_data(product_id)
 
-    # TODO: Summarize reviews.
+    text_reviews = product_data["reviews"].get("reviews")
+    if text_reviews:
+        # TODO: Can probably drop "reviews" field.
+        summary = {"summary": summarize(text_reviews)}
+        product_data["reviews"].update(summary)
 
     # Scrape YouTube videos.
     title = product_data["basic_info"].get("title")
