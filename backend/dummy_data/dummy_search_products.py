@@ -1,3 +1,4 @@
+# TODO: DELETE FILE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
 dummy_search_products = {
   "shopping_results": {
     "data": [
@@ -1456,6 +1457,69 @@ dummy_search_products = {
         "thumbnail": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQUeyVTI92zwKuQYE7HyovTAouwWy9ggzb5rFx7Q46TGFIrDuDIFRduI4OANOmfGvtB0HLoiS7uNm3Y2MyRvvYd3Um1wSZLLg&usqp=CAE",
         "title": "Canon Eos Rebel T6/2000d Digital SLR Camera with EF-S 18-55mm f/3.5-5.6 Is Lens ..."
       },
+      {
+        "extensions": [
+          "With Video",
+          "Black",
+          "SALE"
+        ],
+        "link": "https://www.walmart.com/ip/NBD-DSLR-Camera-33MP-Digital-SLR-4K-Camcorder-24X-Telephoto-Lens-Wide-Angle-Lens-IPS-Screen-YouTube-Vlogging-32GB-SD-Card-Included/1747220129?wmlspartner=wlpa&selectedSellerId=101173561",
+        "position": 98,
+        "price": 299.0,
+        "rating": 3.4,
+        "reviews": 15,
+        "source": "Walmart - ningboshi yinzhou zhoubatian guojimaoyi youxiangongsi",
+        "thumbnail": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTp4DdWmf-vLzSqgd8VJ0dKWObb9Jdca5GmmkvaiFwvI0BejicnRtTNv2aAYyB8SRjiyMX6PnbpxcZlt96XvCtbzHyC9hk6cxcgsPzCcGxD7Sp5Ydp_bmw_&usqp=CAE",
+        "title": "Nbd DSLR Camera ,33mp Digital SLR Camera 4K Digital Camera Camcorder with 24x ..."
+      },
+      {
+        "extensions": [
+          "CMOS",
+          "With Video",
+          "Black"
+        ],
+        "link": "https://www.walmart.com/ip/Nikon-D3400-24-2-MP-Digital-SLR-Camera-with-Top-Accessory-Bundle/595669147?wmlspartner=wlpa&selectedSellerId=6811",
+        "position": 99,
+        "price": 899.0,
+        "rating": 4.7,
+        "reviews": 7323,
+        "source": "Walmart - BuyDirect & Save",
+        "thumbnail": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQmlp2J5IvEu7AuUNtmimtYaQTlQJp7qug34s0NlliqfJ4NbFRZl0RtfEBEwoaULDczVjlyIuwXkPkm_kRx5FlVeby102f-stcyi8i_koBnT2lhVi5Ummi4pQ&usqp=CAE",
+        "title": "Nikon D3400 24.2 MP Digital SLR Camera - Black - AF-P DX 18-55mm VR Lens - Top ..."
+      },
+      {
+        "extensions": [
+          "CMOS",
+          "With Video",
+          "White"
+        ],
+        "link": "https://www.walmart.com/ip/Canon-EOS-Rebel-T6-Digital-SLR-Camera-18-55mm-and-75-300mm-Zoom-Lenses-International-Model-No-Warranty/235540697?wmlspartner=wlpa&selectedSellerId=4720",
+        "position": 100,
+        "price": 829.95,
+        "rating": 4.8,
+        "reviews": 8876,
+        "source": "Walmart - 6AVE Electronics",
+        "thumbnail": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcR9OSLCorJh6N2ts8-zMMoVM-UzqDIWbFB8EYsvRqpsohpx2MQXH4yG5haN3CPeapV6Jx9MMlPyBH6hcfFk57aiKardctr5Qg&usqp=CAE",
+        "title": "Canon Eos Rebel T6 Digital SLR Camera 18-55mm and 75-300mm Zoom Lenses"
+      }
+    ],
+    "pagination": {
+      "current": 1,
+      "next": "https://serpapi.com/search.json?device=desktop&engine=google_shopping&gl=us&google_domain=google.com&hl=en&location=United+States&num=100&q=DSLR+Camera&start=100&tbs=mr%3A1%2Cmerchagg%3Ag8299768%7Cm125210027%7Cm120798572%7Cm113137360%7Cm5073604987%7Cm585399882%7Cg8299768%7Cg7187155%7Cm125210027%7Cm120798572%7Cm113137360%7Cm5073604987%7Cm585399882%7Cm1311674%2Cvw%3Ad",
+      "other_pages": {
+        "2": "https://serpapi.com/search.json?device=desktop&engine=google_shopping&gl=us&google_domain=google.com&hl=en&location=United+States&num=100&q=DSLR+Camera&start=100&tbs=mr%3A1%2Cmerchagg%3Ag8299768%7Cm125210027%7Cm120798572%7Cm113137360%7Cm5073604987%7Cm585399882%7Cg8299768%7Cg7187155%7Cm125210027%7Cm120798572%7Cm113137360%7Cm5073604987%7Cm585399882%7Cm1311674%2Cvw%3Ad",
+        "3": "https://serpapi.com/search.json?device=desktop&engine=google_shopping&gl=us&google_domain=google.com&hl=en&location=United+States&num=100&q=DSLR+Camera&start=200&tbs=mr%3A1%2Cmerchagg%3Ag8299768%7Cm125210027%7Cm120798572%7Cm113137360%7Cm5073604987%7Cm585399882%7Cg8299768%7Cg7187155%7Cm125210027%7Cm120798572%7Cm113137360%7Cm5073604987%7Cm585399882%7Cm1311674%2Cvw%3Ad",
+        "4": "https://serpapi.com/search.json?device=desktop&engine=google_shopping&gl=us&google_domain=google.com&hl=en&location=United+States&num=100&q=DSLR+Camera&start=300&tbs=mr%3A1%2Cmerchagg%3Ag8299768%7Cm125210027%7Cm120798572%7Cm113137360%7Cm5073604987%7Cm585399882%7Cg8299768%7Cg7187155%7Cm125210027%7Cm120798572%7Cm113137360%7Cm5073604987%7Cm585399882%7Cm1311674%2Cvw%3Ad",
+        "5": "https://serpapi.com/search.json?device=desktop&engine=google_shopping&gl=us&google_domain=google.com&hl=en&location=United+States&num=100&q=DSLR+Camera&start=400&tbs=mr%3A1%2Cmerchagg%3Ag8299768%7Cm125210027%7Cm120798572%7Cm113137360%7Cm5073604987%7Cm585399882%7Cg8299768%7Cg7187155%7Cm125210027%7Cm120798572%7Cm113137360%7Cm5073604987%7Cm585399882%7Cm1311674%2Cvw%3Ad"
+      }
+    },
+    "status": "Success"
+  }
+}
+
+dummy_search_products2 = {
+  "shopping_results": {
+    "data": [
       {
         "extensions": [
           "With Video",

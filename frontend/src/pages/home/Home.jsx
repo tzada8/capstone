@@ -1,9 +1,17 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import "./Home.css";
+import SearchBar from "../../components/search-bar/SearchBar";
 
 function Home() {
     const [currentNumber, setCurrentNumber] = useState(0);
+    const [searchQuery, setSearchQuery] = useState("");
+
+    const navigate = useNavigate();
+    const toProductSearch = () => {
+        navigate("/product-search", {state: {query: searchQuery}})
+    }
 
     const handleNumberClick = () => {
         fetch(`${process.env.REACT_APP_BACKEND_BASE_API}/api/number`, {
@@ -25,6 +33,8 @@ function Home() {
             <button onClick={handleNumberClick}>Change Number</button>
             <p>The current number is {currentNumber}.</p>
             <p>Environment: {process.env.REACT_APP_ENVIRONMENT}.</p>
+
+            <SearchBar onSearchSubmit={() => toProductSearch()} query={searchQuery} setQuery={setSearchQuery}/>
 		</div>
 	);
 }
