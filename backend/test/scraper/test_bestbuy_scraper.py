@@ -4,7 +4,7 @@ from unittest.mock import patch
 from test.scraper.data.bestbuy.product_specs import \
     product_specs_exists, product_specs_nonexistent, product_specs_incorrect_format, product_specs_missing_keys
 from test.scraper.data.bestbuy.product_reviews import \
-    product_reviews_exists, product_reviews_nonexistent, product_reviews_missing_keys
+    all_products_returned, no_products_returned, product_reviews_exists, product_reviews_nonexistent
 from src.scraper.bestbuy_scraper import BestBuyProduct
 
 class TestBestBuyProduct(unittest.TestCase):
@@ -79,10 +79,42 @@ class TestBestBuyProduct(unittest.TestCase):
         }
         self.assertEqual(result, expected)
 
-    # TODO: Peer review tests.
+    def test_product_reviews_id_exists(self):
+        self.mock_search.side_effect = [all_products_returned, product_reviews_exists]
+        product_id = 000000
+        result = BestBuyProduct._product_reviews(product_id, "New Product Title")
+        expected = {
+            "reviews": {
+                "ratings": [
+                    {"count": 1, "stars": 1},
+                    {"count": 100, "stars": 2},
+                    {"count": 100, "stars": 3},
+                    {"count": 50, "stars": 4},
+                    {"count": 1000, "stars": 5}
+                ],
+                "reviews": ["Good", "Bad", "Okay", "Terrible", "The best"],
+                "top_negative": {'rating': None, 'text': None, 'title': None},
+                "top_positive": {'rating': None, 'text': None, 'title': None}
+            }
+        }
+        self.assertEqual(result, expected)
+
+    def test_product_reviews_search_id_does_not_exist(self):
+        self.mock_search.return_value = no_products_returned
+        product_id = 000000
+        result = BestBuyProduct._product_reviews(product_id, "AAAAA")
+        expected = {"reviews": {"error": "No reviews exist for provided id."}}
+        self.assertEqual(result, expected)
+
+    def test_product_reviews_id_does_not_exist(self):
+        self.mock_search.side_effect = [all_products_returned, product_reviews_nonexistent]
+        product_id = 000000
+        result = BestBuyProduct._product_reviews(product_id, "AAAAA")
+        expected = {"reviews": {"error": "No reviews exist for provided id."}}
+        self.assertEqual(result, expected)
 
     def test_aggregate_data_id_exists(self):
-        self.mock_search.side_effect = [product_specs_exists, product_reviews_exists]
+        self.mock_search.side_effect = [product_specs_exists, all_products_returned, product_reviews_exists]
         product_id = "11111"
         result = BestBuyProduct.aggregate_data(product_id)
         expected = {
@@ -103,6 +135,17 @@ class TestBestBuyProduct(unittest.TestCase):
                 {"name": "Colour", "value": "Red"},
                 {"name": "Size", "value": "Small"},
             ],
-            "reviews": {}
+            "reviews": {
+                "ratings": [
+                    {"count": 1, "stars": 1},
+                    {"count": 100, "stars": 2},
+                    {"count": 100, "stars": 3},
+                    {"count": 50, "stars": 4},
+                    {"count": 1000, "stars": 5}
+                ],
+                "reviews": ["Good", "Bad", "Okay", "Terrible", "The best"],
+                "top_negative": {'rating': None, 'text': None, 'title': None},
+                "top_positive": {'rating': None, 'text': None, 'title': None}
+            }
         }
         self.assertEqual(result, expected)
