@@ -4,6 +4,7 @@ import requests
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
+from src.sentiment.sentiment import sentiment
 
 class BestBuyProduct:
     @staticmethod
@@ -108,10 +109,9 @@ class BestBuyProduct:
                         search_sku = requests.get(f"https://www.bestbuy.ca/api/v2/json/reviews/{canada_sku}?page={page+1}&pagesize=700&source=us", headers = params.get('headers'))
                         review_results = search_sku.json()
                         reviews.extend(review_results.get("reviews", []))
+                # TODO: Remove "[This review was collected as part of a promotion.]" from review comments?
 
-                # TODO: Get most positive and most negative reviews.
-                top_positive = {}
-                top_negative = {}
+                positive_negative = sentiment(reviews)
                 return {
                     "reviews": {
                         "ratings": [
@@ -137,14 +137,14 @@ class BestBuyProduct:
                             }
                         ],
                         "top_positive": {
-                            "title": top_positive.get("title"),
-                            "text": top_positive.get("text"),
-                            "rating": top_positive.get("rating"),
+                            "title": positive_negative['top_positive'].get("title"),
+                            "text": positive_negative['top_positive'].get("text"),
+                            "rating": positive_negative['top_positive'].get("rating"),
                         },
                         "top_negative": {
-                            "title": top_negative.get("title"),
-                            "text": top_negative.get("text"),
-                            "rating": top_negative.get("rating"),
+                            "title": positive_negative['top_negative'].get("title"),
+                            "text": positive_negative['top_negative'].get("text"),
+                            "rating": positive_negative['top_negative'].get("rating"),
                         },
                         "reviews": [r.get('comment') for r in reviews],
                     }
