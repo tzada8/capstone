@@ -1,11 +1,18 @@
 from os import environ
 from serpapi import GoogleSearch
-from typing import Dict
+from typing import Dict, Optional
+from urllib import parse
 
 SELLER_FILTERS = {
     "walmart": "g8299768%7Cm125210027%7Cm120798572%7Cm113137360%7Cm5073604987%7Cm585399882",
     "best-buy": "g8299768%7Cg7187155%7Cm125210027%7Cm120798572%7Cm113137360%7Cm5073604987%7Cm585399882%7Cm1311674",
 }
+
+def _extract_product_id(url: str) -> Optional[str]:
+    parsed_url = parse.urlparse(url)
+    potential_id = parsed_url.path.split("/")[-1]
+    potential_id = potential_id.replace(".p", "")
+    return potential_id if potential_id.isdigit() else None
 
 def scrape_google_products(q: str) -> Dict:
     sellers = "|".join(SELLER_FILTERS.values())
@@ -39,8 +46,8 @@ def scrape_google_products(q: str) -> Dict:
                 "status": status,
                 "data": [
                     {
-                        # TODO: Look into using "serpapi_product_api" field (might be able to remove company-specific scrapers).
                         "position": sr.get("position"),
+                        "product_id": _extract_product_id(sr.get("link")),
                         "title": sr.get("title"),
                         "link": sr.get("link"),
                         "source": sr.get("source"),
