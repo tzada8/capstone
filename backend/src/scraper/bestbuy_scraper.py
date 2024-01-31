@@ -109,7 +109,10 @@ class BestBuyProduct:
                         search_sku = requests.get(f"https://www.bestbuy.ca/api/v2/json/reviews/{canada_sku}?page={page+1}&pagesize=700&source=us", headers = params.get('headers'))
                         review_results = search_sku.json()
                         reviews.extend(review_results.get("reviews", []))
-                # TODO: Remove "[This review was collected as part of a promotion.]" from review comments?
+
+                promo_string = "[This review was collected as part of a promotion.] "
+                for r in reviews:
+                    r["comment"] = r.get("comment").replace(promo_string, "")
 
                 positive_negative = sentiment(reviews)
                 return {

@@ -93,8 +93,8 @@ class TestBestBuyProduct(unittest.TestCase):
                     {"count": 1000, "stars": 5}
                 ],
                 "reviews": ["Good", "Bad", "Okay", "Terrible", "The best"],
-                "top_negative": {'rating': None, 'text': None, 'title': None},
-                "top_positive": {'rating': None, 'text': None, 'title': None}
+                "top_negative": {'rating': 1, 'text': "Terrible", 'title': "Terrible"},
+                "top_positive": {'rating': 5, 'text': "The best", 'title': "The best"}
             }
         }
         self.assertEqual(result, expected)
@@ -144,8 +144,8 @@ class TestBestBuyProduct(unittest.TestCase):
                     {"count": 1000, "stars": 5}
                 ],
                 "reviews": ["Good", "Bad", "Okay", "Terrible", "The best"],
-                "top_negative": {'rating': None, 'text': None, 'title': None},
-                "top_positive": {'rating': None, 'text': None, 'title': None}
+                "top_negative": {'rating': 1, 'text': "Terrible", 'title': "Terrible"},
+                "top_positive": {'rating': 5, 'text': "The best", 'title': "The best"}
             }
         }
         self.assertEqual(result, expected)

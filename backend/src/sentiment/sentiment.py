@@ -1,12 +1,8 @@
-from openai import OpenAI
-from os import environ
 from typing import List, Dict
 import spacy
 from spacytextblob.spacytextblob import SpacyTextBlob
 
 # Takes ~1 min to run on 100 reviews.
-# python -m textblob.download_corpora
-# python -m spacy download en_core_web_sm
 def sentiment(reviews: List[Dict]) -> Dict:
     if len(reviews) == 0:
         return "Product has no reviews."
@@ -28,6 +24,7 @@ def sentiment(reviews: List[Dict]) -> Dict:
         }
     }
 
+# TODO: If sentiment analysis becomes too slow, we can only analyze reviews with 1 or 5 star ratings.
 def analyze(review: Dict) -> Dict:
     nlp = spacy.load('en_core_web_sm')
     nlp.add_pipe('spacytextblob')

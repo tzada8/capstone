@@ -27,11 +27,11 @@ product_reviews_exists.json = mock.Mock(
     return_value = {
         "totalPages": 1,
         "reviews": [
-            {"comment": "Good"},
-            {"comment": "Bad"},
-            {"comment": "Okay"},
-            {"comment": "Terrible"},
-            {"comment": "The best"},
+            {"comment": "[This review was collected as part of a promotion.] Good", "rating": 4, "title": "Good"},
+            {"comment": "Bad", "rating": 2, "title": "Bad"},
+            {"comment": "[This review was collected as part of a promotion.] Okay", "rating": 3, "title": "Okay"},
+            {"comment": "Terrible", "rating": 1, "title": "Terrible"},
+            {"comment": "The best", "rating": 5, "title": "The best"},
         ],
         "RatingSummary": {
             "OneStarCount": 1,
