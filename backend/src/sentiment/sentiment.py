@@ -25,7 +25,7 @@ def sentiment(reviews: List[Dict]) -> Dict:
     }
 
 # TODO: If sentiment analysis becomes too slow, we can only analyze reviews with 1 or 5 star ratings.
-def analyze(review: Dict) -> Dict:
+def analyze(review: Dict) -> float:
     nlp = spacy.load('en_core_web_sm')
     nlp.add_pipe('spacytextblob')
     return nlp(review['comment'])._.blob.polarity
