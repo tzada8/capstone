@@ -31,9 +31,43 @@ def show_number_x10():
 @app.route("/api/search-products")
 def search_products():
     q = request.args.get("q")
-    # TODO: Add new field product_id (worst case scenario, parse it from URL).
     return scrape_google_products(q)
 
+@app.route("/api/product")
+def product():
+    product_id = request.args.get("product_id")
+    source = request.args.get("source")
+
+    product_data = {}
+    source_details = {}
+    match source:
+        case "BestBuy":
+            product_data = BestBuyProduct.aggregate_data(product_id)
+            source_details = {"product_id": product_data["basic_info"].get("upc"), "id_field": "defaultUpc"}
+        case "Walmart":
+            product_data = WalmartProduct.aggregate_data(product_id)
+            source_details = {"product_id": product_id, "id_field": "walmartId"}
+
+    # Summarize reviews.
+    text_reviews = product_data["reviews"].get("reviews")
+    if text_reviews:
+        summary = {"summary": summarize(text_reviews)}
+        product_data["reviews"].update(summary)
+        del product_data["reviews"]["reviews"]
+
+    # Scrape YouTube videos.
+    title = product_data["basic_info"].get("title")
+    if title:
+        product_data.update(scrape_videos(title))
+
+    # Scrape Expert reviews.
+    if title:
+        product_data.update(scrape_expert_reviews(title, source_details["product_id"], source_details["id_field"]))
+
+    return product_data
+
+
+# TODO: Can remove endpoint.
 # Note: Was testing with product_id "6522416" (exists) and "0" (does not exist).
 @app.route("/api/bestbuy-product")
 def bestbuy_product():
@@ -56,6 +90,7 @@ def bestbuy_product():
     
     return product_data
 
+# TODO: Can remove endpoint.
 # Note: Was testing with product_id "711035416" (exists) and "123" (does not exist).
 @app.route("/api/walmart-product")
 def walmart_product():
@@ -78,7 +113,6 @@ def walmart_product():
         product_data.update(scrape_expert_reviews(title, product_id, "walmartId"))
 
     return product_data
-
 
 # TODO: DELETE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
 @app.route("/api/dummy/search-products")
