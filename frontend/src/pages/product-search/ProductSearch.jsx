@@ -16,11 +16,16 @@ function ProductSearch() {
     const location = useLocation();
 
     const _searchProductsHelper = (q) => {
-        // TODO: Update from links to id (or entire product if possible).
-        const selectedLinks = [...mainSelectedProducts.map(p => p.link), ...currentSelectedProducts.map(p => p.link)];
+        if (q === "") {
+            setSearchQuery(q);
+            setProductData([]);
+            setProductPagination({});
+            return;
+        }
+        const selectedIds = [...mainSelectedProducts.map(p => p.product_id), ...currentSelectedProducts.map(p => p.product_id)];
         const searchEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/search-products?q=${q}`;
         fetch(searchEndpoint).then(res => res.json()).then(data => {
-            const prodData = data.shopping_results.data.filter(p => !selectedLinks.includes(p.link));
+            const prodData = data.shopping_results.data.filter(p => !selectedIds.includes(p.product_id));
             setProductData(prodData);
             setProductPagination(data.shopping_results.pagination);
         });
@@ -48,7 +53,6 @@ function ProductSearch() {
         _searchProductsHelper(searchQuery);
     }
 
-    // TODO: Update unique product value from link to product_id.
     const onProductSelection = (product) => {
         if (mainSelectedProducts.includes(product)) {
             setMainSelectedProducts(mainSelectedProducts.filter(p => p !== product));
