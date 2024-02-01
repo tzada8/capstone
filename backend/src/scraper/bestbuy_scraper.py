@@ -114,7 +114,11 @@ class BestBuyProduct:
                 for r in reviews:
                     r["comment"] = r.get("comment").replace(promo_string, "")
 
-                positive_negative = sentiment(reviews)
+                ratings = list(map(lambda x: x.get("rating"), reviews))
+                max_rating = max(ratings)
+                min_rating = min(ratings)
+                selected_reviews = list(filter(lambda d: d.get("rating") in [max_rating, min_rating], reviews))
+                positive_negative = sentiment(selected_reviews)
                 return {
                     "reviews": {
                         "ratings": [
@@ -140,14 +144,14 @@ class BestBuyProduct:
                             }
                         ],
                         "top_positive": {
-                            "title": positive_negative['top_positive'].get("title"),
-                            "text": positive_negative['top_positive'].get("text"),
-                            "rating": positive_negative['top_positive'].get("rating"),
+                            "title": positive_negative.get("top_positive").get("title"),
+                            "text": positive_negative.get("top_positive").get("text"),
+                            "rating": positive_negative.get("top_positive").get("rating"),
                         },
                         "top_negative": {
-                            "title": positive_negative['top_negative'].get("title"),
-                            "text": positive_negative['top_negative'].get("text"),
-                            "rating": positive_negative['top_negative'].get("rating"),
+                            "title": positive_negative.get("top_negative").get("title"),
+                            "text": positive_negative.get("top_negative").get("text"),
+                            "rating": positive_negative.get("top_negative").get("rating"),
                         },
                         "reviews": [r.get('comment') for r in reviews],
                     }

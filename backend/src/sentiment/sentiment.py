@@ -2,7 +2,7 @@ from typing import List, Dict
 import spacy
 from spacytextblob.spacytextblob import SpacyTextBlob
 
-# Takes ~1 min to run on 100 reviews.
+# Takes <1 min to run on 100 reviews.
 def sentiment(reviews: List[Dict]) -> Dict:
     if len(reviews) == 0:
         return "Product has no reviews."
@@ -24,8 +24,7 @@ def sentiment(reviews: List[Dict]) -> Dict:
         }
     }
 
-# TODO: If sentiment analysis becomes too slow, we can only analyze reviews with 1 or 5 star ratings.
 def analyze(review: Dict) -> float:
     nlp = spacy.load('en_core_web_sm')
     nlp.add_pipe('spacytextblob')
-    return nlp(review['comment'])._.blob.polarity
+    return nlp(review.get("comment"))._.blob.polarity
