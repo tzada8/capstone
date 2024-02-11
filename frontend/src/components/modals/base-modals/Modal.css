@@ -1,0 +1,25 @@
+.modal::backdrop {
+    background: hsl(0 0% 0% / 50%);
+}
+
+.modal {
+    max-width: 20rem;
+    padding: 2rem;
+    border: 0;
+    border-radius: 0.5rem;
+    box-shadow: hsl(0 0% 0% / 10%) 0 0 0.5rem 0.25rem;
+    z-index: 2;
+}
+
+.modal-center {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modal-close-btn {
+    font-size: 0.75em;
+    position: absolute;
+    top: 0.25em;
+    right: 0.25em;
+}
