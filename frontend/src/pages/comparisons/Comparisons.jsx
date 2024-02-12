@@ -50,7 +50,11 @@ function Comparisons() {
 
     // const numProductsDisplayed = 3;
     const defaultProductStructure = {
-        "basic_info": {}, "reviews": {}, "expert_review": {}, "specifications": [], "videos": [],
+        basic_info: {},
+        reviews: { top_positive: {}, top_negative: {} },
+        expert_review: {},
+        specifications: [],
+        videos: [],
     }
 
     const location = useLocation();
@@ -64,11 +68,11 @@ function Comparisons() {
 
     useEffect(() => {
         // TODO: Use for recommendations.
-        const preferences = location.state.preferences;
-        const featurePriority = location.state.featurePriority;
+        const preferences = location.state === null ? {} : location.state.preferences;
+        const featurePriority = location.state === null ? {} : location.state.featurePriority;
 
         // TODO: From recommendations, extract highest 3 rated.
-        const topProducts = location.state.selectedProducts.slice(0, 3)
+        const topProducts = location.state === null ? [] : location.state.selectedProducts.slice(0, 3);
         // const product1Endpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/product?source=${topProducts[0].source}&product_id=${topProducts[0].product_id}`;
         const product1Endpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/product`;
         fetch(product1Endpoint).then(res => res.json()).then(data => {
@@ -105,17 +109,17 @@ function Comparisons() {
                 product2={<SpecificationsData specifications={product2Data.specifications} />}
                 product3={<SpecificationsData specifications={product3Data.specifications} />}
             />
-            {/* <ComparisonSection
+            <ComparisonSection
                 section_title="Summary of written reviews"
                 product1={<ReviewsData reviews={product1Data.reviews} />}
                 product2={<ReviewsData reviews={product2Data.reviews} />}
                 product3={<ReviewsData reviews={product3Data.reviews} />}
-            /> */}
+            />
             <ComparisonSection
                 section_title="Most helpful video reviews"
-                product1={<VideosData videos={product1Data.videos} />}
-                product2={<VideosData videos={product2Data.videos} />}
-                product3={<VideosData videos={product3Data.videos} />}
+                product1={<VideosData videos={product1Data.videos.slice(0, 4)} />}
+                product2={<VideosData videos={product2Data.videos.slice(0, 4)} />}
+                product3={<VideosData videos={product3Data.videos.slice(0, 4)} />}
             />
 		</div>
 	);
