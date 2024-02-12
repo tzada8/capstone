@@ -25,15 +25,11 @@ function ProductSearch() {
 
     const navigate = useNavigate();
     const toComparisons = () => {
-        navigate("/comparisons", {state: {aggregateState}})
-    }
-
-    const aggregateState = () => {
-        return {
+        navigate("/comparisons", {state: {
             selectedProducts: [...mainSelectedProducts, ...currentSelectedProducts],
             preferences: preferencesModalData,
             featurePriority: featurePriorityModalData,
-        }
+        }})
     }
 
     const _searchProductsHelper = (q) => {
@@ -109,6 +105,7 @@ function ProductSearch() {
             <br/>
 
             <button>Cancel</button>
+            {/* TODO: Disable until minimum 3 products selected. */}
             <button onClick={() => setIsPreferencesModalOpen(true)}>Continue</button>
             <br/>
             <br/>

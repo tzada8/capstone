@@ -44,7 +44,7 @@ function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
                         onChange={handleInputChange}
                     >
                         <option value=""></option>
-                        <option value="brand">brand</option>
+                        <option value="brand">Brand</option>
                         <option value="cameraLensType">Camera Lens Type</option>
                         <option value="cameraType">Camera Type</option>
                         <option value="maxBudget">Maximum Budget</option>
@@ -59,7 +59,7 @@ function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
                         onChange={handleInputChange}
                     >
                         <option value=""></option>
-                        <option value="brand">brand</option>
+                        <option value="brand">Brand</option>
                         <option value="cameraLensType">Camera Lens Type</option>
                         <option value="cameraType">Camera Type</option>
                         <option value="maxBudget">Maximum Budget</option>
@@ -74,7 +74,7 @@ function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
                         onChange={handleInputChange}
                     >
                         <option value=""></option>
-                        <option value="brand">brand</option>
+                        <option value="brand">Brand</option>
                         <option value="cameraLensType">Camera Lens Type</option>
                         <option value="cameraType">Camera Type</option>
                         <option value="maxBudget">Maximum Budget</option>
@@ -89,7 +89,7 @@ function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
                         onChange={handleInputChange}
                     >
                         <option value=""></option>
-                        <option value="brand">brand</option>
+                        <option value="brand">Brand</option>
                         <option value="cameraLensType">Camera Lens Type</option>
                         <option value="cameraType">Camera Type</option>
                         <option value="maxBudget">Maximum Budget</option>
@@ -104,7 +104,7 @@ function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
                         onChange={handleInputChange}
                     >
                         <option value=""></option>
-                        <option value="brand">brand</option>
+                        <option value="brand">Brand</option>
                         <option value="cameraLensType">Camera Lens Type</option>
                         <option value="cameraType">Camera Type</option>
                         <option value="maxBudget">Maximum Budget</option>

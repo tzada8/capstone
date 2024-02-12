@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 import ComparisonSection from "../../components/comparison/comparison-section/ComparisonSection";
 import RecommendationTable from "../../components/recommendation-table/RecommendationTable";
@@ -52,6 +53,8 @@ function Comparisons() {
         "basic_info": {}, "reviews": {}, "expert_review": {}, "specifications": [], "videos": [],
     }
 
+    const location = useLocation();
+
     const [showMoreComparisons, setShowMoreComparisons] = useState(false);
     const [product1Data, setProduct1Data] = useState(defaultProductStructure);
     const [product2Data, setProduct2Data] = useState(defaultProductStructure);
@@ -60,6 +63,13 @@ function Comparisons() {
     // const [products, setProducts] = useState(Array(numProductsDisplayed).fill(defaultProductStructure));
 
     useEffect(() => {
+        // TODO: Use for recommendations.
+        const preferences = location.state.preferences;
+        const featurePriority = location.state.featurePriority;
+
+        // TODO: From recommendations, extract highest 3 rated.
+        const topProducts = location.state.selectedProducts.slice(0, 3)
+        // const product1Endpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/product?source=${topProducts[0].source}&product_id=${topProducts[0].product_id}`;
         const product1Endpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/product`;
         fetch(product1Endpoint).then(res => res.json()).then(data => {
             setProduct1Data(data);
