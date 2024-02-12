@@ -27,6 +27,8 @@ product_specs_exists.json = mock.Mock(
                     "value": "Small",
                 }
             ],
+            "customerTopRated": False,
+            "source": "Best Buy",
             "extra_info": {
                 "field1": "Not included",
                 "field2": "Excluded too",

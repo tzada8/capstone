@@ -3,6 +3,7 @@ from flask_cors import CORS
 from os import environ
 
 from src.scraper.google_shopping_scraper import scrape_google_products
+from src.recommendations.recommendations import Recommendation
 from src.scraper.bestbuy_scraper import BestBuyProduct
 from src.scraper.walmart_scraper import WalmartProduct
 from src.scraper.consumer_reports_scraper import scrape_expert_reviews
@@ -12,6 +13,8 @@ from src.summarize.summarize import summarize
 # TODO: DELETE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
 from dummy_data.dummy_search_products import dummy_search_products, dummy_search_products2
 from dummy_data.dummy_product import dummy_product
+from dummy_data.dummy_recommendation_products import dummy_recommendation_products
+from dummy_data.dummy_preferences import dummy_preferences, dummy_importance
 
 app = Flask(__name__)
 CORS(app)
@@ -32,6 +35,13 @@ def show_number_x10():
 def search_products():
     q = request.args.get("q")
     return scrape_google_products(q)
+
+@app.route("/api/recommendation")
+def recommendation():
+    # Desired input:
+    # preferences: {"brand": "Other", "megapixels": "15-30", "lens_type": "Fixed", "camera_type": "P&S", "budget": "<500"}
+    # importance: {"brand": 4, "megapixels": 3, "lens_type": 5, "camera_type": 2, "budget": 1}
+    return Recommendation.aggregate_data(dummy_preferences, dummy_importance, dummy_recommendation_products)
 
 @app.route("/api/product")
 def product():

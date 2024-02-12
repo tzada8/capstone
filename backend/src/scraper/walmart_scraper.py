@@ -28,6 +28,7 @@ class WalmartProduct:
                 "basic_info": {
                     "us_item_id": product_result.get("us_item_id"),
                     "product_id": product_result.get("product_id"),
+                    "upc": product_result.get("upc", ""),
                     "title": product_result.get("title"),
                     "product_page_url": product_result.get("product_page_url"),
                     "price": {
@@ -37,6 +38,11 @@ class WalmartProduct:
                     "images": product_result.get("images", []),
                     "total_reviews": product_result.get("reviews"),
                     "rating": product_result.get("rating"),
+                    "badges": {
+                        "bestseller": False if not any(b['key'] == 'BESTSELLER' for b in product_result.get("badges", [])) else True,
+                        "customer_pick": False if not any(b['key'] == 'CUSTOMER_PICK' for b in product_result.get("badges", [])) else True,
+                    },
+                    "source": "Walmart",
                 },
                 "specifications": [
                     { "name": s.get("display_name"), "value": s.get("value") } for s in spec_highlights

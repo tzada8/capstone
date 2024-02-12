@@ -11,9 +11,9 @@ class BestBuyProduct:
     def _product_specs(product_id: str) -> Dict:
         params = {
             "product_id": product_id,
-            "api_key": environ.get("BESTBUY_API_KEY"), # TODO: Update API Key.
+            "api_key": environ.get("BESTBUY_API_KEY"),
         }
-        search = requests.get(f"https://api.bestbuy.com/v1/products(sku={params.get('product_id')})?apiKey={params.get('api_key')}&show=customerReviewAverage,customerReviewCount,details.name,details.value,image,manufacturer,modelNumber,name,regularPrice,sku,upc,url&pageSize=10&format=json")
+        search = requests.get(f"https://api.bestbuy.com/v1/products(sku={params.get('product_id')})?apiKey={params.get('api_key')}&show=customerReviewAverage,customerReviewCount,customerTopRated,details.name,details.value,image,manufacturer,modelNumber,name,regularPrice,sku,upc,url&pageSize=10&format=json")
         results = search.json()
 
         if "error" in results or results.get("total") == 0:
@@ -42,6 +42,10 @@ class BestBuyProduct:
                     "images": product_result.get("image", []),
                     "total_reviews": product_result.get("customerReviewCount"),
                     "rating": product_result.get("customerReviewAverage"),
+                    "badges": {
+                        "top_rated": product_result.get("customerTopRated")
+                    },
+                    "source": "Best Buy",
                 },
                 "specifications": [
                     { "name": s.get("name"), "value": s.get("value") } for s in spec_highlights
