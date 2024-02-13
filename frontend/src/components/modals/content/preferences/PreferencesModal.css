@@ -1,0 +1,32 @@
+.form-row + .form-row {
+    margin-top: 1rem;
+}
+
+.form-row label,
+.form-row input,
+.form-row select {
+    width: 100%;
+    display: block;
+    margin-top: 8px;
+}
+
+.form-row input,
+.form-row select,
+.form-row button {
+    border: solid black;
+    border-width: 1px;
+}
+
+.button-container {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-button {
+    align-self: flex-start;
+}
+
+.right-button {
+    align-self: flex-end;
+}

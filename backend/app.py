@@ -50,13 +50,12 @@ def product():
 
     product_data = {}
     source_details = {}
-    match source:
-        case "BestBuy":
-            product_data = BestBuyProduct.aggregate_data(product_id)
-            source_details = {"product_id": product_data["basic_info"].get("upc"), "id_field": "defaultUpc"}
-        case "Walmart":
-            product_data = WalmartProduct.aggregate_data(product_id)
-            source_details = {"product_id": product_id, "id_field": "walmartId"}
+    if "Best Buy" in source:
+        product_data = BestBuyProduct.aggregate_data(product_id)
+        source_details = {"product_id": product_data["basic_info"].get("upc"), "id_field": "defaultUpc"}
+    elif "Walmart" in source:
+        product_data = WalmartProduct.aggregate_data(product_id)
+        source_details = {"product_id": product_id, "id_field": "walmartId"}
 
     # Summarize reviews.
     text_reviews = product_data["reviews"].get("reviews")

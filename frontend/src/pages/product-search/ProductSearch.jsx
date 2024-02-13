@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import "./ProductSearch.css";
+import FeaturePriorityModal from "../../components/modals/content/feature-priority/FeaturePriorityModal";
+import PreferencesModal from "../../components/modals/content/preferences/PreferencesModal";
 import ProductOption from "../../components/ProductOption";
 import SearchBar from "../../components/search-bar/SearchBar";
 
@@ -13,7 +15,22 @@ function ProductSearch() {
     const [mainSelectedProducts, setMainSelectedProducts] = useState([]);
     const [currentSelectedProducts, setCurrentSelectedProducts] = useState([]);
 
+    const [isPreferencesModalOpen, setIsPreferencesModalOpen] = useState(false);
+    const [preferencesModalData, setPreferencesModalData] = useState(null);
+
+    const [isFeaturePriorityModalOpen, setIsFeaturePriorityModalOpen] = useState(false);
+    const [featurePriorityModalData, setFeaturePriorityModalData] = useState(null);
+
     const location = useLocation();
+
+    const navigate = useNavigate();
+    const toComparisons = () => {
+        navigate("/comparisons", {state: {
+            selectedProducts: [...mainSelectedProducts, ...currentSelectedProducts],
+            preferences: preferencesModalData,
+            featurePriority: featurePriorityModalData,
+        }})
+    }
 
     const _searchProductsHelper = (q) => {
         if (q === "") {
@@ -64,16 +81,46 @@ function ProductSearch() {
         }
     }
 
+    const handlePreferencesModalSubmit = (data) => {
+        setPreferencesModalData(data);
+        setIsPreferencesModalOpen(false);
+        setIsFeaturePriorityModalOpen(true);
+    }
+
+    const handleFeaturePriorityModalSubmit = (data) => {
+        setFeaturePriorityModalData(data);
+        setIsFeaturePriorityModalOpen(false);
+        toComparisons();
+    }
+
 	return (
 		<div>
             <h1>Select products to compare</h1>
-            <p>Obtain recommendations</p>
             <SearchBar onSearchSubmit={onSearchSubmit} query={searchQuery} setQuery={setSearchQuery}/>
+            <br/>
             <p>SEARCH QUERY: {searchQuery}</p>
             <p># MAIN SELECTED PRODUCTS: {mainSelectedProducts.length}</p>
             <p># CURR SELECTED PRODUCTS: {currentSelectedProducts.length}</p>
             <p># PRODUCT OPTIONS: {productData.length}</p>
             <br/>
+
+            <button>Cancel</button>
+            {/* TODO: Disable until minimum 3 products selected. */}
+            <button onClick={() => setIsPreferencesModalOpen(true)}>Continue</button>
+            <br/>
+            <br/>
+
+            <PreferencesModal
+                isOpen={isPreferencesModalOpen}
+                onSubmit={handlePreferencesModalSubmit}
+                onClose={() => setIsPreferencesModalOpen(false)}
+            />
+
+            <FeaturePriorityModal
+                isOpen={isFeaturePriorityModalOpen}
+                onSubmit={handleFeaturePriorityModalSubmit}
+                onClose={() => setIsFeaturePriorityModalOpen(false)}
+            />
 
             {mainSelectedProducts.map(product => (
                 <ProductOption
@@ -89,9 +136,6 @@ function ProductSearch() {
                     isSelected={currentSelectedProducts.includes(product)}
                 />
             ))}
-            <br/>
-            <button>Cancel</button>
-            <button>Continue</button>
 		</div>
 	);
 }
