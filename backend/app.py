@@ -25,12 +25,6 @@ def default_backend():
     env = environ.get("FLASK_ENV", "does not exist")
     return {"message": "Routing to backend home GET", "key": key, "env": env}
 
-@app.route("/api/number", methods=["POST"])
-def show_number_x10():
-    data = request.get_json()
-    number_x10 = data["number"] * 10
-    return {"number": number_x10}
-
 @app.route("/api/search-products")
 def search_products():
     q = request.args.get("q")
