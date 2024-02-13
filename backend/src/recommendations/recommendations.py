@@ -47,6 +47,7 @@ class Recommendation:
 
     @staticmethod
     def _model(preferences: Dict, importance: Dict, selected_products: List, master_list: Dict, max_list_length: int) -> List:
+        importance_inv = {v: int(k) for k, v in importance.items()}
         max_rank = len(selected_products) + 1
         max_master_list_rank = max_list_length + 2
         recommendations = []
@@ -151,11 +152,11 @@ class Recommendation:
 
             # Calculate weights of each feature.
             weights = {
-                "brand": brand_diff * importance.get("brand"),
-                "megapixels": megapixels_diff * importance.get("megapixels"),
-                "lens_type": lens_type_diff * importance.get("lens_type"),
-                "camera_type": camera_type_diff * importance.get("camera_type"),
-                "budget": price_diff * importance.get("budget"),
+                "brand": brand_diff * importance_inv.get("brand"),
+                "megapixels": megapixels_diff * importance_inv.get("megapixels"),
+                "lens_type": lens_type_diff * importance_inv.get("lens_type"),
+                "camera_type": camera_type_diff * importance_inv.get("camera_type"),
+                "budget": price_diff * importance_inv.get("budget"),
             }
             # Sum all weights.
             pref_score = sum(weights.values())
