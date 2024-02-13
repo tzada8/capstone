@@ -42,13 +42,14 @@ function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
                         name="first"
                         value={formState.first}
                         onChange={handleInputChange}
+                        required
                     >
                         <option value=""></option>
                         <option value="brand">Brand</option>
-                        <option value="numberOfMegapixels">Number of Megapixels</option>
-                        <option value="cameraLensType">Camera Lens Type</option>
-                        <option value="cameraType">Camera Type</option>
-                        <option value="maxBudget">Maximum Budget</option>
+                        <option value="megapixels">Number of Megapixels</option>
+                        <option value="lens_type">Lens Type</option>
+                        <option value="camera_type">Camera Type</option>
+                        <option value="budget">Budget</option>
                     </select>
                 </div>
                 <div className="form-row">
@@ -58,13 +59,14 @@ function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
                         name="second"
                         value={formState.second}
                         onChange={handleInputChange}
+                        required
                     >
                         <option value=""></option>
                         <option value="brand">Brand</option>
-                        <option value="numberOfMegapixels">Number of Megapixels</option>
-                        <option value="cameraLensType">Camera Lens Type</option>
-                        <option value="cameraType">Camera Type</option>
-                        <option value="maxBudget">Maximum Budget</option>
+                        <option value="megapixels">Number of Megapixels</option>
+                        <option value="lens_type">Lens Type</option>
+                        <option value="camera_type">Camera Type</option>
+                        <option value="budget">Budget</option>
                     </select>
                 </div>
                 <div className="form-row">
@@ -74,13 +76,14 @@ function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
                         name="third"
                         value={formState.third}
                         onChange={handleInputChange}
+                        required
                     >
                         <option value=""></option>
                         <option value="brand">Brand</option>
-                        <option value="numberOfMegapixels">Number of Megapixels</option>
-                        <option value="cameraLensType">Camera Lens Type</option>
-                        <option value="cameraType">Camera Type</option>
-                        <option value="maxBudget">Maximum Budget</option>
+                        <option value="megapixels">Number of Megapixels</option>
+                        <option value="lens_type">Lens Type</option>
+                        <option value="camera_type">Camera Type</option>
+                        <option value="budget">Budget</option>
                     </select>
                 </div>
                 <div className="form-row">
@@ -90,13 +93,14 @@ function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
                         name="fourth"
                         value={formState.fourth}
                         onChange={handleInputChange}
+                        required
                     >
                         <option value=""></option>
                         <option value="brand">Brand</option>
-                        <option value="numberOfMegapixels">Number of Megapixels</option>
-                        <option value="cameraLensType">Camera Lens Type</option>
-                        <option value="cameraType">Camera Type</option>
-                        <option value="maxBudget">Maximum Budget</option>
+                        <option value="megapixels">Number of Megapixels</option>
+                        <option value="lens_type">Lens Type</option>
+                        <option value="camera_type">Camera Type</option>
+                        <option value="budget">Budget</option>
                     </select>
                 </div>
                 <div className="form-row">
@@ -106,13 +110,14 @@ function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
                         name="fifth"
                         value={formState.fifth}
                         onChange={handleInputChange}
+                        required
                     >
                         <option value=""></option>
                         <option value="brand">Brand</option>
-                        <option value="numberOfMegapixels">Number of Megapixels</option>
-                        <option value="cameraLensType">Camera Lens Type</option>
-                        <option value="cameraType">Camera Type</option>
-                        <option value="maxBudget">Maximum Budget</option>
+                        <option value="megapixels">Number of Megapixels</option>
+                        <option value="lens_type">Lens Type</option>
+                        <option value="camera_type">Camera Type</option>
+                        <option value="budget">Budget</option>
                     </select>
                 </div>
                 <div className="button-container">

@@ -5,10 +5,10 @@ import Modal from "../../base-modals/Modal";
 
 const initialPreferencesModalData = {
     brand: "",
-    numberOfMegapixels: "",
-    cameraLensType: "",
-    cameraType: "",
-    maxBudget: "",
+    megapixels: "",
+    lens_type: "",
+    camera_type: "",
+    budget: "",
 }
 
 function PreferencesModal({ onSubmit, isOpen, onClose }) {
@@ -36,20 +36,24 @@ function PreferencesModal({ onSubmit, isOpen, onClose }) {
             <form onSubmit={handleSubmit}>
                 <div className="form-row">
                     <label htmlFor="brand">Brand</label>
-                    <input
-                        type="text"
+                    <select
                         id="brand"
                         name="brand"
                         value={formState.brand}
                         onChange={handleInputChange}
-                    />
+                    >
+                        <option value=""></option>
+                        <option value="canon">Canon</option>
+                        <option value="nikon">Nikon</option>
+                        <option value="other">Other</option>
+                    </select>
                 </div>
                 <div className="form-row">
-                    <label htmlFor="numberOfMegapixels">Number of Megapixels (MP)</label>
+                    <label htmlFor="megapixels">Number of Megapixels</label>
                     <select
-                        id="numberOfMegapixels"
-                        name="numberOfMegapixels"
-                        value={formState.numberOfMegapixels}
+                        id="megapixels"
+                        name="megapixels"
+                        value={formState.megapixels}
                         onChange={handleInputChange}
                     >
                         <option value=""></option>
@@ -60,42 +64,46 @@ function PreferencesModal({ onSubmit, isOpen, onClose }) {
                     </select>
                 </div>
                 <div className="form-row">
-                    <label htmlFor="cameraLensType">Camera Lens Type</label>
+                    <label htmlFor="lens_type">Lens Type</label>
                     <select
-                        id="cameraLensType"
-                        name="cameraLensType"
-                        value={formState.cameraLensType}
+                        id="lens_type"
+                        name="lens_type"
+                        value={formState.lens_type}
                         onChange={handleInputChange}
                     >
                         <option value=""></option>
                         <option value="fixed">Fixed</option>
-                        <option value="wide-angle">Wide-angle</option>
-                        <option value="telephoto">Telephoto</option>
+                        <option value="standard">Standard</option>
+                        <option value="other">Other</option>
                     </select>
                 </div>
                 <div className="form-row">
-                    <label htmlFor="cameraType">Camera Type</label>
+                    <label htmlFor="camera_type">Camera Type</label>
                     <select
-                        id="cameraType"
-                        name="cameraType"
-                        value={formState.cameraType}
+                        id="camera_type"
+                        name="camera_type"
+                        value={formState.camera_type}
                         onChange={handleInputChange}
                     >
                         <option value=""></option>
-                        <option value="point-and-shoot">Point-and-Shoot</option>
+                        <option value="point-and-shoot">Point and Shoot</option>
                         <option value="dslr">DSLR</option>
                         <option value="mirrorless">Mirrorless</option>
+                        <option value="other">Other</option>
                     </select>
                 </div>
                 <div className="form-row">
-                    <label htmlFor="maxBudget">Maximum Budget ($)</label>
-                    <input
-                        type="number"
-                        id="maxBudget"
-                        name="maxBudget"
-                        value={formState.maxBudget}
+                    <label htmlFor="budget">Budget</label>
+                    <select
+                        id="budget"
+                        name="budget"
+                        value={formState.budget}
                         onChange={handleInputChange}
-                    />
+                    >
+                        <option value="<750">{"<750"}</option>
+                        <option value="750-1500">750-1500</option>
+                        <option value=">1500">{">1500"}</option>
+                    </select>
                 </div>
                 <div className="button-container">
                     <button type="submit" className="left-button">Skip</button>
