@@ -38,9 +38,9 @@ def search_products():
 
 @app.route("/api/recommendation")
 def recommendation():
-    # Desired input:
-    # preferences: {"brand": "Other", "megapixels": "15-30", "lens_type": "Fixed", "camera_type": "P&S", "budget": "<500"}
-    # importance: {"brand": 4, "megapixels": 3, "lens_type": 5, "camera_type": 2, "budget": 1}
+    # TODO: Figure out how to pass list of products to the recommendation system.
+    # preferences dict example: {"brand": "Other", "megapixels": "15-30", "lens_type": "Fixed", "camera_type": "P&S", "budget": "<500"}
+    # importance dict example: {"brand": 4, "megapixels": 3, "lens_type": 5, "camera_type": 2, "budget": 1}
     return Recommendation.aggregate_data(dummy_preferences, dummy_importance, dummy_recommendation_products)
 
 @app.route("/api/product")
