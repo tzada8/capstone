@@ -31,6 +31,10 @@ class TestBestBuyProduct(unittest.TestCase):
                 "images": ["https://image1.png", "https://image2.jpeg"],
                 "total_reviews": 500,
                 "rating": 4.1,
+                "badges": {
+                    "top_rated": False
+                },
+                "source": "Best Buy",
             },
             "specifications": [
                 {"name": "Colour", "value": "Red"},
@@ -74,6 +78,10 @@ class TestBestBuyProduct(unittest.TestCase):
                 "images": [],
                 "total_reviews": 500,
                 "rating": 4.1,
+                "badges": {
+                    "top_rated": None,
+                },
+                "source": "Best Buy"
             },
             "specifications": []
         }
@@ -130,6 +138,10 @@ class TestBestBuyProduct(unittest.TestCase):
                 "images": ["https://image1.png", "https://image2.jpeg"],
                 "total_reviews": 500,
                 "rating": 4.1,
+                "badges": {
+                    "top_rated": False,
+                },
+                "source": "Best Buy",
             },
             "specifications": [
                 {"name": "Colour", "value": "Red"},

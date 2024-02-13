@@ -28,6 +28,12 @@ class TestWalmartProduct(unittest.TestCase):
                 "images": ["https://image1.png", "https://image2.jpeg"],
                 "total_reviews": 500,
                 "rating": 4.1,
+                "badges": {
+                    "bestseller": True,
+                    "customer_pick": True
+                },
+                "source": "Walmart",
+                "upc": "012345"
             },
             "specifications": [
                 {"name": "Colour", "value": "Red"},
@@ -58,7 +64,13 @@ class TestWalmartProduct(unittest.TestCase):
                 "price": {"amount": None, "currency": None},
                 "images": [],
                 "total_reviews": 500,
-                "rating": 4.1
+                "rating": 4.1,
+                "badges": {
+                    "bestseller": False,
+                    "customer_pick": False
+                },
+                "source": "Walmart",
+                "upc": ""
             },
             "specifications": []
         }
@@ -129,6 +141,12 @@ class TestWalmartProduct(unittest.TestCase):
                 "images": ["https://image1.png", "https://image2.jpeg"],
                 "total_reviews": 500,
                 "rating": 4.1,
+                "badges": {
+                    "bestseller": True,
+                    "customer_pick": True
+                },
+                "source": "Walmart",
+                "upc": "012345"
             },
             "specifications": [
                 {"name": "Colour", "value": "Red"},

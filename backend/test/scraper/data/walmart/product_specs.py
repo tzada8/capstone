@@ -11,6 +11,12 @@ product_specs_exists = {
         "images": ["https://image1.png", "https://image2.jpeg"],
         "reviews": 500,
         "rating": 4.1,
+        "badges": [
+            {'id': 'L1600', 'key': 'BESTSELLER'},
+            {'id': 'L1200', 'key': 'CUSTOMER_PICK'}
+        ],
+        "source": "Walmart",
+        "upc": "012345",
         "specification_highlights": [
             {
                 "display_name": "Colour",
