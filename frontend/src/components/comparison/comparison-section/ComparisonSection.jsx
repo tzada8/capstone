@@ -7,16 +7,21 @@ function ComparisonSection(props) {
 
 	return (
 		<div>
-            <h3>{props.section_title}</h3>
-            <button onClick={() => setCollapseSection(!collapseSection)}>
-                <i className={collapseSection ? "arrow down-direction" : "arrow up-direction"} />
-            </button>
+            {props.section_title !== null && (
+                <div>
+                    <h3>{props.section_title}</h3>
+                    <hr/>
+                    <button onClick={() => setCollapseSection(!collapseSection)}>
+                        <i className={collapseSection ? "arrow down-direction" : "arrow up-direction"} />
+                    </button>
+                </div>
+            )}
             <div className={collapseSection ? "column-layout hide-section" : " column-layout show-section"} >
                 {props.product1}
                 {props.product2}
                 {props.product3}
             </div>
-            <br />
+            <br/>
         </div>
 	);
 }

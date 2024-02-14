@@ -34,6 +34,7 @@ function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
 	return (
         <Modal hasCloseBtn={true} isOpen={isOpen} onClose={onClose}>
             <h2>Priority of Features</h2>
+            <p>Rank the features that are most important to you</p>
             <form onSubmit={handleSubmit}>
                 <div className="form-row">
                     <label htmlFor="first">1.</label>

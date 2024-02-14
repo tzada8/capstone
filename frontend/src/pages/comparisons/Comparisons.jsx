@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import ComparisonSection from "../../components/comparison/comparison-section/ComparisonSection";
 import RecommendationTable from "../../components/recommendation-table/RecommendationTable";
 
+import BasicInfoData from "../../components/comparison/comparison-data/BasicInfoData";
 import ReviewsData from "../../components/comparison/comparison-data/ReviewsData";
 import SpecificationsData from "../../components/comparison/comparison-data/SpecificationsData";
 import VideosData from "../../components/comparison/comparison-data/VideosData";
@@ -50,7 +51,7 @@ function Comparisons() {
 
     // const numProductsDisplayed = 3;
     const defaultProductStructure = {
-        basic_info: {},
+        basic_info: { images: [], price: {} },
         reviews: { top_positive: {}, top_negative: {} },
         expert_review: {},
         specifications: [],
@@ -92,16 +93,28 @@ function Comparisons() {
 		<div>
             <h1>Recommend items by likeability</h1>
             <p>Scored by how much we think you'll like it based upon learning your preferences and reviews.</p>
+            <br/>
             <RecommendationTable recommendations={showMoreComparisons ? recommendations : recommendations.slice(0, 3)} />
+            <br/>
             <button onClick={() => setShowMoreComparisons(!showMoreComparisons)}>
                 {showMoreComparisons ? "Hide full list" : "Show full list"}
             </button>
 
-            <br />
-            <br />
+            <br/>
+            <br/>
+            <br/>
 
             <h1>Compare products</h1>
             <p>Get help choosing from analyzed insights, fast.</p>
+            <br/>
+            <br/>
+
+            <ComparisonSection
+                section_title={null}
+                product1={<BasicInfoData basicInfo={product1Data.basic_info} />}
+                product2={<BasicInfoData basicInfo={product2Data.basic_info} />}
+                product3={<BasicInfoData basicInfo={product3Data.basic_info} />}
+            />
 
             <ComparisonSection
                 section_title="Specifications"
