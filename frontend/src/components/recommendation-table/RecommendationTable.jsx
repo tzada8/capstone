@@ -16,7 +16,7 @@ function RecommendationTable(props) {
                 <tr key={i + 1}>
                     <td>{i + 1}</td>
                     <td>{product.title}</td>
-                    <td>{product.price}</td>
+                    <td>${product.price}</td>
                     <td>{product.source}</td>
                     <td>{product.score}</td>
                 </tr>

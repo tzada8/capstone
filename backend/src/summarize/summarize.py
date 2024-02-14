@@ -8,7 +8,7 @@ def summarize(reviews: List[str]) -> str:
 
     # Limit to under 4000 tokens.
     shorted_reviews = []
-    max_tokens = 4000 # Actual max is 4098, but would prefer some buffer.
+    max_tokens = 3000 # Actual max is 4098, but would prefer some buffer.
     total_tokens = 0
     for review in reviews:
         tokens = len(review.split())
