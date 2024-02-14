@@ -4,11 +4,11 @@ import "./FeaturePriorityModal.css";
 import Modal from "../../base-modals/Modal";
 
 const initialFeaturePriorityModalData = {
-    first: "",
-    second: "",
-    third: "",
-    fourth: "",
-    fifth: "",
+    "1": "",
+    "2": "",
+    "3": "",
+    "4": "",
+    "5": "",
 }
 
 // TODO: Maybe generalize to "FormModal".
@@ -33,14 +33,15 @@ function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
     // TODO: Maybe have list of features dependant on preferences to backend (allows for dynamic set of products/options).
 	return (
         <Modal hasCloseBtn={true} isOpen={isOpen} onClose={onClose}>
+            {console.log(formState)}
             <h2>Priority of Features</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-row">
-                    <label htmlFor="first">1.</label>
+                    <label htmlFor="1">1.</label>
                     <select
-                        id="first"
-                        name="first"
-                        value={formState.first}
+                        id="1"
+                        name="1"
+                        value={formState["1"]}
                         onChange={handleInputChange}
                         required
                     >
@@ -53,11 +54,11 @@ function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
                     </select>
                 </div>
                 <div className="form-row">
-                    <label htmlFor="second">2.</label>
+                    <label htmlFor="2">2.</label>
                     <select
-                        id="second"
-                        name="second"
-                        value={formState.second}
+                        id="2"
+                        name="2"
+                        value={formState["2"]}
                         onChange={handleInputChange}
                         required
                     >
@@ -70,11 +71,11 @@ function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
                     </select>
                 </div>
                 <div className="form-row">
-                    <label htmlFor="third">3.</label>
+                    <label htmlFor="3">3.</label>
                     <select
-                        id="third"
-                        name="third"
-                        value={formState.third}
+                        id="3"
+                        name="3"
+                        value={formState["3"]}
                         onChange={handleInputChange}
                         required
                     >
@@ -87,11 +88,11 @@ function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
                     </select>
                 </div>
                 <div className="form-row">
-                    <label htmlFor="fourth">4.</label>
+                    <label htmlFor="4">4.</label>
                     <select
-                        id="fourth"
-                        name="fourth"
-                        value={formState.fourth}
+                        id="4"
+                        name="4"
+                        value={formState["4"]}
                         onChange={handleInputChange}
                         required
                     >
@@ -104,11 +105,11 @@ function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
                     </select>
                 </div>
                 <div className="form-row">
-                    <label htmlFor="fifth">5.</label>
+                    <label htmlFor="5">5.</label>
                     <select
-                        id="fifth"
-                        name="fifth"
-                        value={formState.fifth}
+                        id="5"
+                        name="5"
+                        value={formState["5"]}
                         onChange={handleInputChange}
                         required
                     >

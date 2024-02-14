@@ -68,8 +68,15 @@ function Comparisons() {
 
     useEffect(() => {
         // TODO: Use for recommendations.
-        const preferences = location.state === null ? {} : location.state.preferences;
-        const featurePriority = location.state === null ? {} : location.state.featurePriority;
+        const recommendationData = location.state === null ? { 
+            "preferences": {}, "importance": {}, "selected_products": [],
+        } : {
+            "preferences": location.state.preferences,
+            "importance": location.state.featurePriority,
+            "selected_products": location.state.selectedProducts,
+        }
+
+        console.log("RECOMMENDATION DATA", recommendationData)
 
         // TODO: From recommendations, extract highest 3 rated.
         const topProducts = location.state === null ? [] : location.state.selectedProducts.slice(0, 3);

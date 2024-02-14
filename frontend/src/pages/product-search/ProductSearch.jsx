@@ -24,11 +24,12 @@ function ProductSearch() {
     const location = useLocation();
 
     const navigate = useNavigate();
-    const toComparisons = () => {
+    const toComparisons = (featurePriority) => {
+        // TODO: Before going to comparisons, need to pull all product data.
         navigate("/comparisons", {state: {
             selectedProducts: [...mainSelectedProducts, ...currentSelectedProducts],
             preferences: preferencesModalData,
-            featurePriority: featurePriorityModalData,
+            featurePriority: featurePriority,
         }})
     }
 
@@ -90,7 +91,7 @@ function ProductSearch() {
     const handleFeaturePriorityModalSubmit = (data) => {
         setFeaturePriorityModalData(data);
         setIsFeaturePriorityModalOpen(false);
-        toComparisons();
+        toComparisons(data);
     }
 
 	return (
