@@ -11,7 +11,7 @@ function RecommendationTable(props) {
                 <th>SCORE</th>
             </tr>
             {props.recommendations.map((product, i) => (
-                <tr>
+                <tr key={i + 1}>
                     <td>{i + 1}</td>
                     <td>{product.title}</td>
                     <td>{product.price}</td>
