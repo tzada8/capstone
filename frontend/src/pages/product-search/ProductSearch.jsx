@@ -24,13 +24,25 @@ function ProductSearch() {
     const location = useLocation();
 
     const navigate = useNavigate();
-    const toComparisons = (featurePriority) => {
-        // TODO: Before going to comparisons, need to pull all product data.
+
+    const toComparisons = async (featurePriority) => {
         navigate("/comparisons", {state: {
-            selectedProducts: [...mainSelectedProducts, ...currentSelectedProducts],
+            selectedProducts: await fullSelectedProducts(),
             preferences: preferencesModalData,
             featurePriority: featurePriority,
         }})
+    }
+
+    const fullSelectedProducts = async () => {
+        const currSelectedProducts = [...mainSelectedProducts, ...currentSelectedProducts];
+        const selectedProductIds = currSelectedProducts.map(p => ({product_id: p.product_id, source: p.source}));
+        const detailedSelectedProducts = await Promise.all(selectedProductIds.map(async p => {
+            // const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/product?source=${p.source}&product_id=$p.product_id}`;
+            const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/product`;
+            const response = await fetch(productEndpoint);
+            return await response.json();
+        }));
+        return detailedSelectedProducts;
     }
 
     const _searchProductsHelper = (q) => {
