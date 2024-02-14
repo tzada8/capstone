@@ -30,12 +30,10 @@ def search_products():
     q = request.args.get("q")
     return scrape_google_products(q)
 
-@app.route("/api/recommendation")
+@app.route("/api/recommendation", methods=["POST"])
 def recommendation():
-    # TODO: Figure out how to pass list of products to the recommendation system.
-    # preferences dict example: {"brand": "Other", "megapixels": "15-30", "lens_type": "Fixed", "camera_type": "P&S", "budget": "<500"}
-    # importance dict example: {"brand": 4, "megapixels": 3, "lens_type": 5, "camera_type": 2, "budget": 1}
-    return Recommendation.aggregate_data(dummy_preferences, dummy_importance, dummy_recommendation_products)
+    data = request.get_json()
+    return Recommendation.aggregate_data(data["preferences"], data["importance"], data["selected_products"])
 
 @app.route("/api/product")
 def product():
