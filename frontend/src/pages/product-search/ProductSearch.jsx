@@ -123,8 +123,10 @@ function ProductSearch() {
             <br/>
 
             <button>Cancel</button>
-            {/* TODO: Disable until minimum 3 products selected. */}
-            <button onClick={() => setIsPreferencesModalOpen(true)}>Continue</button>
+            <button
+                disabled={mainSelectedProducts.length + currentSelectedProducts.length < 3}
+                onClick={() => setIsPreferencesModalOpen(true)}
+            >Continue</button>
             <br/>
             <br/>
 
