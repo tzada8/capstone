@@ -1,8 +1,10 @@
 import React from "react";
 
+import "./RecommendationTable.css";
+
 function RecommendationTable(props) {
 	return (
-		<table>
+		<table className="recommendation-table">
             <tr>
                 <th>RANK</th>
                 <th>ITEM</th>
@@ -10,13 +12,13 @@ function RecommendationTable(props) {
                 <th>SOURCE</th>
                 <th>SCORE</th>
             </tr>
-            {props.recommendations.map(r => (
-                <tr>
-                    <td>{r.rank}</td>
-                    <td>{r.title}</td>
-                    <td>{r.price}</td>
-                    <td>{r.source}</td>
-                    <td>{r.score}</td>
+            {props.recommendations.map((product, i) => (
+                <tr key={i + 1}>
+                    <td>{i + 1}</td>
+                    <td>{product.title}</td>
+                    <td>${product.price}</td>
+                    <td>{product.source}</td>
+                    <td>{product.score}</td>
                 </tr>
             ))}
         </table>

@@ -6,7 +6,7 @@ function SpecificationsData(props) {
 	return (
 		<div>
             {props.specifications.map(spec => (
-                <p>{spec.name}: {spec.value}</p>
+                <p key={spec.name}>{spec.name}: {spec.value}</p>
             ))}
         </div>
 	);

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
+import "./Comparisons.css";
+
 import ComparisonSection from "../../components/comparison/comparison-section/ComparisonSection";
 import RecommendationTable from "../../components/recommendation-table/RecommendationTable";
 
@@ -10,46 +12,7 @@ import SpecificationsData from "../../components/comparison/comparison-data/Spec
 import VideosData from "../../components/comparison/comparison-data/VideosData";
 
 function Comparisons() {
-    // TODO: Remove temp recommendations once endpoint implemented.
-    const recommendations = [
-        {
-            rank: 1,
-            title: "Canon EOS 4000D",
-            price: 471.97,
-            source: "Best Buy",
-            score: 4.2,
-        },
-        {
-            rank: 2,
-            title: "Canon EOS Rebel T10o",
-            price: 564.95,
-            source: "Walmart",
-            score: 6.8,
-        },
-        {
-            rank: 3,
-            title: "Canon EOS Rebel T7",
-            price: 599.99,
-            source: "Amazon",
-            score: 3.3,
-        },
-        {
-            rank: 4,
-            title: "Camera 4",
-            price: 11.11,
-            source: "Amazon",
-            score: 0.1,
-        },
-        {
-            rank: 5,
-            title: "Camera 5",
-            price: 12345.33,
-            source: "Amazon",
-            score: 9.7,
-        },
-    ]
-
-    // const numProductsDisplayed = 3;
+    const numProductsDisplayed = 3;
     const defaultProductStructure = {
         basic_info: { images: [], price: {} },
         reviews: { top_positive: {}, top_negative: {} },
@@ -58,17 +21,13 @@ function Comparisons() {
         videos: [],
     }
 
+    const [showMoreRecommendations, setShowMoreRecommendations] = useState(false);
+    const [products, setProducts] = useState(Array(numProductsDisplayed).fill(defaultProductStructure));
+    const [recommendations, setRecommendations] = useState([]);
+
     const location = useLocation();
 
-    const [showMoreComparisons, setShowMoreComparisons] = useState(false);
-    const [product1Data, setProduct1Data] = useState(defaultProductStructure);
-    const [product2Data, setProduct2Data] = useState(defaultProductStructure);
-    const [product3Data, setProduct3Data] = useState(defaultProductStructure);
-    // TODO: See if possible to have 1 list `products` for state instead of 3 states.
-    // const [products, setProducts] = useState(Array(numProductsDisplayed).fill(defaultProductStructure));
-
     useEffect(() => {
-        // TODO: Use for recommendations.
         const recommendationData = location.state === null ? { 
             "preferences": {}, "importance": {}, "selected_products": [],
         } : {
@@ -76,24 +35,22 @@ function Comparisons() {
             "importance": location.state.featurePriority,
             "selected_products": location.state.selectedProducts,
         }
-
         console.log("RECOMMENDATION DATA", recommendationData)
 
-        // TODO: From recommendations, extract highest 3 rated.
-        const topProducts = location.state === null ? [] : location.state.selectedProducts.slice(0, 3);
-        // const product1Endpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/product?source=${topProducts[0].source}&product_id=${topProducts[0].product_id}`;
-        const product1Endpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/product`;
-        fetch(product1Endpoint).then(res => res.json()).then(data => {
-            setProduct1Data(data);
-        });
-        const product2Endpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/product`;
-        fetch(product2Endpoint).then(res => res.json()).then(data => {
-            setProduct2Data(data);
-        });
-        const product3Endpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/product`;
-        fetch(product3Endpoint).then(res => res.json()).then(data => {
-            setProduct3Data(data);
-        });
+        // TODO: Comment out dummy recommendations for actual data.
+        const recEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/recommendation`;
+        fetch(recEndpoint).then(res => res.json()).then(data => setRecommendations(data));
+        // const recEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/recommendation`;
+        // fetch(recEndpoint, {
+        //     method: "POST",
+        //     headers: {"Content-Type": "application/json"},
+        //     body: JSON.stringify(recommendationData),
+        // }).then(res => res.json()).then(data => setRecommendations(data));
+
+        // Sort products based on order of recommendations.
+        const unsortedProducts = recommendationData["selected_products"];
+        unsortedProducts.sort((a, b) => recommendations.indexOf(a) - recommendations.indexOf(b));
+        setProducts(unsortedProducts);
     }, []);
 
 	return (
@@ -101,10 +58,10 @@ function Comparisons() {
             <h1>Recommend items by likeability</h1>
             <p>Scored by how much we think you'll like it based upon learning your preferences and reviews.</p>
             <br/>
-            <RecommendationTable recommendations={showMoreComparisons ? recommendations : recommendations.slice(0, 3)} />
+            <RecommendationTable recommendations={showMoreRecommendations ? recommendations : recommendations.slice(0, numProductsDisplayed)} />
             <br/>
-            <button onClick={() => setShowMoreComparisons(!showMoreComparisons)}>
-                {showMoreComparisons ? "Hide full list" : "Show full list"}
+            <button className="show-recommendation-table" onClick={() => setShowMoreRecommendations(!showMoreRecommendations)}>
+                {showMoreRecommendations ? "Hide full list" : "Show full list"}
             </button>
 
             <br/>
@@ -116,30 +73,35 @@ function Comparisons() {
             <br/>
             <br/>
 
+            {/* TODO: ComparisonSections can probably be updated to just take in list of products (instead of explicitly saying 1, 2, 3). */}
+            {/* <ComparisonSection
+                section_title={null}
+                products={<BasicInfoData basicInfo={products.slice(0, 3)} />}
+            /> */}
             <ComparisonSection
                 section_title={null}
-                product1={<BasicInfoData basicInfo={product1Data.basic_info} />}
-                product2={<BasicInfoData basicInfo={product2Data.basic_info} />}
-                product3={<BasicInfoData basicInfo={product3Data.basic_info} />}
+                product1={<BasicInfoData basicInfo={products[0].basic_info} />}
+                product2={<BasicInfoData basicInfo={products[1].basic_info} />}
+                product3={<BasicInfoData basicInfo={products[2].basic_info} />}
             />
 
             <ComparisonSection
                 section_title="Specifications"
-                product1={<SpecificationsData specifications={product1Data.specifications} />}
-                product2={<SpecificationsData specifications={product2Data.specifications} />}
-                product3={<SpecificationsData specifications={product3Data.specifications} />}
+                product1={<SpecificationsData specifications={products[0].specifications} />}
+                product2={<SpecificationsData specifications={products[1].specifications} />}
+                product3={<SpecificationsData specifications={products[2].specifications} />}
             />
             <ComparisonSection
                 section_title="Summary of written reviews"
-                product1={<ReviewsData reviews={product1Data.reviews} />}
-                product2={<ReviewsData reviews={product2Data.reviews} />}
-                product3={<ReviewsData reviews={product3Data.reviews} />}
+                product1={<ReviewsData reviews={products[0].reviews} />}
+                product2={<ReviewsData reviews={products[1].reviews} />}
+                product3={<ReviewsData reviews={products[2].reviews} />}
             />
             <ComparisonSection
                 section_title="Most helpful video reviews"
-                product1={<VideosData videos={product1Data.videos.slice(0, 4)} />}
-                product2={<VideosData videos={product2Data.videos.slice(0, 4)} />}
-                product3={<VideosData videos={product3Data.videos.slice(0, 4)} />}
+                product1={<VideosData videos={products[0].videos.slice(0, 4)} />}
+                product2={<VideosData videos={products[1].videos.slice(0, 4)} />}
+                product3={<VideosData videos={products[2].videos.slice(0, 4)} />}
             />
 		</div>
 	);

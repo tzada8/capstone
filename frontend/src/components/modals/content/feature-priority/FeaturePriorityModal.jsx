@@ -33,7 +33,6 @@ function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
     // TODO: Maybe have list of features dependant on preferences to backend (allows for dynamic set of products/options).
 	return (
         <Modal hasCloseBtn={true} isOpen={isOpen} onClose={onClose}>
-            {console.log(formState)}
             <h2>Priority of Features</h2>
             <p>Rank the features that are most important to you</p>
             <form onSubmit={handleSubmit}>
