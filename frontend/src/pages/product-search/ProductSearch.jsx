@@ -64,14 +64,7 @@ function ProductSearch() {
 
     useEffect(() => {
         const q = location.state === null ? "" : location.state.query;
-        const searchEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/search-products2?q=${q}`;
-        fetch(searchEndpoint).then(res => res.json()).then(data => {
-            setProductData(data.shopping_results.data);
-            setProductPagination(data.shopping_results.pagination);
-        });
-        setSearchQuery(q);
-        // TODO: Uncomment following once no longer need to use hardcoded backend data (replacing lines above).
-        // _searchProductsHelper(searchQuery);
+        _searchProductsHelper(q);
     }, [location.state]);
 
     const onSearchSubmit = (event) => {
