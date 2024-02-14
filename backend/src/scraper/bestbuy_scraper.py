@@ -39,7 +39,7 @@ class BestBuyProduct:
                         "amount": product_result.get("regularPrice"),
                         "currency": "USD" if product_result.get("regularPrice") is not None else None,
                     },
-                    "images": product_result.get("image", []),
+                    "images": [product_result.get("image", "")],
                     "total_reviews": product_result.get("customerReviewCount"),
                     "rating": product_result.get("customerReviewAverage"),
                     "badges": {

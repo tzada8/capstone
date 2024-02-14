@@ -35,6 +35,7 @@ function Comparisons() {
             "importance": location.state.featurePriority,
             "selected_products": location.state.selectedProducts,
         }
+        const unsortedProducts = recommendationData["selected_products"];
         console.log("RECOMMENDATION DATA", recommendationData)
 
         // TODO: Comment out dummy recommendations for actual data.
@@ -45,17 +46,22 @@ function Comparisons() {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(recommendationData),
-        }).then(res => res.json()).then(data => setRecommendations(data));
-
-        // Sort products based on order of recommendations.
-        const unsortedProducts = recommendationData["selected_products"];
-        unsortedProducts.sort((a, b) => recommendations.indexOf(a) - recommendations.indexOf(b));
-        setProducts(unsortedProducts);
+        }).then(res => res.json()).then(data => {
+            setRecommendations(data)
+            unsortedProducts.sort((a, b) => {
+                const indexA = data.findIndex(p => p.product_id === a.product_id);
+                const indexB = data.findIndex(p => p.product_id === b.product_id);
+                return indexA - indexB;
+            });
+            setProducts(unsortedProducts);
+        });       
     }, []);
 
 	return (
 		<div>
             <h1>Recommend items by likeability</h1>
+            {console.log("products", products)}
+            {console.log("recommendations", recommendations)}
             <p>Scored by how much we think you'll like it based upon learning your preferences and reviews.</p>
             <br/>
             <RecommendationTable recommendations={showMoreRecommendations ? recommendations : recommendations.slice(0, numProductsDisplayed)} />
