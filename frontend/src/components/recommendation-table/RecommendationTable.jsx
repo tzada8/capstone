@@ -1,8 +1,10 @@
 import React from "react";
 
+import "./RecommendationTable.css";
+
 function RecommendationTable(props) {
 	return (
-		<table>
+		<table className="recommendation-table">
             <tr>
                 <th>RANK</th>
                 <th>ITEM</th>

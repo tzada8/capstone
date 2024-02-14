@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
+import "./Comparisons.css";
+
 import ComparisonSection from "../../components/comparison/comparison-section/ComparisonSection";
 import RecommendationTable from "../../components/recommendation-table/RecommendationTable";
 
@@ -104,7 +106,7 @@ function Comparisons() {
             <br/>
             <RecommendationTable recommendations={showMoreComparisons ? recommendations2 : recommendations2.slice(0, 3)} />
             <br/>
-            <button onClick={() => setShowMoreComparisons(!showMoreComparisons)}>
+            <button className="show-recommendation-table" onClick={() => setShowMoreComparisons(!showMoreComparisons)}>
                 {showMoreComparisons ? "Hide full list" : "Show full list"}
             </button>
 
