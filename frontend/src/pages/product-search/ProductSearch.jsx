@@ -37,8 +37,8 @@ function ProductSearch() {
         const currSelectedProducts = [...mainSelectedProducts, ...currentSelectedProducts];
         const selectedProductIds = currSelectedProducts.map(p => ({product_id: p.product_id, source: p.source}));
         const detailedSelectedProducts = await Promise.all(selectedProductIds.map(async p => {
-            // const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/product?source=${p.source}&product_id=$p.product_id}`;
-            const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/product`;
+            const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/product?source=${p.source}&product_id=${p.product_id}`;
+            // const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/product`;
             const response = await fetch(productEndpoint);
             return await response.json();
         }));
@@ -53,7 +53,8 @@ function ProductSearch() {
             return;
         }
         const selectedIds = [...mainSelectedProducts.map(p => p.product_id), ...currentSelectedProducts.map(p => p.product_id)];
-        const searchEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/search-products?q=${q}`;
+        // const searchEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/search-products?q=${q}`;
+        const searchEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/search-products?q=${q}`;
         fetch(searchEndpoint).then(res => res.json()).then(data => {
             const prodData = data.shopping_results.data.filter(p => !selectedIds.includes(p.product_id));
             setProductData(prodData);

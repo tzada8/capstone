@@ -38,14 +38,14 @@ function Comparisons() {
         console.log("RECOMMENDATION DATA", recommendationData)
 
         // TODO: Comment out dummy recommendations for actual data.
-        const recEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/recommendation`;
-        fetch(recEndpoint).then(res => res.json()).then(data => setRecommendations(data));
-        // const recEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/recommendation`;
-        // fetch(recEndpoint, {
-        //     method: "POST",
-        //     headers: {"Content-Type": "application/json"},
-        //     body: JSON.stringify(recommendationData),
-        // }).then(res => res.json()).then(data => setRecommendations(data));
+        // const recEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/recommendation`;
+        // fetch(recEndpoint).then(res => res.json()).then(data => setRecommendations(data));
+        const recEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/recommendation`;
+        fetch(recEndpoint, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(recommendationData),
+        }).then(res => res.json()).then(data => setRecommendations(data));
 
         // Sort products based on order of recommendations.
         const unsortedProducts = recommendationData["selected_products"];
