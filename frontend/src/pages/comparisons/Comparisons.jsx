@@ -11,7 +11,7 @@ import VideosData from "../../components/comparison/comparison-data/VideosData";
 
 function Comparisons() {
     // TODO: Remove temp recommendations once endpoint implemented.
-    const recommendations = [
+    const recommendations2 = [
         {
             rank: 1,
             title: "Canon EOS 4000D",
@@ -66,6 +66,7 @@ function Comparisons() {
     const [product3Data, setProduct3Data] = useState(defaultProductStructure);
     // TODO: See if possible to have 1 list `products` for state instead of 3 states.
     // const [products, setProducts] = useState(Array(numProductsDisplayed).fill(defaultProductStructure));
+    const [recommendations, setRecommendations] = useState([]);
 
     useEffect(() => {
         // TODO: Use for recommendations.
@@ -101,7 +102,7 @@ function Comparisons() {
             <h1>Recommend items by likeability</h1>
             <p>Scored by how much we think you'll like it based upon learning your preferences and reviews.</p>
             <br/>
-            <RecommendationTable recommendations={showMoreComparisons ? recommendations : recommendations.slice(0, 3)} />
+            <RecommendationTable recommendations={showMoreComparisons ? recommendations2 : recommendations2.slice(0, 3)} />
             <br/>
             <button onClick={() => setShowMoreComparisons(!showMoreComparisons)}>
                 {showMoreComparisons ? "Hide full list" : "Show full list"}

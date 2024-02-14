@@ -16,6 +16,7 @@ function Home() {
 		<div>
             <h1>Making purchasing decisions easier with <b>simplified</b> specs & product reviews</h1>
             <br/>
+            {/* TODO: Need to limit users to only search for camera specific items. */}
             <SearchBar onSearchSubmit={() => toProductSearch()} query={searchQuery} setQuery={setSearchQuery}/>
 		</div>
 	);
