@@ -101,6 +101,7 @@ function PreferencesModal({ onSubmit, isOpen, onClose }) {
                         value={formState.budget}
                         onChange={handleInputChange}
                     >
+                        <option value=""></option>
                         <option value="<750">{"<750"}</option>
                         <option value="750-1500">750-1500</option>
                         <option value=">1500">{">1500"}</option>
