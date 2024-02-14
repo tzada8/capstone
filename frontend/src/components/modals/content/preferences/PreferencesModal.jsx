@@ -33,6 +33,7 @@ function PreferencesModal({ onSubmit, isOpen, onClose }) {
 	return (
         <Modal hasCloseBtn={true} isOpen={isOpen} onClose={onClose}>
             <h2>Preferences</h2>
+            <p>Answer the following to refine your search</p>
             <form onSubmit={handleSubmit}>
                 <div className="form-row">
                     <label htmlFor="brand">Brand</label>

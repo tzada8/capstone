@@ -17,7 +17,8 @@ dummy_product = {
     "rating": 3.8,
     "title": "NBD Digital Camera 4K Ultra HD 48MP All-in-One Vlogging Camera with Wide Angle Lens, Digital Zoom 16x and 3\" Screen",
     "total_reviews": 892,
-    "us_item_id": "711035416"
+    "us_item_id": "711035416",
+    "source": "Walmart",
   },
   "reviews": {
     "ratings": [

@@ -104,6 +104,11 @@ function ProductSearch() {
             <p># PRODUCT OPTIONS: {productData.length}</p>
             <br/>
 
+            <p><span style={{color: "red"}}>Red:</span> Unselected Products</p>
+            <p><span style={{color: "blue"}}>Blue:</span> Selected Products</p>
+            <p>{mainSelectedProducts.length + currentSelectedProducts.length} Selected</p>
+            <br/>
+
             <button>Cancel</button>
             {/* TODO: Disable until minimum 3 products selected. */}
             <button onClick={() => setIsPreferencesModalOpen(true)}>Continue</button>
