@@ -12,46 +12,7 @@ import SpecificationsData from "../../components/comparison/comparison-data/Spec
 import VideosData from "../../components/comparison/comparison-data/VideosData";
 
 function Comparisons() {
-    // TODO: Remove temp recommendations once endpoint implemented.
-    const recommendations2 = [
-        {
-            rank: 1,
-            title: "Canon EOS 4000D",
-            price: 471.97,
-            source: "Best Buy",
-            score: 4.2,
-        },
-        {
-            rank: 2,
-            title: "Canon EOS Rebel T10o",
-            price: 564.95,
-            source: "Walmart",
-            score: 6.8,
-        },
-        {
-            rank: 3,
-            title: "Canon EOS Rebel T7",
-            price: 599.99,
-            source: "Amazon",
-            score: 3.3,
-        },
-        {
-            rank: 4,
-            title: "Camera 4",
-            price: 11.11,
-            source: "Amazon",
-            score: 0.1,
-        },
-        {
-            rank: 5,
-            title: "Camera 5",
-            price: 12345.33,
-            source: "Amazon",
-            score: 9.7,
-        },
-    ]
-
-    // const numProductsDisplayed = 3;
+    const numProductsDisplayed = 3;
     const defaultProductStructure = {
         basic_info: { images: [], price: {} },
         reviews: { top_positive: {}, top_negative: {} },
@@ -79,24 +40,10 @@ function Comparisons() {
             "importance": location.state.featurePriority,
             "selected_products": location.state.selectedProducts,
         }
-
         console.log("RECOMMENDATION DATA", recommendationData)
 
-        // TODO: From recommendations, extract highest 3 rated.
-        const topProducts = location.state === null ? [] : location.state.selectedProducts.slice(0, 3);
-        // const product1Endpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/product?source=${topProducts[0].source}&product_id=${topProducts[0].product_id}`;
-        const product1Endpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/product`;
-        fetch(product1Endpoint).then(res => res.json()).then(data => {
-            setProduct1Data(data);
-        });
-        const product2Endpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/product`;
-        fetch(product2Endpoint).then(res => res.json()).then(data => {
-            setProduct2Data(data);
-        });
-        const product3Endpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/product`;
-        fetch(product3Endpoint).then(res => res.json()).then(data => {
-            setProduct3Data(data);
-        });
+        const recEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/recommendation`;
+        fetch(recEndpoint).then(res => res.json()).then(data => setRecommendations(data));
     }, []);
 
 	return (
