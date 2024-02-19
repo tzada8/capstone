@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 
 import "./FeaturePriorityModal.css";
-import Modal from "../../base-modals/Modal";
+import Modal from "../../base-modal/Modal";
 
 const initialFeaturePriorityModalData = {
     "1": "",

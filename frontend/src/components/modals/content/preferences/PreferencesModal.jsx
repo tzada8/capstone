@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import "./PreferencesModal.css";
-import Modal from "../../base-modals/Modal";
+import Modal from "../../base-modal/Modal";
 
 const initialPreferencesModalData = {
     brand: "",
