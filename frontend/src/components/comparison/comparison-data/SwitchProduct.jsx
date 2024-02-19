@@ -8,7 +8,7 @@ function SwitchProduct(props) {
             <select
                 id={`switch-product-${props.i}`}
                 name={`switch-product-${props.i}`}
-                value={props.selected[props.i].basic_info.title}
+                value={props.selectedTitle}
                 onChange={props.handleSwitch}
             >
                 {props.productTitles.map(title => (
