@@ -9,6 +9,7 @@ import RecommendationTable from "../../components/recommendation-table/Recommend
 import BasicInfoData from "../../components/comparison/comparison-data/BasicInfoData";
 import ReviewsData from "../../components/comparison/comparison-data/ReviewsData";
 import SpecificationsData from "../../components/comparison/comparison-data/SpecificationsData";
+import SwitchProduct from "../../components/comparison/comparison-data/SwitchProduct";
 import VideosData from "../../components/comparison/comparison-data/VideosData";
 
 function Comparisons() {
@@ -24,6 +25,7 @@ function Comparisons() {
     const [showMoreRecommendations, setShowMoreRecommendations] = useState(false);
     const [products, setProducts] = useState(Array(numProductsDisplayed).fill(defaultProductStructure));
     const [recommendations, setRecommendations] = useState([]);
+    const [productTitles, setProductTitles] = useState([]);
 
     const location = useLocation();
 
@@ -47,11 +49,30 @@ function Comparisons() {
         //     body: JSON.stringify(recommendationData),
         // }).then(res => res.json()).then(data => setRecommendations(data));
 
+        // TODO: Remove. Temp just to rename products.
+        const renameProducts = recommendationData["selected_products"].map((p, i) => {
+            p.basic_info.title = `Product ${i + 1}`
+            return p;
+        })
+
         // Sort products based on order of recommendations.
-        const unsortedProducts = recommendationData["selected_products"];
+        const unsortedProducts = renameProducts;
+        // const unsortedProducts = recommendationData["selected_products"];
         unsortedProducts.sort((a, b) => recommendations.indexOf(a) - recommendations.indexOf(b));
         setProducts(unsortedProducts);
+        setProductTitles(unsortedProducts.map(p => p.basic_info.title))
     }, []);
+
+    const handleProductSwitch = (event) => {
+        const previousProducts = [...products];
+        const currIndex = Number(event.target.name.replace("switch-product-", ""))
+        const newTitle = event.target.value;
+        const newIndex = previousProducts.findIndex(p => p.basic_info.title === newTitle);
+        const tempCurr = previousProducts[currIndex];
+        previousProducts[currIndex] = previousProducts[newIndex];
+        previousProducts[newIndex] = tempCurr;
+        setProducts(previousProducts);
+    }
 
 	return (
 		<div>
@@ -78,6 +99,13 @@ function Comparisons() {
                 section_title={null}
                 products={<BasicInfoData basicInfo={products.slice(0, 3)} />}
             /> */}
+            <ComparisonSection
+                section_title={null}
+                product1={<SwitchProduct i={0} selected={products} productTitles={productTitles} handleSwitch={handleProductSwitch} />}
+                product2={<SwitchProduct i={1} selected={products} productTitles={productTitles} handleSwitch={handleProductSwitch} />}
+                product3={<SwitchProduct i={2} selected={products} productTitles={productTitles} handleSwitch={handleProductSwitch} />}
+            />
+
             <ComparisonSection
                 section_title={null}
                 product1={<BasicInfoData basicInfo={products[0].basic_info} />}
