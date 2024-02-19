@@ -14,13 +14,15 @@ def _extract_product_id(url: str) -> Optional[str]:
     potential_id = potential_id.replace(".p", "")
     return potential_id if potential_id.isdigit() else None
 
-def scrape_google_products(q: str) -> Dict:
+def scrape_google_products(q: str, start: int) -> Dict:
     sellers = "|".join(SELLER_FILTERS.values())
     params = {
         "engine": "google_shopping",
         "google_domain": "google.com",
         "q": q,
+        "start": start,
         "api_key": environ.get("SERPAPI_API_KEY"),
+        "device": "desktop",
         "hl": "en",
         "gl": "us",
         "location": "United States",
@@ -40,7 +42,6 @@ def scrape_google_products(q: str) -> Dict:
         }
     else:
         shopping_results = results.get("shopping_results", [])
-        pagination = results.get("serpapi_pagination", [])
         return {
             "shopping_results": {
                 "status": status,
@@ -58,10 +59,5 @@ def scrape_google_products(q: str) -> Dict:
                         "thumbnail": sr.get("thumbnail"),
                     } for sr in shopping_results
                 ],
-                "pagination": {
-                    "current": pagination.get("current"),
-                    "next": pagination.get("next"),
-                    "other_pages": pagination.get("other_pages", {}),
-                },
             }
         }
