@@ -9,13 +9,28 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.3",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json",
+      "css"
+    ],
+    "moduleNameMapper": {
+      "\\.(css)$": "<rootDir>/test/__mocks__/MockStyles.js"
+    },
+    "setupFilesAfterEnv": [
+      "<rootDir>/test/setupTests.js"
+    ],
+    "testEnvironment": "jsdom"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest ./test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

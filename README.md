@@ -58,3 +58,4 @@ Frontend:
 ## Testing
 
 Backend: In `backend` folder, run `python3 -m unittest discover`
+Frontend: In `frontend` folder, run `npm test`

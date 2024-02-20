@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./ProductSearch.css";
 import FeaturePriorityModal from "../../components/modals/content/feature-priority/FeaturePriorityModal";
 import PreferencesModal from "../../components/modals/content/preferences/PreferencesModal";
-import ProductOption from "../../components/ProductOption";
+import ProductOption from "../../components/product-option/ProductOption";
 import SearchBar from "../../components/search-bar/SearchBar";
 
 function ProductSearch() {
