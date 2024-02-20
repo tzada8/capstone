@@ -17,7 +17,7 @@ function ComparisonSection({ sectionTitle=null, products }) {
                 </div>
             )}
             <div className={collapseSection ? "column-layout hide-section" : " column-layout show-section"} >
-                {products.map(p => p)}
+                {products.map((p, i) => <div key={i}>{p}</div>)}
             </div>
             <br/>
         </div>
