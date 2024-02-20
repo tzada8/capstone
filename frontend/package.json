@@ -12,10 +12,17 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
+  "jest": {
+    "moduleFileExtensions": ["js", "jsx", "json", "css"],
+    "moduleNameMapper": {
+      "\\.(css)$": "<rootDir>/test/mocks/MockStyles.js"
+    },
+    "testEnvironment": "jsdom"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest ./test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
