@@ -29,7 +29,8 @@ def default_backend():
 @app.route("/api/search-products")
 def search_products():
     q = request.args.get("q")
-    return scrape_google_products(q)
+    start = request.args.get("start", 0)
+    return scrape_google_products(q, int(start))
 
 @app.route("/api/recommendation", methods=["POST"])
 def recommendation():

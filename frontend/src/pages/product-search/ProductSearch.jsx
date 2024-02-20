@@ -10,8 +10,7 @@ import SearchBar from "../../components/search-bar/SearchBar";
 function ProductSearch() {
     const [searchQuery, setSearchQuery] = useState("");
     const [productData, setProductData] = useState([]);
-    // TODO: Implement pagination.
-    const [productPagination, setProductPagination] = useState({});
+    const [paginationStart, setPaginationStart] = useState(0);
     const [mainSelectedProducts, setMainSelectedProducts] = useState([]);
     const [currentSelectedProducts, setCurrentSelectedProducts] = useState([]);
 
@@ -49,15 +48,13 @@ function ProductSearch() {
         if (q === "") {
             setSearchQuery(q);
             setProductData([]);
-            setProductPagination({});
             return;
         }
-        const selectedIds = [...mainSelectedProducts.map(p => p.product_id), ...currentSelectedProducts.map(p => p.product_id)];
+        const selectedIds = [...mainSelectedProducts, ...currentSelectedProducts].map(p => p.product_id);
         const searchEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/search-products?q=${q}`;
         fetch(searchEndpoint).then(res => res.json()).then(data => {
             const prodData = data.shopping_results.data.filter(p => !selectedIds.includes(p.product_id));
             setProductData(prodData);
-            setProductPagination(data.shopping_results.pagination);
         });
         setSearchQuery(q);
     }
@@ -97,6 +94,15 @@ function ProductSearch() {
         setFeaturePriorityModalData(data);
         setIsFeaturePriorityModalOpen(false);
         toComparisons(data);
+    }
+
+    const handleLoadMoreProducts = () => {
+        const searchEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/search-products?q=${searchQuery}&start=${paginationStart}`;
+        fetch(searchEndpoint).then(res => res.json()).then(data => {
+            const moreProdData = data.shopping_results.data;
+            setProductData([...productData, ...moreProdData])
+        });
+        setPaginationStart(paginationStart + 100);
     }
 
 	return (
@@ -149,6 +155,9 @@ function ProductSearch() {
                     isSelected={currentSelectedProducts.includes(product)}
                 />
             ))}
+
+            <br/>
+            <button onClick={handleLoadMoreProducts}>Load More</button>
 		</div>
 	);
 }
