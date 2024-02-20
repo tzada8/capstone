@@ -15,7 +15,7 @@
   "jest": {
     "moduleFileExtensions": ["js", "jsx", "json", "css"],
     "moduleNameMapper": {
-      "\\.(css)$": "<rootDir>/test/mocks/MockStyles.js"
+      "\\.(css)$": "<rootDir>/test/__mocks__/MockStyles.js"
     },
     "testEnvironment": "jsdom"
   },
