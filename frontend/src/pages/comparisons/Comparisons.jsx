@@ -9,10 +9,11 @@ import RecommendationTable from "../../components/recommendation-table/Recommend
 import BasicInfoData from "../../components/comparison/comparison-data/BasicInfoData";
 import ReviewsData from "../../components/comparison/comparison-data/ReviewsData";
 import SpecificationsData from "../../components/comparison/comparison-data/SpecificationsData";
+import SwitchProduct from "../../components/comparison/comparison-data/SwitchProduct";
 import VideosData from "../../components/comparison/comparison-data/VideosData";
 
 function Comparisons() {
-    const numProductsDisplayed = 3;
+    const numDisplayed = 3;
     const defaultProductStructure = {
         basic_info: { images: [], price: {} },
         reviews: { top_positive: {}, top_negative: {} },
@@ -22,8 +23,9 @@ function Comparisons() {
     }
 
     const [showMoreRecommendations, setShowMoreRecommendations] = useState(false);
-    const [products, setProducts] = useState(Array(numProductsDisplayed).fill(defaultProductStructure));
+    const [products, setProducts] = useState(Array(numDisplayed).fill(defaultProductStructure));
     const [recommendations, setRecommendations] = useState([]);
+    const [productTitles, setProductTitles] = useState([]);
 
     const location = useLocation();
 
@@ -47,18 +49,37 @@ function Comparisons() {
         //     body: JSON.stringify(recommendationData),
         // }).then(res => res.json()).then(data => setRecommendations(data));
 
+        // TODO: Remove. Temp just to rename products.
+        const renameProducts = recommendationData["selected_products"].map((p, i) => {
+            p.basic_info.title = `Product ${i + 1}`
+            return p;
+        })
+
         // Sort products based on order of recommendations.
-        const unsortedProducts = recommendationData["selected_products"];
+        const unsortedProducts = renameProducts;
+        // const unsortedProducts = recommendationData["selected_products"];
         unsortedProducts.sort((a, b) => recommendations.indexOf(a) - recommendations.indexOf(b));
         setProducts(unsortedProducts);
+        setProductTitles(unsortedProducts.map(p => p.basic_info.title))
     }, []);
+
+    const handleProductSwitch = (event) => {
+        const previousProducts = [...products];
+        const currIndex = Number(event.target.name.replace("switch-product-", ""))
+        const newTitle = event.target.value;
+        const newIndex = previousProducts.findIndex(p => p.basic_info.title === newTitle);
+        const tempCurr = previousProducts[currIndex];
+        previousProducts[currIndex] = previousProducts[newIndex];
+        previousProducts[newIndex] = tempCurr;
+        setProducts(previousProducts);
+    }
 
 	return (
 		<div>
             <h1>Recommend items by likeability</h1>
             <p>Scored by how much we think you'll like it based upon learning your preferences and reviews.</p>
             <br/>
-            <RecommendationTable recommendations={showMoreRecommendations ? recommendations : recommendations.slice(0, numProductsDisplayed)} />
+            <RecommendationTable recommendations={showMoreRecommendations ? recommendations : recommendations.slice(0, numDisplayed)} />
             <br/>
             <button className="show-recommendation-table" onClick={() => setShowMoreRecommendations(!showMoreRecommendations)}>
                 {showMoreRecommendations ? "Hide full list" : "Show full list"}
@@ -73,35 +94,25 @@ function Comparisons() {
             <br/>
             <br/>
 
-            {/* TODO: ComparisonSections can probably be updated to just take in list of products (instead of explicitly saying 1, 2, 3). */}
-            {/* <ComparisonSection
-                section_title={null}
-                products={<BasicInfoData basicInfo={products.slice(0, 3)} />}
-            /> */}
             <ComparisonSection
-                section_title={null}
-                product1={<BasicInfoData basicInfo={products[0].basic_info} />}
-                product2={<BasicInfoData basicInfo={products[1].basic_info} />}
-                product3={<BasicInfoData basicInfo={products[2].basic_info} />}
-            />
-
-            <ComparisonSection
-                section_title="Specifications"
-                product1={<SpecificationsData specifications={products[0].specifications} />}
-                product2={<SpecificationsData specifications={products[1].specifications} />}
-                product3={<SpecificationsData specifications={products[2].specifications} />}
+                products={products.slice(0, numDisplayed).map((p, i) => {
+                    return <SwitchProduct i={i} selectedTitle={p.basic_info.title} productTitles={productTitles} handleSwitch={handleProductSwitch} />
+                })}
             />
             <ComparisonSection
-                section_title="Summary of written reviews"
-                product1={<ReviewsData reviews={products[0].reviews} />}
-                product2={<ReviewsData reviews={products[1].reviews} />}
-                product3={<ReviewsData reviews={products[2].reviews} />}
+                products={products.slice(0, numDisplayed).map(p => <BasicInfoData basicInfo={p.basic_info} />)}
             />
             <ComparisonSection
-                section_title="Most helpful video reviews"
-                product1={<VideosData videos={products[0].videos.slice(0, 4)} />}
-                product2={<VideosData videos={products[1].videos.slice(0, 4)} />}
-                product3={<VideosData videos={products[2].videos.slice(0, 4)} />}
+                sectionTitle="Specifications"
+                products={products.slice(0, numDisplayed).map(p => <SpecificationsData specifications={p.specifications} />)}
+            />
+            <ComparisonSection
+                sectionTitle="Summary of written reviews"
+                products={products.slice(0, numDisplayed).map(p => <ReviewsData reviews={p.reviews} />)}
+            />
+            <ComparisonSection
+                sectionTitle="Most helpful video reviews"
+                products={products.slice(0, numDisplayed).map(p => <VideosData videos={p.videos.slice(0, 5)} />)}
             />
 		</div>
 	);

@@ -2,14 +2,14 @@ import React, { useState } from "react";
 
 import "./ComparisonSection.css";
 
-function ComparisonSection(props) {
+function ComparisonSection({ sectionTitle=null, products }) {
     const [collapseSection, setCollapseSection] = useState(false);
 
 	return (
 		<div>
-            {props.section_title !== null && (
+            {sectionTitle !== null && (
                 <div>
-                    <h3>{props.section_title}</h3>
+                    <h3>{sectionTitle}</h3>
                     <hr/>
                     <button onClick={() => setCollapseSection(!collapseSection)}>
                         <i className={collapseSection ? "arrow down-direction" : "arrow up-direction"} />
@@ -17,9 +17,7 @@ function ComparisonSection(props) {
                 </div>
             )}
             <div className={collapseSection ? "column-layout hide-section" : " column-layout show-section"} >
-                {props.product1}
-                {props.product2}
-                {props.product3}
+                {products.map(p => p)}
             </div>
             <br/>
         </div>
