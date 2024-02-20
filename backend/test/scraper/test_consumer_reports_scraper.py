@@ -19,10 +19,9 @@ class TestConsumerReportsScraper(unittest.TestCase):
         expected = {
             "expert_review": {
                 "review": "It was okay.",
-                "recommended": True,
-                "bestseller": False,
-                "bestbuy": False,
-                "dontbuy": False,
+                "score": "75/100",
+                "source": "Consumer Reports",
+                "link": "https://www.consumerreports.org/electronics-computers/cameras/brand-model/m111/",
             } 
         }
         self.assertEqual(result, expected)
@@ -34,10 +33,9 @@ class TestConsumerReportsScraper(unittest.TestCase):
         expected = {
             "expert_review": {
                 "review": "It was okay.",
-                "recommended": True,
-                "bestseller": False,
-                "bestbuy": False,
-                "dontbuy": False,
+                "score": "75/100",
+                "source": "Consumer Reports",
+                "link": "https://www.consumerreports.org/electronics-computers/cameras/brand-model/m111/",
             } 
         }
         self.assertEqual(result, expected)
@@ -49,10 +47,9 @@ class TestConsumerReportsScraper(unittest.TestCase):
         expected = {
             "expert_review": {
                 "review": "It was okay.",
-                "recommended": True,
-                "bestseller": False,
-                "bestbuy": False,
-                "dontbuy": False,
+                "score": "75/100",
+                "source": "Consumer Reports",
+                "link": "https://www.consumerreports.org/electronics-computers/cameras/brand-model/m111/",
             } 
         }
         self.assertEqual(result, expected)
