@@ -25,7 +25,6 @@ function FormModal(props) {
     const handleSubmit = (event) => {
         event.preventDefault();
         props.onSubmit(formState);
-        setFormState(defaultFormState());
     }
 
     const handleSkip = (event) => {
