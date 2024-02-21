@@ -20,6 +20,7 @@ function Home() {
 
     const handlePreferencesModalSubmit = (data) => {
         setIsPreferencesModalOpen(false);
+        Object.keys(data).forEach(k => data[k] = data[k].includes("no-preference") ? "" : data[k])
         toProductSearch(data);
     }
 

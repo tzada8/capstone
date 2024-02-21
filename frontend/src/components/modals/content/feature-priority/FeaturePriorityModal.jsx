@@ -13,11 +13,11 @@ function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
     ]
     
     const featurePriorityForm = {
-        "1": { label: "1.", initial: "", options: featurePriorityOptions },
-        "2": { label: "2.", initial: "", options: featurePriorityOptions },
-        "3": { label: "3.", initial: "", options: featurePriorityOptions },
-        "4": { label: "4.", initial: "", options: featurePriorityOptions },
-        "5": { label: "5.", initial: "", options: featurePriorityOptions },
+        "1": { label: "1.", initial: "", type: "select", options: featurePriorityOptions },
+        "2": { label: "2.", initial: "", type: "select", options: featurePriorityOptions },
+        "3": { label: "3.", initial: "", type: "select", options: featurePriorityOptions },
+        "4": { label: "4.", initial: "", type: "select", options: featurePriorityOptions },
+        "5": { label: "5.", initial: "", type: "select", options: featurePriorityOptions },
     }
 
     // TODO: Add error handling (e.g. cannot choose same feature twice).

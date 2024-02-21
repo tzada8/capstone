@@ -33,7 +33,14 @@ a {
     cursor: pointer;
 }
 
-button {
+button, input[type="radio"] {
     cursor: pointer;
     outline: none;
+}
+
+input[type="radio"] {
+    display: none;
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
 }

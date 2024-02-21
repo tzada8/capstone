@@ -17,16 +17,20 @@
     border-width: 1px;
 }
 
-.button-container {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: space-between;
+.radio-label {
+    background: lightblue;
+    width: 20px;
+    height: 20px;
 }
 
-.left-button {
-    align-self: flex-start;
+input[type="radio"]:checked ~ .radio-label {
+    background: orange;
 }
 
-.right-button {
-    align-self: flex-end;
+.skip-button {
+    width: 100%;
+}
+
+.continue-button {
+    width: 100%;
 }
