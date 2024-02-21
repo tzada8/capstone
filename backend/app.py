@@ -43,7 +43,7 @@ def product():
 
     product_data = {}
     source_details = {}
-    if "BestBuy" in source:
+    if "Best Buy" in source:
         product_data = BestBuyProduct.aggregate_data(product_id)
         # TODO: Could match expert reviews on model_number/defaultMpc too.
         source_details = {"product_id": product_data["basic_info"].get("upc"), "id_field": "defaultUpc"}
