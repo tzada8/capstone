@@ -20,7 +20,9 @@ def scrape_expert_reviews(q: str, id_check: str, id_field: str) -> Dict:
     # Create name to id mapping.
     name_id = {}
     for prod in all_prod_results.get('content'):
-        name_id[prod.get('modelName')] = prod.get('_id')
+        index = prod.get('modelName').find("w/")
+        shortened_name = prod.get('modelName')[:index].strip() if index != -1 else prod.get('modelName')
+        name_id[shortened_name] = prod.get('_id')
 
     # Return id of product name that most closely matches shortened q.
     id = max(name_id.items(), key = lambda x: difflib.SequenceMatcher(None, short_title, x[0]).ratio())[1]
@@ -30,6 +32,15 @@ def scrape_expert_reviews(q: str, id_check: str, id_field: str) -> Dict:
     review_querystring = {"id": id}
     review_response = requests.get(review_url, headers=headers, params=review_querystring)
     er = review_response.json().get('content')[0]
+
+    # Prepare to create link.
+    index = er.get('slugName').rfind('-')
+    name = er.get('slugName')[:index]
+    model = er.get('slugName')[index + 1:]
+    link = f"https://www.consumerreports.org/electronics-computers/cameras/{name}/m{model}/"
+    status = requests.get(link).status_code
+    if status != 200:
+        link = None
 
     # Check that UPC or Walmart ID returned by Consumer Reports 
     # matches UPC or Walmart ID returned by Best Buy or Walmart, respectively.
@@ -42,10 +53,9 @@ def scrape_expert_reviews(q: str, id_check: str, id_field: str) -> Dict:
         return {
             "expert_review": {
                 "review": er.get('expertReview').get('bottomLine', er.get('expertReview').get('summary')),
-                "recommended": er.get('expertRatings').get('isRecommended'),
-                "bestseller": er.get('expertRatings').get('isBestseller'),
-                "bestbuy": er.get('expertRatings').get('isBestBuy'),
-                "dontbuy": er.get('expertRatings').get('isDontBuy'),
+                "score": f"{er.get('overallDisplayScore')}/100",
+                "source": "Consumer Reports",
+                "link": link,
             } 
         }
     else:

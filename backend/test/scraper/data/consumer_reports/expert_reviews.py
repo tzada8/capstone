@@ -25,12 +25,8 @@ expert_reviews_returned.json = mock.Mock(
                 "expertReview": {
                     "bottomLine": "It was okay.",
                 },
-                "expertRatings": {
-                    "isRecommended": True,
-                    "isBestseller": False,
-                    "isBestBuy": False,
-                    "isDontBuy": False,
-                },
+                "overallDisplayScore": 75,
+                "slugName": "brand-model-111",
                 "defaultUpc": "11111",
                 "walmartId": 11111,
             } 
@@ -46,15 +42,17 @@ expert_reviews_no_bottomline.json = mock.Mock(
                 "expertReview": {
                     "summary": "It was okay.",
                 },
-                "expertRatings": {
-                    "isRecommended": True,
-                    "isBestseller": False,
-                    "isBestBuy": False,
-                    "isDontBuy": False,
-                },
+                "overallDisplayScore": 75,
+                "slugName": "brand-model-111",
                 "defaultUpc": "11111",
                 "walmartId": 11111,
             } 
         ]
     }
 )
+
+valid_status = requests_mock.Mocker()
+valid_status.status_code = 200
+
+invalid_status = requests_mock.Mocker()
+invalid_status.status_code = 404
