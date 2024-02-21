@@ -20,20 +20,29 @@ class TestYoutubeScraper(unittest.TestCase):
                 {
                     "title": "Pizza is good",
                     "link": "https://example1.com",
+                    "channel_name": "Pizza Channel",
+                    "published_date": "12 hours ago",
+                    "views": "2.3k",
                     "length": "3:12",
                     "thumbnail": "https://thumbnail1.com",
                 },
                 {
                     "title": "Eating food fast",
                     "link": "https://example2.com",
+                    "channel_name": None,
+                    "published_date": "12 hours ago",
+                    "views": "7.2M",
                     "length": "10:00",
-                    "thumbnail": "https://thumbnail2.com",
+                    "thumbnail": None,
                 },
                 {
                     "title": "24h no food challenge",
                     "link": "https://example3.com",
+                    "channel_name": None,
+                    "published_date": "12 hours ago",
+                    "views": "174",
                     "length": "24:00:00",
-                    "thumbnail": "https://thumbnail3.com",
+                    "thumbnail": None,
                 },
             ]
         }
