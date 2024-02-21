@@ -3,6 +3,7 @@ import React from "react";
 import FormModal from "../../form-modal/FormModal";
 
 function PreferencesModal({ onSubmit, isOpen, onClose }) {
+    // TODO: Maybe move list of preferences to backend (allows for dynamic set of products/options).
     const preferencesForm = {
         brand: {
             label: "Do you have a brand preference?",
@@ -60,8 +61,6 @@ function PreferencesModal({ onSubmit, isOpen, onClose }) {
         },
     }
 
-    // TODO: Add error handling (e.g. budget >= $0).
-    // TODO: Maybe move list of preferences to backend (allows for dynamic set of products/options).
 	return (
         <FormModal
             formTitle="Refine your search"

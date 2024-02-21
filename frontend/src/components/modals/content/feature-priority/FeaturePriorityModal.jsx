@@ -3,6 +3,7 @@ import React from "react";
 import FormModal from "../../form-modal/FormModal";
 
 function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
+    // TODO: Maybe have list of features dependant on preferences to backend (allows for dynamic set of products/options).
     const featurePriorityOptions = [
         { value: "", display: "Please select" },
         { value: "brand", display: "Brand" },
@@ -21,7 +22,6 @@ function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
     }
 
     // TODO: Add error handling (e.g. cannot choose same feature twice).
-    // TODO: Maybe have list of features dependant on preferences to backend (allows for dynamic set of products/options).
 	return (
         <FormModal
             formTitle="Priority of features"

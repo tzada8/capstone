@@ -4,13 +4,15 @@ import "./FormModal.css";
 import Modal from "../base-modal/Modal";
 
 function FormModal(props) {
-    const [formState, setFormState] = useState(() => {
+    const defaultFormState = () => {
         const initialFormState = {};
         Object.keys(props.formQuestions).forEach(key => {
             initialFormState[key] = props.formQuestions[key].initial;
         })
         return initialFormState;
-    });
+    }
+
+    const [formState, setFormState] = useState(defaultFormState());
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -23,7 +25,13 @@ function FormModal(props) {
     const handleSubmit = (event) => {
         event.preventDefault();
         props.onSubmit(formState);
-        setFormState(props.formQuestions);
+        setFormState(defaultFormState());
+    }
+
+    const handleSkip = (event) => {
+        event.preventDefault();
+        props.onSubmit(defaultFormState());
+        setFormState(defaultFormState());
     }
 
 	return (
@@ -54,7 +62,7 @@ function FormModal(props) {
                     )}
                 )}
                 <br/>
-                <button type="submit" className="skip-button">Skip</button>
+                <button onClick={handleSkip} className="skip-button">Skip</button>
                 <br/>
                 <button type="submit" className="continue-button">Continue</button>
             </form>
