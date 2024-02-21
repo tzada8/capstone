@@ -1,28 +1,26 @@
 import React from "react";
 
 import "./ComparisonData.css";
+import MostReview from "./MostReview";
 
 function ReviewsData(props) {
 	return (
-		<div>
-            <p>{props.reviews.summary}</p>
+		<div className="comparison-block">
+            <p className="body-1">{props.reviews.summary}</p>
             <br/>
-
-            <div>
-                <h5>MOST POSITIVE REVIEW</h5>
-                <p>Rating: {props.reviews.top_positive?.rating}</p>
-                <p>Title: {props.reviews.top_positive?.title}</p>
-                <p>{props.reviews.top_positive?.text}</p>
-            </div>
+            <MostReview
+                isPositive={true}
+                rating={props.reviews.top_positive?.rating}
+                title={props.reviews.top_positive?.title}
+                text={props.reviews.top_positive?.text}
+            />
             <br/>
-
-            <div>
-                <h5>MOST NEGATIVE REVIEW</h5>
-                <p>Rating: {props.reviews.top_negative?.rating}</p>
-                <p>Title: {props.reviews.top_negative?.title}</p>
-                <p>{props.reviews.top_negative?.text}</p>
-            </div>
-
+            <MostReview
+                isPositive={false}
+                rating={props.reviews.top_negative?.rating}
+                title={props.reviews.top_negative?.title}
+                text={props.reviews.top_negative?.text}
+            />
             {/* TODO: Add expert reviews. */}
         </div>
 	);

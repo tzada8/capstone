@@ -4,7 +4,7 @@ import "./ComparisonData.css";
 
 function SwitchProduct(props) {
 	return (
-		<div>
+		<div className="comparison-block">
             <select
                 id={`switch-product-${props.i}`}
                 name={`switch-product-${props.i}`}

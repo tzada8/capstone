@@ -34,6 +34,7 @@
 
 body {
     background: var(--OFF-WHITE);
+    color: var(--OFF-BLACK);
     padding: 0 100px;
 }
 
@@ -71,11 +72,13 @@ h1, h2, h3 {
 h1 {
     font-size: 54px;
     line-height: 124%;
+    text-align: center;
 }
 
 h2 {
     font-size: 44px;
     line-height: 124%;
+    text-align: center;
 }
 
 h3 {
@@ -97,7 +100,7 @@ h4 {
     line-height: 120%;
 }
 
-.body-1, .body-1-medium, .body-1-bold {
+.body-1, .body-1-medium, .body-1-bold, button {
     font-size: 18px;
     font-family: var(--BODY-FONT);
     letter-spacing: 1%;
@@ -109,7 +112,7 @@ h4 {
     font-weight: 400;
 }
 
-.body-1-medium {
+.body-1-medium, button {
     font-weight: 500;
 }
 

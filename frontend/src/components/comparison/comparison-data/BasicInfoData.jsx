@@ -4,15 +4,16 @@ import "./ComparisonData.css";
 
 function BasicInfoData(props) {
 	return (
-		<div>
+		<div className="comparison-block">
             <img className="comparison-product-image" src={props.basicInfo.images[0]} alt=""/>
-            <p><b>{props.basicInfo.title}</b></p>
-            <p>${props.basicInfo.price.amount}</p>
-            <p>Rating: {props.basicInfo.rating} ({props.basicInfo.total_reviews} reviews)</p>
+            <h4>{props.basicInfo.title}</h4>
+            <p className="body-1">${props.basicInfo.price.amount}</p>
+            <p className="body-3">Rating: {props.basicInfo.rating} ({props.basicInfo.total_reviews} reviews)</p>
             <a
                 href={props.basicInfo.product_page_url}
                 target="_blank"
                 rel="noreferrer"
+                className="body-1-medium product-page-link"
             >{props.basicInfo.source}</a>
         </div>
 	);

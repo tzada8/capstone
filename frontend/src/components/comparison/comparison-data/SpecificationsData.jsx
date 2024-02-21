@@ -4,9 +4,9 @@ import "./ComparisonData.css";
 
 function SpecificationsData(props) {
 	return (
-		<div>
+		<div className="comparison-block">
             {props.specifications.map(spec => (
-                <p key={spec.name}>{spec.name}: {spec.value}</p>
+                <p className="body-1" key={spec.name}>{spec.name}: {spec.value}</p>
             ))}
         </div>
 	);

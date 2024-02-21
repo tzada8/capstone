@@ -83,7 +83,7 @@ function Comparisons() {
 	return (
 		<div>
             <h1>Recommend items by likeability</h1>
-            <p>Scored by how much we think you'll like it based upon learning your preferences and reviews.</p>
+            <p className="body-1">Scored by how much we think you'll like it based upon learning your preferences and reviews.</p>
             <br/>
             <RecommendationTable recommendations={showMoreRecommendations ? recommendations : recommendations.slice(0, numDisplayed)} />
             <br/>
@@ -96,7 +96,7 @@ function Comparisons() {
             <br/>
 
             <h1>Compare products</h1>
-            <p>Get help choosing from analyzed insights, fast.</p>
+            <p className="body-1">Get help choosing from analyzed insights, fast.</p>
             <br/>
             <br/>
 
