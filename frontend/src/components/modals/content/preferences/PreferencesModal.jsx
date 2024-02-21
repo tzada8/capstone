@@ -65,6 +65,7 @@ function PreferencesModal({ onSubmit, isOpen, onClose }) {
         <FormModal
             formTitle="Refine your search"
             formDescription={null}
+            errorMessage={null}
             formQuestions={preferencesForm}
             onSubmit={onSubmit}
             isOpen={isOpen}

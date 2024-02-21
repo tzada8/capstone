@@ -38,6 +38,7 @@ function FormModal(props) {
         <Modal hasCloseBtn={true} isOpen={props.isOpen} onClose={props.onClose}>
             <h2>{props.formTitle}</h2>
             <p>{props.formDescription}</p>
+            {props.errorMessage && <div style={{ color: 'red' }}>{props.errorMessage}</div>}
             <form onSubmit={handleSubmit}>
                 {Object.keys(props.formQuestions).map(question => {
                     return props.formQuestions[question].type === "radio" ? (

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import FormModal from "../../form-modal/FormModal";
 
@@ -20,14 +20,31 @@ function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
         "4": { label: "4.", initial: "", type: "select", options: featurePriorityOptions },
         "5": { label: "5.", initial: "", type: "select", options: featurePriorityOptions },
     }
+    const [duplicateErrorMessage, setDuplicateErrorMessage] = useState("");
 
-    // TODO: Add error handling (e.g. cannot choose same feature twice).
+    const submitPriority = (formState) => {
+        const ignoreEmptyStrings = Object.fromEntries(
+            Object.entries(formState).filter(([_, value]) => value !== "")
+        );
+        const formKeys = Object.keys(ignoreEmptyStrings);
+        const uniqueFormValues = new Set(formKeys.map(k => formState[k]));
+        if (uniqueFormValues.size === formKeys.length) {
+            onSubmit(formState);
+        } else {
+            setDuplicateErrorMessage("Error: Please select unique options.");
+            setTimeout(() => {
+                setDuplicateErrorMessage("");
+            }, 5000);
+        }
+    }
+
 	return (
         <FormModal
             formTitle="Priority of features"
             formDescription="Rank the features from highest to least importance to you"
+            errorMessage={duplicateErrorMessage}
             formQuestions={featurePriorityForm}
-            onSubmit={onSubmit}
+            onSubmit={submitPriority}
             isOpen={isOpen}
             onClose={onClose}
         />
