@@ -47,12 +47,9 @@ a {
     cursor: pointer;
 }
 
-button, input[type="radio"] {
+input[type="radio"] {
     cursor: pointer;
     outline: none;
-}
-
-input[type="radio"] {
     display: none;
     position: fixed;
     opacity: 0;
@@ -100,7 +97,7 @@ h4 {
     line-height: 120%;
 }
 
-.body-1, .body-1-medium, .body-1-bold, button {
+.body-1, .body-1-medium, .body-1-bold {
     font-size: 18px;
     font-family: var(--BODY-FONT);
     letter-spacing: 1%;
@@ -112,7 +109,7 @@ h4 {
     font-weight: 400;
 }
 
-.body-1-medium, button {
+.body-1-medium {
     font-weight: 500;
 }
 

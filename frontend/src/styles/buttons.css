@@ -1,0 +1,22 @@
+button {
+    font-size: 18px;
+    font-family: var(--BODY-FONT);
+    letter-spacing: 1%;
+    line-height: 156%;
+    font-variation-settings: "slnt" 0;
+    font-weight: 500;
+    cursor: pointer;
+    outline: none;
+}
+
+.primary-button {
+    background: var(--PRIMARY-BLUE);
+    color: var(--PURE-WHITE);
+    border-radius: 8px;
+}
+
+.alternative-button {
+    background: var(--LIGHT-BLUE);
+    color: var(--DARK-BLUE);
+    border-radius: 8px;
+}

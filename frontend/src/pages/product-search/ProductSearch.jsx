@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Button } from "antd";
 
 import "./ProductSearch.css";
 import { routes } from "../../routes/Routes";
@@ -120,11 +121,15 @@ function ProductSearch() {
             <p>{mainSelectedProducts.length + currentSelectedProducts.length} Selected</p>
             <br/>
 
-            <button>Cancel</button>
-            <button
+            <Button
+                onClick={() => navigate(routes.home)}
+                type="primary" size="large" ghost className="primary-button"
+            >Cancel</Button>
+            <Button
                 disabled={mainSelectedProducts.length + currentSelectedProducts.length < 3}
                 onClick={() => setIsFeaturePriorityModalOpen(true)}
-            >Continue</button>
+                type="primary" size="large" className="primary-button"
+            >Next</Button>
             <br/>
             <br/>
 
@@ -144,7 +149,10 @@ function ProductSearch() {
             ))}
 
             <br/>
-            <button onClick={handleLoadMoreProducts}>Load More</button>
+            {productData.length > 0 && <Button
+                onClick={handleLoadMoreProducts}
+                type="primary" size="large" className="alternative-button"
+            >Load more</Button>}
 		</div>
 	);
 }

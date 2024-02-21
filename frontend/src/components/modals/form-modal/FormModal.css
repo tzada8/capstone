@@ -11,8 +11,7 @@
 }
 
 .form-row input,
-.form-row select,
-.form-row button {
+.form-row select {
     border: solid black;
     border-width: 1px;
 }
@@ -25,12 +24,4 @@
 
 input[type="radio"]:checked ~ .radio-label {
     background: orange;
-}
-
-.skip-button {
-    width: 100%;
-}
-
-.continue-button {
-    width: 100%;
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "antd";
 
 import "./SearchBar.css";
 
@@ -17,7 +18,7 @@ function SearchBar(props) {
                 value={props.query}
                 placeholder="Search for a product"
             />
-            <button type="submit">Search</button>
+            <Button type="primary" size="large" className="primary-button" htmlType="submit">Search</Button>
         </form>
 	);
 }
