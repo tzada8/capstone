@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./Home.css";
+import { routes } from "../../routes/Routes";
 import PreferencesModal from "../../components/modals/content/preferences/PreferencesModal";
 import SearchBar from "../../components/search-bar/SearchBar";
 
@@ -11,7 +12,7 @@ function Home() {
 
     const navigate = useNavigate();
     const toProductSearch = (preferencesModalData) => {
-        navigate("/product-search", {state: {
+        navigate(routes.productSearch, {state: {
             query: searchQuery,
             preferences: preferencesModalData,
         }})

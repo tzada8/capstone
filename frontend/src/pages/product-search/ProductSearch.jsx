@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import "./ProductSearch.css";
+import { routes } from "../../routes/Routes";
 import FeaturePriorityModal from "../../components/modals/content/feature-priority/FeaturePriorityModal";
 import ProductOption from "../../components/product-option/ProductOption";
 import SearchBar from "../../components/search-bar/SearchBar";
@@ -22,7 +23,7 @@ function ProductSearch() {
     const navigate = useNavigate();
 
     const toComparisons = async (featurePriority) => {
-        navigate("/comparisons", {state: {
+        navigate(routes.comparisons, {state: {
             selectedProducts: await fullSelectedProducts(),
             preferences: preferencesModalData,
             featurePriority: featurePriority,
