@@ -50,3 +50,9 @@ expert_reviews_no_bottomline.json = mock.Mock(
         ]
     }
 )
+
+valid_status = requests_mock.Mocker()
+valid_status.status_code = 200
+
+invalid_status = requests_mock.Mocker()
+invalid_status.status_code = 404

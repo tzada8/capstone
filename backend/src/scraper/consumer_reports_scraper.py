@@ -37,6 +37,10 @@ def scrape_expert_reviews(q: str, id_check: str, id_field: str) -> Dict:
     index = er.get('slugName').rfind('-')
     name = er.get('slugName')[:index]
     model = er.get('slugName')[index + 1:]
+    link = f"https://www.consumerreports.org/electronics-computers/cameras/{name}/m{model}/"
+    status = requests.get(link).status_code
+    if status != 200:
+        link = None
 
     # Check that UPC or Walmart ID returned by Consumer Reports 
     # matches UPC or Walmart ID returned by Best Buy or Walmart, respectively.
@@ -51,7 +55,7 @@ def scrape_expert_reviews(q: str, id_check: str, id_field: str) -> Dict:
                 "review": er.get('expertReview').get('bottomLine', er.get('expertReview').get('summary')),
                 "score": f"{er.get('overallDisplayScore')}/100",
                 "source": "Consumer Reports",
-                "link": f"https://www.consumerreports.org/electronics-computers/cameras/{name}/m{model}/"
+                "link": link,
             } 
         }
     else:
