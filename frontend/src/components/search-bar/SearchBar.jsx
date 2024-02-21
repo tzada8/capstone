@@ -3,8 +3,13 @@ import React from "react";
 import "./SearchBar.css";
 
 function SearchBar(props) {
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        props.onSearchSubmit();
+    }
+
 	return (
-        <form onSubmit={props.onSearchSubmit}>
+        <form onSubmit={handleSubmit}>
             <input
                 className="search-input"
                 type="text"
