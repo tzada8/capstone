@@ -6,6 +6,7 @@ function SwitchProduct(props) {
 	return (
 		<div className="comparison-block">
             <select
+                className="body-1"
                 id={`switch-product-${props.i}`}
                 name={`switch-product-${props.i}`}
                 value={props.selectedTitle}
