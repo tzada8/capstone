@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import "./ProductSearch.css";
+import { routes } from "../../routes/Routes";
 import FeaturePriorityModal from "../../components/modals/content/feature-priority/FeaturePriorityModal";
-import PreferencesModal from "../../components/modals/content/preferences/PreferencesModal";
 import ProductOption from "../../components/product-option/ProductOption";
 import SearchBar from "../../components/search-bar/SearchBar";
 
@@ -14,9 +14,7 @@ function ProductSearch() {
     const [mainSelectedProducts, setMainSelectedProducts] = useState([]);
     const [currentSelectedProducts, setCurrentSelectedProducts] = useState([]);
 
-    const [isPreferencesModalOpen, setIsPreferencesModalOpen] = useState(false);
     const [preferencesModalData, setPreferencesModalData] = useState(null);
-
     const [isFeaturePriorityModalOpen, setIsFeaturePriorityModalOpen] = useState(false);
     const [featurePriorityModalData, setFeaturePriorityModalData] = useState(null);
 
@@ -25,7 +23,7 @@ function ProductSearch() {
     const navigate = useNavigate();
 
     const toComparisons = async (featurePriority) => {
-        navigate("/comparisons", {state: {
+        navigate(routes.comparisons, {state: {
             selectedProducts: await fullSelectedProducts(),
             preferences: preferencesModalData,
             featurePriority: featurePriority,
@@ -61,11 +59,12 @@ function ProductSearch() {
 
     useEffect(() => {
         const q = location.state === null ? "" : location.state.query;
+        const preferences = location.state === null ? null : location.state.preferences;
+        setPreferencesModalData(preferences);
         _searchProductsHelper(q);
     }, [location.state]);
 
-    const onSearchSubmit = (event) => {
-        event.preventDefault();
+    const onSearchSubmit = () => {
         if (currentSelectedProducts.length !== 0) {
             setMainSelectedProducts([...mainSelectedProducts, ...currentSelectedProducts]);
             setCurrentSelectedProducts([]);
@@ -82,12 +81,6 @@ function ProductSearch() {
         } else {
             setCurrentSelectedProducts([...currentSelectedProducts, product]);
         }
-    }
-
-    const handlePreferencesModalSubmit = (data) => {
-        setPreferencesModalData(data);
-        setIsPreferencesModalOpen(false);
-        setIsFeaturePriorityModalOpen(true);
     }
 
     const handleFeaturePriorityModalSubmit = (data) => {
@@ -107,6 +100,12 @@ function ProductSearch() {
 
 	return (
 		<div>
+            <FeaturePriorityModal
+                isOpen={isFeaturePriorityModalOpen}
+                onSubmit={handleFeaturePriorityModalSubmit}
+                onClose={() => setIsFeaturePriorityModalOpen(false)}
+            />
+
             <h1>Select products to compare</h1>
             <SearchBar onSearchSubmit={onSearchSubmit} query={searchQuery} setQuery={setSearchQuery}/>
             <br/>
@@ -124,22 +123,10 @@ function ProductSearch() {
             <button>Cancel</button>
             <button
                 disabled={mainSelectedProducts.length + currentSelectedProducts.length < 3}
-                onClick={() => setIsPreferencesModalOpen(true)}
+                onClick={() => setIsFeaturePriorityModalOpen(true)}
             >Continue</button>
             <br/>
             <br/>
-
-            <PreferencesModal
-                isOpen={isPreferencesModalOpen}
-                onSubmit={handlePreferencesModalSubmit}
-                onClose={() => setIsPreferencesModalOpen(false)}
-            />
-
-            <FeaturePriorityModal
-                isOpen={isFeaturePriorityModalOpen}
-                onSubmit={handleFeaturePriorityModalSubmit}
-                onClose={() => setIsFeaturePriorityModalOpen(false)}
-            />
 
             {mainSelectedProducts.map(product => (
                 <ProductOption

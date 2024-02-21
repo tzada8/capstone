@@ -39,29 +39,35 @@ function Comparisons() {
         }
         console.log("RECOMMENDATION DATA", recommendationData)
 
-        // TODO: Comment out dummy recommendations for actual data.
-        const recEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/recommendation`;
-        fetch(recEndpoint).then(res => res.json()).then(data => setRecommendations(data));
-        // const recEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/recommendation`;
-        // fetch(recEndpoint, {
-        //     method: "POST",
-        //     headers: {"Content-Type": "application/json"},
-        //     body: JSON.stringify(recommendationData),
-        // }).then(res => res.json()).then(data => setRecommendations(data));
-
         // TODO: Remove. Temp just to rename products.
         const renameProducts = recommendationData["selected_products"].map((p, i) => {
             p.basic_info.title = `Product ${i + 1}`
             return p;
         })
 
-        // Sort products based on order of recommendations.
-        const unsortedProducts = renameProducts;
         // const unsortedProducts = recommendationData["selected_products"];
-        unsortedProducts.sort((a, b) => recommendations.indexOf(a) - recommendations.indexOf(b));
-        setProducts(unsortedProducts);
-        setProductTitles(unsortedProducts.map(p => p.basic_info.title))
-    }, []);
+        const unsortedProducts = renameProducts;
+
+        // TODO: Comment out dummy recommendations for actual data.
+        const recEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/recommendation`;
+        fetch(recEndpoint).then(res => res.json()).then(data => {
+            setRecommendations(data);
+            unsortedProducts.sort((a, b) => data.indexOf(a) - data.indexOf(b));
+            setProducts(unsortedProducts);
+            setProductTitles(unsortedProducts.map(p => p.basic_info.title));
+        });
+        // const recEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/recommendation`;
+        // fetch(recEndpoint, {
+        //     method: "POST",
+        //     headers: {"Content-Type": "application/json"},
+        //     body: JSON.stringify(recommendationData),
+        // }).then(res => res.json()).then(data => {
+        //     setRecommendations(data);
+        //     unsortedProducts.sort((a, b) => data.indexOf(a) - data.indexOf(b));
+        //     setProducts(unsortedProducts);
+        //     setProductTitles(unsortedProducts.map(p => p.basic_info.title));
+        // });        
+    }, [location.state]);
 
     const handleProductSwitch = (event) => {
         const previousProducts = [...products];
