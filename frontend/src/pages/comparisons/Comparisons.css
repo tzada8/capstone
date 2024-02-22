@@ -2,8 +2,3 @@
     background: var(--LIGHTEST-BLUE);
     padding-bottom: 60px;
 }
-
-.show-recommendation-table {
-    display: block;
-    margin: 0 auto;
-}

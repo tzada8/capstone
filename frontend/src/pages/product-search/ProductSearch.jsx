@@ -155,7 +155,7 @@ function ProductSearch() {
             <br/>
             {productData.length > 0 && <Button
                 onClick={handleLoadMoreProducts}
-                type="primary" size="large" className="alternative-button"
+                type="primary" size="large" className="alternative-button center-button"
             >Load more</Button>}
             <Footer />
 		</div>
