@@ -1,0 +1,24 @@
+.fixed-buttons-container {
+    background: linear-gradient(
+        to top,
+        rgba(251, 251, 251, 1) 30%,
+        rgba(251, 251, 251, 0.8) 100%
+    );
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.fixed-buttons {
+    display: grid;
+    grid-auto-flow: column;
+    grid-column-gap: 1%;
+    margin: 3% 7% 3% 0;
+    justify-content: end;
+    align-items: end;
+}
+
+.sticky-button {
+    width: 150px;
+}

@@ -102,63 +102,66 @@ function ProductSearch() {
     }
 
 	return (
-		<div className="page-margin">
-            <FeaturePriorityModal
-                isOpen={isFeaturePriorityModalOpen}
-                onSubmit={handleFeaturePriorityModalSubmit}
-                onClose={() => setIsFeaturePriorityModalOpen(false)}
-            />
-
-            <Navbar isComparisonNav={false} />
-
-            <h1>Select products to compare</h1>
-            <SearchBar onSearchSubmit={onSearchSubmit} query={searchQuery} setQuery={setSearchQuery}/>
-            <br/>
-            <p>SEARCH QUERY: {searchQuery}</p>
-            <p># MAIN SELECTED PRODUCTS: {mainSelectedProducts.length}</p>
-            <p># CURR SELECTED PRODUCTS: {currentSelectedProducts.length}</p>
-            <p># PRODUCT OPTIONS: {productData.length}</p>
-            <br/>
-
-            <p><span style={{color: "red"}}>Red:</span> Unselected Products</p>
-            <p><span style={{color: "blue"}}>Blue:</span> Selected Products</p>
-            <p>{mainSelectedProducts.length + currentSelectedProducts.length} Selected</p>
-            <br/>
-
-            <Button
-                onClick={() => navigate(routes.home)}
-                type="primary" size="large" ghost className="primary-button"
-            >Cancel</Button>
-            <Button
-                disabled={mainSelectedProducts.length + currentSelectedProducts.length < 3}
-                onClick={() => setIsFeaturePriorityModalOpen(true)}
-                type="primary" size="large" className="primary-button"
-            >Next</Button>
-            <br/>
-            <br/>
-
-            {mainSelectedProducts.map(product => (
-                <ProductOption
-                    data={product}
-                    changeSelection={onProductSelection}
-                    isSelected={mainSelectedProducts.includes(product)}
+        <div>
+            <div className="fixed-buttons-container">
+                <div className="fixed-buttons">
+                    <Button
+                        onClick={() => navigate(routes.home)}
+                        type="primary" size="large" ghost className="primary-button sticky-button"
+                    >Cancel</Button>
+                    <Button
+                        disabled={numProductsSelected < minProductsSelected}
+                        onClick={() => setIsFeaturePriorityModalOpen(true)}
+                        type="primary" size="large" className="primary-button sticky-button"
+                    >Next</Button>
+                </div>
+            </div>
+            <div className="page-margin">
+                <FeaturePriorityModal
+                    isOpen={isFeaturePriorityModalOpen}
+                    onSubmit={handleFeaturePriorityModalSubmit}
+                    onClose={() => setIsFeaturePriorityModalOpen(false)}
                 />
-            ))}
-            {productData.map(product => (
-                <ProductOption
-                    data={product}
-                    changeSelection={onProductSelection}
-                    isSelected={currentSelectedProducts.includes(product)}
-                />
-            ))}
 
-            <br/>
-            {productData.length > 0 && <Button
-                onClick={handleLoadMoreProducts}
-                type="primary" size="large" className="alternative-button center-button"
-            >Load more</Button>}
-            <Footer />
-		</div>
+                <Navbar isComparisonNav={false} />
+
+                <h1>Select products to compare</h1>
+                <SearchBar onSearchSubmit={onSearchSubmit} query={searchQuery} setQuery={setSearchQuery}/>
+                <br/>
+                <p>SEARCH QUERY: {searchQuery}</p>
+                <p># MAIN SELECTED PRODUCTS: {mainSelectedProducts.length}</p>
+                <p># CURR SELECTED PRODUCTS: {currentSelectedProducts.length}</p>
+                <p># PRODUCT OPTIONS: {productData.length}</p>
+                <br/>
+
+                <p><span style={{color: "red"}}>Red:</span> Unselected Products</p>
+                <p><span style={{color: "blue"}}>Blue:</span> Selected Products</p>
+                <p>{mainSelectedProducts.length + currentSelectedProducts.length} Selected</p>
+                <br/>
+
+                    {mainSelectedProducts.map(product => (
+                        <ProductOption
+                            data={product}
+                            changeSelection={onProductSelection}
+                            isSelected={mainSelectedProducts.includes(product)}
+                        />
+                    ))}
+                    {productData.map(product => (
+                        <ProductOption
+                            data={product}
+                            changeSelection={onProductSelection}
+                            isSelected={currentSelectedProducts.includes(product)}
+                        />
+                    ))}
+
+                <br/>
+                {productData.length > 0 && <Button
+                    onClick={handleLoadMoreProducts}
+                    type="primary" size="large" className="alternative-button center-button"
+                >Load more</Button>}
+                <Footer />
+            </div>
+        </div>
 	);
 }
 
