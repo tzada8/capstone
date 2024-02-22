@@ -13,11 +13,11 @@ describe("RecommendationTable", () => {
     it("renders correctly with recommendations", () => {
         const { getByText } = render(<RecommendationTable recommendations={recommendations} />);
 
-        expect(getByText("RANK")).toBeInTheDocument();
-        expect(getByText("ITEM")).toBeInTheDocument();
-        expect(getByText("PRICE")).toBeInTheDocument();
-        expect(getByText("SOURCE")).toBeInTheDocument();
-        expect(getByText("SCORE")).toBeInTheDocument();
+        expect(getByText("Rank")).toBeInTheDocument();
+        expect(getByText("Item")).toBeInTheDocument();
+        expect(getByText("Price")).toBeInTheDocument();
+        expect(getByText("Source")).toBeInTheDocument();
+        expect(getByText("Score")).toBeInTheDocument();
 
         recommendations.forEach((product, i) => {
             expect(getByText((content, element) => {

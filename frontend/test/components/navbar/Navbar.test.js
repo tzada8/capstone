@@ -1,29 +1,51 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import Navbar from "../../../src/components/navbar/Navbar";
 
 describe("Navbar", () => {
-    it("renders correctly", () => {
-        const { getByText } = render(
+    it("renders regular navbar", () => {
+        const { container } = render(
             <Router>
                 <Navbar />
             </Router>
         );
-
-        expect(getByText("LOGO")).toBeInTheDocument();
-        expect(getByText("Restart Search")).toBeInTheDocument();
+        const navbar = container.querySelector(".regular-navbar");
+        expect(navbar).toBeInTheDocument();
     });
 
-    it("contains correct links", () => {
-        const { getByText } = render(
+    it("renders comparison navbar", () => {
+        const { container } = render(
+            <Router>
+                <Navbar isComparisonNav />
+            </Router>
+        );
+        const navbar = container.querySelector(".comparison-navbar");
+        expect(navbar).toBeInTheDocument();
+    });
+
+    it("renders clickable logo link", () => {
+        const { getByRole } = render(
             <Router>
                 <Navbar />
             </Router>
         );
+        const logoLink = getByRole("link", { name: /Ju x tapose/i });
+        fireEvent.click(logoLink);
+        expect(logoLink).toBeInTheDocument();
+        expect(window.location.pathname).toEqual("/");
+    });
 
-        expect(getByText("LOGO").getAttribute("href")).toBe("/");
-        expect(getByText("Restart Search").getAttribute("href")).toBe("/");
+    it("renders clickable restart button in comparison navbar", () => {
+        const { getByRole } = render(
+            <Router>
+                <Navbar isComparisonNav />
+            </Router>
+        );
+        const restartButton = getByRole("button", { name: /Restart Search/i });
+        fireEvent.click(restartButton);
+        expect(restartButton).toBeInTheDocument();
+        expect(window.location.pathname).toEqual("/");
     });
 });
