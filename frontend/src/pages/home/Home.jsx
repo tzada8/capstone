@@ -40,7 +40,13 @@ function Home() {
             <p className="body-1 center-text">based on your preferences. Compare products in a comparison table and see all.</p>
             <br/>
             {/* TODO: Need to limit users to only search for camera specific items. */}
-            <SearchBar onSearchSubmit={() => setIsPreferencesModalOpen(true)} query={searchQuery} setQuery={setSearchQuery}/>
+            <SearchBar
+                isButtonInsideBar={false}
+                onSearchSubmit={() => setIsPreferencesModalOpen(true)}
+                query={searchQuery}
+                setQuery={setSearchQuery}
+            />
+            <br />
             <Footer />
 		</div>
 	);
