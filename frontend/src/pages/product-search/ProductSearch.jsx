@@ -11,11 +11,15 @@ import ProductOption from "../../components/product-option/ProductOption";
 import SearchBar from "../../components/search-bar/SearchBar";
 
 function ProductSearch() {
+    const numPickedForYou = 3;
+    const minProductsSelected = 3;
+
     const [searchQuery, setSearchQuery] = useState("");
     const [productData, setProductData] = useState([]);
     const [paginationStart, setPaginationStart] = useState(0);
     const [mainSelectedProducts, setMainSelectedProducts] = useState([]);
     const [currentSelectedProducts, setCurrentSelectedProducts] = useState([]);
+    const numProductsSelected = mainSelectedProducts.length + currentSelectedProducts.length;
 
     const [preferencesModalData, setPreferencesModalData] = useState(null);
     const [isFeaturePriorityModalOpen, setIsFeaturePriorityModalOpen] = useState(false);
@@ -24,7 +28,6 @@ function ProductSearch() {
     const location = useLocation();
 
     const navigate = useNavigate();
-
     const toComparisons = async (featurePriority) => {
         navigate(routes.comparisons, {state: {
             selectedProducts: await fullSelectedProducts(),
@@ -126,19 +129,26 @@ function ProductSearch() {
                 <Navbar isComparisonNav={false} />
 
                 <h1>Select products to compare</h1>
+                <p className="body-1 center-text">Obtain recommendations for the products you select you will like most using a likeability</p>
+                <p className="body-1 center-text">rating based off of your learned preferences and aggregated product reviews</p>
                 <SearchBar onSearchSubmit={onSearchSubmit} query={searchQuery} setQuery={setSearchQuery}/>
-                <br/>
-                <p>SEARCH QUERY: {searchQuery}</p>
-                <p># MAIN SELECTED PRODUCTS: {mainSelectedProducts.length}</p>
-                <p># CURR SELECTED PRODUCTS: {currentSelectedProducts.length}</p>
-                <p># PRODUCT OPTIONS: {productData.length}</p>
-                <br/>
+                <p>{numProductsSelected} Selected</p>
 
-                <p><span style={{color: "red"}}>Red:</span> Unselected Products</p>
-                <p><span style={{color: "blue"}}>Blue:</span> Selected Products</p>
-                <p>{mainSelectedProducts.length + currentSelectedProducts.length} Selected</p>
-                <br/>
+                <div className="picked-for-you">
+                    <h4>Picked for you</h4>
+                    <p className="body-1">Based on how much you liked previous recommendation rankings and answers to question</p>
+                    {productData.slice(0, numPickedForYou).map(product => (
+                        <ProductOption
+                            data={product}
+                            changeSelection={onProductSelection}
+                            isSelected={currentSelectedProducts.includes(product)}
+                        />
+                    ))}
+                </div>
+                <br />
 
+                <div className="all-products">
+                    <h4>All products</h4>
                     {mainSelectedProducts.map(product => (
                         <ProductOption
                             data={product}
@@ -146,13 +156,14 @@ function ProductSearch() {
                             isSelected={mainSelectedProducts.includes(product)}
                         />
                     ))}
-                    {productData.map(product => (
+                    {productData.slice(numPickedForYou).map(product => (
                         <ProductOption
                             data={product}
                             changeSelection={onProductSelection}
                             isSelected={currentSelectedProducts.includes(product)}
                         />
                     ))}
+                </div>
 
                 <br/>
                 {productData.length > 0 && <Button

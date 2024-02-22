@@ -90,6 +90,11 @@ h4 {
     line-height: 140%;
 }
 
+.text-highlight {
+    color: var(--PRIMARY-BLUE);
+    font-family: var(--HEADING-FONT);
+}
+
 .center-text {
     text-align: center;
 }
