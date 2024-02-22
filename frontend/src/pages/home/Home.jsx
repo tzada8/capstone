@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import "./Home.css";
 import { routes } from "../../routes/Routes";
+import Navbar from "../../components/navbar/Navbar";
 import PreferencesModal from "../../components/modals/content/preferences/PreferencesModal";
 import SearchBar from "../../components/search-bar/SearchBar";
 
@@ -25,7 +26,8 @@ function Home() {
     }
 
 	return (
-		<div>
+		<div className="page-margin">
+            <Navbar isComparisonNav={false} />
             <PreferencesModal
                 isOpen={isPreferencesModalOpen}
                 onSubmit={handlePreferencesModalSubmit}

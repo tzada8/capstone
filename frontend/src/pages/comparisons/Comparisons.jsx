@@ -5,6 +5,7 @@ import { Button } from "antd";
 import "./Comparisons.css";
 
 import ComparisonSection from "../../components/comparison/comparison-section/ComparisonSection";
+import Navbar from "../../components/navbar/Navbar";
 import RecommendationTable from "../../components/recommendation-table/RecommendationTable";
 
 import BasicInfoData from "../../components/comparison/comparison-data/BasicInfoData";
@@ -83,45 +84,51 @@ function Comparisons() {
 
 	return (
 		<div>
-            <h1>Recommend items by likeability</h1>
-            <p className="body-1">Scored by how much we think you'll like it based upon learning your preferences and reviews.</p>
-            <br/>
-            <RecommendationTable recommendations={showMoreRecommendations ? recommendations : recommendations.slice(0, numDisplayed)} />
-            <br/>
-            <Button
-                onClick={() => setShowMoreRecommendations(!showMoreRecommendations)}
-                type="primary" size="large" className="alternative-button show-recommendation-table"
-            >{showMoreRecommendations ? "Show less" : "Show more"}</Button>
+            <Navbar isComparisonNav={true} />
+
+            <div className="recommendation-section">
+                <h1>Recommend items by likeability</h1>
+                <p className="body-1 center-text">Scored by how much we think you'll like it based upon learning your preferences and reviews.</p>
+                <br/>
+                <RecommendationTable recommendations={showMoreRecommendations ? recommendations : recommendations.slice(0, numDisplayed)} />
+                <br/>
+                <Button
+                    onClick={() => setShowMoreRecommendations(!showMoreRecommendations)}
+                    type="primary" size="large" className="alternative-button show-recommendation-table"
+                >{showMoreRecommendations ? "Show less" : "Show more"}</Button>
+            </div>
 
             <br/>
             <br/>
             <br/>
 
-            <h1>Compare products</h1>
-            <p className="body-1">Get help choosing from analyzed insights, fast.</p>
-            <br/>
-            <br/>
+            <div className="page-margin">
+                <h1>Compare products</h1>
+                <p className="body-1 center-text">Get help choosing from analyzed insights, fast.</p>
+                <br/>
+                <br/>
 
-            <ComparisonSection
-                products={products.slice(0, numDisplayed).map((p, i) => {
-                    return <SwitchProduct i={i} selectedTitle={p.basic_info.title} productTitles={productTitles} handleSwitch={handleProductSwitch} />
-                })}
-            />
-            <ComparisonSection
-                products={products.slice(0, numDisplayed).map(p => <BasicInfoData basicInfo={p.basic_info} />)}
-            />
-            <ComparisonSection
-                sectionTitle="Specifications"
-                products={products.slice(0, numDisplayed).map(p => <SpecificationsData specifications={p.specifications} />)}
-            />
-            <ComparisonSection
-                sectionTitle="Summary of written reviews"
-                products={products.slice(0, numDisplayed).map(p => <ReviewsData reviews={p.reviews} />)}
-            />
-            <ComparisonSection
-                sectionTitle="Most helpful video reviews"
-                products={products.slice(0, numDisplayed).map(p => <VideosData videos={p.videos.slice(0, 5)} />)}
-            />
+                <ComparisonSection
+                    products={products.slice(0, numDisplayed).map((p, i) => {
+                        return <SwitchProduct i={i} selectedTitle={p.basic_info.title} productTitles={productTitles} handleSwitch={handleProductSwitch} />
+                    })}
+                />
+                <ComparisonSection
+                    products={products.slice(0, numDisplayed).map(p => <BasicInfoData basicInfo={p.basic_info} />)}
+                />
+                <ComparisonSection
+                    sectionTitle="Specifications"
+                    products={products.slice(0, numDisplayed).map(p => <SpecificationsData specifications={p.specifications} />)}
+                />
+                <ComparisonSection
+                    sectionTitle="Summary of written reviews"
+                    products={products.slice(0, numDisplayed).map(p => <ReviewsData reviews={p.reviews} />)}
+                />
+                <ComparisonSection
+                    sectionTitle="Most helpful video reviews"
+                    products={products.slice(0, numDisplayed).map(p => <VideosData videos={p.videos.slice(0, 5)} />)}
+                />
+            </div>
 		</div>
 	);
 }

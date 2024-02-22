@@ -1,5 +1,9 @@
+.recommendation-section {
+    background: var(--LIGHTEST-BLUE);
+    padding-bottom: 60px;
+}
+
 .show-recommendation-table {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    display: block;
+    margin: 0 auto;
 }
