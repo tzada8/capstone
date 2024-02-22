@@ -5,6 +5,7 @@ import { Button } from "antd";
 import "./ProductSearch.css";
 import { routes } from "../../routes/Routes";
 import FeaturePriorityModal from "../../components/modals/content/feature-priority/FeaturePriorityModal";
+import Navbar from "../../components/navbar/Navbar";
 import ProductOption from "../../components/product-option/ProductOption";
 import SearchBar from "../../components/search-bar/SearchBar";
 
@@ -100,12 +101,14 @@ function ProductSearch() {
     }
 
 	return (
-		<div>
+		<div className="page-margin">
             <FeaturePriorityModal
                 isOpen={isFeaturePriorityModalOpen}
                 onSubmit={handleFeaturePriorityModalSubmit}
                 onClose={() => setIsFeaturePriorityModalOpen(false)}
             />
+
+            <Navbar isComparisonNav={false} />
 
             <h1>Select products to compare</h1>
             <SearchBar onSearchSubmit={onSearchSubmit} query={searchQuery} setQuery={setSearchQuery}/>

@@ -1,0 +1,16 @@
+.logo, .logo-x {
+    font-size: 28px;
+    font-family: var(--HEADING-FONT);
+    color: var(--OFF-BLACK);
+    letter-spacing: -1%;
+    line-height: 120%;
+}
+
+.logo {
+    color: var(--OFF-BLACK);
+}
+
+.logo-x {
+    color: var(--PRIMARY-BLUE);
+    font-weight: 800;
+}

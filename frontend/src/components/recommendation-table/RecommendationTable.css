@@ -1,3 +1,33 @@
 .recommendation-table {
     margin: auto;
+    border-collapse: collapse;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.recommendation-table thead tr {
+    background-color: var(--LIGHT-BLUE);
+    text-align: center;
+    vertical-align: baseline;
+}
+
+.recommendation-table th,
+.recommendation-table td {
+    padding: 15px 30px;
+}
+
+.recommendation-table tbody tr {
+    border-bottom: 1px solid var(--LIGHT-GREY);
+    text-align: center;
+}
+
+.recommendation-table tbody tr:last-of-type {
+    border-bottom: 2px solid var(--LIGHT-BLUE);
+}
+
+.score-info-tooltip {
+    color: var(--PRIMARY-BLUE);
+    margin-left: 5px;
 }

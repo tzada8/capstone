@@ -35,7 +35,6 @@
 body {
     background: var(--OFF-WHITE);
     color: var(--OFF-BLACK);
-    padding: 0 100px;
 }
 
 li {
@@ -90,11 +89,8 @@ h4 {
     line-height: 140%;
 }
 
-.logo {
-    font-size: 28px;
-    font-family: var(--HEADING-FONT);
-    letter-spacing: -1%;
-    line-height: 120%;
+.center-text {
+    text-align: center;
 }
 
 .body-1, .body-1-medium, .body-1-bold {
