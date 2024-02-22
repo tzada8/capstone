@@ -19,7 +19,8 @@ describe("BasicInfoData", () => {
 
         expect(getByText("Product Title")).toBeInTheDocument();
         expect(getByText("$19.99")).toBeInTheDocument();
-        expect(getByText("Rating: 4.5 (100 reviews)")).toBeInTheDocument();
+        expect(getByText("4.5")).toBeInTheDocument();
+        expect(getByText("(100 reviews)")).toBeInTheDocument();
         expect(getByRole("link")).toHaveAttribute("href", "https://example.com/product");
         expect(getByRole("link")).toHaveTextContent("Source Name");
         expect(getByAltText("")).toHaveAttribute("src", "image_url.jpg");

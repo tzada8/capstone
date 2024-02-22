@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "./App.css";
+import "./styles/buttons.css";
+
 import { routes } from "./routes/Routes";
 import Comparisons from "./pages/comparisons/Comparisons";
 import Home from "./pages/home/Home";

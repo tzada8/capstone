@@ -9,7 +9,7 @@ function ComparisonSection({ sectionTitle=null, products }) {
 		<div>
             {sectionTitle !== null && (
                 <div>
-                    <h3>{sectionTitle}</h3>
+                    <h3 className="comparison-section-title">{sectionTitle}</h3>
                     <hr/>
                     <button onClick={() => setCollapseSection(!collapseSection)}>
                         <i className={collapseSection ? "arrow down-direction" : "arrow up-direction"} />

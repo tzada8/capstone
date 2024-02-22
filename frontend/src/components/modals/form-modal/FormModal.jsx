@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button } from "antd";
 
 import "./FormModal.css";
 import Modal from "../base-modal/Modal";
@@ -62,9 +63,9 @@ function FormModal(props) {
                     )}
                 )}
                 <br/>
-                <button onClick={handleSkip} className="skip-button">Skip</button>
+                <Button htmlType="submit" type="primary" size="large" block className="primary-button">Next</Button>
                 <br/>
-                <button type="submit" className="continue-button">Continue</button>
+                <Button onClick={handleSkip} type="primary" size="large" block ghost className="primary-button">Skip</Button>
             </form>
         </Modal>
 	);

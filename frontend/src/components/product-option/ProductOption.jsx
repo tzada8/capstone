@@ -6,7 +6,7 @@ function ProductOption(props) {
     const selectedStyle = props.isSelected ? "selected-product" : "unselected-product"
 
 	return (
-		<button className={"product-container " + selectedStyle} onClick={() => props.changeSelection(props.data)}>
+		<button className={`product-container ${selectedStyle}`} onClick={() => props.changeSelection(props.data)}>
             <div className="product-content">
                 <img className="product-image" src={props.data.thumbnail} alt=""/>
                 <h3>{props.data.title}</h3>
