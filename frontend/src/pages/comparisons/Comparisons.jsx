@@ -5,6 +5,7 @@ import { Button } from "antd";
 import "./Comparisons.css";
 
 import ComparisonSection from "../../components/comparison/comparison-section/ComparisonSection";
+import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navbar/Navbar";
 import RecommendationTable from "../../components/recommendation-table/RecommendationTable";
 
@@ -129,6 +130,7 @@ function Comparisons() {
                     products={products.slice(0, numDisplayed).map(p => <VideosData videos={p.videos.slice(0, 5)} />)}
                 />
             </div>
+            <Footer />
 		</div>
 	);
 }

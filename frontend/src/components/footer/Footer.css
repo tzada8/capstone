@@ -1,0 +1,9 @@
+.footer-options-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-option {
+    padding: 30px;
+}
