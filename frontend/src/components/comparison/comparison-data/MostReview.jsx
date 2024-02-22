@@ -10,10 +10,8 @@ function MostReview(props) {
 	return (
 		<div>
             <p className={`body-3-bold ${reviewClass}`}>MOST {reviewType} REVIEW</p>
-            <p className="body-2">
-                {props.rating}
-                <Rate allowHalf disabled value={props.rating} />
-            </p>
+            <p className="body-2">{props.rating}</p>
+            <Rate allowHalf disabled value={props.rating} />
             <p className="body-1">{props.text}</p>
         </div>
 	);

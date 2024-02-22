@@ -24,11 +24,9 @@ describe("ReviewsData", () => {
         expect(getByText("This is a summary of the reviews")).toBeInTheDocument();
         expect(getByText("MOST POSITIVE REVIEW")).toBeInTheDocument();
         expect(getByText("MOST NEGATIVE REVIEW")).toBeInTheDocument();
-        expect(getByText("Rating: 5")).toBeInTheDocument();
-        expect(getByText("Title: Positive Review Title")).toBeInTheDocument();
+        expect(getByText("5")).toBeInTheDocument();
         expect(getByText("This is a positive review text.")).toBeInTheDocument();
-        expect(getByText("Rating: 1")).toBeInTheDocument();
-        expect(getByText("Title: Negative Review Title")).toBeInTheDocument();
+        expect(getByText("1")).toBeInTheDocument();
         expect(getByText("This is a negative review text.")).toBeInTheDocument();
     });
 
