@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import "./Home.css";
 import { routes } from "../../routes/Routes";
+import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navbar/Navbar";
 import PreferencesModal from "../../components/modals/content/preferences/PreferencesModal";
 import SearchBar from "../../components/search-bar/SearchBar";
@@ -38,6 +39,7 @@ function Home() {
             <br/>
             {/* TODO: Need to limit users to only search for camera specific items. */}
             <SearchBar onSearchSubmit={() => setIsPreferencesModalOpen(true)} query={searchQuery} setQuery={setSearchQuery}/>
+            <Footer />
 		</div>
 	);
 }

@@ -5,6 +5,7 @@ import { Button } from "antd";
 import "./ProductSearch.css";
 import { routes } from "../../routes/Routes";
 import FeaturePriorityModal from "../../components/modals/content/feature-priority/FeaturePriorityModal";
+import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navbar/Navbar";
 import ProductOption from "../../components/product-option/ProductOption";
 import SearchBar from "../../components/search-bar/SearchBar";
@@ -156,6 +157,7 @@ function ProductSearch() {
                 onClick={handleLoadMoreProducts}
                 type="primary" size="large" className="alternative-button"
             >Load more</Button>}
+            <Footer />
 		</div>
 	);
 }
