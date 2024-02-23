@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import { routes } from "../../routes/Routes";
 import Footer from "../../components/footer/Footer";
+import HowItWorks from "./how-it-works/HowItWorks";
 import Navbar from "../../components/navbar/Navbar";
 import PreferencesModal from "../../components/modals/content/preferences/PreferencesModal";
 import SearchBar from "../../components/search-bar/SearchBar";
@@ -47,6 +48,7 @@ function Home() {
                 setQuery={setSearchQuery}
             />
             <br />
+            <HowItWorks />
             <Footer />
 		</div>
 	);
