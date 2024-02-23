@@ -6,6 +6,7 @@ import "./ProductSearch.css";
 import { routes } from "../../routes/Routes";
 import FeaturePriorityModal from "../../components/modals/content/feature-priority/FeaturePriorityModal";
 import Footer from "../../components/footer/Footer";
+import Loading from "../../components/loading/Loading";
 import Navbar from "../../components/navbar/Navbar";
 import ProductOption from "../../components/product-option/ProductOption";
 import SearchBar from "../../components/search-bar/SearchBar";
@@ -13,6 +14,9 @@ import SearchBar from "../../components/search-bar/SearchBar";
 function ProductSearch() {
     const numPickedForYou = 3;
     const minProductsSelected = 3;
+
+    const [isLoading, setIsLoading] = useState(false);
+    const [loadingPercent, setLoadingPercent] = useState(0);
 
     const [searchQuery, setSearchQuery] = useState("");
     const [productData, setProductData] = useState([]);
@@ -43,12 +47,19 @@ function ProductSearch() {
 
     const fullSelectedProducts = async () => {
         const selectedProductIds = allSelectedProducts.map(p => ({product_id: p.product_id, source: p.source}));
+
+        setIsLoading(true);
+        setLoadingPercent(0);
+        const loadingInterval = 100 / selectedProductIds.length;
         const detailedSelectedProducts = await Promise.all(selectedProductIds.map(async p => {
-            // const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/product?source=${p.source}&product_id=$p.product_id}`;
+            // const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/product?source=${p.source}&product_id=${p.product_id}`;
             const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/product`;
             const response = await fetch(productEndpoint);
+            setLoadingPercent(prevLoadingPercent => prevLoadingPercent + loadingInterval);
             return await response.json();
         }));
+        setIsLoading(false);
+        setLoadingPercent(0);
         return detailedSelectedProducts;
     }
 
@@ -110,6 +121,7 @@ function ProductSearch() {
 
 	return (
         <div>
+            <Loading isLoading={isLoading} percent={loadingPercent} />
             <div className="fixed-buttons-container">
                 <div className="fixed-buttons">
                     <Button

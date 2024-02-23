@@ -137,7 +137,7 @@ def dummy_api_recommendation():
 # TODO: DELETE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
 @app.route("/api/dummy/product")
 def dummy_api_product():
-    time.sleep(5)
+    time.sleep(2)
     return dummy_product
 
 
