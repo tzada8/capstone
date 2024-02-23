@@ -20,3 +20,8 @@ button {
     color: var(--DARK-BLUE);
     border-radius: 8px;
 }
+
+.center-button {
+    display: block;
+    margin: 0 auto;
+}

@@ -5,6 +5,8 @@
     --OFF-BLACK: #2D3748;
     --PURE-WHITE: #F9F9F9;
     --OFF-WHITE: #FEFEFE;
+    --GRADIENT-WHITE: #FBFBFB;
+    --DARK-GREY: #757F87;
     --GREY: #A2A5AB;
     --LIGHT-GREY: #E7E7E7;
 
@@ -87,6 +89,11 @@ h4 {
     font-family: var(--BODY-FONT);
     letter-spacing: 0%;
     line-height: 140%;
+}
+
+.text-highlight {
+    color: var(--PRIMARY-BLUE);
+    font-family: var(--HEADING-FONT);
 }
 
 .center-text {

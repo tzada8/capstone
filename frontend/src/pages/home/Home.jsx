@@ -35,10 +35,18 @@ function Home() {
                 onClose={() => setIsPreferencesModalOpen(false)}
             />
 
-            <h1>Making purchasing decisions easier with <b>simplified</b> specs & product reviews</h1>
+            <h1>Making purchasing decisions easier with <span className="text-highlight">simplified</span> specs & product reviews</h1>
+            <p className="body-1 center-text">Enter items and obtain a score of likeability - how much we think you'll like the product</p>
+            <p className="body-1 center-text">based on your preferences. Compare products in a comparison table and see all.</p>
             <br/>
             {/* TODO: Need to limit users to only search for camera specific items. */}
-            <SearchBar onSearchSubmit={() => setIsPreferencesModalOpen(true)} query={searchQuery} setQuery={setSearchQuery}/>
+            <SearchBar
+                isButtonInsideBar={false}
+                onSearchSubmit={() => setIsPreferencesModalOpen(true)}
+                query={searchQuery}
+                setQuery={setSearchQuery}
+            />
+            <br />
             <Footer />
 		</div>
 	);

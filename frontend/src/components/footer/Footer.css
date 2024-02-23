@@ -1,3 +1,16 @@
+.footer {
+    margin: 4% 7% 4% 7%;
+}
+
+.footer-hr {
+    border: 1px solid var(--GREY);
+    margin-bottom: 3%;
+}
+
+.center-logo { 
+    text-align: center;
+}
+
 .footer-options-container {
     display: flex;
     justify-content: center;
@@ -6,4 +19,5 @@
 
 .footer-option {
     padding: 30px;
+    color: var(--OFF-BLACK);
 }

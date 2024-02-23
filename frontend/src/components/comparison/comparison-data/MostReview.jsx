@@ -2,6 +2,7 @@ import React from "react";
 import { Rate } from "antd";
 
 import "./ComparisonData.css";
+import Rating from "../../rating/Rating";
 
 function MostReview(props) {
     const reviewType = props.isPositive ? "POSITIVE" : "NEGATIVE";
@@ -10,8 +11,7 @@ function MostReview(props) {
 	return (
 		<div>
             <p className={`body-3-bold ${reviewClass}`}>MOST {reviewType} REVIEW</p>
-            <p className="body-2">{props.rating}</p>
-            <Rate allowHalf disabled value={props.rating} />
+            <Rating rating={props.rating} reviews={null} isCenter={false} />
             <p className="body-1">{props.text}</p>
         </div>
 	);
