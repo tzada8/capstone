@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin: 3% 0;
 }
 
 .search-container-inside {
@@ -24,7 +25,7 @@
 
 .search-input-outside {
     background: var(--OFF-WHITE);
-    width: 400px;
+    width: 550px;
     border: 1px solid var(--GREY);
     margin-right: 8px;
 }
@@ -50,4 +51,8 @@
     height: 40px;
     border: none;
     border-radius: 0 8px 8px 0;
+}
+
+.search-button-outside {
+    width: 100px;
 }

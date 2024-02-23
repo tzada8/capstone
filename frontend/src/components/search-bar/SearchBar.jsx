@@ -25,7 +25,7 @@ function SearchBar(props) {
                 {props.isButtonInsideBar ? (
                     <button className="search-icon" type="submit"><SearchOutlined /></button>
                 ) : (
-                    <Button type="primary" size="large" className="primary-button" htmlType="submit">Search</Button>
+                    <Button type="primary" size="large" className="primary-button search-button-outside" htmlType="submit">Search</Button>
                 )}
             </div>
         </form>

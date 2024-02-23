@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ArrowDownOutlined } from '@ant-design/icons';
+import { Button } from "antd";
 
 import "./Home.css";
 import { routes } from "../../routes/Routes";
@@ -38,9 +40,9 @@ function Home() {
             />
 
             <h1>Making purchasing decisions easier with <span className="text-highlight">simplified</span> specs & product reviews</h1>
+            <br/>
             <p className="body-1 center-text">Enter items and obtain a score of likeability - how much we think you'll like the product</p>
             <p className="body-1 center-text">based on your preferences. Compare products in a comparison table and see all.</p>
-            <br/>
             {/* TODO: Need to limit users to only search for camera specific items. */}
             <SearchBar
                 isButtonInsideBar={false}
@@ -48,7 +50,9 @@ function Home() {
                 query={searchQuery}
                 setQuery={setSearchQuery}
             />
-            <br />
+            <Button className="learn-more-button" type="text">
+                <a className="body-1-medium" href="#learn-more-jump">Learn more <ArrowDownOutlined /></a>
+            </Button>
             <HowItWorks />
             <DataPipeline />
             <Footer />

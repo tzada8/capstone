@@ -34,6 +34,10 @@
     font-family: var(--BODY-FONT);
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background: var(--OFF-WHITE);
     color: var(--OFF-BLACK);

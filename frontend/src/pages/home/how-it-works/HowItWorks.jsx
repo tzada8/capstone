@@ -5,7 +5,7 @@ import comparisonLayout from "../../../images/home/comparison-layout.png";
 
 function HowItWorks() {
     return (
-        <div className="how-it-works">
+        <div id="learn-more-jump" className="how-it-works">
             <div className="how-it-works-text-container">
                 <h1 className="how-it-works-title"><span className="text-highlight">How</span> it works</h1>
                 <ol className="steps-container">
