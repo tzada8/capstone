@@ -11,6 +11,7 @@ from src.scraper.youtube_scraper import scrape_videos
 from src.summarize.summarize import summarize
 
 # TODO: DELETE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
+import time
 from dummy_data.dummy_search_products import dummy_search_products, dummy_search_products2
 from dummy_data.dummy_recommendation import dummy_recommendation
 from dummy_data.dummy_product import dummy_product
@@ -136,6 +137,7 @@ def dummy_api_recommendation():
 # TODO: DELETE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
 @app.route("/api/dummy/product")
 def dummy_api_product():
+    time.sleep(2)
     return dummy_product
 
 
