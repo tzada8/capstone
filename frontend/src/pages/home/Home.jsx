@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import "./Home.css";
 import { routes } from "../../routes/Routes";
+import DataPipeline from "./data-pipeline/DataPipeline";
 import Footer from "../../components/footer/Footer";
 import HowItWorks from "./how-it-works/HowItWorks";
 import Navbar from "../../components/navbar/Navbar";
@@ -49,6 +50,7 @@ function Home() {
             />
             <br />
             <HowItWorks />
+            <DataPipeline />
             <Footer />
 		</div>
 	);
