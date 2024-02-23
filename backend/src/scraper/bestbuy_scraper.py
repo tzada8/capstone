@@ -96,14 +96,14 @@ class BestBuyProduct:
                         reviews_temp = p.starmap(BestBuyProduct._pull_reviews, zip(range(1, min(total_pages, 10) + 1), repeat(compatible_sku), repeat(params)))
                     reviews = [x for xs in reviews_temp for x in xs if x.get("comment") is not None]
 
-                    # Replace promo message in reviews.
-                    promo_string = "[This review was collected as part of a promotion.] "
-                    for r in reviews:
-                        r["comment"] = r.get("comment").replace(promo_string, "")
-
-                    ratings = list(map(lambda x: x.get("rating"), reviews))
-                    selected_reviews = list(filter(lambda d: d.get("rating") in [max(ratings), min(ratings)], reviews))
-                    positive_negative = sentiment(selected_reviews)
+                    if len(reviews) > 0:
+                        # Replace promo message in reviews.
+                        promo_string = "[This review was collected as part of a promotion.] "
+                        for r in reviews:
+                            r["comment"] = r.get("comment").replace(promo_string, "")
+                        ratings = list(map(lambda x: x.get("rating"), reviews))
+                        selected_reviews = list(filter(lambda d: d.get("rating") in [max(ratings), min(ratings)], reviews))
+                        positive_negative = sentiment(selected_reviews)
                     break
                 else:
                     reviews = []

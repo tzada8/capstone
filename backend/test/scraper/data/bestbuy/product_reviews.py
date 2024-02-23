@@ -1,6 +1,5 @@
 import requests_mock
 import mock
-import threading
 
 all_products_returned = requests_mock.Mocker()
 all_products_returned.json = mock.Mock(
@@ -34,6 +33,8 @@ product_reviews_exists.json = mock.Mock(
             {"comment": "[This review was collected as part of a promotion.] Okay", "rating": 3, "title": "Okay"},
             {"comment": "Terrible", "rating": 1, "title": "Terrible"},
             {"comment": "The best", "rating": 5, "title": "The best"},
+            {"rating": 1, "title": "The best"},
+            {"comment": "", "rating": 2, "title": "The best"},
         ],
         "RatingSummary": {
             "OneStarCount": 1,
