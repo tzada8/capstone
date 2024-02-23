@@ -1,12 +1,7 @@
 from typing import List, Dict
-import spacy
-from spacytextblob.spacytextblob import SpacyTextBlob
+from nltk.sentiment import SentimentIntensityAnalyzer
 
-# Takes <1 min to run on 100 reviews.
 def sentiment(reviews: List[Dict]) -> Dict:
-    if len(reviews) == 0:
-        return "Product has no reviews."
-
     sentiments = list(map(analyze, reviews))
     positive_index = sentiments.index(max(sentiments))
     negative_index = sentiments.index(min(sentiments))
@@ -25,6 +20,5 @@ def sentiment(reviews: List[Dict]) -> Dict:
     }
 
 def analyze(review: Dict) -> float:
-    nlp = spacy.load('en_core_web_sm')
-    nlp.add_pipe('spacytextblob')
-    return nlp(review.get("comment"))._.blob.polarity
+    sia = SentimentIntensityAnalyzer()
+    return sia.polarity_scores(review.get("comment")).get("compound")

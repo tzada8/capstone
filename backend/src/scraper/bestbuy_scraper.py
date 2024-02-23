@@ -1,9 +1,9 @@
 from os import environ
-from typing import Dict
+from typing import Dict, List
 import requests
-from nltk.tokenize import word_tokenize
-from nltk.corpus import stopwords
-from nltk.stem import PorterStemmer
+from difflib import SequenceMatcher
+from multiprocessing import Pool
+from itertools import repeat
 from src.sentiment.sentiment import sentiment
 
 class BestBuyProduct:
@@ -51,15 +51,22 @@ class BestBuyProduct:
                     { "name": s.get("name"), "value": s.get("value") } for s in spec_highlights
                 ],
             }
+        
+    @staticmethod    
+    def _pull_reviews(i: int, sku: int, params: Dict) -> List[str]:
+        search_sku = requests.get(f"https://www.bestbuy.ca/api/v2/json/reviews/{sku}?page={i}&source=us", headers = params.get('headers'))
+        review_results = search_sku.json()
+        reviews = review_results.get("reviews", [])
+        return reviews
 
     @staticmethod
-    def _product_reviews(product_id: str, product_name: str) -> Dict:
-        # Search for product by UPC.
+    def _product_reviews(product_name: str) -> Dict:
+        # Search for product by name (first 5 words).
         params = {
-            "product_id": product_id,
+            "product_name": ' '.join(product_name.split()[:5]).lower(),
             "headers": {"User-Agent": "Mozilla/5.0 (X11; CrOS x86_64 12871.102.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.141 Safari/537.36"},
         }
-        search = requests.get(f"https://www.bestbuy.ca/api/v2/json/search?query={params.get('product_id')}", headers = params.get('headers'))
+        search = requests.get(f"https://www.bestbuy.ca/api/v2/json/search?query={params.get('product_name')}", headers = params.get('headers'))
         results = search.json()
 
         if results.get('total') == 0:
@@ -69,81 +76,66 @@ class BestBuyProduct:
                 }
             }
         else:
-            # Search for reviews by product ID.
-            canada_sku = results.get('products')[0].get('sku')
-            search_sku = requests.get(f"https://www.bestbuy.ca/api/v2/json/reviews/{canada_sku}?page=1&pagesize=700&source=us", headers = params.get('headers'))
-            review_results = search_sku.json()
+            # Sort first 5 products by number of reviews, descending.
+            # The idea is to maximize chances of getting a product with reviews while still matching to a relevant Canadian product.
+            sorted_products = sorted(results.get("products")[:5], key=lambda d: d.get('customerReviewCount'), reverse = True)
+            # For each product, check US and Canadian name similarity.
+            shortened_us_name = ' '.join(product_name.split()[:3]).lower()
+            for product in sorted_products:
+                shortened_canada_name = ' '.join(product.get('name').split()[:3]).lower()
+                similarity = SequenceMatcher(None, shortened_us_name, shortened_canada_name).ratio()
+                # If more than 75% similar, use that product's reviews.
+                if similarity >= 0.75:
+                    compatible_sku = product.get('sku')
+                    search_sku = requests.get(f"https://www.bestbuy.ca/api/v2/json/reviews/{compatible_sku}?page=1&source=us", headers = params.get('headers'))
+                    review_info = search_sku.json()
+                    total_pages = review_info.get('totalPages')
 
-            # Compare names of US and Canadian products using cosine similarity.
-            canada_name = results.get('products')[0].get('name')
-            name_1 = word_tokenize(product_name.lower())  
-            name_2 = word_tokenize(canada_name.lower())
+                    # Parallel API calls for each page of reviews.
+                    with Pool(5) as p:
+                        reviews_temp = p.starmap(BestBuyProduct._pull_reviews, zip(range(1, min(total_pages, 10) + 1), repeat(compatible_sku), repeat(params)))
+                    reviews = [x for xs in reviews_temp for x in xs if x.get("comment") is not None]
 
-            sw = stopwords.words('english') 
-            ps = PorterStemmer()
-            l1 =[]
-            l2 =[] 
-            
-            name_1_set = {ps.stem(w) for w in name_1 if not w in sw}  
-            name_2_set = {ps.stem(w) for w in name_2 if not w in sw} 
-            rvector = name_1_set.union(name_2_set)
-            for w in rvector: 
-                l1.append(1) if w in name_1_set else l1.append(0) 
-                l2.append(1) if w in name_2_set else l2.append(0) 
-            c = 0
-            for i in range(len(rvector)): 
-                c += l1[i] * l2[i] 
-            if sum(l1) != 0 and sum(l2) != 0:
-                cosine = c / float((sum(l1) * sum(l2))**0.5)
-            else:
-                cosine = 0
-
-            if review_results.get('total') == 0 or cosine < 0.75:
+                    if len(reviews) > 0:
+                        # Replace promo message in reviews.
+                        promo_string = "[This review was collected as part of a promotion.] "
+                        for r in reviews:
+                            r["comment"] = r.get("comment").replace(promo_string, "")
+                        ratings = list(map(lambda x: x.get("rating"), reviews))
+                        selected_reviews = list(filter(lambda d: d.get("rating") in [max(ratings), min(ratings)], reviews))
+                        positive_negative = sentiment(selected_reviews)
+                    break
+                else:
+                    reviews = []
+                
+            if len(reviews) == 0:
                 return {
                     "reviews": {
                         "error": "No reviews exist for provided id.",
                     }
                 }
             else:
-                reviews = review_results.get("reviews", [])
-
-                total_pages = review_results.get('totalPages')
-                if total_pages > 1:
-                    for page in range(1, min(total_pages, 10)): 
-                        search_sku = requests.get(f"https://www.bestbuy.ca/api/v2/json/reviews/{canada_sku}?page={page+1}&pagesize=700&source=us", headers = params.get('headers'))
-                        review_results = search_sku.json()
-                        reviews.extend(review_results.get("reviews", []))
-
-                promo_string = "[This review was collected as part of a promotion.] "
-                for r in reviews:
-                    r["comment"] = r.get("comment").replace(promo_string, "")
-
-                ratings = list(map(lambda x: x.get("rating"), reviews))
-                max_rating = max(ratings)
-                min_rating = min(ratings)
-                selected_reviews = list(filter(lambda d: d.get("rating") in [max_rating, min_rating], reviews))
-                positive_negative = sentiment(selected_reviews)
                 return {
                     "reviews": {
                         "ratings": [
                             {
-                                "count": review_results.get('RatingSummary').get('OneStarCount'),
+                                "count": review_info.get('RatingSummary').get('OneStarCount'),
                                 "stars": 1
                             },
                             {
-                                "count": review_results.get('RatingSummary').get('TwoStarCount'),
+                                "count": review_info.get('RatingSummary').get('TwoStarCount'),
                                 "stars": 2
                             },
                             {
-                                "count": review_results.get('RatingSummary').get('ThreeStarCount'),
+                                "count": review_info.get('RatingSummary').get('ThreeStarCount'),
                                 "stars": 3
                             },
                             {
-                                "count": review_results.get('RatingSummary').get('FourStarCount'),
+                                "count": review_info.get('RatingSummary').get('FourStarCount'),
                                 "stars": 4
                             },
                             {
-                                "count": review_results.get('RatingSummary').get('FiveStarCount'),
+                                "count": review_info.get('RatingSummary').get('FiveStarCount'),
                                 "stars": 5
                             }
                         ],
@@ -164,5 +156,5 @@ class BestBuyProduct:
     @staticmethod
     def aggregate_data(product_id: str) -> Dict:
         specs_dict = BestBuyProduct._product_specs(product_id)
-        reviews_dict = BestBuyProduct._product_reviews(specs_dict.get('basic_info').get('upc'), specs_dict.get('basic_info').get('title', ''))
+        reviews_dict = BestBuyProduct._product_reviews(specs_dict.get('basic_info').get('title', ''))
         return specs_dict | reviews_dict
