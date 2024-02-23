@@ -22,3 +22,18 @@
 .sticky-button {
     width: 150px;
 }
+
+.search-and-selected {
+    display: grid;
+    grid-template-columns: 1fr 17%;
+    align-items: center;
+}
+
+.num-selected {
+    margin-right: 15%;
+    text-align: right;
+}
+
+.min-selection {
+    color: var(--DARK-BLUE);
+}

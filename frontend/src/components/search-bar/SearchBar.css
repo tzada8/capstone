@@ -7,7 +7,7 @@
 .search-container-inside {
     background: var(--OFF-WHITE);
     justify-content: left;
-    width: 80%;
+    width: 100%;
     border: 1px solid var(--GREY);
     border-radius: 8px;
 }

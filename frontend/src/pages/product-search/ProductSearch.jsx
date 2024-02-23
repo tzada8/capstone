@@ -131,13 +131,17 @@ function ProductSearch() {
                 <h1>Select products to compare</h1>
                 <p className="body-1 center-text">Obtain recommendations for the products you select you will like most using a likeability</p>
                 <p className="body-1 center-text">rating based off of your learned preferences and aggregated product reviews</p>
-                <SearchBar
-                    isButtonInsideBar={true}
-                    onSearchSubmit={onSearchSubmit}
-                    query={searchQuery}
-                    setQuery={setSearchQuery}
-                />
-                <p>{numProductsSelected} Selected</p>
+                <div className="search-and-selected">
+                    <SearchBar
+                        isButtonInsideBar={true}
+                        onSearchSubmit={onSearchSubmit}
+                        query={searchQuery}
+                        setQuery={setSearchQuery}
+                    />
+                    <p className={`body-1-medium num-selected ${numProductsSelected < minProductsSelected ? "" : "min-selection"}`}>
+                        {numProductsSelected} Selected
+                    </p>
+                </div>
 
                 <div className="picked-for-you">
                     <h4>Picked for you</h4>
