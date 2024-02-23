@@ -51,6 +51,9 @@ def scrape_google_products(q: str, start: int) -> Dict:
                         "product_id": _extract_product_id(sr.get("link")),
                         "title": sr.get("title"),
                         "link": sr.get("link"),
+                        # TODO: If contains "Walmart" --> then source just "Walmart".
+                        # TODO: If contains "Best Buy" --> then source just "Best Buy".
+                        # TODO: Else keep sr.get("source").
                         "source": sr.get("source"),
                         "price": sr.get("extracted_price"),
                         "rating": sr.get("rating"),

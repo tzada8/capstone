@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 
 import ProductOption from "../../../src/components/product-option/ProductOption";
 
@@ -16,19 +16,19 @@ const testData = {
 
 describe("ProductOption", () => {
     it("renders correctly with provided props", () => {
-        const { getByText } = render(
+        const { getByText, getByAltText } = render(
             <ProductOption
-                isSelected={true}
+                selectionNumber={12}
                 changeSelection={() => {}}
                 data={testData}
             />
         );
 
         expect(getByText(testData.title)).toBeInTheDocument();
-        expect(getByText(`${testData.rating} ${testData.reviews}`)).toBeInTheDocument();
-        expect(getByText(testData.extensions.join(" | "))).toBeInTheDocument();
+        expect(getByText(testData.rating)).toBeInTheDocument();
+        expect(getByText(`(${testData.reviews} reviews)`)).toBeInTheDocument();
         expect(getByText(`$${testData.price}`)).toBeInTheDocument();
-        expect(screen.getByRole("img")).toHaveAttribute("src", testData.thumbnail);
+        expect(getByAltText("")).toHaveAttribute("src", testData.thumbnail);
         expect(getByText(testData.source)).toHaveAttribute("href", testData.link);
     });
 
@@ -36,7 +36,7 @@ describe("ProductOption", () => {
         const changeSelectionMock = jest.fn();
         const { getByText } = render(
             <ProductOption
-                isSelected={false}
+                selectionNumber={null}
                 changeSelection={changeSelectionMock}
                 data={testData}
             />
@@ -49,7 +49,7 @@ describe("ProductOption", () => {
     it("applies selected style when isSelected prop is true", () => {
         const { container } = render(
             <ProductOption
-                isSelected={true}
+                selectionNumber={1}
                 changeSelection={() => {}}
                 data={testData}
             />
@@ -61,7 +61,7 @@ describe("ProductOption", () => {
     it("applies unselected style when isSelected prop is false", () => {
         const { container } = render(
             <ProductOption
-                isSelected={false}
+                selectionNumber={null}
                 changeSelection={() => {}}
                 data={testData}
             />

@@ -19,6 +19,7 @@ function ProductSearch() {
     const [paginationStart, setPaginationStart] = useState(0);
     const [mainSelectedProducts, setMainSelectedProducts] = useState([]);
     const [currentSelectedProducts, setCurrentSelectedProducts] = useState([]);
+    const allSelectedProducts = [...mainSelectedProducts, ...currentSelectedProducts];
     const numProductsSelected = mainSelectedProducts.length + currentSelectedProducts.length;
 
     const [preferencesModalData, setPreferencesModalData] = useState(null);
@@ -36,9 +37,12 @@ function ProductSearch() {
         }})
     }
 
+    const productSelectionNumber = (product) => {
+        return allSelectedProducts.includes(product) ? (allSelectedProducts.indexOf(product) + 1) : null;
+    }
+
     const fullSelectedProducts = async () => {
-        const currSelectedProducts = [...mainSelectedProducts, ...currentSelectedProducts];
-        const selectedProductIds = currSelectedProducts.map(p => ({product_id: p.product_id, source: p.source}));
+        const selectedProductIds = allSelectedProducts.map(p => ({product_id: p.product_id, source: p.source}));
         const detailedSelectedProducts = await Promise.all(selectedProductIds.map(async p => {
             // const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/product?source=${p.source}&product_id=$p.product_id}`;
             const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/product`;
@@ -54,7 +58,7 @@ function ProductSearch() {
             setProductData([]);
             return;
         }
-        const selectedIds = [...mainSelectedProducts, ...currentSelectedProducts].map(p => p.product_id);
+        const selectedIds = allSelectedProducts.map(p => p.product_id);
         const searchEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/search-products?q=${q}`;
         fetch(searchEndpoint).then(res => res.json()).then(data => {
             const prodData = data.shopping_results.data.filter(p => !selectedIds.includes(p.product_id));
@@ -72,7 +76,7 @@ function ProductSearch() {
 
     const onSearchSubmit = () => {
         if (currentSelectedProducts.length !== 0) {
-            setMainSelectedProducts([...mainSelectedProducts, ...currentSelectedProducts]);
+            setMainSelectedProducts(allSelectedProducts);
             setCurrentSelectedProducts([]);
         }
         _searchProductsHelper(searchQuery);
@@ -149,8 +153,8 @@ function ProductSearch() {
                     {productData.slice(0, numPickedForYou).map(product => (
                         <ProductOption
                             data={product}
+                            selectionNumber={productSelectionNumber(product)}
                             changeSelection={onProductSelection}
-                            isSelected={currentSelectedProducts.includes(product)}
                         />
                     ))}
                 </div>
@@ -161,15 +165,15 @@ function ProductSearch() {
                     {mainSelectedProducts.map(product => (
                         <ProductOption
                             data={product}
+                            selectionNumber={productSelectionNumber(product)}
                             changeSelection={onProductSelection}
-                            isSelected={mainSelectedProducts.includes(product)}
                         />
                     ))}
                     {productData.slice(numPickedForYou).map(product => (
                         <ProductOption
                             data={product}
+                            selectionNumber={productSelectionNumber(product)}
                             changeSelection={onProductSelection}
-                            isSelected={currentSelectedProducts.includes(product)}
                         />
                     ))}
                 </div>
