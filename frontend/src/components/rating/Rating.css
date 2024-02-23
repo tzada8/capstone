@@ -1,0 +1,20 @@
+.star-rating-block {
+    display: flex;
+    align-items: center;
+}
+
+.center-star-block {
+    justify-content: center;
+}
+
+.left-star-block {
+    justify-content: left;
+}
+
+.rating-stars {
+    margin: 0 6px;
+}
+
+.rating-text {
+    color: var(--DARK-GREY);
+}

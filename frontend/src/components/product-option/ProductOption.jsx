@@ -1,6 +1,7 @@
 import React from "react";
 
 import "./ProductOption.css";
+import Rating from "../rating/Rating";
 
 function ProductOption(props) {
     const selectedStyle = props.isSelected ? "selected-product" : "unselected-product"
@@ -10,7 +11,7 @@ function ProductOption(props) {
             <div className="product-content">
                 <img className="product-image" src={props.data.thumbnail} alt=""/>
                 <h3>{props.data.title}</h3>
-                <p>{props.data.rating} {props.data.reviews}</p>
+                <Rating rating={props.data.rating} reviews={props.data.reviews} isCenter={false} />
                 <p>{props.data.extensions.join(" | ")}</p>
                 <br/>
                 <h3>${props.data.price}</h3>

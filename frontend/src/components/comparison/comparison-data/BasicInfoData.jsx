@@ -2,6 +2,7 @@ import React from "react";
 import { Rate } from "antd";
 
 import "./ComparisonData.css";
+import Rating from "../../rating/Rating";
 
 function BasicInfoData(props) {
 	return (
@@ -9,9 +10,7 @@ function BasicInfoData(props) {
             <img className="comparison-product-image" src={props.basicInfo.images[0]} alt=""/>
             <h4>{props.basicInfo.title}</h4>
             <p className="body-1">${props.basicInfo.price.amount}</p>
-            <p className="body-3">{props.basicInfo.rating}</p>
-            <Rate allowHalf disabled value={props.basicInfo.rating} />
-            <p className="body-3">({props.basicInfo.total_reviews} reviews)</p>
+            <Rating rating={props.basicInfo.rating} reviews={props.basicInfo.total_reviews} isCenter={true} />
             <a
                 href={props.basicInfo.product_page_url}
                 target="_blank"
