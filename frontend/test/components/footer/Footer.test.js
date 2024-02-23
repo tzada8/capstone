@@ -1,18 +1,21 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import Footer from "../../../src/components/footer/Footer";
 
 describe("Footer", () => {
-    it("renders the logo link with correct route", () => {
-        const { getByText } = render(
+    it("renders clickable logo link", () => {
+        const { getByRole } = render(
         <Router>
             <Footer />
         </Router>
         );
+        const logoLink = getByRole("link", { name: /Ju x tapose/i });
 
-        expect(getByText("LOGO")).toHaveAttribute("href", "/");
+        fireEvent.click(logoLink);
+        expect(logoLink).toBeInTheDocument();
+        expect(window.location.pathname).toEqual("/");
     });
 
     it("renders the footer options with correct routes", () => {
