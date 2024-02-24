@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { DownOutlined, UpOutlined } from '@ant-design/icons';
 
 import "./ComparisonSection.css";
 
@@ -9,10 +10,11 @@ function ComparisonSection({ sectionTitle=null, products }) {
 		<div className="comparison-block">
             {sectionTitle !== null && (
                 <div>
-                    <h3 className="comparison-section-title">{sectionTitle}</h3>
-                    <hr/>
-                    <button onClick={() => setCollapseSection(!collapseSection)}>
-                        <i className={collapseSection ? "arrow down-direction" : "arrow up-direction"} />
+                    <button className="section-title-container" onClick={() => setCollapseSection(!collapseSection)}>
+                        <h3 className="comparison-section-title">{sectionTitle}</h3>
+                        <div className="collapsible-section-arrow">
+                            {collapseSection ? <DownOutlined /> : <UpOutlined />}
+                        </div>
                     </button>
                 </div>
             )}
