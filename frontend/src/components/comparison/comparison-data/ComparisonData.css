@@ -1,3 +1,23 @@
+/* SWITCH PRODUCT */
+.product-switch-container {
+	padding: 8% 2%;
+}
+
+.product-switch-dropdown {
+	background: var(--PURE-WHITE);
+	color: var(--PURE-BLACK);
+	border: 1px solid var(--GREY);
+	border-radius: 6px;
+	width: 100%;
+	height: 50px;
+	padding: 10px 15px;
+}
+
+.product-switch-dropdown:focus {
+    border: 1px solid var(--GREY);
+    outline: none;
+}
+
 /* BASIC INFO */
 .comparison-product-image {
 	display: block;
