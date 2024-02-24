@@ -2,6 +2,7 @@ import React from "react";
 
 import "./ComparisonData.css";
 
+// TODO: Maybe look into using AI to better format these specifications.
 function SpecificationsData(props) {
 	return (
 		<div>
