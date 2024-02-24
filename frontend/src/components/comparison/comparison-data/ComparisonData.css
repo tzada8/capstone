@@ -11,10 +11,21 @@
 	color: var(--DARK-BLUE);
 }
 
+/* REVIEWS */
+.most-review-container {
+	border: 1px solid var(--GREY);
+	border-radius: 8px;
+	padding: 30px;
+}
+
 .positive-review-title {
 	color: var(--GREEN);
 }
 
 .negative-review-title {
 	color: var(--RED);
+}
+
+.ratings-container {
+	margin: 10px 0;
 }

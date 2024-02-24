@@ -1,5 +1,4 @@
 import React from "react";
-import { Rate } from "antd";
 
 import "./ComparisonData.css";
 import Rating from "../../rating/Rating";
