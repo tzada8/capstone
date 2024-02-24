@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import { CloseOutlined } from '@ant-design/icons';
 
 import "./Modal.css";
 
@@ -32,7 +33,7 @@ function Modal({ isOpen, hasCloseBtn = true, onClose, children }) {
         <dialog ref={modalRef} onKeyDown={handleKeyDown} className="modal modal-center">
             {hasCloseBtn && (
                 <button className="modal-close-btn" onClick={handleCloseModal}>
-                    Close
+                    <CloseOutlined />
                 </button>
             )}
             {children}
