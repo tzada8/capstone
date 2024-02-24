@@ -6,7 +6,7 @@ import Rating from "../../rating/Rating";
 
 function BasicInfoData(props) {
 	return (
-		<div className="comparison-block">
+		<div>
             <img className="comparison-product-image" src={props.basicInfo.images[0]} alt=""/>
             <h4>{props.basicInfo.title}</h4>
             <p className="body-1">${props.basicInfo.price.amount}</p>

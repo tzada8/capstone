@@ -6,7 +6,7 @@ function ComparisonSection({ sectionTitle=null, products }) {
     const [collapseSection, setCollapseSection] = useState(false);
 
 	return (
-		<div>
+		<div className="comparison-block">
             {sectionTitle !== null && (
                 <div>
                     <h3 className="comparison-section-title">{sectionTitle}</h3>

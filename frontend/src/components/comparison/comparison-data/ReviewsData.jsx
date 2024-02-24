@@ -5,7 +5,7 @@ import MostReview from "./MostReview";
 
 function ReviewsData(props) {
 	return (
-		<div className="comparison-block">
+		<div>
             <p className="body-1">{props.reviews.summary}</p>
             <br/>
             <MostReview

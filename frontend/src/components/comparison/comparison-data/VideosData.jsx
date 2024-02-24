@@ -4,7 +4,7 @@ import "./ComparisonData.css";
 
 function VideosData(props) {
 	return (
-		<div className="comparison-block">
+		<div>
             {props.videos.map(video => (
                 <a key={video.title} href={video.link} target="_blank" rel="noreferrer">
                     <img className="comparison-product-image" src={video.thumbnail} alt={video.title} />
