@@ -1,6 +1,14 @@
 /* SWITCH PRODUCT */
 .product-switch-container {
-	padding: 8% 2%;
+	background: var(--OFF-WHITE);
+	z-index: 10;
+}
+
+.sticky-dropdown {
+	position: fixed;
+	top: 0;
+	padding-top: 10px;
+	width: 27.42%;
 }
 
 .product-switch-dropdown {
