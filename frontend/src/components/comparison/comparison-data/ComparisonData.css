@@ -29,3 +29,45 @@
 .ratings-container {
 	margin: 10px 0;
 }
+
+/* VIDEOS */
+.related-videos-spacing + .related-videos-spacing {
+	margin-top: 10%;
+}
+
+.related-videos-container {
+	position: relative;
+}
+
+.related-videos-container::after {
+	background: var(--OFF-BLACK);
+	color: var(--OFF-WHITE);
+	opacity: 0.8;
+	content: attr(data-category);
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	margin-right: 1%;
+	margin-bottom: 1%;
+	padding: 1px 3px;
+	border-radius: 4px;
+}
+
+.related-videos-thumbnail {
+	display: block;
+	width: 100%;
+	max-width: 100%;
+	max-height: 100%;
+    margin: 0 auto;
+	border-radius: 8px;
+}
+
+.video-title-spacing {
+	color: var(--OFF-BLACK);
+	margin-top: 4%;
+}
+
+.channel-details-container {
+	color: var(--OFF-BLACK);
+	padding-top: 2%;
+}
