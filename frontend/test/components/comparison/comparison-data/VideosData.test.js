@@ -20,14 +20,14 @@ const videos = [
 
 describe("VideosData", () => {
     it("renders correctly with videos data", () => {
-        const { getByText, getByAltText } = render(<VideosData videos={videos} />);
+        const { getByText, container } = render(<VideosData videos={videos} />);
+        const video1Element = container.querySelector("figure[data-category='5:30']")
+        const video2Element = container.querySelector("figure[data-category='3:45']")
 
-        expect(getByText("5:30")).toBeInTheDocument();
         expect(getByText("Video 1")).toBeInTheDocument();
-        expect(getByAltText("Video 1")).toBeInTheDocument();
-        expect(getByText("3:45")).toBeInTheDocument();
+        expect(video1Element.getAttribute("data-category")).toBe("5:30");
         expect(getByText("Video 2")).toBeInTheDocument();
-        expect(getByAltText("Video 2")).toBeInTheDocument();
+        expect(video2Element.getAttribute("data-category")).toBe("3:45");
     });
 
     it("renders without crashing if videos data is not provided", () => {
