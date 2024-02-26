@@ -4,7 +4,7 @@ from unittest.mock import patch
 from test.recommendations.data.scraping import \
     trending_exists, trending_nonexistent, popular_exists, popular_nonexistent, sku_to_upc_exists, sku_to_upc_nonexistent, master_list
 from test.recommendations.data.preferences import \
-    preferences_filled, preferences_some_missing, preferences_all_missing, importance
+    preferences_filled, preferences_some_missing, preferences_all_missing, importance_filled
 from test.recommendations.data.products import products
 from src.recommendations.recommendations import Recommendation
 
@@ -40,7 +40,7 @@ class TestRecommendation(unittest.TestCase):
         self.assertEqual(result, expected)
 
     def test_preferences_complete(self):
-        result = Recommendation._model(preferences_filled, importance, products, master_list, 6)
+        result = Recommendation._model(preferences_filled, importance_filled, products, master_list, 6)
         expected = [
             {
                 "product_id": "444",
@@ -67,7 +67,7 @@ class TestRecommendation(unittest.TestCase):
         self.assertEqual(result, expected)
 
     def test_preferences_semi_complete(self):
-        result = Recommendation._model(preferences_some_missing, importance, products, master_list, 6)
+        result = Recommendation._model(preferences_some_missing, importance_filled, products, master_list, 6)
         expected = [
             {
                 "product_id": "444",
@@ -94,7 +94,7 @@ class TestRecommendation(unittest.TestCase):
         self.assertEqual(result, expected)
 
     def test_preferences_not_complete(self):
-        result = Recommendation._model(preferences_all_missing, importance, products, master_list, 6)
+        result = Recommendation._model(preferences_all_missing, importance_filled, products, master_list, 6)
         expected = [
             {
                 "product_id": "111",
@@ -122,7 +122,7 @@ class TestRecommendation(unittest.TestCase):
 
     def test_aggregate_all_populated(self):
         self.mock_search.side_effect = [trending_exists, popular_exists, sku_to_upc_exists]
-        result = Recommendation.aggregate_data(preferences_filled, importance, products)
+        result = Recommendation.aggregate_data(preferences_filled, importance_filled, products)
         expected = [
             {
                 "product_id": "444",

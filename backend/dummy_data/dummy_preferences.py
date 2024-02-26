@@ -1,15 +1,23 @@
 dummy_preferences = {
-    "brand": "Other", 
+    "brand": "", 
     "megapixels": "15-30",
-    "lens_type": "Telephoto",
-    "camera_type": "DSLR",
-    "budget": "500-800"
+    "lens_type": "standard",
+    "camera_type": "dslr",
+    "budget": "750-1500"
 }
 
 dummy_importance = {
-    "brand": 4, 
-    "megapixels": 3,
-    "lens_type": 5,
-    "camera_type": 2,
-    "budget": 1
+    "1": "budget", 
+    "2": "camera_type",
+    "3": "megapixels",
+    "4": "brand",
+    "5": "lens_type"
 }
+
+# dummy_importance = {
+#     "1": "", 
+#     "2": "",
+#     "3": "",
+#     "4": "",
+#     "5": ""
+# }
