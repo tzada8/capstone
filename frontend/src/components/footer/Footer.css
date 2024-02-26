@@ -3,7 +3,7 @@
 }
 
 .footer-hr {
-    border: 1px solid var(--GREY);
+    border: 0.5px solid var(--GREY);
     margin-bottom: 3%;
 }
 

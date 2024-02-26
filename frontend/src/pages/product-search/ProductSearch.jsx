@@ -170,7 +170,7 @@ function ProductSearch() {
                         />
                     ))}
                 </div>
-                <br />
+                <br/>
 
                 <div className="all-products">
                     <h4>All products</h4>

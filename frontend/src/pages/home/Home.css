@@ -1,0 +1,6 @@
+.learn-more-button {
+    color: var(--OFF-BLACK);
+    display: flex;
+    margin: 4% auto;
+    align-items: center;
+}
