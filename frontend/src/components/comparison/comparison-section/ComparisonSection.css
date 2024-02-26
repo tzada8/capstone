@@ -1,10 +1,31 @@
+.comparison-block {
+    padding: 0 5px;
+}
+
+.section-title-container {
+    background: none;
+    border: none;
+    border-bottom: 2px solid var(--PRIMARY-BLUE);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 40px 0;
+    padding-bottom: 10px;
+}
+
 .comparison-section-title {
+    color: var(--PRIMARY-BLUE);
+    text-align: left;
+    width: 100%;
+}
+
+.collapsible-section-arrow {
     color: var(--PRIMARY-BLUE);
 }
 
 .column-layout {
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20;
+    grid-gap: 22px;
 }
 
 .hide-section {
@@ -13,19 +34,4 @@
 
 .show-section {
     display: grid;
-}
-
-.arrow {
-    border: solid black;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 3px;
-}
-
-.up-direction {
-    transform: rotate(-135deg);
-}
-
-.down-direction {
-    transform: rotate(45deg);
 }
