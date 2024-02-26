@@ -3,10 +3,11 @@
 }
 
 .modal {
-    max-width: 20rem;
-    padding: 2rem;
+    max-width: 40%;
+    max-height: 90%;
+    padding: 2.5rem;
     border: 0;
-    border-radius: 0.5rem;
+    border-radius: 8px;
     box-shadow: hsl(0 0% 0% / 10%) 0 0 0.5rem 0.25rem;
     z-index: 2;
 }
@@ -18,8 +19,10 @@
 }
 
 .modal-close-btn {
-    font-size: 0.75em;
+    background: transparent;
+    color: var(--OFF-BLACK);
+    border: none;
     position: absolute;
-    top: 0.25em;
-    right: 0.25em;
+    top: 30px;
+    right: 30px;
 }

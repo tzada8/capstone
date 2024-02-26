@@ -1,27 +1,88 @@
-.form-row + .form-row {
-    margin-top: 1rem;
+.modal-title-container {
+    margin-top: 5%;
+    margin-bottom: 20px;
 }
 
-.form-row label,
-.form-row input,
-.form-row select {
+.form-extra-title-spacing {
+    margin-bottom: 10px;
+}
+
+.modal-form-error {
+    color: var(--RED);
+    margin-bottom: 15px;
+}
+
+.form-row-radio + .form-row-radio,
+.form-row-select + .form-row-select {
+    margin-top: 30px;
+}
+
+.form-row-radio label,
+.form-row-radio input {
     width: 100%;
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 8px;
+    cursor: pointer;
 }
 
-.form-row input,
-.form-row select {
-    border: solid black;
-    border-width: 1px;
+.radio-label-question {
+    color: var(--OFF-BLACK);
+}
+
+.form-row-select {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .radio-label {
-    background: lightblue;
-    width: 20px;
-    height: 20px;
+    background: var(--PURE-WHITE);
+    color: var(--GREY);
+    border: 1px solid var(--LIGHT-GREY);
+    border-radius: 8px;
+    text-align: center;
+    height: 50px;
 }
 
 input[type="radio"]:checked ~ .radio-label {
-    background: orange;
+    background: var(--LIGHT-BLUE);
+    color: var(--DARK-BLUE);
+    border: 1px solid var(--DARK-BLUE);
+}
+
+.select-label-question {
+    width: 7%;
+}
+
+.select-label {
+    background: var(--PURE-WHITE);
+    border: 1px solid var(--GREY);
+    border-radius: 6px;
+    width: 93%;
+    height: 50px;
+    padding: 10px 15px;
+}
+
+.select-label:focus {
+    border: 1px solid var(--PRIMARY-BLUE);
+    outline: none;
+}
+
+.select-label-default {
+    color: var(--GREY);
+}
+
+.select-label-selected {
+    color: var(--OFF-BLACK);
+}
+
+.form-button-spacing {
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.form-button-size {
+    height: 50px;
 }

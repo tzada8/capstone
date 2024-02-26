@@ -36,25 +36,33 @@ function FormModal(props) {
 
 	return (
         <Modal hasCloseBtn={true} isOpen={props.isOpen} onClose={props.onClose}>
-            <h2>{props.formTitle}</h2>
-            <p>{props.formDescription}</p>
-            {props.errorMessage && <div style={{ color: 'red' }}>{props.errorMessage}</div>}
+            <div className="modal-title-container">
+                <h3 className="form-extra-title-spacing">{props.formTitle}</h3>
+                <p className="body-2">{props.formDescription}</p>
+            </div>
+            {props.errorMessage && <div className="modal-form-error">{props.errorMessage}</div>}
             <form onSubmit={handleSubmit}>
                 {Object.keys(props.formQuestions).map(question => {
                     return props.formQuestions[question].type === "radio" ? (
-                        <div className="form-row">
-                            <p>{props.formQuestions[question].label}</p>
+                        <div className="form-row-radio">
+                            <p className="body-2 radio-label-question">{props.formQuestions[question].label}</p>
                             {props.formQuestions[question].options.map(option => (
                                 <div>
                                     <input type="radio" id={option.value} name={question} value={option.value} onChange={handleInputChange}/>
-                                    <label htmlFor={option.value} className="radio-label">{option.display}</label>
+                                    <label htmlFor={option.value} className="body-1-medium radio-label">{option.display}</label>
                                 </div>
                             ))}
                         </div>
                     ) : (
-                        <div className="form-row">
-                            <label>{props.formQuestions[question].label}</label>
-                            <select id={question} name={question} value={formState[question]} onChange={handleInputChange}>
+                        <div className="form-row-select">
+                            <label className="body-1-medium select-label-question">{props.formQuestions[question].label}</label>
+                            <select
+                                className={`body-1 select-label ${formState[question] === "" ? "select-label-default" : "select-label-selected"}`}
+                                id={question}
+                                name={question}
+                                value={formState[question]}
+                                onChange={handleInputChange}
+                            >
                                 {props.formQuestions[question].options.map(option => (
                                     <option value={option.value}>{option.display}</option>
                                 ))}
@@ -62,10 +70,8 @@ function FormModal(props) {
                         </div>
                     )}
                 )}
-                <br/>
-                <Button htmlType="submit" type="primary" size="large" block className="primary-button">Next</Button>
-                <br/>
-                <Button onClick={handleSkip} type="primary" size="large" block ghost className="primary-button">Skip</Button>
+                <Button htmlType="submit" type="primary" size="large" block className="primary-button form-button-spacing form-button-size">Next</Button>
+                <Button onClick={handleSkip} type="primary" size="large" block ghost className="primary-button form-button-size">Skip</Button>
             </form>
         </Modal>
 	);

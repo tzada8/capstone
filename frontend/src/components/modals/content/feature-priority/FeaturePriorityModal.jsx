@@ -31,7 +31,7 @@ function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
         if (uniqueFormValues.size === formKeys.length) {
             onSubmit(formState);
         } else {
-            setDuplicateErrorMessage("Error: Please select unique options.");
+            setDuplicateErrorMessage("Please select a unique set of features");
             setTimeout(() => {
                 setDuplicateErrorMessage("");
             }, 5000);
