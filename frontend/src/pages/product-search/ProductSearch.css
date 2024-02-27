@@ -19,10 +19,6 @@
     align-items: end;
 }
 
-.sticky-button {
-    width: 150px;
-}
-
 .disabled-button-background:disabled {
     background: var(--LIGHT-GREY);
     border: 1px solid var(--GREY);

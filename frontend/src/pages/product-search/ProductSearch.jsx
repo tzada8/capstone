@@ -126,12 +126,12 @@ function ProductSearch() {
                 <div className="fixed-buttons">
                     <Button
                         onClick={() => navigate(routes.home)}
-                        type="primary" size="large" ghost className="primary-button sticky-button"
+                        type="primary" size="large" ghost className="primary-button primary-button-size"
                     >Cancel</Button>
                     <Button
                         disabled={numProductsSelected < minProductsSelected}
                         onClick={() => setIsFeaturePriorityModalOpen(true)}
-                        type="primary" size="large" className="primary-button sticky-button disabled-button-background"
+                        type="primary" size="large" className="primary-button primary-button-size disabled-button-background"
                     >Next</Button>
                 </div>
             </div>
@@ -196,7 +196,7 @@ function ProductSearch() {
                 <br/>
                 {productData.length > 0 && <Button
                     onClick={handleLoadMoreProducts}
-                    type="primary" size="large" className="alternative-button center-button"
+                    type="primary" size="large" className="alternative-button primary-button-size center-button"
                 >Load more</Button>}
                 <Footer />
             </div>
