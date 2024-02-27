@@ -1,7 +1,6 @@
 .custom-loading {
     background: var(--OFF-WHITE);
-    /* color: var(--OFF-BLACK); */
-    color: orange;
+    color: var(--OFF-BLACK);
     position: fixed;
     top: 0;
     left: 0;
