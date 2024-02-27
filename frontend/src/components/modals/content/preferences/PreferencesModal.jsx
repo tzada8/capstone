@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import { Button } from "antd";
 
-import FormModal from "../../form-modal/FormModal";
+import "./PreferencesModal.css";
+import Modal from "../../base-modal/Modal";
 
 function PreferencesModal({ onSubmit, isOpen, onClose }) {
     // TODO: Maybe move list of preferences to backend (allows for dynamic set of products/options).
@@ -8,7 +10,6 @@ function PreferencesModal({ onSubmit, isOpen, onClose }) {
         brand: {
             label: "Do you have a brand preference?",
             initial: "",
-            type: "radio",
             options: [
                 { value: "canon", display: "Canon" },
                 { value: "nikon", display: "Nikon" },
@@ -18,7 +19,6 @@ function PreferencesModal({ onSubmit, isOpen, onClose }) {
         megapixels: {
             label: "Do you have a preferred range of megapixels?",
             initial: "",
-            type: "radio",
             options: [
                 { value: "<15", display: "<15" },
                 { value: "15-30", display: "15-30" },
@@ -30,7 +30,6 @@ function PreferencesModal({ onSubmit, isOpen, onClose }) {
         lens_type: {
             label: "Do you have a preferred lens type?",
             initial: "",
-            type: "radio",
             options: [
                 { value: "fixed", display: "Fixed" },
                 { value: "standard", display: "Standard" },
@@ -40,7 +39,6 @@ function PreferencesModal({ onSubmit, isOpen, onClose }) {
         camera_type: {
             label: "Do you have a preferred camera type?",
             initial: "",
-            type: "radio",
             options: [
                 { value: "point-and-shoot", display: "Point and Shoot" },
                 { value: "dslr", display: "DSLR" },
@@ -51,7 +49,6 @@ function PreferencesModal({ onSubmit, isOpen, onClose }) {
         budget: {
             label: "What is your ideal budget range?",
             initial: "",
-            type: "radio",
             options: [
                 { value: "<750", display: "<750" },
                 { value: "750-1500", display: "750-1500" },
@@ -61,16 +58,58 @@ function PreferencesModal({ onSubmit, isOpen, onClose }) {
         },
     }
 
+    const defaultFormState = () => {
+        const initialFormState = {};
+        Object.keys(preferencesForm).forEach(key => {
+            initialFormState[key] = preferencesForm[key].initial;
+        })
+        return initialFormState;
+    }
+
+    const [formState, setFormState] = useState(defaultFormState());
+
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setFormState((prevFormData) => ({
+            ...prevFormData,
+            [name]: value,
+        }))
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        onSubmit(formState);
+    }
+
+    const handleSkip = (event) => {
+        event.preventDefault();
+        onSubmit(defaultFormState());
+        setFormState(defaultFormState());
+    }
+
 	return (
-        <FormModal
-            formTitle="Refine your search"
-            formDescription={null}
-            errorMessage={null}
-            formQuestions={preferencesForm}
+        <Modal
+            title="Refine your search"
             onSubmit={onSubmit}
             isOpen={isOpen}
             onClose={onClose}
-        />
+        >
+            <form onSubmit={handleSubmit}>
+                {Object.keys(preferencesForm).map(question => (
+                    <div className="form-row-radio">
+                        <p className="body-2 radio-label-question">{preferencesForm[question].label}</p>
+                        {preferencesForm[question].options.map(option => (
+                            <div>
+                                <input type="radio" id={option.value} name={question} value={option.value} onChange={handleInputChange}/>
+                                <label htmlFor={option.value} className="body-1-medium radio-label">{option.display}</label>
+                            </div>
+                        ))}
+                    </div>
+                ))}
+                <Button htmlType="submit" type="primary" size="large" block className="primary-button form-button-spacing form-button-size">Next</Button>
+                <Button onClick={handleSkip} type="primary" size="large" block ghost className="primary-button form-button-size">Skip</Button>
+            </form>
+        </Modal>
 	);
 }
 

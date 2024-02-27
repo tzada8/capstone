@@ -1,0 +1,28 @@
+.form-row-select + .form-row-select {
+    margin-top: 30px;
+}
+
+.form-row-select {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.select-label-question {
+    width: 7%;
+}
+
+.select-label {
+    background: var(--PURE-WHITE);
+    color: var(--OFF-BLACK);
+    border: 1px solid var(--GREY);
+    border-radius: 6px;
+    width: 93%;
+    height: 50px;
+    padding: 10px 15px;
+}
+
+.select-label:focus {
+    border: 1px solid var(--PRIMARY-BLUE);
+    outline: none;
+}
