@@ -131,7 +131,7 @@ function ProductSearch() {
                     <Button
                         disabled={numProductsSelected < minProductsSelected}
                         onClick={() => setIsFeaturePriorityModalOpen(true)}
-                        type="primary" size="large" className="primary-button sticky-button"
+                        type="primary" size="large" className="primary-button sticky-button disabled-button-background"
                     >Next</Button>
                 </div>
             </div>
@@ -145,8 +145,10 @@ function ProductSearch() {
                 <Navbar isComparisonNav={false} />
 
                 <h1>Select products to compare</h1>
+                <br/>
                 <p className="body-1 center-text">Obtain recommendations for the products you select you will like most using a likeability</p>
                 <p className="body-1 center-text">rating based off of your learned preferences and aggregated product reviews</p>
+                <br/>
                 <div className="search-and-selected">
                     <SearchBar
                         isButtonInsideBar={true}
@@ -159,6 +161,7 @@ function ProductSearch() {
                     </p>
                 </div>
 
+                <br/>
                 <div className="picked-for-you">
                     <h4>Picked for you</h4>
                     <p className="body-1">Based on how much you liked previous recommendation rankings and answers to question</p>
