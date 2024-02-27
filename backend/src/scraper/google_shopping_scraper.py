@@ -14,6 +14,14 @@ def _extract_product_id(url: str) -> Optional[str]:
     potential_id = potential_id.replace(".p", "")
     return potential_id if potential_id.isdigit() else None
 
+def _cleanup_source(source: str) -> str:
+    refined_source = source
+    if "Best Buy" in source:
+        refined_source = "Best Buy"
+    elif "Walmart" in source:
+        refined_source = "Walmart"
+    return refined_source
+
 def scrape_google_products(q: str, start: int) -> Dict:
     sellers = "|".join(SELLER_FILTERS.values())
     params = {
@@ -51,10 +59,7 @@ def scrape_google_products(q: str, start: int) -> Dict:
                         "product_id": _extract_product_id(sr.get("link")),
                         "title": sr.get("title"),
                         "link": sr.get("link"),
-                        # TODO: If contains "Walmart" --> then source just "Walmart".
-                        # TODO: If contains "Best Buy" --> then source just "Best Buy".
-                        # TODO: Else keep sr.get("source").
-                        "source": sr.get("source"),
+                        "source": _cleanup_source(sr.get("source")),
                         "price": sr.get("extracted_price"),
                         "rating": sr.get("rating"),
                         "reviews": sr.get("reviews"),
