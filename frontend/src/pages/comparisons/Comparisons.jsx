@@ -110,6 +110,7 @@ function Comparisons() {
                 <p className="body-1 center-text">Get help choosing from analyzed insights, fast.</p>
                 <br/>
                 <br/>
+                <br/>
 
                 <ComparisonSection
                     products={products.slice(0, numDisplayed).map((p, i) => {
