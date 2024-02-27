@@ -35,11 +35,13 @@ function FormModal(props) {
     }
 
 	return (
-        <Modal hasCloseBtn={true} isOpen={props.isOpen} onClose={props.onClose}>
-            <div className="modal-title-container">
-                <h3 className="form-extra-title-spacing">{props.formTitle}</h3>
-                <p className="body-2">{props.formDescription}</p>
-            </div>
+        <Modal
+            hasCloseBtn={true}
+            isOpen={props.isOpen}
+            onClose={props.onClose}
+            title={props.formTitle}
+            description={props.formDescription}
+        >
             {props.errorMessage && <div className="modal-form-error">{props.errorMessage}</div>}
             <form onSubmit={handleSubmit}>
                 {Object.keys(props.formQuestions).map(question => {

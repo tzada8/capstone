@@ -1,12 +1,3 @@
-.modal-title-container {
-    margin-top: 5%;
-    margin-bottom: 20px;
-}
-
-.form-extra-title-spacing {
-    margin-bottom: 10px;
-}
-
 .modal-form-error {
     color: var(--RED);
     margin-bottom: 15px;

@@ -3,7 +3,9 @@ import { CloseOutlined } from '@ant-design/icons';
 
 import "./Modal.css";
 
-function Modal({ isOpen, hasCloseBtn = true, onClose, children }) {
+function Modal(
+        { isOpen, hasCloseBtn = true, onClose, title, description = null, children }
+    ) {
     const [isModalOpen, setIsModalOpen] = useState(isOpen);
     const modalRef = useRef(null);
 
@@ -36,6 +38,10 @@ function Modal({ isOpen, hasCloseBtn = true, onClose, children }) {
                     <CloseOutlined />
                 </button>
             )}
+            <div className="modal-title-container">
+                <h3 className="form-extra-title-spacing">{title}</h3>
+                <p className="body-2">{description}</p>
+            </div>
             {children}
         </dialog>
 	);
