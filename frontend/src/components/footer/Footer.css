@@ -7,6 +7,12 @@
     margin-bottom: 3%;
 }
 
+.footer-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .center-logo { 
     text-align: center;
 }

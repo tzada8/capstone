@@ -14,6 +14,7 @@ import SearchBar from "../../components/search-bar/SearchBar";
 function ProductSearch() {
     const numPickedForYou = 3;
     const minProductsSelected = 3;
+    const maxProductsSelected = 10;
 
     const [isLoading, setIsLoading] = useState(false);
     const [loadingPercent, setLoadingPercent] = useState(0);
@@ -129,7 +130,7 @@ function ProductSearch() {
                         type="primary" size="large" ghost className="primary-button primary-button-size"
                     >Cancel</Button>
                     <Button
-                        disabled={numProductsSelected < minProductsSelected}
+                        disabled={numProductsSelected < minProductsSelected || numProductsSelected > maxProductsSelected}
                         onClick={() => setIsFeaturePriorityModalOpen(true)}
                         type="primary" size="large" className="primary-button primary-button-size disabled-button-background"
                     >Next</Button>
