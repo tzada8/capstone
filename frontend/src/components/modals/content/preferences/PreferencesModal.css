@@ -30,3 +30,8 @@ input[type="radio"]:checked ~ .radio-label {
     color: var(--DARK-BLUE);
     border: 1px solid var(--DARK-BLUE);
 }
+
+input[type="radio"]:hover ~ .radio-label {
+    color: var(--DARK-BLUE);
+    border: 1px solid var(--DARK-BLUE);
+}
