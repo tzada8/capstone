@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import "./styles/buttons.css";
 import "./styles/pages.css";
+import "./styles/text.css";
 
 import { routes } from "./routes/Routes";
 import Comparisons from "./pages/comparisons/Comparisons";
