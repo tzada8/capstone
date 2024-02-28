@@ -88,7 +88,7 @@ function Comparisons() {
             <Navbar isComparisonNav={true} />
 
             <div className="recommendation-section">
-                <h1>Recommend items by likeability</h1>
+                <h1 className="center-text">Recommend items by likeability</h1>
                 <br/>
                 <p className="body-1 center-text">Scored by how much we think you'll like it based upon learning your preferences and reviews.</p>
                 <br/>
@@ -105,7 +105,7 @@ function Comparisons() {
             <br/>
 
             <div className="page-margin">
-                <h1>Compare products</h1>
+                <h1 className="center-text">Compare products</h1>
                 <br/>
                 <p className="body-1 center-text">Get help choosing from analyzed insights, fast.</p>
                 <br/>

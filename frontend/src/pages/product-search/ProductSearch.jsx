@@ -145,8 +145,7 @@ function ProductSearch() {
 
                 <Navbar isComparisonNav={false} />
 
-                <h1>Select products to compare</h1>
-                <br/>
+                <h1 className="center-text">Select products to compare</h1>
                 <p className="body-1 center-text">Obtain recommendations for the products you select you will like most using a likeability</p>
                 <p className="body-1 center-text">rating based off of your learned preferences and aggregated product reviews</p>
                 <br/>
