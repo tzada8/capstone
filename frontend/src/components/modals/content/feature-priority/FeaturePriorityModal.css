@@ -20,9 +20,12 @@
     width: 93%;
     height: 50px;
     padding: 10px 15px;
+    cursor: grab;
+    user-select: none;
 }
 
-.select-label:focus {
-    border: 1px solid var(--PRIMARY-BLUE);
-    outline: none;
+.select-label:hover {
+    background: var(--LIGHT-BLUE);
+    color: var(--DARK-BLUE);
+    border: 1px solid var(--DARK-BLUE);
 }

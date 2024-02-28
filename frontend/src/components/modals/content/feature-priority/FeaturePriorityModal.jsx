@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Button } from "antd";
 
 import "./FeaturePriorityModal.css";
@@ -6,50 +6,36 @@ import Modal from "../../base-modal/Modal";
 
 function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
     // TODO: Maybe have list of features dependant on preferences to backend (allows for dynamic set of products/options).
-    const featurePriorityOptions = [
-        { value: "", display: "Please select" },
+    const [featurePriority, setFeaturePriority] = useState([
         { value: "brand", display: "Brand" },
         { value: "megapixels", display: "Number of megapixels" },
         { value: "lens_type", display: "Lens type" },
         { value: "camera_type", display: "Camera type" },
         { value: "budget", display: "Budget" },
-    ]
-    
-    const featurePriorityForm = {
-        "1": { label: "1.", initial: "", options: featurePriorityOptions },
-        "2": { label: "2.", initial: "", options: featurePriorityOptions },
-        "3": { label: "3.", initial: "", options: featurePriorityOptions },
-        "4": { label: "4.", initial: "", options: featurePriorityOptions },
-        "5": { label: "5.", initial: "", options: featurePriorityOptions },
-    }
+    ]);
+    const dragFeature = useRef(0);
+    const draggedOverFeature = useRef(0);
 
-    const defaultFormState = () => {
-        const initialFormState = {};
-        Object.keys(featurePriorityForm).forEach(key => {
-            initialFormState[key] = featurePriorityForm[key].initial;
-        })
-        return initialFormState;
-    }
-
-    const [formState, setFormState] = useState(defaultFormState());
-
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setFormState((prevFormData) => ({
-            ...prevFormData,
-            [name]: value,
-        }))
+    const handleSort = () => {
+        const featurePriorityClone = [...featurePriority];
+        const temp = featurePriorityClone[dragFeature.current];
+        featurePriorityClone[dragFeature.current] = featurePriorityClone[draggedOverFeature.current];
+        featurePriorityClone[draggedOverFeature.current] = temp;
+        setFeaturePriority(featurePriorityClone);
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        onSubmit(formState);
+        const formSubmit = {};
+        featurePriority.forEach((fp, i) => formSubmit[String(i + 1)] = fp.value);
+        onSubmit(formSubmit);
     }
 
     const handleSkip = (event) => {
         event.preventDefault();
-        onSubmit(defaultFormState());
-        setFormState(defaultFormState());
+        const formSkip = {};
+        featurePriority.forEach((_, i) => formSkip[String(i + 1)] = "");
+        onSubmit(formSkip);
     }
 
 	return (
@@ -61,21 +47,20 @@ function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
             onClose={onClose}
         >
             <form onSubmit={handleSubmit}>
-                {Object.keys(featurePriorityForm).map(question => (
+                {featurePriority.map((feature, index) => (
                     <div className="form-row-select">
-                    <label className="body-1-medium select-label-question">{featurePriorityForm[question].label}</label>
-                    <select
-                        className={`body-1 select-label`}
-                        id={question}
-                        name={question}
-                        value={formState[question]}
-                        onChange={handleInputChange}
-                    >
-                        {featurePriorityForm[question].options.map(option => (
-                            <option value={option.value}>{option.display}</option>
-                        ))}
-                    </select>
-                </div>
+                        <p className="body-1-medium select-label-question">{String(index + 1)}.</p>
+                        <div
+                            className="select-label"
+                            draggable
+                            onDragStart={() => dragFeature.current = index}
+                            onDragEnter={() => draggedOverFeature.current = index}
+                            onDragEnd={handleSort}
+                            onDragOver={(e) => e.preventDefault()}
+                        >
+                            <p className="body-1">{feature.display}</p>
+                        </div>
+                    </div>
                 ))}
                 <Button htmlType="submit" type="primary" size="large" block className="primary-button form-button-spacing form-button-size">Next</Button>
                 <Button onClick={handleSkip} type="primary" size="large" block ghost className="primary-button form-button-size">Skip</Button>
