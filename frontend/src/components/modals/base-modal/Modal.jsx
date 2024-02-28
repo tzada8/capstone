@@ -25,8 +25,10 @@ function Modal(
         if (modalElement) {
             if (isModalOpen) {
                 modalElement.showModal();
+                document.body.classList.add("stop-background-scroll");
             } else {
                 modalElement.close();
+                document.body.classList.remove("stop-background-scroll");
             }
         }
     }, [isModalOpen]);
