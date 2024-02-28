@@ -118,11 +118,39 @@ h4 {
 
 /* SMALL SCREEN */
 @media screen and (max-width: 960px) {
+    h1 {
+        font-size: 44px;
+    }
+    
+    h2 {
+        font-size: 36px;
+    }
+    
+    h3 {
+        font-size: 26px;
+    }
+    
+    h4 {
+        font-size: 18px;
+    }
+
     .max-width-heading {
         max-width: 100%;
     }
     
     .max-width-body {
         max-width: 100%;
+    }
+
+    .body-1, .body-1-medium, .body-1-bold {
+        font-size: 16px;
+    }
+
+    .body-2, .body-2-medium {
+        font-size: 14px;        
+    }
+
+    .body-3, .body-3-medium, .body-3-bold {
+        font-size: 12px;
     }
 }
