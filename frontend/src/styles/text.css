@@ -41,6 +41,14 @@ h4 {
     margin: 0 auto;
 }
 
+.max-width-heading {
+    max-width: 90%;
+}
+
+.max-width-body {
+    max-width: 65%;
+}
+
 .body-1, .body-1-medium, .body-1-bold {
     font-size: 18px;
     font-family: var(--BODY-FONT);
@@ -95,4 +103,26 @@ h4 {
 
 .body-3-bold {
     font-weight: 700;
+}
+
+/* DESKTOP SCREEN */
+@media screen and (min-width: 1500px) {
+    .max-width-heading {
+        max-width: 80%;
+    }
+    
+    .max-width-body {
+        max-width: 50%;
+    }
+}
+
+/* SMALL SCREEN */
+@media screen and (max-width: 960px) {
+    .max-width-heading {
+        max-width: 100%;
+    }
+    
+    .max-width-body {
+        max-width: 100%;
+    }
 }
