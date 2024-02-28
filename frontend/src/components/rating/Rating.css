@@ -13,6 +13,8 @@
 
 .rating-stars {
     margin: 0 6px;
+    font-size: 16px;
+    white-space: nowrap;
 }
 
 .rating-text {
