@@ -3,7 +3,7 @@
     width: 24%;
 	/* height: 450px; */
 	border-radius: 8px;
-	margin: 1.5% 1% 1.5% 0;
+	margin: 1.5% 1% 1.5% 0%;
 }
 
 .selected-product {
@@ -71,4 +71,25 @@
 
 .product-price {
 	padding-top: 3px;
+}
+
+/* DESKTOP SCREEN */
+@media screen and (min-width: 1500px) {
+	.product-container {
+		width: 19%;
+	}
+}
+
+/* SMALL SCREEN */
+@media screen and (max-width: 1200px) {
+	.product-container {
+		width: 32.3333%;
+	}
+}
+
+/* SMALLEST SCREEN */
+@media screen and (max-width: 800px) {
+	.product-container {
+		width: 49%;
+	}
 }
