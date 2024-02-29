@@ -26,3 +26,12 @@
     top: 30px;
     right: 30px;
 }
+
+.modal-title-container {
+    margin-top: 5%;
+    margin-bottom: 20px;
+}
+
+.form-extra-title-spacing {
+    margin-bottom: 10px;
+}

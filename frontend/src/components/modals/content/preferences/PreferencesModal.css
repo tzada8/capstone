@@ -1,0 +1,37 @@
+.form-row-radio + .form-row-radio {
+    margin-top: 30px;
+}
+
+.form-row-radio label,
+.form-row-radio input {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.radio-label-question {
+    color: var(--OFF-BLACK);
+}
+
+.radio-label {
+    background: var(--PURE-WHITE);
+    color: var(--GREY);
+    border: 1px solid var(--LIGHT-GREY);
+    border-radius: 8px;
+    text-align: center;
+    height: 50px;
+}
+
+input[type="radio"]:checked ~ .radio-label {
+    background: var(--LIGHT-BLUE);
+    color: var(--DARK-BLUE);
+    border: 1px solid var(--DARK-BLUE);
+}
+
+input[type="radio"]:hover ~ .radio-label {
+    color: var(--DARK-BLUE);
+    border: 1px solid var(--DARK-BLUE);
+}
