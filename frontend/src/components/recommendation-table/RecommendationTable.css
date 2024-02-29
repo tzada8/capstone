@@ -1,7 +1,9 @@
 .recommendation-table {
     margin: 2% auto;
     border-collapse: collapse;
-    min-width: 400px;
+    min-width: 50%;
+    max-width: 70%;
+    max-width: 30%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -14,6 +16,8 @@
 .recommendation-table th,
 .recommendation-table td {
     padding: 15px 30px;
+    max-width: 10%;
+    word-wrap: break-word;
 }
 
 .recommendation-table tbody tr {

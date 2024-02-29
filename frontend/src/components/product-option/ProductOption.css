@@ -1,9 +1,9 @@
 .product-container {
     display: inline-block;
-    width: 23.6%;
+    width: 24%;
 	/* height: 450px; */
 	border-radius: 8px;
-	margin: 0 0.7% 3% 0.7%;
+	margin: 1.5% 1% 1.5% 0;
 }
 
 .selected-product {
@@ -49,6 +49,7 @@
 
 .product-title {
 	padding-bottom: 10px;
+	min-height: 80px;
 }
 
 .selected-product-line { 

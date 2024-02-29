@@ -7,6 +7,12 @@
     margin-bottom: 3%;
 }
 
+.footer-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .center-logo { 
     text-align: center;
 }
@@ -18,6 +24,6 @@
 }
 
 .footer-option {
-    padding: 30px;
+    margin: 30px;
     color: var(--OFF-BLACK);
 }

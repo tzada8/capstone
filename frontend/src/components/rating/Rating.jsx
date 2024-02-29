@@ -9,9 +9,9 @@ function Rating(props) {
 
 	return (
 		<div className={`star-rating-block ${reviewsPositioningClass}`}>
-            <p className="body-3 rating-text">{props.rating}</p>
-            <Rate className="rating-stars" allowHalf disabled value={roundedRating} />
-            {props.reviews && <p className="body-3 rating-text">({props.reviews} reviews)</p>}
+            {props.rating > 0 && <p className="body-3 rating-text">{props.rating}</p>}
+            {props.rating > 0 && <Rate className="rating-stars" allowHalf disabled value={roundedRating} />}
+            {props.reviews > 0 && <p className="body-3 rating-text">({props.reviews} reviews)</p>}
         </div>
 	);
 }

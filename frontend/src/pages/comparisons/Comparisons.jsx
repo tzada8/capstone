@@ -96,7 +96,7 @@ function Comparisons() {
                 <br/>
                 <Button
                     onClick={() => setShowMoreRecommendations(!showMoreRecommendations)}
-                    type="primary" size="large" className="alternative-button center-button"
+                    type="primary" size="large" className="alternative-button primary-button-size center-button"
                 >{showMoreRecommendations ? "Show less" : "Show more"}</Button>
             </div>
 
@@ -108,6 +108,7 @@ function Comparisons() {
                 <h1>Compare products</h1>
                 <br/>
                 <p className="body-1 center-text">Get help choosing from analyzed insights, fast.</p>
+                <br/>
                 <br/>
                 <br/>
 

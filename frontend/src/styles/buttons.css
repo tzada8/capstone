@@ -21,6 +21,10 @@ button {
     border-radius: 8px;
 }
 
+.primary-button-size {
+    width: 150px;
+}
+
 .center-button {
     display: block;
     margin: 0 auto;

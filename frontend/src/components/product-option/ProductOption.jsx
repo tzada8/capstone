@@ -14,7 +14,7 @@ function ProductOption(props) {
                 <div className="basic-details-container">
                     <img className="product-image" src={props.data.thumbnail} alt=""/>
                     <p className="body-2-medium product-title">{props.data.title}</p>
-                    <Rating rating={props.data.rating} reviews={props.data.reviews} isCenter={false} />
+                    <Rating rating={props.data.rating} reviews={props.data.reviews} isCenter={false}/>
                 </div>
                 <hr className={selectedLineStyle} />
                 <div className="price-and-link-container">

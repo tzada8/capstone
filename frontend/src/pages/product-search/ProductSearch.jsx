@@ -14,6 +14,7 @@ import SearchBar from "../../components/search-bar/SearchBar";
 function ProductSearch() {
     const numPickedForYou = 3;
     const minProductsSelected = 3;
+    const maxProductsSelected = 10;
 
     const [isLoading, setIsLoading] = useState(false);
     const [loadingPercent, setLoadingPercent] = useState(0);
@@ -126,12 +127,12 @@ function ProductSearch() {
                 <div className="fixed-buttons">
                     <Button
                         onClick={() => navigate(routes.home)}
-                        type="primary" size="large" ghost className="primary-button sticky-button"
+                        type="primary" size="large" ghost className="primary-button primary-button-size"
                     >Cancel</Button>
                     <Button
-                        disabled={numProductsSelected < minProductsSelected}
+                        disabled={numProductsSelected < minProductsSelected || numProductsSelected > maxProductsSelected}
                         onClick={() => setIsFeaturePriorityModalOpen(true)}
-                        type="primary" size="large" className="primary-button sticky-button"
+                        type="primary" size="large" className="primary-button primary-button-size disabled-button-background"
                     >Next</Button>
                 </div>
             </div>
@@ -145,8 +146,10 @@ function ProductSearch() {
                 <Navbar isComparisonNav={false} />
 
                 <h1>Select products to compare</h1>
+                <br/>
                 <p className="body-1 center-text">Obtain recommendations for the products you select you will like most using a likeability</p>
                 <p className="body-1 center-text">rating based off of your learned preferences and aggregated product reviews</p>
+                <br/>
                 <div className="search-and-selected">
                     <SearchBar
                         isButtonInsideBar={true}
@@ -159,6 +162,7 @@ function ProductSearch() {
                     </p>
                 </div>
 
+                <br/>
                 <div className="picked-for-you">
                     <h4>Picked for you</h4>
                     <p className="body-1">Based on how much you liked previous recommendation rankings and answers to question</p>
@@ -193,7 +197,7 @@ function ProductSearch() {
                 <br/>
                 {productData.length > 0 && <Button
                     onClick={handleLoadMoreProducts}
-                    type="primary" size="large" className="alternative-button center-button"
+                    type="primary" size="large" className="alternative-button primary-button-size center-button"
                 >Load more</Button>}
                 <Footer />
             </div>
