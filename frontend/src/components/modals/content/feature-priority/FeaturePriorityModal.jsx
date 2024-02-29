@@ -12,6 +12,7 @@ function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
         { value: "lens_type", display: "Lens type" },
         { value: "camera_type", display: "Camera type" },
         { value: "budget", display: "Budget" },
+        { value: "product_rating", display: "Product Rating" },
     ]);
     const dragFeature = useRef(0);
     const draggedOverFeature = useRef(0);
