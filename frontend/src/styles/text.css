@@ -1,0 +1,156 @@
+h1, h2, h3, h4 {
+    font-weight: 600;
+    font-style: normal;
+}
+
+h1, h2, h3 {
+    font-family: var(--HEADING-FONT);
+    letter-spacing: -2%;
+}
+
+h1 {
+    font-size: 54px;
+    line-height: 124%;
+}
+
+h2 {
+    font-size: 44px;
+    line-height: 124%;
+    text-align: center;
+}
+
+h3 {
+    font-size: 36px;
+    line-height: 132%;
+}
+
+h4 {
+    font-size: 26px;
+    font-family: var(--BODY-FONT);
+    letter-spacing: 0%;
+    line-height: 140%;
+}
+
+.text-highlight {
+    color: var(--PRIMARY-BLUE);
+    font-family: var(--HEADING-FONT);
+}
+
+.center-text {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.max-width-heading {
+    max-width: 90%;
+}
+
+.max-width-body {
+    max-width: 65%;
+}
+
+.body-1, .body-1-medium, .body-1-bold {
+    font-size: 18px;
+    font-family: var(--BODY-FONT);
+    letter-spacing: 1%;
+    line-height: 156%;
+    font-variation-settings: "slnt" 0;
+}
+
+.body-1 {
+    font-weight: 400;
+}
+
+.body-1-medium {
+    font-weight: 500;
+}
+
+.body-1-bold {
+    font-weight: 600;
+}
+
+.body-2, .body-2-medium {
+    font-size: 16px;
+    font-family: var(--BODY-FONT);
+    letter-spacing: 1%;
+    line-height: 140%;
+    font-variation-settings: "slnt" 0;
+}
+
+.body-2 {
+    font-weight: 400;
+}
+
+.body-2-medium {
+    font-weight: 500;
+}
+
+.body-3, .body-3-medium, .body-3-bold {
+    font-size: 14px;
+    font-family: var(--BODY-FONT);
+    letter-spacing: 1%;
+    line-height: 135%;
+    font-variation-settings: "slnt" 0;
+}
+
+.body-3 {
+    font-weight: 400;
+}
+
+.body-3-medium {
+    font-weight: 500;
+}
+
+.body-3-bold {
+    font-weight: 700;
+}
+
+/* DESKTOP SCREEN */
+@media screen and (min-width: 1500px) {
+    .max-width-heading {
+        max-width: 80%;
+    }
+    
+    .max-width-body {
+        max-width: 50%;
+    }
+}
+
+/* SMALL SCREEN */
+@media screen and (max-width: 960px) {
+    h1 {
+        font-size: 44px;
+    }
+    
+    h2 {
+        font-size: 36px;
+    }
+    
+    h3 {
+        font-size: 26px;
+    }
+    
+    h4 {
+        font-size: 18px;
+    }
+
+    .max-width-heading {
+        max-width: 100%;
+    }
+    
+    .max-width-body {
+        max-width: 100%;
+    }
+
+    .body-1, .body-1-medium, .body-1-bold {
+        font-size: 16px;
+    }
+
+    .body-2, .body-2-medium {
+        font-size: 14px;        
+    }
+
+    .body-3, .body-3-medium, .body-3-bold {
+        font-size: 12px;
+    }
+}

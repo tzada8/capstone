@@ -1,14 +1,19 @@
+.stop-background-scroll {
+    overflow: hidden;
+}
+
 .modal::backdrop {
     background: hsl(0 0% 0% / 50%);
 }
 
 .modal {
-    width: 35%;
+    max-width: 60%;
     max-height: 90%;
     padding: 2.5rem;
     border: 0;
     border-radius: 8px;
     box-shadow: hsl(0 0% 0% / 10%) 0 0 0.5rem 0.25rem;
+    overflow-x: hidden;
     z-index: 2;
 }
 

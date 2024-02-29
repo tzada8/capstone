@@ -7,7 +7,7 @@ function HowItWorks() {
     return (
         <div id="learn-more-jump" className="how-it-works">
             <div className="how-it-works-text-container">
-                <h1 className="how-it-works-title"><span className="text-highlight">How</span> it works</h1>
+                <h1 className="how-it-works-title max-width-heading"><span className="text-highlight">How</span> it works</h1>
                 <ol className="steps-container">
                     <li className="body-1 how-it-works-step">Search for products that interest you. Products are already filtered, so you'll see only the most relevant products to you.</li>
                     <li className="body-1 how-it-works-step">Provide your product preferences and prioritization of features. These features help recommend products we think you'll like.</li>
