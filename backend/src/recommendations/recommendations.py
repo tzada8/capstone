@@ -58,18 +58,13 @@ class Recommendation:
                 else:
                     return return_value
             elif key in ["Lens Type", "Camera Lens Type"]:
-                if not isinstance(filtered[0].get("value"), list):
-                    lenses_list = [filtered[0].get("value")]
-                else:
-                    lenses_list = filtered[0].get("value")
                 types = []
-                for type in lenses_list:
-                    if "Standard Zoom" in type or "Zoom Lens" in type or "EF-S-Mount" in type:
-                        types.append("standard")
-                    elif "Zoom" in type or "Digital Zoom" in type:
-                        types.append("fixed")
-                    else:
-                        types.append(type.lower())
+                if "Standard Zoom" in filtered[0].get("value") or "Zoom Lens" in filtered[0].get("value") or "EF-S-Mount" in filtered[0].get("value"):
+                    types.append("standard")
+                elif "Zoom" in filtered[0].get("value") or "Digital Zoom" in filtered[0].get("value"):
+                    types.append("fixed")
+                else:
+                    types.append(filtered[0].get("value").lower())
                 return types
             elif key == "Digital Camera Type":
                 return filtered[0].get("value").lower().replace(" ", "-")

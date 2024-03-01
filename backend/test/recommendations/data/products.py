@@ -46,7 +46,7 @@ products = [
             {"name": "Brand", "value": "Sony"},
             {"name": "Number of Megapixels", "value": ""},
             {"name": "Digital Camera Type", "value": "DSLR Digital Cameras"},
-            {"name": "Camera Lens Type", "value": ["Zoom Lens", "Wide Angle"]},
+            {"name": "Camera Lens Type", "value": "Zoom Lens; Wide Angle"},
         ]
     },
     {
