@@ -52,9 +52,19 @@ class Recommendation:
             return return_value
         else:
             if key in ["Effective Pixels", "Number of Megapixels"]:
-                return int(re.findall(r'\d+', filtered[0].get("value"))[0])
+                return float(re.findall(r'\d+\.?\d+?', filtered[0].get("value"))[0])
             elif key in ["Lens Type", "Camera Lens Type"]:
-                return [type.lower() for type in filtered[0].get("value")]
+                types = []
+                for type in filtered[0].get("value"):
+                    if "Standard Zoom" in type or "Zoom Lens" in type or "EF-S-Mount" in type:
+                        types.append("standard")
+                    elif "Zoom" in type or "Digital Zoom" in type:
+                        types.append("fixed")
+                    else:
+                        types.append(type.lower())
+                return types
+            elif key == "Digital Camera Type":
+                return filtered[0].get("value").lower().replace(" ", "-")
             else:
                 return filtered[0].get("value").lower()
 
@@ -106,13 +116,13 @@ class Recommendation:
 
             # Get actual feature values of product.
             actual_brand = Recommendation._extract_product_features(p, "Brand", "")
-            actual_megapixels = Recommendation._extract_product_features(p, megapixels_key, 0)
-            actual_lens_type = Recommendation._extract_product_features(p, lens_type_key, []) # or ""
+            actual_megapixels = Recommendation._extract_product_features(p, megapixels_key, 0.0)
+            actual_lens_type = Recommendation._extract_product_features(p, lens_type_key, [])
             actual_camera_type = Recommendation._extract_product_features(p, "Digital Camera Type", "")
             actual_price = Recommendation._extract_price(p)
 
-            # Best Buy Point & Shoot Cameras do not have a lens type feature
-            actual_lens_type = "Fixed" if p.get("basic_info").get("source") == "Best Buy" and actual_camera_type == "Point and Shoot Cameras" else actual_lens_type
+            # Point & Shoot and Compact Cameras have fixed lenses
+            actual_lens_type = actual_lens_type.append("fixed") if ("point-and-shoot" in actual_camera_type or "compact" in actual_camera_type) else actual_lens_type
 
             # Calculate difference between actual and desired values. 
             # Brand: ["canon", "nikon", ""]
@@ -141,16 +151,20 @@ class Recommendation:
                 megapixels_diff = 1
 
             # Lens: ["fixed", "standard", ""]
-            # TODO: Check if Walmart works with this. (Fixed = Digital Zoom)
             if preferences.get("lens_type") in ["fixed", "standard"]: 
-                lens_type_diff = 0 if preferences.get("lens_type") in actual_lens_type else 1
+                if preferences.get("lens_type") in actual_lens_type:
+                    lens_type_diff = 0
+                else:
+                    lens_type_diff = 1
             else: # If no preference.
                 lens_type_diff = 0
 
             # Camera Type: ["point-and-shoot", "dslr", "mirrorless", ""]
-            # TODO: Check this more with potential types from Best Buy and Walmart.
             if preferences.get("camera_type") in ["point-and-shoot", "dslr", "mirrorless"]: 
-                camera_type_diff = 0 if preferences.get("camera_type").split(' ', 1)[0] in actual_camera_type else 1
+                if "point-and-shoot" in actual_camera_type or "dslr" in actual_camera_type or "mirrorless" in actual_camera_type:
+                    camera_type_diff = 0
+                else:
+                    camera_type_diff = 1
             else: # If no preference.
                 camera_type_diff = 0
 
