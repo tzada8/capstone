@@ -35,7 +35,7 @@ products = [
             "price": {"amount": 600.0, "currency": "USD"},
             "images": ["https://image1.png", "https://image2.jpeg"],
             "total_reviews": 500,
-            "rating": 4.1,
+            "rating": 3.7,
             "badges": {
                 "bestseller": False,
                 "customer_pick": True
@@ -46,7 +46,7 @@ products = [
             {"name": "Brand", "value": "Sony"},
             {"name": "Number of Megapixels", "value": ""},
             {"name": "Digital Camera Type", "value": "DSLR Digital Cameras"},
-            {"name": "Camera Lens Type", "value": "Wide Angle"},
+            {"name": "Camera Lens Type", "value": ["Zoom Lens", "Wide Angle"]},
         ]
     },
     {
@@ -69,9 +69,9 @@ products = [
         },
         "specifications": [
             {"name": "Brand", "value": "Nikon"},
-            {"name": "Effective Pixels", "value": "35 megapixels"},
+            {"name": "Effective Pixels", "value": "35.5 megapixels"},
             {"name": "Digital Camera Type", "value": "Mirrorless Cameras"},
-            {"name": "Lens Type", "value": "Standard"},
+            {"name": "Lens Type", "value": "Standard Zoom"},
         ]
     }
 ]

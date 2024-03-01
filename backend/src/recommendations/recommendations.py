@@ -48,14 +48,22 @@ class Recommendation:
     @staticmethod
     def _extract_product_features(product: Dict, key: str, return_value):
         filtered = list(filter(lambda spec: spec["name"] == key, product.get("specifications")))
-        if len(filtered) == 0 or filtered[0].get("value") == "":
+        if len(filtered) == 0:
             return return_value
         else:
             if key in ["Effective Pixels", "Number of Megapixels"]:
-                return float(re.findall(r'\d+\.?\d+?', filtered[0].get("value"))[0])
+                result = re.findall(r'\d+\.?\d+?', filtered[0].get("value"))
+                if len(result) > 0:
+                    return float(result[0])
+                else:
+                    return return_value
             elif key in ["Lens Type", "Camera Lens Type"]:
+                if not isinstance(filtered[0].get("value"), list):
+                    lenses_list = [filtered[0].get("value")]
+                else:
+                    lenses_list = filtered[0].get("value")
                 types = []
-                for type in filtered[0].get("value"):
+                for type in lenses_list:
                     if "Standard Zoom" in type or "Zoom Lens" in type or "EF-S-Mount" in type:
                         types.append("standard")
                     elif "Zoom" in type or "Digital Zoom" in type:
@@ -80,11 +88,12 @@ class Recommendation:
         max_rank = len(selected_products) + 1
         max_master_list_rank = max_list_length + 2
         recommendations = []
+        NUM_FEATURES = 6
     
         # Prepare importance dictionary.
         importance_inv = {v: float(k) for k, v in importance.items() if v != ""}
-        if len(importance_inv) != 5:
-            features = {"brand", "megapixels", "lens_type", "camera_type", "budget"}
+        if len(importance_inv) != NUM_FEATURES:
+            features = {"brand", "megapixels", "lens_type", "camera_type", "budget", "product_rating"}
             ranked_features = {v for v in importance.values()}
             unranked_features = features - ranked_features
             sum_no_value = 0
@@ -122,7 +131,8 @@ class Recommendation:
             actual_price = Recommendation._extract_price(p)
 
             # Point & Shoot and Compact Cameras have fixed lenses
-            actual_lens_type = actual_lens_type.append("fixed") if ("point-and-shoot" in actual_camera_type or "compact" in actual_camera_type) else actual_lens_type
+            if "point-and-shoot" in actual_camera_type or "compact" in actual_camera_type:
+                actual_lens_type.append("fixed")
 
             # Calculate difference between actual and desired values. 
             # Brand: ["canon", "nikon", ""]
@@ -161,7 +171,7 @@ class Recommendation:
 
             # Camera Type: ["point-and-shoot", "dslr", "mirrorless", ""]
             if preferences.get("camera_type") in ["point-and-shoot", "dslr", "mirrorless"]: 
-                if "point-and-shoot" in actual_camera_type or "dslr" in actual_camera_type or "mirrorless" in actual_camera_type:
+                if preferences.get("camera_type") in actual_camera_type:
                     camera_type_diff = 0
                 else:
                     camera_type_diff = 1
@@ -180,6 +190,12 @@ class Recommendation:
             else:
                 price_diff = 1
 
+            # Rating
+            if p.get("basic_info").get("rating") is not None:
+                rating = (1 - (p.get("basic_info").get("rating") / 5))
+            else:
+                rating = 1
+
             # Calculate weights of each feature.
             weights = {
                 "brand": brand_diff * importance_inv.get("brand"),
@@ -187,6 +203,7 @@ class Recommendation:
                 "lens_type": lens_type_diff * importance_inv.get("lens_type"),
                 "camera_type": camera_type_diff * importance_inv.get("camera_type"),
                 "budget": price_diff * importance_inv.get("budget"),
+                "rating": rating * importance_inv.get("product_rating")
             }
             # Sum all weights.
             pref_score = sum(weights.values())
@@ -194,8 +211,7 @@ class Recommendation:
             # TODO: Verify the weights.
             rank_weight = 0.25
             pref_weight = 0.75
-            worst_score = pref_weight * sum(range(1, 6)) + rank_weight * (max_master_list_rank + max_rank * 2)
-
+            worst_score = pref_weight * sum(range(1, NUM_FEATURES + 1)) + rank_weight * (max_master_list_rank + max_rank * 2)
             # Prepare all products for table.
             recommendations.append({
                 "product_id": p.get("basic_info").get("product_id"),

@@ -1,9 +1,9 @@
 preferences_filled = {
-    "brand": "", 
+    "brand": "canon", 
     "megapixels": "15-30",
-    "lens_type": "",
+    "lens_type": "fixed",
     "camera_type": "dslr",
-    "budget": "750-1500"
+    "budget": "750-1500" 
 }
 
 preferences_some_missing = {
@@ -28,14 +28,16 @@ importance_filled = {
     "3": "megapixels",
     "4": "brand",
     "5": "lens_type",
+    "6": "product_rating"
 }
 
 importance_some_missing = {
     "1": "budget", 
-    "2": "",
+    "2": "product_rating",
     "3": "",
     "4": "brand",
     "5": "",
+    "6": ""
 }
 
 importance_all_missing = {
@@ -44,4 +46,5 @@ importance_all_missing = {
     "3": "",
     "4": "",
     "5": "",
+    "6": ""
 }
