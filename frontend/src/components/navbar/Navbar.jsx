@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Button } from "antd";
 
 import "./Navbar.css";
 import { routes } from "../../routes/Routes";
@@ -16,9 +15,9 @@ function Navbar(props) {
             </div>
             <div className="navbar-middle" />
             <div className="navbar-restart-button">
-                {props.isComparisonNav && <Button 
-                    onClick={() => navigate(routes.home)} type="primary" size="large" className="primary-button"
-                >Restart Search</Button>}
+                {props.isComparisonNav && <button 
+                    onClick={() => navigate(routes.home)} className="primary-button primary-button-size"
+                >Restart Search</button>}
             </div>
         </div>
     )

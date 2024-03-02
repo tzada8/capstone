@@ -1,6 +1,5 @@
 import React from "react";
 import { SearchOutlined } from '@ant-design/icons';
-import { Button } from "antd";
 
 import "./SearchBar.css";
 
@@ -25,7 +24,7 @@ function SearchBar(props) {
                 {props.isButtonInsideBar ? (
                     <button className="search-icon" type="submit"><SearchOutlined /></button>
                 ) : (
-                    <Button type="primary" size="large" className="primary-button search-button-outside" htmlType="submit">Search</Button>
+                    <button type="submit" className="primary-button search-button-size">Search</button>
                 )}
             </div>
         </form>

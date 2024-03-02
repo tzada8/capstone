@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-import { Button } from "antd";
 
 import "./FeaturePriorityModal.css";
 import Modal from "../../base-modal/Modal";
@@ -63,8 +62,8 @@ function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
                         </div>
                     </div>
                 ))}
-                <Button htmlType="submit" type="primary" size="large" block className="primary-button form-button-spacing form-button-size">Next</Button>
-                <Button onClick={handleSkip} type="primary" size="large" block ghost className="primary-button form-button-size">Skip</Button>
+                <button type="submit" className="primary-button form-button-spacing form-button-size">Next</button>
+                <button onClick={handleSkip} className="primary-button-inverted form-button-size">Skip</button>
             </form>
         </Modal>
 	);

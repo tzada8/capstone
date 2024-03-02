@@ -1,6 +1,11 @@
 .learn-more-button {
+    background: none;
     color: var(--OFF-BLACK);
     display: flex;
     margin: 4% auto;
     align-items: center;
+}
+
+.learn-more-link {
+    color: var(--OFF-BLACK);
 }

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowDownOutlined } from '@ant-design/icons';
-import { Button } from "antd";
 
 import "./Home.css";
 import { routes } from "../../routes/Routes";
@@ -51,9 +50,9 @@ function Home() {
                 query={searchQuery}
                 setQuery={setSearchQuery}
             />
-            <Button className="learn-more-button" type="text">
-                <a className="body-1-medium" href="#learn-more-jump">Learn more <ArrowDownOutlined /></a>
-            </Button>
+            <button className="learn-more-button">
+                <a className="body-1-medium learn-more-link" href="#learn-more-jump">Learn more <ArrowDownOutlined /></a>
+            </button>
             <HowItWorks />
             <DataPipeline />
             <Footer />
