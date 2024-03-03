@@ -11,3 +11,27 @@
     justify-content: center;
     z-index: 1000000;
 }
+
+.circular-progress {
+    display: block;
+}
+
+.progress-background {
+    fill: none;
+    stroke: var(--LIGHT-GREY);
+}
+
+.progress-bar {
+    fill: none;
+    stroke: var(--PRIMARY-BLUE);
+    transition: stroke-dashoffset 0.3s ease;
+}
+
+.completed-progress {
+    stroke: var(--GREEN);
+}
+
+.progress-text {
+    font-size: 36px;
+    fill: var(--OFF-BLACK);
+}

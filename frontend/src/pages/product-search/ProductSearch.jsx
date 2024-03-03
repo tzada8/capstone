@@ -123,7 +123,7 @@ function ProductSearch() {
 
 	return (
         <div>
-            <Loading isLoading={isLoading} percent={loadingPercent} />
+            <Loading isLoading={isLoading} percent={loadingPercent} size={200} strokeWidth={12} />
             <div className="fixed-buttons-container">
                 <div className="fixed-buttons">
                     <button
