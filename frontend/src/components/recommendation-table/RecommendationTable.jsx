@@ -1,8 +1,7 @@
 import React from "react";
-import { InfoCircleOutlined } from '@ant-design/icons';
-import { Tooltip } from "antd";
 
 import "./RecommendationTable.css";
+import Tooltip from "../tooltip/Tooltip";
 
 function RecommendationTable(props) {
     const scoreDescription = "A product score is determined by a combination of its popularity, your priority and preferences, and prior learnings"
@@ -14,16 +13,7 @@ function RecommendationTable(props) {
                     <th>Item</th>
                     <th>Price</th>
                     <th>Source</th>
-                    <th>
-                        Score
-                        <Tooltip
-                            color="#1776EE"
-                            placement="rightTop"
-                            arrow={{pointAtCenter: true}}
-                            title={scoreDescription}
-                        >
-                            <InfoCircleOutlined className="score-info-tooltip" />
-                        </Tooltip></th>
+                    <th>Score <Tooltip content={scoreDescription}/></th>
                 </tr>
             </thead>
             <tbody>

@@ -28,8 +28,3 @@
 .recommendation-table tbody tr:last-of-type {
     border-bottom: 2px solid var(--LIGHT-BLUE);
 }
-
-.score-info-tooltip {
-    color: var(--PRIMARY-BLUE);
-    margin-left: 5px;
-}
