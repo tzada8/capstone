@@ -59,9 +59,9 @@ class Recommendation:
                     return return_value
             elif key in ["Lens Type", "Camera Lens Type"]:
                 types = []
-                if "Standard Zoom" in filtered[0].get("value") or "Zoom Lens" in filtered[0].get("value") or "EF-S-Mount" in filtered[0].get("value"):
+                if "Standard Zoom" == filtered[0].get("value") or "Zoom Lens" == filtered[0].get("value") or "EF-S-Mount" in filtered[0].get("value"):
                     types.append("standard")
-                elif "Zoom" in filtered[0].get("value") or "Digital Zoom" in filtered[0].get("value"):
+                elif "Zoom" == filtered[0].get("value") or "Digital Zoom" == filtered[0].get("value"):
                     types.append("fixed")
                 else:
                     types.append(filtered[0].get("value").lower())

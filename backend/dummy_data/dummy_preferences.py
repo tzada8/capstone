@@ -9,15 +9,8 @@ dummy_preferences = {
 dummy_importance = {
     "1": "budget", 
     "2": "camera_type",
-    "3": "megapixels",
-    "4": "brand",
-    "5": "lens_type"
+    "3": "product_rating",
+    "4": "megapixels",
+    "5": "brand",
+    "6": "lens_type"
 }
-
-# dummy_importance = {
-#     "1": "", 
-#     "2": "",
-#     "3": "",
-#     "4": "",
-#     "5": ""
-# }
