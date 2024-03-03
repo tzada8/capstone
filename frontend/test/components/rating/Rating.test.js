@@ -20,7 +20,7 @@ describe("Rating", () => {
 
     it("renders half-star rating", () => {
         const { container } = render(<Rating rating={3.5} />);
-        const halfStar = container.querySelector(".ant-rate-star-half");
+        const halfStar = container.querySelector(".star-outline");
 
         expect(halfStar).toBeInTheDocument();
     });

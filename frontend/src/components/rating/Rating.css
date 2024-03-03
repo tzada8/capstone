@@ -11,12 +11,16 @@
     justify-content: left;
 }
 
-.rating-stars {
-    margin: 0 6px;
-    font-size: 16px;
-    white-space: nowrap;
-}
-
 .rating-text {
     color: var(--DARK-GREY);
+}
+
+.star-rating-container {
+    margin: 0 6px;
+}
+
+.star-outline {
+    color: var(--YELLOW);
+    font-size: 16px;
+    margin: 0 3px;
 }
