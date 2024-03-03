@@ -4,25 +4,26 @@ import { render, fireEvent } from "@testing-library/react";
 import Tooltip from "../../../src/components/tooltip/Tooltip";
 
 describe("Tooltip", () => {
-    it("renders without crashing", () => {
-        render(<Tooltip content="Test content" />);
-    });
+  it("Tooltip content is not initially visible", () => {
+    const { queryByText } = render(<Tooltip content="Tooltip Content" />);
+    const tooltipContent = queryByText("Tooltip Content");
+    expect(tooltipContent).toBeNull();
+  });
 
-    it("renders the icon", () => {
-        const { container } = render(<Tooltip content="Test content" />);
-        const icon = container.querySelector(".score-info-tooltip");
-        expect(icon).toBeInTheDocument();
-    });
+  it("Tooltip content becomes visible on mouse enter", () => {
+    const { container, getByText } = render(<Tooltip content="Tooltip Content" />);
+    const tooltipContainer = container.querySelector(".tooltip-container");
+    fireEvent.mouseEnter(tooltipContainer);
+    const tooltipContent = getByText("Tooltip Content");
+    expect(tooltipContent).toBeInTheDocument();
+  });
 
-    it("renders tooltip content on hover", () => {
-        const { container, getByText } = render(<Tooltip content="Test content" />);
-        const tooltipContainer = container.querySelector(".custom-tooltip-container");
-
-        fireEvent.mouseEnter(tooltipContainer);
-        const tooltipContent = getByText("Test content");
-        expect(tooltipContent).toBeInTheDocument();
-
-        fireEvent.mouseLeave(tooltipContainer);
-        expect(tooltipContent).not.toBeInTheDocument();
-    });
+  it("Tooltip content disappears on mouse leave", () => {
+    const { container, queryByText } = render(<Tooltip content="Tooltip Content" />);
+    const tooltipContainer = container.querySelector(".tooltip-container");
+    fireEvent.mouseEnter(tooltipContainer);
+    fireEvent.mouseLeave(tooltipContainer);
+    const tooltipContent = queryByText("Tooltip Content");
+    expect(tooltipContent).toBeNull();
+  });
 });
