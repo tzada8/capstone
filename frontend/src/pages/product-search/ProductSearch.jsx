@@ -163,35 +163,39 @@ function ProductSearch() {
                 </div>
 
                 <br/>
-                <div className="picked-for-you">
+                <div>
                     <h4>Picked for you</h4>
                     <p className="body-1 max-width-body">Based on how much you liked previous recommendation rankings and answers to question</p>
-                    {productData.slice(0, numPickedForYou).map(product => (
-                        <ProductOption
-                            data={product}
-                            selectionNumber={productSelectionNumber(product)}
-                            changeSelection={onProductSelection}
-                        />
-                    ))}
+                    <div className="picked-for-you">
+                        {productData.slice(0, numPickedForYou).map(product => (
+                            <ProductOption
+                                data={product}
+                                selectionNumber={productSelectionNumber(product)}
+                                changeSelection={onProductSelection}
+                            />
+                        ))}
+                    </div>
                 </div>
                 <br/>
 
-                <div className="all-products">
+                <div>
                     <h4>All products</h4>
-                    {mainSelectedProducts.map(product => (
-                        <ProductOption
-                            data={product}
-                            selectionNumber={productSelectionNumber(product)}
-                            changeSelection={onProductSelection}
-                        />
-                    ))}
-                    {productData.slice(numPickedForYou).map(product => (
-                        <ProductOption
-                            data={product}
-                            selectionNumber={productSelectionNumber(product)}
-                            changeSelection={onProductSelection}
-                        />
-                    ))}
+                    <div className="all-products">
+                        {mainSelectedProducts.map(product => (
+                            <ProductOption
+                                data={product}
+                                selectionNumber={productSelectionNumber(product)}
+                                changeSelection={onProductSelection}
+                            />
+                        ))}
+                        {productData.slice(numPickedForYou).map(product => (
+                            <ProductOption
+                                data={product}
+                                selectionNumber={productSelectionNumber(product)}
+                                changeSelection={onProductSelection}
+                            />
+                        ))}
+                    </div>
                 </div>
 
                 <br/>

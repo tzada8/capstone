@@ -17,6 +17,7 @@
 
 .star-rating-container {
     margin: 0 6px;
+    text-wrap: nowrap;
 }
 
 .star-outline {

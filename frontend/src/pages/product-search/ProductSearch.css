@@ -33,3 +33,30 @@
 .min-selection {
     color: var(--DARK-BLUE);
 }
+
+.picked-for-you, .all-products {
+    display: grid;
+    grid-gap: 25px 15px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* DESKTOP SCREEN */
+@media screen and (min-width: 1500px) {
+	.picked-for-you, .all-products {
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+	}
+}
+
+/* SMALL SCREEN */
+@media screen and (max-width: 1200px) {
+	.picked-for-you, .all-products {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+/* SMALLEST SCREEN */
+@media screen and (max-width: 800px) {
+	.picked-for-you, .all-products {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
