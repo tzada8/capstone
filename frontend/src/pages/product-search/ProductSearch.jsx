@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import "./ProductSearch.css";
@@ -28,7 +28,6 @@ function ProductSearch() {
 
     const [preferencesModalData, setPreferencesModalData] = useState(null);
     const [isFeaturePriorityModalOpen, setIsFeaturePriorityModalOpen] = useState(false);
-    const [featurePriorityModalData, setFeaturePriorityModalData] = useState(null);
 
     const location = useLocation();
 
@@ -63,27 +62,25 @@ function ProductSearch() {
         return detailedSelectedProducts;
     }
 
-    const _searchProductsHelper = (q) => {
+    const _searchProductsHelper = useCallback((q) => {
         if (q === "") {
             setSearchQuery(q);
             setProductData([]);
             return;
         }
-        const selectedIds = allSelectedProducts.map(p => p.product_id);
         const searchEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/search-products?q=${q}`;
         fetch(searchEndpoint).then(res => res.json()).then(data => {
-            const prodData = data.shopping_results.data.filter(p => !selectedIds.includes(p.product_id));
-            setProductData(prodData);
+            setProductData(data.shopping_results.data);
         });
         setSearchQuery(q);
-    }
+    }, [])
 
     useEffect(() => {
         const q = location.state === null ? "" : location.state.query;
         const preferences = location.state === null ? null : location.state.preferences;
         setPreferencesModalData(preferences);
         _searchProductsHelper(q);
-    }, [location.state]);
+    }, [location.state, _searchProductsHelper]);
 
     const onSearchSubmit = () => {
         if (currentSelectedProducts.length !== 0) {
@@ -105,7 +102,6 @@ function ProductSearch() {
     }
 
     const handleFeaturePriorityModalSubmit = (data) => {
-        setFeaturePriorityModalData(data);
         setIsFeaturePriorityModalOpen(false);
         toComparisons(data);
     }
