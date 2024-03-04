@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Button } from "antd";
 
 import "./ProductSearch.css";
 import { routes } from "../../routes/Routes";
@@ -120,20 +119,22 @@ function ProductSearch() {
         setPaginationStart(paginationStart + 100);
     }
 
+    const isNextButtonDisabled = numProductsSelected < minProductsSelected || numProductsSelected > maxProductsSelected;
+
 	return (
         <div>
-            <Loading isLoading={isLoading} percent={loadingPercent} />
+            <Loading isLoading={isLoading} percent={loadingPercent} size={200} strokeWidth={12} />
             <div className="fixed-buttons-container">
                 <div className="fixed-buttons">
-                    <Button
+                    <button
                         onClick={() => navigate(routes.home)}
-                        type="primary" size="large" ghost className="primary-button primary-button-size"
-                    >Cancel</Button>
-                    <Button
-                        disabled={numProductsSelected < minProductsSelected || numProductsSelected > maxProductsSelected}
+                        className="primary-button-inverted primary-button-size"
+                    >Cancel</button>
+                    <button
+                        disabled={isNextButtonDisabled}
                         onClick={() => setIsFeaturePriorityModalOpen(true)}
-                        type="primary" size="large" className="primary-button primary-button-size disabled-button-background"
-                    >Next</Button>
+                        className={`${isNextButtonDisabled ? "disabled-button" : "primary-button"} primary-button-size`}
+                    >Next</button>
                 </div>
             </div>
             <div className="page-margin">
@@ -194,10 +195,10 @@ function ProductSearch() {
                 </div>
 
                 <br/>
-                {productData.length > 0 && <Button
+                {productData.length > 0 && <button
                     onClick={handleLoadMoreProducts}
-                    type="primary" size="large" className="alternative-button primary-button-size center-button"
-                >Load more</Button>}
+                    className="alternative-button primary-button-size center-button"
+                >Load more</button>}
                 <Footer />
             </div>
         </div>

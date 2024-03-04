@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { Button } from "antd";
 
 import "./Comparisons.css";
 
@@ -94,10 +93,10 @@ function Comparisons() {
                 <br/>
                 <RecommendationTable recommendations={showMoreRecommendations ? recommendations : recommendations.slice(0, numDisplayed)} />
                 <br/>
-                <Button
+                <button
                     onClick={() => setShowMoreRecommendations(!showMoreRecommendations)}
-                    type="primary" size="large" className="alternative-button primary-button-size center-button"
-                >{showMoreRecommendations ? "Show less" : "Show more"}</Button>
+                    className="alternative-button primary-button-size center-button"
+                >{showMoreRecommendations ? "Show less" : "Show more"}</button>
             </div>
 
             <br/>
