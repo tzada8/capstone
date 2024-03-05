@@ -44,13 +44,59 @@ class Recommendation:
                 for pair in pairs:
                     upc_master_list[pair.get("upc")] = master_list.get(str(pair.get("sku")))
                 return [upc_master_list, len(trending.get("results")), len(most_popular.get("results"))]
+            
+    @staticmethod
+    def _extract_product_features(product: Dict, key: str, return_value):
+        filtered = list(filter(lambda spec: spec["name"] == key, product.get("specifications")))
+        if len(filtered) == 0:
+            return return_value
+        else:
+            if key in ["Effective Pixels", "Number of Megapixels"]:
+                result = re.findall(r'\d+\.?\d+?', filtered[0].get("value"))
+                if len(result) > 0:
+                    return float(result[0])
+                else:
+                    return return_value
+            elif key in ["Lens Type", "Camera Lens Type"]:
+                types = []
+                if "Standard Zoom" == filtered[0].get("value") or "Zoom Lens" == filtered[0].get("value") or "EF-S-Mount" in filtered[0].get("value"):
+                    types.append("standard")
+                elif "Zoom" == filtered[0].get("value") or "Digital Zoom" == filtered[0].get("value"):
+                    types.append("fixed")
+                else:
+                    types.append(filtered[0].get("value").lower())
+                return types
+            elif key == "Digital Camera Type":
+                return filtered[0].get("value").lower().replace(" ", "-")
+            else:
+                return filtered[0].get("value").lower()
+
+    @staticmethod
+    def _extract_price(product: Dict):
+        if product.get("basic_info").get("price").get("amount") is None:
+            return 10000.00
+        else:
+            return float(product.get("basic_info").get("price", {}).get("amount"))
 
     @staticmethod
     def _model(preferences: Dict, importance: Dict, selected_products: List, master_list: Dict, max_list_length: int) -> List:
-        importance_inv = {v: int(k) for k, v in importance.items()}
         max_rank = len(selected_products) + 1
         max_master_list_rank = max_list_length + 2
         recommendations = []
+        NUM_FEATURES = 6
+    
+        # Prepare importance dictionary.
+        importance_inv = {v: float(k) for k, v in importance.items() if v != ""}
+        if len(importance_inv) != NUM_FEATURES:
+            features = {"brand", "megapixels", "lens_type", "camera_type", "budget", "product_rating"}
+            ranked_features = {v for v in importance.values()}
+            unranked_features = features - ranked_features
+            sum_no_value = 0
+            for key, value in importance.items():
+                if value == "":
+                    sum_no_value += int(key)
+            for f in unranked_features:
+                importance_inv[f] = sum_no_value / len(unranked_features)            
         
         for p in selected_products:
             # Finalize product ranks.
@@ -66,45 +112,33 @@ class Recommendation:
 
             # Get proper feature keys.
             if p.get("basic_info").get("source") == "Best Buy":
-                pixels_key = "Effective Pixels"
+                megapixels_key = "Effective Pixels"
                 lens_type_key = "Lens Type"
             if p.get("basic_info").get("source") == "Walmart":
-                pixels_key = "Number of Megapixels"
+                megapixels_key = "Number of Megapixels"
                 lens_type_key = "Camera Lens Type"
 
             # Get actual feature values of product.
-            brand = list(filter(lambda spec: spec["name"] == "Brand", p.get("specifications")))
-            actual_brand = "" if len(brand) == 0 or brand[0].get("value") == "" else brand[0].get("value")
+            actual_brand = Recommendation._extract_product_features(p, "Brand", "")
+            actual_megapixels = Recommendation._extract_product_features(p, megapixels_key, 0.0)
+            actual_lens_type = Recommendation._extract_product_features(p, lens_type_key, [])
+            actual_camera_type = Recommendation._extract_product_features(p, "Digital Camera Type", "")
+            actual_price = Recommendation._extract_price(p)
 
-            megapixels = list(filter(lambda spec: spec["name"] == pixels_key, p.get("specifications")))
-            actual_megapixels = 0 if len(megapixels) == 0 or megapixels[0].get("value") == "" else int(re.findall(r'\d+', megapixels[0].get("value"))[0])
-
-            lens_type = list(filter(lambda spec: spec["name"] == lens_type_key, p.get("specifications")))
-            actual_lens_type = "" if len(lens_type) == 0 or lens_type[0].get("value") == "" else lens_type[0].get("value")
-
-            camera_type = list(filter(lambda spec: spec["name"] == "Digital Camera Type", p.get("specifications")))
-            actual_camera_type = "" if len(camera_type) == 0 or camera_type[0].get("value") == "" else camera_type[0].get("value")
-
-            actual_price = 10000.00 if p.get("basic_info").get("price").get("amount") is None else float(p.get("basic_info").get("price", {}).get("amount"))
-            # Best Buy Point & Shoot Cameras do not have a lens type feature
-            actual_lens_type = "Fixed" if p.get("basic_info").get("source") == "Best Buy" and actual_camera_type == "Point and Shoot Cameras" else actual_lens_type
+            # Point & Shoot and Compact Cameras have fixed lenses
+            if "point-and-shoot" in actual_camera_type or "compact" in actual_camera_type:
+                actual_lens_type.append("fixed")
 
             # Calculate difference between actual and desired values. 
-            # TODO: Verify all answer options!
-            # Brand: [Canon, Nikon, Other]
-            if preferences.get("brand") in ["Canon", "Nikon"]:
+            # Brand: ["canon", "nikon", ""]
+            if preferences.get("brand") in ["canon", "nikon"]:
                 brand_diff = 0 if actual_brand == preferences.get("brand") else 1
-            elif preferences.get("brand") == "Other":
-                brand_diff = 0 if actual_brand not in ["Canon", "Nikon"] else 1
-            else: # If no option is selected.
+            else: # If no preference.
                 brand_diff = 0
 
-            # Megapixels: [<15, 15-30, 30-45, >45]
+            # Megapixels: ["<15", "15-30", "30-45", ">45", ""]
             # TODO: More megapixels are better?
-            if preferences.get("megapixels") is None: # If no option is selected.
-                lower_bound = 0
-                upper_bound = 10000
-            elif "-" in preferences.get("megapixels"):
+            if "-" in preferences.get("megapixels"):
                 lower_bound = int(preferences.get("megapixels")[:preferences.get("megapixels").index("-")])
                 upper_bound = int(preferences.get("megapixels")[preferences.get("megapixels").index("-") + 1:])
             elif "<" in preferences.get("megapixels"):
@@ -113,42 +147,49 @@ class Recommendation:
             elif ">" in preferences.get("megapixels"):
                 lower_bound = int(preferences.get("megapixels")[:preferences.get("megapixels").index(">")])
                 upper_bound = 10000
+            else: # If no preference.
+                lower_bound = 0
+                upper_bound = 10000
             if actual_megapixels >= lower_bound and actual_megapixels <= upper_bound:
                 megapixels_diff = 0
             else:
                 megapixels_diff = 1
 
-            # Lens: [Fixed, Standard, Other]
-            # TODO: Check if Walmart works with this. (Fixed = Digital Zoom)
-            if preferences.get("lens_type") in ["Fixed", "Standard"]: 
-                lens_type_diff = 0 if preferences.get("lens_type") in actual_lens_type else 1
-            elif preferences.get("lens_type") == "Other":
-                lens_type_diff = 0 if actual_lens_type not in ["Fixed", "Standard"] else 1
-            else: # If no option is selected.
+            # Lens: ["fixed", "standard", ""]
+            if preferences.get("lens_type") in ["fixed", "standard"]: 
+                if preferences.get("lens_type") in actual_lens_type:
+                    lens_type_diff = 0
+                else:
+                    lens_type_diff = 1
+            else: # If no preference.
                 lens_type_diff = 0
 
-            # Camera Type: [Point and Shoot, DSLR, Mirrorless, Other]
-            # TODO: Check this more with potential types from Best Buy and Walmart.
-            if preferences.get("camera_type") in ["Point and Shoot", "DSLR", "Mirrorless"]: 
-                camera_type_diff = 0 if preferences.get("camera_type").split(' ', 1)[0] in actual_camera_type else 1
-            elif preferences.get("camera_type") == "Other":
-                camera_type_diff = 0 if actual_camera_type.split(' ', 1)[0] not in ["Point", "DSLR", "Mirrorless"] else 1
-            else: # If no option is selected.
+            # Camera Type: ["point-and-shoot", "dslr", "mirrorless", ""]
+            if preferences.get("camera_type") in ["point-and-shoot", "dslr", "mirrorless"]: 
+                if preferences.get("camera_type") in actual_camera_type:
+                    camera_type_diff = 0
+                else:
+                    camera_type_diff = 1
+            else: # If no preference.
                 camera_type_diff = 0
 
-            # Budget: [<750, 750-1500, >1500]
-            if preferences.get("budget") is None: # If no option is selected.
-                upper_bound = 10000
+            # Budget: ["<750", "750-1500", ">1500", ""]
+            if preferences.get("budget") in [">1500", ""]:
+                upper_bound = 10000.00
             elif "-" in preferences.get("budget"):
                 upper_bound = int(preferences.get("budget")[preferences.get("budget").index("-") + 1:])
-            elif "<" in preferences.get("budget"):
+            else:
                 upper_bound = int(preferences.get("budget")[preferences.get("budget").index("<") + 1:])
-            else: # >1500
-                upper_bound = 10000
             if actual_price <= upper_bound:
                 price_diff = 0
             else:
                 price_diff = 1
+
+            # Rating
+            if p.get("basic_info").get("rating") is not None:
+                rating = (1 - (p.get("basic_info").get("rating") / 5))
+            else:
+                rating = 1
 
             # Calculate weights of each feature.
             weights = {
@@ -157,6 +198,7 @@ class Recommendation:
                 "lens_type": lens_type_diff * importance_inv.get("lens_type"),
                 "camera_type": camera_type_diff * importance_inv.get("camera_type"),
                 "budget": price_diff * importance_inv.get("budget"),
+                "rating": rating * importance_inv.get("product_rating")
             }
             # Sum all weights.
             pref_score = sum(weights.values())
@@ -164,8 +206,7 @@ class Recommendation:
             # TODO: Verify the weights.
             rank_weight = 0.25
             pref_weight = 0.75
-            worst_score = pref_weight * sum(range(1, 6)) + rank_weight * (max_master_list_rank + max_rank * 2)
-
+            worst_score = pref_weight * sum(range(1, NUM_FEATURES + 1)) + rank_weight * (max_master_list_rank + max_rank * 2)
             # Prepare all products for table.
             recommendations.append({
                 "product_id": p.get("basic_info").get("product_id"),
