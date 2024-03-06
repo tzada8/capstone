@@ -16,6 +16,11 @@ class BestBuyProduct:
         search = requests.get(f"https://api.bestbuy.com/v1/products(sku={params.get('product_id')})?apiKey={params.get('api_key')}&show=customerReviewAverage,customerReviewCount,customerTopRated,details.name,details.value,image,manufacturer,modelNumber,name,regularPrice,sku,upc,url&pageSize=10&format=json")
         results = search.json()
 
+        S = ["Autofocus", "In-Lens Image Stabilization", "Digital Camera Type", "Lens Model Number", "Memory Card Compatibility",
+             "Screen Size", "Integrated Flash", "Effective Pixels", "Product Depth", "Product Width", "Product Weight",
+             "Brand", "Lens Type", "Digital Zoom", "Color", "Shooting Modes", "Product Height", "Maximum Aperture", 
+             "Maximum Focal Length", "Scene Modes"]
+
         if "error" in results or results.get("total") == 0:
             return {
                 "basic_info": {
@@ -48,7 +53,7 @@ class BestBuyProduct:
                     "source": "Best Buy",
                 },
                 "specifications": [
-                    { "name": s.get("name"), "value": s.get("value") } for s in spec_highlights
+                    { "name": s.get("name"), "value": s.get("value") } for s in spec_highlights if s.get("name") in S
                 ],
             }
         
@@ -72,7 +77,7 @@ class BestBuyProduct:
         if results.get('total') == 0:
             return {
                 "reviews": {
-                    "error": "No reviews exist for provided id.",
+                    "error": "The product has no reviews.",
                 }
             }
         else:
@@ -111,7 +116,7 @@ class BestBuyProduct:
             if len(reviews) == 0:
                 return {
                     "reviews": {
-                        "error": "No reviews exist for provided id.",
+                        "error": "The product has no reviews.",
                     }
                 }
             else:

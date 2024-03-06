@@ -38,10 +38,7 @@ class TestBestBuyProduct(unittest.TestCase):
                 },
                 "source": "Best Buy",
             },
-            "specifications": [
-                {"name": "Colour", "value": "Red"},
-                {"name": "Size", "value": "Small"},
-            ]
+            "specifications": []
         }
         self.assertEqual(result, expected)
 
@@ -112,13 +109,13 @@ class TestBestBuyProduct(unittest.TestCase):
     def test_product_reviews_search_id_does_not_exist(self):
         self.mock_search.return_value = no_products_returned
         result = BestBuyProduct._product_reviews("AAAAA")
-        expected = {"reviews": {"error": "No reviews exist for provided id."}}
+        expected = {"reviews": {"error": "The product has no reviews."}}
         self.assertEqual(result, expected)
 
     def test_product_reviews_id_does_not_exist(self):
         self.mock_search.side_effect = [all_products_returned, product_reviews_nonexistent]
         result = BestBuyProduct._product_reviews("AAAAA")
-        expected = {"reviews": {"error": "No reviews exist for provided id."}}
+        expected = {"reviews": {"error": "The product has no reviews."}}
         self.assertEqual(result, expected)
 
     def test_aggregate_data_id_exists(self):
@@ -144,10 +141,7 @@ class TestBestBuyProduct(unittest.TestCase):
                 },
                 "source": "Best Buy",
             },
-            "specifications": [
-                {"name": "Colour", "value": "Red"},
-                {"name": "Size", "value": "Small"},
-            ],
+            "specifications": [],
             "reviews": {
                 "ratings": [
                     {"count": 1, "stars": 1},
