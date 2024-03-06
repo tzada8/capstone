@@ -22,6 +22,7 @@ product_reviews_exists = {
         {"text": "Okay"},
         {"text": "Terrible"},
         {"text": "The best"},
+        {"text": None}
     ],
     "extra_info": {
         "field1": "Not included",
