@@ -83,7 +83,7 @@ class WalmartProduct:
                         "text": top_negative.get("text"),
                         "rating": top_negative.get("rating"),
                     },
-                    "reviews": [r.get("text") for r in reviews],
+                    "reviews": [r.get("text") for r in reviews if r.get("text") is not None],
                 }
             }
 
