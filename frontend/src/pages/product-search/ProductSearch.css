@@ -26,12 +26,11 @@
 }
 
 .num-selected {
-    margin-right: 15%;
     text-align: right;
 }
 
 .min-selection {
-    color: var(--DARK-BLUE);
+    color: var(--PRIMARY-BLUE);
 }
 
 .picked-for-you, .all-products {

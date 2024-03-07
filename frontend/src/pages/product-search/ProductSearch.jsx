@@ -142,26 +142,28 @@ function ProductSearch() {
 
                 <Navbar isComparisonNav={false} />
 
-                <h1 className="center-text max-width-heading">Select products to compare</h1>
-                <p className="body-1 center-text max-width-body">
-                    Obtain recommendations for the products you select you will like most using a likeability rating based off of your learned preferences and aggregated product reviews
-                </p>
+                <h1 className="center-text max-width-heading">Compare products</h1>
+                <br/>
                 <div className="search-and-selected">
-                    <SearchBar
-                        isButtonInsideBar={true}
-                        onSearchSubmit={onSearchSubmit}
-                        query={searchQuery}
-                        setQuery={setSearchQuery}
-                    />
-                    <p className={`body-1-medium num-selected ${numProductsSelected < minProductsSelected ? "" : "min-selection"}`}>
+                    <p className="body-1">
+                        <span className="body-1-bold">Select 3 or more</span> products to compare predicted likability and details
+                    </p>
+                    <p className="body-1-medium num-selected min-selection">
                         {numProductsSelected} Selected
                     </p>
                 </div>
+                <SearchBar
+                    isButtonInsideBar={true}
+                    onSearchSubmit={onSearchSubmit}
+                    query={searchQuery}
+                    setQuery={setSearchQuery}
+                />
 
                 <br/>
                 <div>
                     <h4>Picked for you</h4>
                     <p className="body-1 max-width-body">Based on how much you liked previous recommendation rankings and answers to question</p>
+                    <br/>
                     <div className="picked-for-you">
                         {productData.slice(0, numPickedForYou).map(product => (
                             <ProductOption
@@ -173,9 +175,11 @@ function ProductSearch() {
                     </div>
                 </div>
                 <br/>
+                <br/>
 
                 <div>
                     <h4>All products</h4>
+                    <br/>
                     <div className="all-products">
                         {mainSelectedProducts.map(product => (
                             <ProductOption
