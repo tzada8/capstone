@@ -12,7 +12,7 @@ function PreferencesModal({ onSubmit, isOpen, onClose }) {
             options: [
                 { value: "canon", display: "Canon" },
                 { value: "nikon", display: "Nikon" },
-                { value: "brand-no-preference", display: "No preference" },
+                { value: "brand-no-preference", display: "Not listed / No preference" },
             ]
         },
         megapixels: {
@@ -23,7 +23,7 @@ function PreferencesModal({ onSubmit, isOpen, onClose }) {
                 { value: "15-30", display: "15-30" },
                 { value: "30-45", display: "30-45" },
                 { value: ">45", display: ">45" },
-                { value: "megapixels-no-preference", display: "No preference" },
+                { value: "megapixels-no-preference", display: "Not listed / No preference" },
             ]
         },
         lens_type: {
@@ -32,7 +32,7 @@ function PreferencesModal({ onSubmit, isOpen, onClose }) {
             options: [
                 { value: "fixed", display: "Fixed" },
                 { value: "standard", display: "Standard" },
-                { value: "lens_type-no-preference", display: "No preference" },
+                { value: "lens_type-no-preference", display: "Not listed / No preference" },
             ]
         },
         camera_type: {
@@ -42,7 +42,7 @@ function PreferencesModal({ onSubmit, isOpen, onClose }) {
                 { value: "point-and-shoot", display: "Point and Shoot" },
                 { value: "dslr", display: "DSLR" },
                 { value: "mirrorless", display: "Mirrorless" },
-                { value: "camera_type-no-preference", display: "No preference" },
+                { value: "camera_type-no-preference", display: "Not listed / No preference" },
             ]
         },
         budget: {
