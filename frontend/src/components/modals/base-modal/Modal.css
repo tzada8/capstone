@@ -7,7 +7,7 @@
 }
 
 .modal {
-    max-width: 60%;
+    width: 35%;
     max-height: 90%;
     padding: 2.5rem;
     border: 0;
@@ -39,4 +39,18 @@
 
 .form-extra-title-spacing {
     margin-bottom: 10px;
+}
+
+/* SMALL SCREEN */
+@media screen and (max-width: 1200px) {
+    .modal {
+        width: 60%;
+    }
+}
+
+/* SMALLEST SCREEN */
+@media screen and (max-width: 800px) {
+	.modal {
+        width: 80%;
+    }
 }
