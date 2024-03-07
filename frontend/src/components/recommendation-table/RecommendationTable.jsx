@@ -13,7 +13,7 @@ function RecommendationTable(props) {
                     <th>Item</th>
                     <th>Price</th>
                     <th>Source</th>
-                    <th>Score <Tooltip content={scoreDescription}/></th>
+                    <th>Score (out of 5) <Tooltip content={scoreDescription}/></th>
                 </tr>
             </thead>
             <tbody>
