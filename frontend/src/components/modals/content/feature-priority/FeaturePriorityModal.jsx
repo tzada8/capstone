@@ -11,7 +11,7 @@ function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
         { value: "lens_type", display: "Lens type" },
         { value: "camera_type", display: "Camera type" },
         { value: "budget", display: "Budget" },
-        { value: "product_rating", display: "Product Rating" },
+        { value: "product_rating", display: "Peer reviews and ratings" },
     ]);
     const dragFeature = useRef(0);
     const draggedOverFeature = useRef(0);
@@ -41,7 +41,7 @@ function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
 	return (
         <Modal
             title="Priority of features"
-            description="Rank the features from highest to least importance to you"
+            description="Drag and drop to rank features from highest to lowest importance to you"
             onSubmit={handleSubmit}
             isOpen={isOpen}
             onClose={onClose}
@@ -49,7 +49,7 @@ function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
             <form onSubmit={handleSubmit}>
                 {featurePriority.map((feature, index) => (
                     <div className="form-row-select">
-                        <p className="body-1-medium select-label-question">{String(index + 1)}.</p>
+                        <p className="body-1-medium select-label-question">{String(index + 1)}</p>
                         <div
                             className="select-label"
                             draggable
