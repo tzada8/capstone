@@ -26,6 +26,7 @@ function ProductSearch() {
     const allSelectedProducts = [...mainSelectedProducts, ...currentSelectedProducts];
     const numProductsSelected = mainSelectedProducts.length + currentSelectedProducts.length;
 
+    const [showRecommendations, setShowRecommendations] = useState(null);
     const [preferencesModalData, setPreferencesModalData] = useState(null);
     const [isFeaturePriorityModalOpen, setIsFeaturePriorityModalOpen] = useState(false);
 
@@ -37,6 +38,7 @@ function ProductSearch() {
             selectedProducts: await fullSelectedProducts(),
             preferences: preferencesModalData,
             featurePriority: featurePriority,
+            "showRecommendations": showRecommendations,
         }})
     }
 
@@ -78,7 +80,9 @@ function ProductSearch() {
     useEffect(() => {
         const q = location.state === null ? "" : location.state.query;
         const preferences = location.state === null ? null : location.state.preferences;
+        const showRecommendations = location.state === null ? null : location.state.showRecommendations;
         setPreferencesModalData(preferences);
+        setShowRecommendations(showRecommendations);
         _searchProductsHelper(q);
     }, [location.state, _searchProductsHelper]);
 
@@ -128,7 +132,7 @@ function ProductSearch() {
                     >Cancel</button>
                     <button
                         disabled={isNextButtonDisabled}
-                        onClick={() => setIsFeaturePriorityModalOpen(true)}
+                        onClick={() => showRecommendations ? setIsFeaturePriorityModalOpen(true) : toComparisons()}
                         className={`${isNextButtonDisabled ? "disabled-button" : "primary-button"} primary-button-size`}
                     >Next</button>
                 </div>
@@ -159,8 +163,8 @@ function ProductSearch() {
                     setQuery={setSearchQuery}
                 />
 
-                <br/>
-                <div>
+                {showRecommendations && <div>
+                    <br/>
                     <h4>Picked for you</h4>
                     <p className="body-1 max-width-body">Based on how much you liked previous recommendation rankings and answers to question</p>
                     <br/>
@@ -173,12 +177,12 @@ function ProductSearch() {
                             />
                         ))}
                     </div>
-                </div>
-                <br/>
-                <br/>
+                    <br/>
+                    <br/>
+                </div>}
 
                 <div>
-                    <h4>All products</h4>
+                    {productData.length > 0 && <h4>All products</h4>}
                     <br/>
                     <div className="all-products">
                         {mainSelectedProducts.map(product => (
