@@ -27,6 +27,7 @@ function ProductSearch() {
     const numProductsSelected = mainSelectedProducts.length + currentSelectedProducts.length;
 
     const [showRecommendations, setShowRecommendations] = useState(null);
+    const [isPreferencesSkipped, setIsPreferencesSkipped] = useState(null);
     const [preferencesModalData, setPreferencesModalData] = useState(null);
     const [isFeaturePriorityModalOpen, setIsFeaturePriorityModalOpen] = useState(false);
 
@@ -81,8 +82,10 @@ function ProductSearch() {
         const q = location.state === null ? "" : location.state.query;
         const preferences = location.state === null ? null : location.state.preferences;
         const showRecommendations = location.state === null ? null : location.state.showRecommendations;
+        const isPreferencesSkipped = location.state === null ? null : location.state.isPreferencesSkipped;
         setPreferencesModalData(preferences);
         setShowRecommendations(showRecommendations);
+        setIsPreferencesSkipped(isPreferencesSkipped);
         _searchProductsHelper(q);
     }, [location.state, _searchProductsHelper]);
 
@@ -163,7 +166,7 @@ function ProductSearch() {
                     setQuery={setSearchQuery}
                 />
 
-                {showRecommendations && <div>
+                {showRecommendations && !isPreferencesSkipped && <div>
                     <br/>
                     <h4>Picked for you</h4>
                     <p className="body-1 max-width-body">Based on how much you liked previous recommendation rankings and answers to question</p>

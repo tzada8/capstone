@@ -15,18 +15,20 @@ function Home() {
     const [isPreferencesModalOpen, setIsPreferencesModalOpen] = useState(false);
 
     const navigate = useNavigate();
-    const toProductSearch = (showRecommendations, preferencesModalData) => {
+    const toProductSearch = (showRecommendations, preferencesModalData, isPreferencesSkipped) => {
         navigate(routes.productSearch, {state: {
             query: searchQuery,
             preferences: preferencesModalData,
             "showRecommendations": showRecommendations,
+            "isPreferencesSkipped": isPreferencesSkipped,
         }})
     }
 
     const handlePreferencesModalSubmit = (data) => {
         setIsPreferencesModalOpen(false);
-        Object.keys(data).forEach(k => data[k] = data[k].includes("no-preference") ? "" : data[k])
-        toProductSearch(true, data);
+        Object.keys(data).forEach(k => data[k] = data[k].includes("no-preference") ? "" : data[k]);
+        const isPreferencesSkipped = Object.values(data).every(v => v === "");
+        toProductSearch(true, data, isPreferencesSkipped);
     }
 
 	return (
