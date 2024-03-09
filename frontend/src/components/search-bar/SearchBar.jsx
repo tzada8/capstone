@@ -19,7 +19,7 @@ function SearchBar(props) {
                     type="text"
                     onChange={e => props.setQuery(e.target.value)}
                     value={props.query}
-                    placeholder="Search for a product"
+                    placeholder="Search for a camera"
                 />
                 {props.isButtonInsideBar ? (
                     <button className="search-icon" type="submit"><SearchOutlined /></button>

@@ -17,7 +17,7 @@ describe("RecommendationTable", () => {
         expect(getByText("Item")).toBeInTheDocument();
         expect(getByText("Price")).toBeInTheDocument();
         expect(getByText("Source")).toBeInTheDocument();
-        expect(getByText("Score")).toBeInTheDocument();
+        expect(getByText("Score (out of 5)")).toBeInTheDocument();
 
         recommendations.forEach((product, i) => {
             expect(getByText((content, element) => {

@@ -93,10 +93,10 @@ function Comparisons() {
                 <br/>
                 <RecommendationTable recommendations={showMoreRecommendations ? recommendations : recommendations.slice(0, numDisplayed)} />
                 <br/>
-                <button
+                {recommendations.length > numDisplayed && <button
                     onClick={() => setShowMoreRecommendations(!showMoreRecommendations)}
                     className="alternative-button primary-button-size center-button"
-                >{showMoreRecommendations ? "Show less" : "Show more"}</button>
+                >{showMoreRecommendations ? "Show less" : "Show more"}</button>}
             </div>
 
             <br/>

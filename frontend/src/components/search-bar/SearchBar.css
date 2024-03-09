@@ -2,19 +2,20 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin: 3% 0;
 }
 
 .search-container-inside {
     background: var(--OFF-WHITE);
-    justify-content: left;
-    width: 100%;
     border: 1px solid var(--GREY);
+    width: 100%;
+    justify-content: left;
+    margin: 1% 0 3% 0;
     border-radius: 8px;
 }
 
 .search-container-outside {
     justify-content: center;
+    margin: 3% 0;
 }
 
 .search-input-outside, .search-input-inside {
