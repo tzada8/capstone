@@ -18,9 +18,8 @@ function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
 
     const handleSort = () => {
         const featurePriorityClone = [...featurePriority];
-        const temp = featurePriorityClone[dragFeature.current];
-        featurePriorityClone[dragFeature.current] = featurePriorityClone[draggedOverFeature.current];
-        featurePriorityClone[draggedOverFeature.current] = temp;
+        const movedFeature = featurePriorityClone.splice(dragFeature.current, 1)[0];
+        featurePriorityClone.splice(draggedOverFeature.current, 0, movedFeature);
         setFeaturePriority(featurePriorityClone);
     }
 
