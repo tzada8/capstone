@@ -1,307 +1,299 @@
 dummy_product = {
   "basic_info": {
     "badges": {
-      "bestseller": True,
-      "customer_pick": True
+      "top_rated": True
     },
-    "images": [
-      "https://i5.walmartimages.com/seo/NBD-Digital-Camera-4K-Ultra-HD-48MP-All-in-One-Vlogging-Camera-with-Wide-Angle-Lens-Digital-Zoom-16x-and-3-Screen_300b4cc7-e65e-4850-a491-19f07f8a1ef1.39cbaeaa46077b51ccf0456ea3a0d097.jpeg",
-      "https://i5.walmartimages.com/asr/0d6e9189-ebe0-4c3c-b709-ad1b09e92706.99c666dd73f279d0a7042ca07772b729.jpeg",
-      "https://i5.walmartimages.com/asr/a725df47-fc5e-4e98-95df-9a58b9ed69e1.a75b1db482adb36bc8506ccbce5cdb80.jpeg",
-      "https://i5.walmartimages.com/asr/4f40b5cd-43ad-4324-a035-aa32ebeb1613.4e7b8c7f0c11007ce579111ca5a8ecc6.jpeg",
-      "https://i5.walmartimages.com/asr/929c185b-ec20-497f-a6cd-d0b9250b547f.4dad44a778c6706b2288c5e8ab2310eb.jpeg",
-      "https://i5.walmartimages.com/asr/087901e5-1282-4b51-a1e9-ddddd52d0a2d.9d1fa5a59ae49328b9e2566b9001e38c.jpeg"
-    ],
+    "images": ["https://pisces.bbystatic.com/prescaled/500/500/image2/BestBuy_US/images/products/6522/6522416_sd.jpg"],
+    "manufacturer": "Sony",
+    "model_number": "ZV1F/B",
     "price": {
-      "amount": 149.96,
+      "amount": 499.99,
       "currency": "USD"
     },
-    "product_id": "6ZCFKLGNEOAS",
-    "product_page_url": "https://www.walmart.com/ip/NBD-Digital-Camera-4K-Ultra-HD-48MP-All-in-One-Vlogging-Camera-with-Wide-Angle-Lens-Digital-Zoom-16x-and-3-Screen/711035416",
-    "rating": 3.8,
-    "source": "Walmart",
-    "title": "NBD Digital Camera 4K Ultra HD 48MP All-in-One Vlogging Camera with Wide Angle Lens, Digital Zoom 16x and 3\" Screen",
-    "total_reviews": 1058,
-    "upc": "",
-    "us_item_id": "711035416"
-  },
-  "expert_review": {
-    "error": "The review for this product does not exist.",
-    "product": "NBD Digital Camera 4K Ultra HD 48MP All-in-One Vlogging Camera with Wide Angle Lens, Digital Zoom 16x and 3\" Screen"
+    "product_id": 6522416,
+    "product_page_url": "https://api.bestbuy.com/click/-/6522416/pdp",
+    "rating": 4.6,
+    "source": "Best Buy",
+    "title": "Sony - ZV-1F Vlog Camera for Content Creators and Vloggers - Black",
+    "total_reviews": 634,
+    "upc": "027242926288",
+    "us_item_id": ""
   },
   "reviews": {
+    "expert_review": {
+      "link": None,
+      "review": "A 20-megapixel camera from Sony with a 1-inch sensor and a 3-inch LCD. ",
+      "score": "76/100",
+      "source": "Consumer Reports"
+    },
     "ratings": [
       {
-        "count": 223,
+        "count": 1,
         "stars": 1
       },
       {
-        "count": 56,
+        "count": 0,
         "stars": 2
       },
       {
-        "count": 70,
+        "count": 1,
         "stars": 3
       },
       {
-        "count": 99,
+        "count": 25,
         "stars": 4
       },
       {
-        "count": 610,
+        "count": 67,
         "stars": 5
       }
     ],
-    "summary": "Overall, the reviews for this camera are mixed. Some customers are satisfied with the quality and included accessories, finding it suitable for vlogging and basic photography needs. However, others express disappointment with the poor quality pictures, blurry images, and issues with the charging cable and SD card slot. Some customers feel misled by the advertised accessories and are frustrated with the lack of customer service and difficulty in returning the product. Despite some positive feedback on ease of use and construction, the general consensus is that this camera may not be worth the high price tag and does not meet the expectations of many customers.",
+    "summary": "Overall, the Sony ZV-1 camera receives high praise for its quality and ease of use, particularly for vloggers and beginners in videography and photography. Users appreciate its compact size, high-resolution video and picture quality, and versatility for various content creation purposes. The camera is commended for features such as quick setup, excellent autofocus, and user-friendly controls. While some note limitations such as battery life, zoom range, and the lack of a stabilizer, the majority of reviewers recommend the Sony ZV-1 for its quality, functionality, and portability, making it a popular choice for vloggers, content creators, and social media users.",
     "top_negative": {
       "rating": 1,
-      "text": "I am sorry but I am very disappointed with the camera. I charged the battery and put it in. It didn't come on so I tried to put in Sim card and I guess I put it in wrong and it disappeared in the camera somewhere. So I tried to take battery out the flap fell off. Now I am not the smartest person but, I have had cameras before and never had a problem.",
-      "title": "Problems from beginning"
+      "text": "Bought this mainly for the streamimg functionality but the power it takes through the USB isnt even enough to keep it charged while streaming! And the stream is even limited to 720p60 through the USB. This is just awful outdated charging technology. On a $900 camera i think its fair to expect it to be used in the use cases they advertise.",
+      "title": "Charging does not keep up"
     },
     "top_positive": {
       "rating": 5,
-      "text": "Camera came with everything listed. The bag is nice I love it! The extra lense is a great addition. I purchased to start my vlogging career lol and so the camera is perfect for that. I'm satisfied with the quality and this purchase.",
-      "title": "Satisfied"
+      "text": "Like most of us, I wear multiple hats at work.  One of those is shooting, editing, and directing promotional videos, training videos, and marketing products across multiple channels. I would not consider myself a true \u201cprofessional\u201d in the technical sense but the products I produce are and they have to be!  I shoot with portable action cameras, drones, stationary rigs and have been trending to even include an iPhone depending on the job (which is crazy to think they are that good these days). Too many cameras!!!!\n\nLast year, in an attempt to simplify, I got my first reach into the mirrorless vlog cameras with another brand but due to no image stability,  I kept going back to other cameras.  I was really hoping to have the \u201cone camera\u201d that could do it all for me.  AND I THINK I HAVE FOUND IT!!\n\nOut of the box I was shocked by how small a footprint it has\u2026I love that... the more I can do with one camera the better. Small footprint but a huge capacity in the quality and capability of this camera.\nI love how Sony laid out the User Interface.  The photo button is easy to feel and differentiate from the video button without having my eyes leave the shot.  I can grab a pic and move to video and back with touch only.  I really like that.  The menu button is easy and intuitive and the selector wheel both navigates left and right and up and down with a press to that respective corner and spins to flow through media or frame to frame depending on if you are playing a video back.  So handy and helpful.  \n\nThe screen is absolutely gorgeous and true to tone.  What I see on screen is what the video looks like on my monitors. Crisp and clear.  Skin tones are amazing! It\u2019s also a touch screen and you can navigate through all the menus or utilize it for a quick setting change.  The screen rotates firmly and confidently and makes a great monitor (which you can\u2019t do with a phone as easy and still have the image quality that the ZV-1M2 can give you).  I also absolutely love the red bar around the screen to let you know without mistake that you are rolling video.  So much better than a small blinking red light ect.  I also really appreciate the thought into the zoom lever\u2026very accessible and feels great to the touch but the part that really gets it for me is just how smooth and the speed they chose to assign to the zoom.  Not too fast and not too slow\u2026just what I would do in a post-production normally but now I can do it real time.  It\u2019s that professional touch that really makes this camera top-tier. \n\nThe audio quality was a tremendous surprise!  I mean I cannot believe just how good the audio is with just the native mic!  Exceptional.  Crips and clear with full tones. The video quality is by far the best I have seen.  The images are so crisp and clear even at 1080!  The 4 K is ridiculous good.\nI also really love the real-time autofocus tracking and eye tracking. The final huge win for me is Sony\u2019s Image stabilization with this camera.  It feels like it\u2019s on an expensive gimbal! Butter smooth!  Like an action camera but with the quality of a full-size rig!  So many creative features and modes to play with awesome slow motion and time-lapse for great transitions shots ect.  I really can\u2019t think of anything I don\u2019t love about this camera\u2026even the battery life is on point!  I LOVE this camera!!!  And for all the features 4K ect ect\u2026 I absolutely LOVE it because it makes my job easier\u2026 It makes my content look like a highly-paid production house made it. It\u2019s going to be my go-to camera for everything when it comes to content creation. Just amazing!\n\nNote: Be sure to buy the Sony Vlog creator kit.  Soon as I got the camera, I had to run up to BestBuy to get the Stick.  It\u2019s truly a must have with this camera!!!",
+      "title": "Sony's Gives You  the Perfect Shot with This One!"
     }
   },
   "specifications": [
     {
-      "name": "Features",
-      "value": "Supports 16x Digital Zoom"
-    },
-    {
-      "name": "Brand",
-      "value": "NBD"
-    },
-    {
-      "name": "Number of Megapixels",
-      "value": "48 MP"
-    },
-    {
-      "name": "Camera Lens Type",
-      "value": "Wide Angle"
-    },
-    {
       "name": "Digital Zoom",
-      "value": "16x"
+      "value": "4x"
     },
     {
-      "name": "Focal Length",
-      "value": "0"
+      "name": "Product Weight",
+      "value": "0.564 pounds"
     },
     {
-      "name": "Screen Size",
-      "value": "3\""
-    },
-    {
-      "name": "Resolution",
-      "value": "4096 x 2160"
-    },
-    {
-      "name": "Manufacturer Part Number",
-      "value": "0"
-    },
-    {
-      "name": "Model",
-      "value": "VIPRB-Digital Camera 4K Ultra HD 48MP"
-    },
-    {
-      "name": "Manufacturer",
-      "value": "NBD"
-    },
-    {
-      "name": "Format",
-      "value": "4K Ultra HD"
+      "name": "Autofocus",
+      "value": "Yes"
     },
     {
       "name": "Digital Camera Type",
-      "value": "DSLR Cameras"
+      "value": "Point and Shoot Cameras"
     },
     {
-      "name": "Assembled Product Dimensions (L x W x H)",
-      "value": "5.90 x 7.10 x 2.80 Inches"
+      "name": "Color",
+      "value": "Black"
+    },
+    {
+      "name": "Memory Card Compatibility",
+      "value": "Secure Digital Extended Capacity (SDXC)"
+    },
+    {
+      "name": "Product Width",
+      "value": "2.36 inches"
+    },
+    {
+      "name": "Screen Size",
+      "value": "3 inches"
+    },
+    {
+      "name": "Integrated Flash",
+      "value": "No"
+    },
+    {
+      "name": "Effective Pixels",
+      "value": "20.1 megapixels"
+    },
+    {
+      "name": "Product Depth",
+      "value": "4.15 inches"
+    },
+    {
+      "name": "Product Height",
+      "value": "1.83 inches"
+    },
+    {
+      "name": "Brand",
+      "value": "Sony"
     }
   ],
   "videos": [
     {
-      "channel_name": "UnboxWithMe",
-      "length": "3:47",
-      "link": "https://www.youtube.com/watch?v=-d0CJZL9IG8",
+      "channel_name": "Ben Johnson",
+      "length": "10:25",
+      "link": "https://www.youtube.com/watch?v=1qoHgeO6I6Y",
       "published_date": "1 year ago",
-      "thumbnail": "https://i.ytimg.com/vi/-d0CJZL9IG8/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLCqpxYF-jtBkUIKV1hTLMoHuR7ufA",
-      "title": "4k Digital Camera 48mp Camera Vlogging Camera Review UNDER $200",
-      "views": "112.3k"
+      "thumbnail": "https://i.ytimg.com/vi/1qoHgeO6I6Y/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCAPFZBbW3y78khv083XAwiKO-SFw",
+      "title": "Sony ZV1F - Watch This BEFORE You Buy!!",
+      "views": "153.9k"
     },
     {
-      "channel_name": "LIFE IS BEAUTIFUL NO MATTER THE COLOUR ",
-      "length": "16:46",
-      "link": "https://www.youtube.com/watch?v=Adp3K6K3vLg",
+      "channel_name": "iJustine",
+      "length": "10:22",
+      "link": "https://www.youtube.com/watch?v=dx-gJeB-WCQ",
       "published_date": "1 year ago",
-      "thumbnail": "https://i.ytimg.com/vi/Adp3K6K3vLg/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLBtpQbWbvWNDSPPZ7xGwVYTyshSpA",
-      "title": "I bought a NBD 4K 48MP Vlogging Digital Camera for under \u00a3150($200) #review",
-      "views": "31.5k"
+      "thumbnail": "https://i.ytimg.com/vi/dx-gJeB-WCQ/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCJHjnJODGEC01_TotJBlVIMnTAmA",
+      "title": "NEW Sony Vlogging Camera ZV-1F  Unboxing and review",
+      "views": "170.2k"
     },
     {
-      "channel_name": "David Le",
-      "length": "11:26",
-      "link": "https://www.youtube.com/watch?v=jjinx5iGIeE",
+      "channel_name": "Nicolas Chae",
+      "length": "10:30",
+      "link": "https://www.youtube.com/watch?v=zVBNnV_ZaD0",
       "published_date": "1 year ago",
-      "thumbnail": "https://i.ytimg.com/vi/jjinx5iGIeE/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLBG9valH6heILg-H_aZ0HI-tv4GpA",
-      "title": "I bought a $100 \u201c4K 48MP\u201d camera off Amazon..",
-      "views": "51.8k"
+      "thumbnail": "https://i.ytimg.com/vi/zVBNnV_ZaD0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA08c3BKGeqCQU9BXxwBY8wU38Gmg",
+      "title": "The ONLY Camera You Need for Content Creation in 2024",
+      "views": "354.8k"
     },
     {
-      "channel_name": "Kylie White",
-      "length": "15:53",
-      "link": "https://www.youtube.com/watch?v=OSEWUUb9jW0",
-      "published_date": "9 months ago",
-      "thumbnail": "https://i.ytimg.com/vi/OSEWUUb9jW0/hqdefault.jpg?sqp=-oaymwEjCOADEI4CSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLAm3GoMOPeQ-MEDk_MjDV1vayp2SA",
-      "title": "Reviewing The Monitech 4K 48MP Digital Camera",
-      "views": "32.5k"
-    },
-    {
-      "channel_name": "Blatant Reviews",
-      "length": "0:51",
-      "link": "https://www.youtube.com/watch?v=13zCwrJFkEk",
+      "channel_name": "Sony | Camera Channel",
+      "length": "3:13",
+      "link": "https://www.youtube.com/watch?v=RYyvHs8-wks",
       "published_date": "1 year ago",
-      "thumbnail": "https://i.ytimg.com/vi/13zCwrJFkEk/hq720_2.jpg?sqp=-oaymwE9COgCEMoBSFryq4qpAy8IARUAAAAAGAAlAADIQj0AgKJDeAHwAQH4AZQDgALQBYoCDAgAEAEYTSBaKGUwDw==&rs=AOn4CLDw5x-5T4odoBsHdf1t797HtYAzQA",
-      "title": "4K Camera For Only $89?!",
-      "views": "231.0k"
+      "thumbnail": "https://i.ytimg.com/vi/RYyvHs8-wks/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDIoY9sFChws-9wiik4NBIVf7_9mw",
+      "title": "Introducing vlog camera ZV-1F | Sony",
+      "views": "317.6k"
     },
     {
-      "channel_name": "Zack Hill",
-      "length": "4:17",
-      "link": "https://www.youtube.com/watch?v=Ofj91RNEljw",
-      "published_date": "2 years ago",
-      "thumbnail": "https://i.ytimg.com/vi/Ofj91RNEljw/hq720.jpg?sqp=-oaymwE9COgCEMoBSFryq4qpAy8IARUAAAAAGAElAADIQj0AgKJDeAHwAQH4Af4JgALQBYoCDAgAEAEYZSBBKEMwDw==&rs=AOn4CLBAX0NuMukUoLiAQGuXRRhIB7QtrQ",
-      "title": "48MP Digital Camera, 4K Camcorder Vlogging Camera Camcorder for YouTube Review, Comes with macro len",
-      "views": "129.6k"
+      "channel_name": "The Film Alliance",
+      "length": "10:36",
+      "link": "https://www.youtube.com/watch?v=bQeTl6y8pWo",
+      "published_date": "1 year ago",
+      "thumbnail": "https://i.ytimg.com/vi/bQeTl6y8pWo/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCh-RdDl_KYHQVqDGNc2-v46bYfeA",
+      "title": "Sony ZV-1F vs Sony ZV-1 || WATCH BEFORE YOU BUY!!",
+      "views": "208.7k"
     },
     {
-      "channel_name": "Think Media",
-      "length": "8:27",
-      "link": "https://www.youtube.com/watch?v=MCcvQ4LsWW4",
-      "published_date": "2 years ago",
-      "thumbnail": "https://i.ytimg.com/vi/MCcvQ4LsWW4/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLDDPOSJpGW6n6h510g3W6PXiROrLw",
-      "title": "I Used The Worlds WORST Camera (And YOU Didn't Notice)",
-      "views": "992.9k"
+      "channel_name": "Sia M Tarawallie",
+      "length": "10:47",
+      "link": "https://www.youtube.com/watch?v=ERhxoxyy2qM",
+      "published_date": "8 months ago",
+      "thumbnail": "https://i.ytimg.com/vi/ERhxoxyy2qM/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCAI-6J-P4JK-L6kwqcjHkUfRQB6A",
+      "title": "Sony ZV-1F: Ultimate Beginner Vlogging Setup Guide",
+      "views": "46.1k"
     },
     {
-      "channel_name": "bigtb1717",
-      "length": "9:06",
-      "link": "https://www.youtube.com/watch?v=BNCrrx0BGfU",
-      "published_date": "2 years ago",
-      "thumbnail": "https://i.ytimg.com/vi/BNCrrx0BGfU/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLDv-0GYQbw8coOmsZICVHMvnGz8Gg",
-      "title": "Cheap Vlogging Cam From Amazon - Kenuo 4K, 48MP",
-      "views": "29.7k"
+      "channel_name": "Sofia Elise ",
+      "length": "7:34",
+      "link": "https://www.youtube.com/watch?v=pdJBuWDc3wM",
+      "published_date": "8 months ago",
+      "thumbnail": "https://i.ytimg.com/vi/pdJBuWDc3wM/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBrkl6UnyrUZSifoWYWHoQOYFaiRA",
+      "title": "buying my first camera \u2661 | sony zv1f + unboxing",
+      "views": "13.9k"
     },
     {
-      "channel_name": "Our Favorite Things Reviewed",
-      "length": "8:51",
-      "link": "https://www.youtube.com/watch?v=lzcpj-ey4bA",
-      "published_date": "4 months ago",
-      "thumbnail": "https://i.ytimg.com/vi/lzcpj-ey4bA/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLDm7Yd6ZKo_psx5HU7Tt8BBH_3DYQ",
-      "title": "Saneen 4k Vlogging Camera | Full Photo/Video/Audio Demo + Review",
-      "views": "9.3k"
+      "channel_name": "Tech Through The Lens",
+      "length": "9:15",
+      "link": "https://www.youtube.com/watch?v=BsLMg_TuAXo",
+      "published_date": "1 year ago",
+      "thumbnail": "https://i.ytimg.com/vi/BsLMg_TuAXo/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA0CQQXYQM7EKhbEb_SxUNgqYL4mw",
+      "title": "Sony ZV-1F Review - Watch Before You Buy",
+      "views": "78.3k"
     },
     {
-      "channel_name": "Peta-Gaye Henry",
-      "length": "0:16",
-      "link": "https://www.youtube.com/watch?v=ejM5kEkWyog",
+      "channel_name": "ShariChavonne",
+      "length": "13:54",
+      "link": "https://www.youtube.com/watch?v=oquKb79L6IU",
+      "published_date": "2 months ago",
+      "thumbnail": "https://i.ytimg.com/vi/oquKb79L6IU/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCqLIfGsHap1IsFCSQa3KMp71WtkQ",
+      "title": "SONY ZV-1F UNBOXING | my new vlogging camera, Accessories, Quality Test,Is It Worth Buying + MORE",
+      "views": "2.7k"
+    },
+    {
+      "channel_name": "Mark Bennett's Camera Crisis",
+      "length": "11:58",
+      "link": "https://www.youtube.com/watch?v=HqrZ9c1U2wE",
       "published_date": "11 months ago",
-      "thumbnail": "https://i.ytimg.com/vi/ejM5kEkWyog/hq720.jpg?sqp=-oaymwE9COgCEMoBSFryq4qpAy8IARUAAAAAGAAlAADIQj0AgKJDeAHwAQH4Ac4FgAKACooCDAgAEAEYZSBaKFQwDw==&rs=AOn4CLDJAS5s1k2HgBWOIBoXNsExvmn2HQ",
-      "title": "NBD Digital Camera 4K 48MP Compact Camera, YouTube Vlogging Camera #shorts @Walmart #walmart",
-      "views": "11.2k"
+      "thumbnail": "https://i.ytimg.com/vi/HqrZ9c1U2wE/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBpwks6FoUkypXNcEm9hNoIw5-F6Q",
+      "title": "Sony ZV1-F Vlogging Camera - The Complete Review",
+      "views": "23.8k"
     },
     {
-      "channel_name": "Mikyra J",
-      "length": "9:28",
-      "link": "https://www.youtube.com/watch?v=D79ZmB5WZCc",
+      "channel_name": "Jason Vong",
+      "length": "13:18",
+      "link": "https://www.youtube.com/watch?v=xL8-OWSREoA",
       "published_date": "1 year ago",
-      "thumbnail": "https://i.ytimg.com/vi/D79ZmB5WZCc/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLAG6B6doHb3elnWYXQIMYugnbqqOg",
-      "title": "my first vlogging camera || trending $100 4K camera review *Clips included*",
-      "views": "26.6k"
+      "thumbnail": "https://i.ytimg.com/vi/xL8-OWSREoA/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDWmnVtkpat1PLmUebPj6HbOFvsww",
+      "title": "Sony ZV-1F | Beginners\u2019 VIDEO Camera for VLOGs, Tik Tok, & IG",
+      "views": "98.2k"
     },
     {
-      "channel_name": "@justjon83",
-      "length": "3:49",
-      "link": "https://www.youtube.com/watch?v=jfpoxlz0MUM",
+      "channel_name": "Gemini Connect",
+      "length": "8:21",
+      "link": "https://www.youtube.com/watch?v=EbotmAx11tE",
       "published_date": "1 year ago",
-      "thumbnail": "https://i.ytimg.com/vi/jfpoxlz0MUM/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLB726uXs4eis6GdwGGsW1inLsipAg",
-      "title": "NBD 48MP Digital Camera | 4k Ultra HD | Vlogging camera",
-      "views": "7.6k"
+      "thumbnail": "https://i.ytimg.com/vi/EbotmAx11tE/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDMNGhp7v9IlmnatMvGIu03i-_OnA",
+      "title": "Sony ZV-1F | 10 Reasons This is a Good Vlogging Camera",
+      "views": "31.0k"
     },
     {
-      "channel_name": "Endeyah Danyell",
-      "length": "9:21",
-      "link": "https://www.youtube.com/watch?v=cUPcJlPhFF0",
+      "channel_name": "Jazmyn Renae",
+      "length": "24:02",
+      "link": "https://www.youtube.com/watch?v=UQmXIlfXS3I",
       "published_date": "1 year ago",
-      "thumbnail": "https://i.ytimg.com/vi/cUPcJlPhFF0/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLBL3LyCZN0WW_J-nBh7-5DSLnSZvg",
-      "title": "Review: Amazon 4K Vlogging Camera | I Adjusted the Settings & More! Is it Worth the Hype?!",
-      "views": "29.6k"
+      "thumbnail": "https://i.ytimg.com/vi/UQmXIlfXS3I/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLChk7zrmDR9QWz6sg3YPQvRAavScw",
+      "title": "Sony ZV1 Camera Unboxing | Becoming A Content Creator In 2023!",
+      "views": "16.6k"
     },
     {
-      "channel_name": "Jhosfine",
-      "length": "3:48",
-      "link": "https://www.youtube.com/watch?v=xmmOHj6wo_U",
+      "channel_name": "Jacob Randall Holmes",
+      "length": "14:58",
+      "link": "https://www.youtube.com/watch?v=J_GKmvl_SNo",
+      "published_date": "7 months ago",
+      "thumbnail": "https://i.ytimg.com/vi/J_GKmvl_SNo/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB1wK1bWi4YvlYRQ1S1LJ7YEkHGZQ",
+      "title": "I bought the CHEAPEST Sony Camera | Sony ZV-1F Review",
+      "views": "14.4k"
+    },
+    {
+      "channel_name": "Greg Toope",
+      "length": "11:00",
+      "link": "https://www.youtube.com/watch?v=fzu8ZXUwf7k",
+      "published_date": "11 months ago",
+      "thumbnail": "https://i.ytimg.com/vi/fzu8ZXUwf7k/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCDqixE8c3UMIkTq7sQZjAmmr-14A",
+      "title": "Make The Sony ZV-1F the Ultimate Vlogging camera with these Accessories!!",
+      "views": "22.1k"
+    },
+    {
+      "channel_name": "Jessica Stansberry",
+      "length": "11:27",
+      "link": "https://www.youtube.com/watch?v=9U1OhsubiTU",
+      "published_date": "1 year ago",
+      "thumbnail": "https://i.ytimg.com/vi/9U1OhsubiTU/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB4SPrYtNAvqi-U7PI1AHNTNM-TRw",
+      "title": "Sony made the ULTIMATE Vlog Camera [Sony ZV-1F]",
+      "views": "26.4k"
+    },
+    {
+      "channel_name": "Sony Electronics | Support (US)",
+      "length": "0:53",
+      "link": "https://www.youtube.com/watch?v=gu6cuLaXtds",
+      "published_date": "1 year ago",
+      "thumbnail": "https://i.ytimg.com/vi/gu6cuLaXtds/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLD44skEc3PRqsa3xchmh0La31TbiA",
+      "title": "Sony | USB Livestream - ZV-1F Compact Vlog Camera",
+      "views": "8.9k"
+    },
+    {
+      "channel_name": "Dunna Did It",
+      "length": "13:50",
+      "link": "https://www.youtube.com/watch?v=zMPVO2c4HjM",
+      "published_date": "8 months ago",
+      "thumbnail": "https://i.ytimg.com/vi/zMPVO2c4HjM/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBHVnIMtCcRnW3tN7qOLO74dy1LDw",
+      "title": "Is It Worth It? Sony Zv-1 Mark ii vs iPhone 14 Pro",
+      "views": "247.1k"
+    },
+    {
+      "channel_name": "Gemini Connect",
+      "length": "12:52",
+      "link": "https://www.youtube.com/watch?v=xMgJIAG9rUk",
+      "published_date": "10 months ago",
+      "thumbnail": "https://i.ytimg.com/vi/xMgJIAG9rUk/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBHozBjWECgL_zryrlKSXQpGW7hjQ",
+      "title": "Is the Sony ZV-1 Vlogging Camera Worth Buying in 2023?",
+      "views": "53.0k"
+    },
+    {
+      "channel_name": "iJustine",
+      "length": "6:36",
+      "link": "https://www.youtube.com/watch?v=fhxs42MAlyY",
       "published_date": "9 months ago",
-      "thumbnail": "https://i.ytimg.com/vi/xmmOHj6wo_U/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLB-78aFxuxBt0P4SroNqoayDQXBXg",
-      "title": "UNBOXING MY NEW MONITECH 4k ULTRA HD DIGITAL CAMERA,LOW BUDGET FRIENDLY | Jhosfine",
-      "views": "3.0k"
-    },
-    {
-      "channel_name": "The Ke Way",
-      "length": "6:15",
-      "link": "https://www.youtube.com/watch?v=Jv73WuhXblU",
-      "published_date": "1 year ago",
-      "thumbnail": "https://i.ytimg.com/vi/Jv73WuhXblU/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLAwE9QwrXp5KemjRtZmmfIAF4X1rQ",
-      "title": "Unboxing, Vlogging & Reviewing AMAZON 4K $100 Camera | good to use for YouTube?  2023 #amazon #cheap",
-      "views": "6.2k"
-    },
-    {
-      "channel_name": "Alice Cherie",
-      "length": "10:10",
-      "link": "https://www.youtube.com/watch?v=x14vI1_TLg0",
-      "published_date": "1 year ago",
-      "thumbnail": "https://i.ytimg.com/vi/x14vI1_TLg0/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLDbGK6NT3G5v-C0TWiGdjZhafAOFw",
-      "title": "UPDATED AMAZON 4K PINK CAMERA REVIEW",
-      "views": "35.4k"
-    },
-    {
-      "channel_name": "Top Tech Now",
-      "length": "10:48",
-      "link": "https://www.youtube.com/watch?v=GVuV-ZvSzfY",
-      "published_date": "9 months ago",
-      "thumbnail": "https://i.ytimg.com/vi/GVuV-ZvSzfY/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLBJ7QdbKnQzHipuGalSz0oeurahDw",
-      "title": "TOP 5: Best Vlogging Camera 2023",
-      "views": "149.4k"
-    },
-    {
-      "channel_name": "Scott Sharak Vlogs",
-      "length": "10:42",
-      "link": "https://www.youtube.com/watch?v=UApTPrTV_wk",
-      "published_date": "1 year ago",
-      "thumbnail": "https://i.ytimg.com/vi/UApTPrTV_wk/hq720.jpg?sqp=-oaymwE9COgCEMoBSFryq4qpAy8IARUAAAAAGAElAADIQj0AgKJDeAHwAQH4Af4JgALQBYoCDAgAEAEYPyBlKEEwDw==&rs=AOn4CLDcLPLp1U07FWF57CwKuRMWqo0Vrg",
-      "title": "I bought a nbd 4K 48mp vlogging digital camera!",
-      "views": "1.7k"
-    },
-    {
-      "channel_name": "UnboxTechReviews",
-      "length": "13:13",
-      "link": "https://www.youtube.com/watch?v=v-zXtmX5K5g",
-      "published_date": "3 years ago",
-      "thumbnail": "https://i.ytimg.com/vi/v-zXtmX5K5g/hqdefault.jpg?sqp=-oaymwEjCOADEI4CSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLBA7FjLBs8jYY3OOeRzsytBauYT-A",
-      "title": "48MP Digital Camera and 4K Digital Camcorder Review",
-      "views": "116.6k"
-    },
-    {
-      "channel_name": "Tw3akst3r's Reviews",
-      "length": "16:43",
-      "link": "https://www.youtube.com/watch?v=RxN9HPt4lno",
-      "published_date": "2 years ago",
-      "thumbnail": "https://i.ytimg.com/vi/RxN9HPt4lno/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLA8xn8F3vg87_RwqFADG7PnHQMVNw",
-      "title": "4K Ultra HD 48MP Video Camera",
-      "views": "76.6k"
+      "thumbnail": "https://i.ytimg.com/vi/fhxs42MAlyY/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBHbPumXeWCeMSOdMRdKt0eE1d8pg",
+      "title": "Sony's NEW Vlogging Camera - ZV-1 Mark II",
+      "views": "121.7k"
     }
   ]
 }

@@ -67,7 +67,7 @@ def product():
 
     # Scrape Expert reviews.
     if title:
-        product_data.update(scrape_expert_reviews(title, source_details["product_id"], source_details["id_field"]))
+        product_data["reviews"].update(scrape_expert_reviews(title, source_details["product_id"], source_details["id_field"]))
 
     return product_data
 

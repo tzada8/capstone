@@ -48,7 +48,7 @@
 }
 
 /* REVIEWS */
-.most-review-container {
+.most-review-container, .expert-reviews-container {
 	border: 1px solid var(--GREY);
 	border-radius: 8px;
 	padding: 7%;
@@ -64,6 +64,27 @@
 
 .ratings-container {
 	margin: 10px 0;
+}
+
+.expert-reviews-title-position {
+	display: flex;
+    flex-direction: row;
+}
+
+.expert-reviews-icon {
+	width: 26px;
+	height: 26px;
+	margin-right: 10px;
+}
+
+.expert-reviews-source {
+	line-height: 100%;
+}
+
+.expert-reviews-score {
+	color: var(--DARK-GREY);
+	margin-top: 5px;
+	margin-left: 36px;
 }
 
 /* VIDEOS */
@@ -106,4 +127,16 @@
 .channel-details-container {
 	color: var(--OFF-BLACK);
 	padding-top: 2%;
+}
+
+/* SMALL SCREEN */
+@media screen and (max-width: 960px) {
+    .expert-reviews-icon {
+		width: 18px;
+		height: 18px;
+    }
+
+	.expert-reviews-score {
+		margin-left: 28px;
+	}
 }
