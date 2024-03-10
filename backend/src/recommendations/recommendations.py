@@ -137,7 +137,6 @@ class Recommendation:
                 brand_diff = 0
 
             # Megapixels: ["<15", "15-30", "30-45", ">45", ""]
-            # TODO: More megapixels are better?
             if "-" in preferences.get("megapixels"):
                 lower_bound = int(preferences.get("megapixels")[:preferences.get("megapixels").index("-")])
                 upper_bound = int(preferences.get("megapixels")[preferences.get("megapixels").index("-") + 1:])
@@ -203,9 +202,8 @@ class Recommendation:
             # Sum all weights.
             pref_score = sum(weights.values())
 
-            # TODO: Verify the weights.
-            rank_weight = 0.25
-            pref_weight = 0.75
+            rank_weight = 0.4
+            pref_weight = 0.6
             worst_score = pref_weight * sum(range(1, NUM_FEATURES + 1)) + rank_weight * (max_master_list_rank + max_rank * 2)
             # Prepare all products for table.
             recommendations.append({

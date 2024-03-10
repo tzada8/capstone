@@ -47,21 +47,21 @@ class TestRecommendation(unittest.TestCase):
                 "title": "New Product Title",
                 "price": 300.0,
                 "source": "Best Buy",
-                "score": 4.16,
+                "score": 4.09,
             },
             {
                 "product_id": "444",
                 "title": "New Product Title",
                 "price": 600.0,
                 "source": "Walmart",
-                "score": 1.67,
+                "score": 1.60,
             },
             {
                 "product_id": "999",
                 "title": "New Product Title",
                 "price": None,
                 "source": "Best Buy",
-                "score": 0.93,
+                "score": 0.78,
             },
         ]
         self.assertEqual(result, expected)
@@ -74,21 +74,21 @@ class TestRecommendation(unittest.TestCase):
                 "title": "New Product Title",
                 "price": 300.0,
                 "source": "Best Buy",
-                "score": 4.16,
+                "score": 4.09,
             },
             {
                 "product_id": "444",
                 "title": "New Product Title",
                 "price": 600.0,
                 "source": "Walmart",
-                "score": 3.94,
+                "score": 3.49,
             },
             {
                 "product_id": "999",
                 "title": "New Product Title",
                 "price": None,
                 "source": "Best Buy",
-                "score": 3.21,
+                "score": 2.67,
             },
         ]
         self.assertEqual(result, expected)
@@ -102,21 +102,21 @@ class TestRecommendation(unittest.TestCase):
                 "title": "New Product Title",
                 "price": 300.0,
                 "source": "Best Buy",
-                "score": 4.54,
+                "score": 4.41,
             },
             {
                 "product_id": "444",
                 "title": "New Product Title",
                 "price": 600.0,
                 "source": "Walmart",
-                "score": 3.94,
+                "score": 3.49,
             },
             {
                 "product_id": "999",
                 "title": "New Product Title",
                 "price": None,
                 "source": "Best Buy",
-                "score": 3.78,
+                "score": 3.15,
             },
         ]
         self.assertEqual(result, expected)
@@ -136,14 +136,14 @@ class TestRecommendation(unittest.TestCase):
                 "title": "New Product Title",
                 "price": 600.0,
                 "source": "Walmart",
-                "score": 1.61,
+                "score": 1.55,
             },
             {
                 "product_id": "999",
                 "title": "New Product Title",
                 "price": None,
                 "source": "Best Buy",
-                "score": 0.31,
+                "score": 0.26,
             },
         ]
         self.assertEqual(result, expected)
@@ -156,21 +156,21 @@ class TestRecommendation(unittest.TestCase):
                 "title": "New Product Title",
                 "price": 300.0,
                 "source": "Best Buy",
-                "score": 3.96,
+                "score": 3.93,
             },
             {
                 "product_id": "444",
                 "title": "New Product Title",
                 "price": 600.0,
                 "source": "Walmart",
-                "score": 2.07,
+                "score": 1.94,
             },
             {
                 "product_id": "999",
                 "title": "New Product Title",
                 "price": None,
                 "source": "Best Buy",
-                "score": 0.54,
+                "score": 0.45,
             },
         ]
         self.assertEqual(result, expected)
@@ -183,21 +183,21 @@ class TestRecommendation(unittest.TestCase):
                 "title": "New Product Title",
                 "price": 300.0,
                 "source": "Best Buy",
-                "score": 4.63,
+                "score": 4.48,
             },
             {
                 "product_id": "444",
                 "title": "New Product Title",
                 "price": 600.0,
                 "source": "Walmart",
-                "score": 4.07,
+                "score": 3.59,
             },
             {
                 "product_id": "999",
                 "title": "New Product Title",
                 "price": None,
                 "source": "Best Buy",
-                "score": 3.87,
+                "score": 3.22,
             },
         ]
         self.assertEqual(result, expected)
@@ -211,21 +211,21 @@ class TestRecommendation(unittest.TestCase):
                 "title": "New Product Title",
                 "price": 300.0,
                 "source": "Best Buy",
-                "score": 4.16,
+                "score": 4.09,
             },
             {
                 "product_id": "444",
                 "title": "New Product Title",
                 "price": 600.0,
                 "source": "Walmart",
-                "score": 1.67,
+                "score": 1.60,
             },
             {
                 "product_id": "999",
                 "title": "New Product Title",
                 "price": None,
                 "source": "Best Buy",
-                "score": 0.93,
+                "score": 0.78,
             },
         ]
         self.assertEqual(result, expected)
