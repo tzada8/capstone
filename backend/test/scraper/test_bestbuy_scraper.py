@@ -2,9 +2,9 @@ import unittest
 from unittest.mock import patch
 
 from test.scraper.data.bestbuy.product_specs import \
-    product_specs_exists, product_specs_nonexistent, product_specs_incorrect_format, product_specs_missing_keys
+    product_specs_exists, product_specs_nonexistent, product_specs_missing_keys, spec_api_error
 from test.scraper.data.bestbuy.product_reviews import \
-    all_products_returned, no_products_returned, product_reviews_exists, product_reviews_exists_threading, product_reviews_nonexistent
+    all_products_returned, no_products_returned, product_reviews_exists, product_reviews_exists_threading, product_reviews_nonexistent, review_api_error
 from src.scraper.bestbuy_scraper import BestBuyProduct
 
 class TestBestBuyProduct(unittest.TestCase):
@@ -51,12 +51,15 @@ class TestBestBuyProduct(unittest.TestCase):
         }
         self.assertEqual(result, expected)
 
-    def test_product_specs_id_incorrect_format(self):
-        self.mock_search.return_value = product_specs_incorrect_format
+    def test_product_specs_id_api_error(self):
+        self.mock_search.return_value = spec_api_error
         product_id = "0"
         result = BestBuyProduct._product_specs(product_id)
         expected = {
-            "basic_info": {"error": "Error Code: 400 - The request is missing key information or is malformed.", "product_id": product_id}
+            "basic_info": {
+                "error": "Error Code: 400 - Could not complete request.", 
+                "product_id": product_id
+            }
         }
         self.assertEqual(result, expected)
 
@@ -116,6 +119,16 @@ class TestBestBuyProduct(unittest.TestCase):
         self.mock_search.side_effect = [all_products_returned, product_reviews_nonexistent]
         result = BestBuyProduct._product_reviews("AAAAA")
         expected = {"reviews": {"error": "The product has no reviews."}}
+        self.assertEqual(result, expected)
+
+    def test_product_reviews_api_error(self):
+        self.mock_search.return_value = review_api_error
+        result = BestBuyProduct._product_reviews("AAAAA")
+        expected = {
+            "reviews": {
+                "error": "Error Code: 400 - Could not complete request.", 
+            }
+        }
         self.assertEqual(result, expected)
 
     def test_aggregate_data_id_exists(self):

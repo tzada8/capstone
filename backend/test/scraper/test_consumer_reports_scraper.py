@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import patch
 
 from test.scraper.data.consumer_reports.expert_reviews import \
-    all_products_returned, expert_reviews_returned, expert_reviews_no_bottomline, valid_status, invalid_status
+    all_products_returned, expert_reviews_returned, expert_reviews_no_bottomline, valid_status, invalid_status, api_error
 from src.scraper.consumer_reports_scraper import scrape_expert_reviews
 
 class TestConsumerReportsScraper(unittest.TestCase):
@@ -89,5 +89,29 @@ class TestConsumerReportsScraper(unittest.TestCase):
                 "source": "Consumer Reports",
                 "link": None,
             }
+        }
+        self.assertEqual(result, expected)
+
+    def test_scrape_expert_reviews_search_api_error(self):
+        self.mock_search.return_value = api_error
+        query = "AAAAA"
+        result = scrape_expert_reviews(query, 11111, "defaultUpc")
+        expected = {
+            "expert_review": {
+                "error": "Could not complete request.",
+                "product": "AAAAA"
+            } 
+        }
+        self.assertEqual(result, expected)
+
+    def test_scrape_expert_reviews_product_api_error(self):
+        self.mock_search.side_effect = [all_products_returned, api_error]
+        query = "AAAAA"
+        result = scrape_expert_reviews(query, 11111, "defaultUpc")
+        expected = {
+            "expert_review": {
+                "error": "Could not complete request.",
+                "product": "AAAAA"
+            } 
         }
         self.assertEqual(result, expected)

@@ -56,3 +56,10 @@ valid_status.status_code = 200
 
 invalid_status = requests_mock.Mocker()
 invalid_status.status_code = 404
+
+api_error = requests_mock.Mocker()
+api_error.json = mock.Mock(
+    return_value = {
+        "message": "Could not complete request."
+    }
+)

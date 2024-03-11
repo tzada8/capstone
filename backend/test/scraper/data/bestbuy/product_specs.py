@@ -49,19 +49,6 @@ product_specs_nonexistent.json = mock.Mock(
     }
 )
 
-product_specs_incorrect_format = requests_mock.Mocker()
-product_specs_incorrect_format.json = mock.Mock(
-    return_value = {
-        "product_id": "0",
-        "errorCode": "400",
-        "errorMessage": "The request is missing key information or is malformed.",
-        "extra_info": {
-            "field1": "Not included",
-            "field2": "Excluded too",
-        },
-    }
-)
-
 # Missing title, price, images, and specs.
 product_specs_missing_keys = requests_mock.Mocker()
 product_specs_missing_keys.json = mock.Mock(
@@ -77,5 +64,13 @@ product_specs_missing_keys.json = mock.Mock(
                 "field2": "Excluded too",
             },
         }]
+    }
+)
+
+spec_api_error = requests_mock.Mocker()
+spec_api_error.json = mock.Mock(
+    return_value = {
+        "errorCode": "400",
+        "errorMessage": "Could not complete request."
     }
 )

@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import patch
 
 from test.recommendations.data.scraping import \
-    trending_exists, trending_nonexistent, popular_exists, popular_nonexistent, sku_to_upc_exists, sku_to_upc_nonexistent, master_list
+    trending_exists, trending_nonexistent, popular_exists, popular_nonexistent, api_error, sku_to_upc_exists, sku_to_upc_nonexistent, master_list
 from test.recommendations.data.preferences import \
     preferences_filled, preferences_some_missing, preferences_all_missing, importance_filled, importance_some_missing, importance_all_missing
 from test.recommendations.data.products import products
@@ -35,6 +35,24 @@ class TestRecommendation(unittest.TestCase):
 
     def test_sku_to_upc_nonexistent(self):
         self.mock_search.side_effect = [trending_exists, popular_exists, sku_to_upc_nonexistent]
+        result = Recommendation._scrape_popularity()
+        expected = [{}, 0, 0]
+        self.assertEqual(result, expected)
+
+    def test_trending_error(self):
+        self.mock_search.side_effect = [api_error, popular_exists, sku_to_upc_exists]
+        result = Recommendation._scrape_popularity()
+        expected = [{}, 0, 0]
+        self.assertEqual(result, expected)
+
+    def test_popular_error(self):
+        self.mock_search.side_effect = [trending_exists, api_error, sku_to_upc_exists]
+        result = Recommendation._scrape_popularity()
+        expected = [{}, 0, 0]
+        self.assertEqual(result, expected)
+
+    def test_sku_to_upc_error(self):
+        self.mock_search.side_effect = [trending_exists, popular_exists, api_error]
         result = Recommendation._scrape_popularity()
         expected = [{}, 0, 0]
         self.assertEqual(result, expected)

@@ -65,3 +65,11 @@ product_reviews_nonexistent.json = mock.Mock(
         "reviews": []
     }
 )
+
+review_api_error = requests_mock.Mocker()
+review_api_error.json = mock.Mock(
+    return_value = {
+        "ErrorCode": "400",
+        "ErrorMessage": "Could not complete request."
+    }
+)

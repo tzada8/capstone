@@ -42,3 +42,7 @@ videos_returned = {
         },
     ]
 }
+
+api_error = {
+    "error": "Could not complete request."
+}

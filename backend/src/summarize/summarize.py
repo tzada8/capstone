@@ -31,15 +31,12 @@ def summarize(reviews: List[str]) -> str:
         logging.error(f"OpenAI Summarize => {e}")
         return ""
     except APIError as e:
-        # Handle API error here, e.g. retry or log
         logging.error(f"OpenAI Summarize => OpenAI API returned an API Error: {e}")
         return ""
     except APIConnectionError as e:
-        # Handle connection error here
         logging.error(f"OpenAI Summarize => Failed to connect to OpenAI API: {e}")
         return ""
     except RateLimitError as e:
-        # Handle rate limit error (we recommend using exponential backoff)
         logging.error(f"OpenAI Summarize => OpenAI API request exceeded rate limit: {e}")
         return ""
     except:

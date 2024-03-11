@@ -59,3 +59,7 @@ product_reviews_missing_keys = {
         "field2": "Excluded too",
     },
 }
+
+review_api_error = {
+    "error": "Could not complete request."
+}

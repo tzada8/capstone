@@ -55,6 +55,14 @@ popular_nonexistent.json = mock.Mock(
     }
 )
 
+api_error = requests_mock.Mocker()
+api_error.json = mock.Mock(
+    return_value = {
+        "errorCode": "400",
+        "errorMessage": "Could not complete request."
+    }
+)
+
 sku_to_upc_exists = requests_mock.Mocker()
 sku_to_upc_exists.json = mock.Mock(
     return_value = {

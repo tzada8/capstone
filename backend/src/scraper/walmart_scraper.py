@@ -21,14 +21,14 @@ class WalmartProduct:
             logging.error(f"Walmart Specs => {results.get("error")}")
             return {
                 "basic_info": {
-                    "product_id": results.get("search_parameters", {}).get("product_id"),
+                    "product_id": product_id,
                     "error": results.get("error"),
                 }
             }
         elif len(results) == 0:
             return {
                 "basic_info": {
-                    "product_id": results.get("search_parameters", {}).get("product_id"),
+                    "product_id": product_id,
                     "error": "The API call failed.",
                 }
             }

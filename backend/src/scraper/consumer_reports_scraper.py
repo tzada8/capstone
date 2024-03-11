@@ -52,7 +52,7 @@ def scrape_expert_reviews(q: str, id_check: str, id_field: str) -> Dict:
             review_url = "https://consumer-reports.p.rapidapi.com/products/detail"
             review_querystring = {"id": id}
             review_response = requests.get(review_url, headers=headers, params=review_querystring)
-            er = review_response.json().get('content')[0]
+            er = review_response.json()
         except:
             er = {}
 
@@ -72,6 +72,7 @@ def scrape_expert_reviews(q: str, id_check: str, id_field: str) -> Dict:
                 }
             }
         else:
+            er = er.get('content')[0]
             # Prepare to create link.
             index = er.get('slugName').rfind('-')
             name = er.get('slugName')[:index]

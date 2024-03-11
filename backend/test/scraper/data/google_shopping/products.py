@@ -44,3 +44,7 @@ products_invalid = {
     },
     "error": "An error occurred while attempting to pull products.",
 }
+
+api_error = {
+    "error": "Could not complete request."
+}

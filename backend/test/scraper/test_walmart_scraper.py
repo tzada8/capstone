@@ -2,9 +2,9 @@ import unittest
 from unittest.mock import patch
 
 from test.scraper.data.walmart.product_specs import \
-    product_specs_exists, product_specs_nonexistent, product_specs_missing_keys
+    product_specs_exists, product_specs_nonexistent, product_specs_missing_keys, spec_api_error
 from test.scraper.data.walmart.product_reviews import \
-    product_reviews_exists, product_reviews_nonexistent, product_reviews_missing_keys
+    product_reviews_exists, product_reviews_nonexistent, product_reviews_missing_keys, review_api_error
 from src.scraper.walmart_scraper import WalmartProduct
 
 class TestWalmartProduct(unittest.TestCase):
@@ -48,6 +48,15 @@ class TestWalmartProduct(unittest.TestCase):
         result = WalmartProduct._product_specs(product_id)
         expected = {
             "basic_info": {"error": "The product id does not exist.", "product_id": product_id}
+        }
+        self.assertEqual(result, expected)
+
+    def test_product_specs_api_error(self):
+        self.mock_search.return_value = spec_api_error
+        product_id = "22222"
+        result = WalmartProduct._product_specs(product_id)
+        expected = {
+            "basic_info": {"error": "Could not complete request.", "product_id": product_id}
         }
         self.assertEqual(result, expected)
 
@@ -105,6 +114,13 @@ class TestWalmartProduct(unittest.TestCase):
         product_id = "22222"
         result = WalmartProduct._product_reviews(product_id)
         expected = {"reviews": {"error": "No reviews exist for provided id."}}
+        self.assertEqual(result, expected)
+
+    def test_product_reviews_api_error(self):
+        self.mock_search.return_value = review_api_error
+        product_id = "22222"
+        result = WalmartProduct._product_reviews(product_id)
+        expected = {"reviews": {"error": "Could not complete request."}}
         self.assertEqual(result, expected)
 
     def test_product_reviews_keys_missing(self):
