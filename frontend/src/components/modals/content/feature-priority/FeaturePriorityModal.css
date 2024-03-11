@@ -10,22 +10,45 @@
 
 .select-label-question {
     width: 7%;
+    background: var(--LIGHT-BLUE);
+    color: var(--OFF-BLACK);
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 32px;
+}
+
+.draggable-option {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    cursor: grab;
+    user-select: none;
+    overflow-x: hidden;
 }
 
 .select-label {
     background: var(--PURE-WHITE);
     color: var(--OFF-BLACK);
-    border: 1px solid var(--GREY);
+    border: 1px solid var(--OFF-BLACK);
     border-radius: 6px;
-    width: 93%;
-    height: 50px;
+    width: 100%;
+    max-height: 100%;
+    margin: 0 3%;
     padding: 10px 15px;
-    cursor: grab;
-    user-select: none;
 }
 
 .select-label:hover {
     background: var(--LIGHT-BLUE);
     color: var(--DARK-BLUE);
     border: 1px solid var(--DARK-BLUE);
+}
+
+.drag-outline-icon {
+    color: var(--PRIMARY-BLUE);
+    width: 24px;
+    height: 24px;
+    align-self: center;
+    justify-content: center;
 }
