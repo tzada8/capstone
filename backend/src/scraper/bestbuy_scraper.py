@@ -30,7 +30,7 @@ class BestBuyProduct:
             return {
                 "basic_info": {
                     "product_id": params.get("product_id"),
-                    "error": f"Error Code: {results.get("errorCode")} - {results.get("errorMessage")}"
+                    "error": f"Error Code: {results.get('errorCode')} - {results.get('errorMessage')}"
                 }
             }
         elif results.get("total") == 0:
@@ -99,7 +99,7 @@ class BestBuyProduct:
             logging.error(f"Best Buy Reviews => Error Code: {results.get('ErrorCode')} - {results.get('ErrorMessage')}")
             return {
                 "reviews": {
-                    "error": f"Error Code: {results.get("ErrorCode")} - {results.get("ErrorMessage")}",
+                    "error": f"Error Code: {results.get('ErrorCode')} - {results.get('ErrorMessage')}",
                 }
             }
         elif results.get('total') == 0:
