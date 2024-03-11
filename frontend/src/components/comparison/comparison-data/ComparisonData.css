@@ -66,6 +66,10 @@
 	margin: 10px 0;
 }
 
+.show-more-text {
+	color: var(--DARK-BLUE);
+}
+
 .expert-reviews-title-position {
 	display: flex;
     flex-direction: row;
