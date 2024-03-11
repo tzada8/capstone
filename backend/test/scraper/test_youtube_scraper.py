@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch
 
-from test.scraper.data.youtube.videos import videos_returned
+from test.scraper.data.youtube.videos import videos_returned, api_error
 from src.scraper.youtube_scraper import scrape_videos
 
 class TestYoutubeScraper(unittest.TestCase):
@@ -45,5 +45,16 @@ class TestYoutubeScraper(unittest.TestCase):
                     "thumbnail": None,
                 },
             ]
+        }
+        self.assertEqual(result, expected)
+
+    def test_scrape_videos_api_error(self):
+        self.mock_search.return_value = api_error
+        query = "Best Food Ever"
+        result = scrape_videos(query)
+        expected = {
+            "videos": {
+                "error": "Could not complete request."
+            }
         }
         self.assertEqual(result, expected)

@@ -2,6 +2,7 @@ from os import environ
 from serpapi import GoogleSearch
 from typing import Dict, Optional
 from urllib import parse
+import logging
 
 SELLER_FILTERS = {
     "walmart": "g8299768%7Cm125210027%7Cm120798572%7Cm113137360%7Cm5073604987%7Cm585399882",
@@ -37,19 +38,30 @@ def scrape_google_products(q: str, start: int) -> Dict:
         "num": "100",
         "tbs": f"mr:1,merchagg:{sellers}",
     }
-    search = GoogleSearch(params)
-    results = search.get_dict()
+    try:
+        search = GoogleSearch(params)
+        results = search.get_dict()
+    except:
+        results = {}
 
-    status = results["search_metadata"]["status"]
-    if status == "Error":
+    if "error" in results.keys():
+        logging.error(f"Google Shopping => {results.get("error")}")
         return {
             "shopping_results": {
-                "status": status,
+                "status": "Error",
                 "error": results.get("error"),
+            }
+        }
+    elif len(results) == 0:
+        return {
+            "shopping_results": {
+                "status": "Error",
+                "error": "The API call failed.",
             }
         }
     else:
         shopping_results = results.get("shopping_results", [])
+        status = results["search_metadata"]["status"]
         return {
             "shopping_results": {
                 "status": status,

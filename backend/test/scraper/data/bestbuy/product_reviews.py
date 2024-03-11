@@ -27,6 +27,7 @@ product_reviews_exists = requests_mock.Mocker()
 product_reviews_exists.json = mock.Mock(
     return_value = {
         "totalPages": 1,
+        "total": 7,
         "reviews": [
             {"comment": "[This review was collected as part of a promotion.] Good", "rating": 4, "title": "Good"},
             {"comment": "Bad", "rating": 2, "title": "Bad"},
@@ -62,5 +63,13 @@ product_reviews_nonexistent.json = mock.Mock(
     return_value = {
         "total" : 0,
         "reviews": []
+    }
+)
+
+review_api_error = requests_mock.Mocker()
+review_api_error.json = mock.Mock(
+    return_value = {
+        "ErrorCode": "400",
+        "ErrorMessage": "Could not complete request."
     }
 )

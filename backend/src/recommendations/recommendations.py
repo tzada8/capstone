@@ -1,23 +1,36 @@
 from os import environ
 from typing import Dict, List
 import requests
+import logging
 import re
 
 class Recommendation:
     @staticmethod
-    def _scrape_bestbuy() -> List:
+    def _scrape_popularity() -> List:
         params = {
             "category_id": "abcat0401000", # Digital cameras category id
             "api_key": environ.get("BESTBUY_API_KEY"), 
         }
         # Get top 10 trending products in category.
-        trending_results = requests.get(f"https://api.bestbuy.com/v1/products/trendingViewed(categoryId={params.get('category_id')})?apiKey={params.get('api_key')}")
-        trending = trending_results.json()
+        try:
+            trending_results = requests.get(f"https://api.bestbuy.com/v1/products/trendingViewed(categoryId={params.get('category_id')})?apiKey={params.get('api_key')}")
+            trending = trending_results.json()
+        except:
+            trending = {"results": []}
         # Get top 10 most popular products in category.
-        most_popular_results = requests.get(f"https://api.bestbuy.com/v1/products/mostViewed(categoryId={params.get('category_id')})?apiKey={params.get('api_key')}")
-        most_popular = most_popular_results.json()
+        try:
+            most_popular_results = requests.get(f"https://api.bestbuy.com/v1/products/mostViewed(categoryId={params.get('category_id')})?apiKey={params.get('api_key')}")
+            most_popular = most_popular_results.json()
+        except:
+            most_popular = {"results": []}
 
-        if len(trending.get("results")) == 0 or len(most_popular.get("results")) == 0:
+        if "errorCode" in trending.keys() or "errorCode" in most_popular.keys():
+            if "errorCode" in trending.keys():
+                logging.error(f"Trending => Error Code: {trending.get("errorCode")} - {trending.get("errorMessage")}")
+            if "errorCode" in most_popular.keys():
+                logging.error(f"Most Popular => Error Code: {most_popular.get("errorCode")} - {most_popular.get("errorMessage")}")
+            return [{}, 0, 0]
+        elif len(trending.get("results")) == 0 or len(most_popular.get("results")) == 0:
             return [{}, len(trending.get("results")), len(most_popular.get("results"))]
         else:
             max_rank = int(((len(trending.get("results")) + len(most_popular.get("results"))) / 2) + 1)
@@ -34,10 +47,16 @@ class Recommendation:
             skus = ""
             for sku in master_list.keys():
                 skus += sku + ","
-            search = requests.get(f"https://api.bestbuy.com/v1/products(sku in({skus}))?apiKey={params.get('api_key')}&show=sku,upc&pageSize=20&format=json")
-            results = search.json()
-            if "error" in results or results.get("total") == 0:
-                return [{}, len(trending.get("results")), len(most_popular.get("results"))]
+            try:
+                search = requests.get(f"https://api.bestbuy.com/v1/products(sku in({skus}))?apiKey={params.get('api_key')}&show=sku,upc&pageSize=20&format=json")
+                results = search.json()
+            except:
+                results = {"total": 0}
+            if "errorCode" in results.keys():
+                logging.error(f"Recommendation Product SKU-UPC => Error Code: {results.get("errorCode")} - {results.get("errorMessage")}")
+                return [{}, 0, 0]
+            elif results.get("total") == 0:
+                return [{}, 0, 0]
             else:
                 pairs = results.get("products", {})           
                 upc_master_list = {}
@@ -219,6 +238,6 @@ class Recommendation:
 
     @staticmethod
     def aggregate_data(preferences: Dict, importance: Dict, selected_products: List) -> List:
-        master_list = Recommendation._scrape_bestbuy()
+        master_list = Recommendation._scrape_popularity()
         list = Recommendation._model(preferences, importance, selected_products, master_list[0], master_list[1] + master_list[2])
         return list

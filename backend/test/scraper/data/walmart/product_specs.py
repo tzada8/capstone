@@ -59,3 +59,7 @@ product_specs_missing_keys = {
         },
     }
 }
+
+spec_api_error = {
+    "error": "Could not complete request."
+}

@@ -1,6 +1,7 @@
-from openai import OpenAI
+from openai import OpenAI, OpenAIError, APIError, APIConnectionError, RateLimitError
 from os import environ
 from typing import List
+import logging
 
 def summarize(reviews: List[str]) -> str:
     if len(reviews) == 0:
@@ -16,12 +17,27 @@ def summarize(reviews: List[str]) -> str:
             shorted_reviews.append(review)
             total_tokens += tokens
 
-    client = OpenAI(api_key=environ.get("OPENAI_API_KEY"))
-    # TODO: Maybe can add more to prompt (e.g. "using at most 100 words").
-    bullet_reviews = "\n- ".join(shorted_reviews)
-    prompt = f"Summarize and aggregate the following list of product reviews into 1 paragraph:\n- {bullet_reviews}"
-    response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[{"role": "user", "content": prompt}]
-    )
-    return response.choices[0].message.content.strip()
+    try:
+        client = OpenAI(api_key=environ.get("OPENAI_API_KEY"))
+        # TODO: Maybe can add more to prompt (e.g. "using at most 100 words").
+        bullet_reviews = "\n- ".join(shorted_reviews)
+        prompt = f"Summarize and aggregate the following list of product reviews into 1 paragraph:\n- {bullet_reviews}"
+        response = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[{"role": "user", "content": prompt}]
+        )
+        return response.choices[0].message.content.strip()
+    except OpenAIError as e:
+        logging.error(f"OpenAI Summarize => {e}")
+        return ""
+    except APIError as e:
+        logging.error(f"OpenAI Summarize => OpenAI API returned an API Error: {e}")
+        return ""
+    except APIConnectionError as e:
+        logging.error(f"OpenAI Summarize => Failed to connect to OpenAI API: {e}")
+        return ""
+    except RateLimitError as e:
+        logging.error(f"OpenAI Summarize => OpenAI API request exceeded rate limit: {e}")
+        return ""
+    except:
+        return ""

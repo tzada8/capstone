@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import patch
 
 from test.scraper.data.youtube.videos import videos_returned
-from test.scraper.data.google_shopping.products import products_valid, products_invalid
+from test.scraper.data.google_shopping.products import products_valid, products_invalid, api_error
 from src.scraper.google_shopping_scraper import scrape_google_products
 
 class TestGoogleShoppingScraper(unittest.TestCase):
@@ -59,6 +59,19 @@ class TestGoogleShoppingScraper(unittest.TestCase):
             "shopping_results": {
                 "status": "Error",
                 "error": "An error occurred while attempting to pull products."
+            }
+        }
+        self.assertEqual(result, expected)
+
+    def test_scrape_google_products_api_error(self):
+        self.mock_search.return_value = api_error
+        query = "Best Food Ever"
+        start = 0
+        result = scrape_google_products(query, start)
+        expected = {
+            "shopping_results": {
+                "status": "Error",
+                "error": "Could not complete request."
             }
         }
         self.assertEqual(result, expected)
