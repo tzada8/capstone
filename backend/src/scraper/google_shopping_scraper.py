@@ -45,7 +45,7 @@ def scrape_google_products(q: str, start: int) -> Dict:
         results = {}
 
     if "error" in results.keys():
-        logging.error(f"Google Shopping => {results.get("error")}")
+        logging.error(f"Google Shopping => {results.get('error')}")
         return {
             "shopping_results": {
                 "status": "Error",

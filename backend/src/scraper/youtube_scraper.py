@@ -28,7 +28,7 @@ def scrape_videos(q: str) -> Dict:
         results = {}
 
     if "error" in results:
-        logging.error(f"YouTube => {results.get("error")}")
+        logging.error(f"YouTube => {results.get('error')}")
         return {
             "videos": {
                 "error": results.get("error"),
