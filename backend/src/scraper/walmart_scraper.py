@@ -1,6 +1,7 @@
 from os import environ
 from serpapi import GoogleSearch
 from typing import Dict
+import logging
 
 class WalmartProduct:
     @staticmethod
@@ -10,14 +11,25 @@ class WalmartProduct:
             "product_id": product_id,
             "api_key": environ.get("SERPAPI_API_KEY"),
         }
-        search = GoogleSearch(params)
-        results = search.get_dict()
+        try:
+            search = GoogleSearch(params)
+            results = search.get_dict()
+        except:
+            results = {}
 
         if "error" in results:
+            logging.error(f"Walmart Specs => {results.get("error")}")
             return {
                 "basic_info": {
                     "product_id": results.get("search_parameters", {}).get("product_id"),
                     "error": results.get("error"),
+                }
+            }
+        elif len(results) == 0:
+            return {
+                "basic_info": {
+                    "product_id": results.get("search_parameters", {}).get("product_id"),
+                    "error": "The API call failed.",
                 }
             }
         else:
@@ -57,13 +69,23 @@ class WalmartProduct:
             "api_key": environ.get("SERPAPI_API_KEY"),
             "sort": "relevancy",
         }
-        search = GoogleSearch(params)
-        results = search.get_dict()
+        try:
+            search = GoogleSearch(params)
+            results = search.get_dict()
+        except:
+            results = {}
 
         if "error" in results:
+            logging.error(f"Walmart Reviews => {results.get("error")}")
             return {
                 "reviews": {
                     "error": results.get("error"),
+                }
+            }
+        elif len(results) == 0:
+            return {
+                "reviews": {
+                    "error": "The API call failed.",
                 }
             }
         else:

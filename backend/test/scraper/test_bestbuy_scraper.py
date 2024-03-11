@@ -56,7 +56,7 @@ class TestBestBuyProduct(unittest.TestCase):
         product_id = "0"
         result = BestBuyProduct._product_specs(product_id)
         expected = {
-            "basic_info": {"error": "The product id does not exist.", "product_id": product_id}
+            "basic_info": {"error": "Error Code: 400 - The request is missing key information or is malformed.", "product_id": product_id}
         }
         self.assertEqual(result, expected)
 

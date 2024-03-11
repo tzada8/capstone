@@ -27,6 +27,7 @@ product_reviews_exists = requests_mock.Mocker()
 product_reviews_exists.json = mock.Mock(
     return_value = {
         "totalPages": 1,
+        "total": 7,
         "reviews": [
             {"comment": "[This review was collected as part of a promotion.] Good", "rating": 4, "title": "Good"},
             {"comment": "Bad", "rating": 2, "title": "Bad"},

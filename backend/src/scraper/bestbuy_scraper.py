@@ -1,6 +1,7 @@
 from os import environ
 from typing import Dict, List
 import requests
+import logging
 from difflib import SequenceMatcher
 from multiprocessing import Pool
 from itertools import repeat
@@ -13,15 +14,26 @@ class BestBuyProduct:
             "product_id": product_id,
             "api_key": environ.get("BESTBUY_API_KEY"),
         }
-        search = requests.get(f"https://api.bestbuy.com/v1/products(sku={params.get('product_id')})?apiKey={params.get('api_key')}&show=customerReviewAverage,customerReviewCount,customerTopRated,details.name,details.value,image,manufacturer,modelNumber,name,regularPrice,sku,upc,url&pageSize=10&format=json")
-        results = search.json()
+        try:
+            search = requests.get(f"https://api.bestbuy.com/v1/products(sku={params.get('product_id')})?apiKey={params.get('api_key')}&show=customerReviewAverage,customerReviewCount,customerTopRated,details.name,details.value,image,manufacturer,modelNumber,name,regularPrice,sku,upc,url&pageSize=10&format=json")
+            results = search.json()
+        except:
+            results = {"total": 0}
 
         S = ["Autofocus", "In-Lens Image Stabilization", "Digital Camera Type", "Lens Model Number", "Memory Card Compatibility",
              "Screen Size", "Integrated Flash", "Effective Pixels", "Product Depth", "Product Width", "Product Weight",
              "Brand", "Lens Type", "Digital Zoom", "Color", "Shooting Modes", "Product Height", "Maximum Aperture", 
              "Maximum Focal Length", "Scene Modes"]
 
-        if "error" in results or results.get("total") == 0:
+        if "errorCode" in results.keys():
+            logging.error(f"Best Buy Specs => Error Code: {results.get("errorCode")} - {results.get("errorMessage")}")
+            return {
+                "basic_info": {
+                    "product_id": params.get("product_id"),
+                    "error": f"Error Code: {results.get("errorCode")} - {results.get("errorMessage")}"
+                }
+            }
+        elif results.get("total") == 0:
             return {
                 "basic_info": {
                     "product_id": params.get("product_id"),
@@ -59,8 +71,14 @@ class BestBuyProduct:
         
     @staticmethod    
     def _pull_reviews(i: int, sku: int, params: Dict) -> List[str]:
-        search_sku = requests.get(f"https://www.bestbuy.ca/api/v2/json/reviews/{sku}?page={i}&source=us", headers = params.get('headers'))
-        review_results = search_sku.json()
+        try:
+            search_sku = requests.get(f"https://www.bestbuy.ca/api/v2/json/reviews/{sku}?page={i}&source=us", headers = params.get('headers'))
+            review_results = search_sku.json()
+        except:
+            review_results = {"reviews": []}
+        
+        if "ErrorCode" in review_results.keys():
+            logging.error(f"Best Buy Pull Reviews => Error Code: {review_results.get("ErrorCode")} - {review_results.get("ErrorMessage")}")
         reviews = review_results.get("reviews", [])
         return reviews
 
@@ -71,10 +89,20 @@ class BestBuyProduct:
             "product_name": ' '.join(product_name.split()[:5]).lower(),
             "headers": {"User-Agent": "Mozilla/5.0 (X11; CrOS x86_64 12871.102.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.141 Safari/537.36"},
         }
-        search = requests.get(f"https://www.bestbuy.ca/api/v2/json/search?query={params.get('product_name')}", headers = params.get('headers'))
-        results = search.json()
+        try:
+            search = requests.get(f"https://www.bestbuy.ca/api/v2/json/search?query={params.get('product_name')}", headers = params.get('headers'))
+            results = search.json()
+        except:
+            results = {"total": 0}
 
-        if results.get('total') == 0:
+        if "ErrorCode" in results.keys():
+            logging.error(f"Best Buy Reviews => Error Code: {results.get("ErrorCode")} - {results.get("ErrorMessage")}")
+            return {
+                "reviews": {
+                    "error": f"Error Code: {results.get("ErrorCode")} - {results.get("ErrorMessage")}",
+                }
+            }
+        elif results.get('total') == 0:
             return {
                 "reviews": {
                     "error": "The product has no reviews.",
@@ -92,24 +120,30 @@ class BestBuyProduct:
                 # If more than 75% similar, use that product's reviews.
                 if similarity >= 0.75:
                     compatible_sku = product.get('sku')
-                    search_sku = requests.get(f"https://www.bestbuy.ca/api/v2/json/reviews/{compatible_sku}?page=1&source=us", headers = params.get('headers'))
-                    review_info = search_sku.json()
-                    total_pages = review_info.get('totalPages')
+                    try:
+                        search_sku = requests.get(f"https://www.bestbuy.ca/api/v2/json/reviews/{compatible_sku}?page=1&source=us", headers = params.get('headers'))
+                        review_info = search_sku.json()
+                    except:
+                        review_info = {"total": 0}
 
-                    # Parallel API calls for each page of reviews.
-                    with Pool(5) as p:
-                        reviews_temp = p.starmap(BestBuyProduct._pull_reviews, zip(range(1, min(total_pages, 10) + 1), repeat(compatible_sku), repeat(params)))
-                    reviews = [x for xs in reviews_temp for x in xs if x.get("comment") is not None]
+                    if "ErrorCode" in review_info.keys():
+                        logging.error(f"Best Buy Pull Reviews => Error Code: {review_info.get("ErrorCode")} - {review_info.get("ErrorMessage")}")
+                    elif review_info.get("total") > 0:
+                        total_pages = review_info.get('totalPages')
+                        # Parallel API calls for each page of reviews.
+                        with Pool(5) as p:
+                            reviews_temp = p.starmap(BestBuyProduct._pull_reviews, zip(range(1, min(total_pages, 10) + 1), repeat(compatible_sku), repeat(params)))
+                        reviews = [x for xs in reviews_temp for x in xs if x.get("comment") is not None]
 
-                    if len(reviews) > 0:
-                        # Replace promo message in reviews.
-                        promo_string = "[This review was collected as part of a promotion.] "
-                        for r in reviews:
-                            r["comment"] = r.get("comment").replace(promo_string, "")
-                        ratings = list(map(lambda x: x.get("rating"), reviews))
-                        selected_reviews = list(filter(lambda d: d.get("rating") in [max(ratings), min(ratings)], reviews))
-                        positive_negative = sentiment(selected_reviews)
-                    break
+                        if len(reviews) > 0:
+                            # Replace promo message in reviews.
+                            promo_string = "[This review was collected as part of a promotion.] "
+                            for r in reviews:
+                                r["comment"] = r.get("comment").replace(promo_string, "")
+                            ratings = list(map(lambda x: x.get("rating"), reviews))
+                            selected_reviews = list(filter(lambda d: d.get("rating") in [max(ratings), min(ratings)], reviews))
+                            positive_negative = sentiment(selected_reviews)
+                        break
                 else:
                     reviews = []
                 

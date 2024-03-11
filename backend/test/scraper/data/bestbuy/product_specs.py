@@ -53,9 +53,8 @@ product_specs_incorrect_format = requests_mock.Mocker()
 product_specs_incorrect_format.json = mock.Mock(
     return_value = {
         "product_id": "0",
-        "error": {
-            "message": "The product id does not exist."
-        },
+        "errorCode": "400",
+        "errorMessage": "The request is missing key information or is malformed.",
         "extra_info": {
             "field1": "Not included",
             "field2": "Excluded too",

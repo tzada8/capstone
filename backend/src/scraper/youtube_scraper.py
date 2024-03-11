@@ -1,10 +1,13 @@
 from os import environ
 from serpapi import GoogleSearch
 from typing import Dict
+import logging
 
 def _convert_video_views(num: int) -> str:
     suffixes = ["","k", "M", "B", "T"]
     magnitude = 0
+    if num is None:
+        num = 0
     while abs(num) >= 1000:
         magnitude += 1
         num /= 1000.0
@@ -18,20 +21,37 @@ def scrape_videos(q: str) -> Dict:
         "gl": "us",
         "hl": "en",
     }
-    search = GoogleSearch(params)
-    results = search.get_dict()
+    try:
+        search = GoogleSearch(params)
+        results = search.get_dict()
+    except:
+        results = {}
 
-    video_results = results.get("video_results", [])
-    return {
-        "videos": [
-            {
-                "title": vr.get("title"),
-                "link": vr.get("link"),
-                "channel_name": vr.get("channel", {}).get("name"),
-                "published_date": vr.get("published_date"),
-                "views": _convert_video_views(vr.get("views", 0)),
-                "length": vr.get("length"),
-                "thumbnail": vr.get("thumbnail", {}).get("static"),
-            } for vr in video_results
-        ]
-    }
+    if "error" in results:
+        logging.error(f"YouTube => {results.get("error")}")
+        return {
+            "videos": {
+                "error": results.get("error"),
+            }
+        }
+    elif len(results) == 0:
+        return {
+            "videos": {
+                "error": "The API call failed.",
+            }
+        }
+    else:
+        video_results = results.get("video_results", [])
+        return {
+            "videos": [
+                {
+                    "title": vr.get("title"),
+                    "link": vr.get("link"),
+                    "channel_name": vr.get("channel", {}).get("name"),
+                    "published_date": vr.get("published_date"),
+                    "views": _convert_video_views(vr.get("views", 0)),
+                    "length": vr.get("length"),
+                    "thumbnail": vr.get("thumbnail", {}).get("static"),
+                } for vr in video_results
+            ]
+        }

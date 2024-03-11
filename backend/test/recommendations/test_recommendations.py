@@ -17,26 +17,26 @@ class TestRecommendation(unittest.TestCase):
 
     def test_scraping_exists(self):
         self.mock_search.side_effect = [trending_exists, popular_exists, sku_to_upc_exists]
-        result = Recommendation._scrape_bestbuy()
+        result = Recommendation._scrape_popularity()
         expected = [master_list, 3, 3]
         self.assertEqual(result, expected)
 
     def test_trending_nonexistent(self):
         self.mock_search.side_effect = [trending_nonexistent, popular_exists, sku_to_upc_exists]
-        result = Recommendation._scrape_bestbuy()
+        result = Recommendation._scrape_popularity()
         expected = [{}, 0, 3]
         self.assertEqual(result, expected)
 
     def test_popular_nonexistent(self):
         self.mock_search.side_effect = [trending_exists, popular_nonexistent, sku_to_upc_exists]
-        result = Recommendation._scrape_bestbuy()
+        result = Recommendation._scrape_popularity()
         expected = [{}, 3, 0]
         self.assertEqual(result, expected)
 
     def test_sku_to_upc_nonexistent(self):
         self.mock_search.side_effect = [trending_exists, popular_exists, sku_to_upc_nonexistent]
-        result = Recommendation._scrape_bestbuy()
-        expected = [{}, 3, 3]
+        result = Recommendation._scrape_popularity()
+        expected = [{}, 0, 0]
         self.assertEqual(result, expected)
 
     def test_preferences_complete(self):
