@@ -1,11 +1,9 @@
-.learn-more-button {
+.skip-recommendations {
     background: none;
     color: var(--OFF-BLACK);
     display: flex;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
     margin: 4% auto;
     align-items: center;
-}
-
-.learn-more-link {
-    color: var(--OFF-BLACK);
 }

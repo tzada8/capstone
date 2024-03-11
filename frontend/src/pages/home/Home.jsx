@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowDownOutlined } from '@ant-design/icons';
 
 import "./Home.css";
 import { routes } from "../../routes/Routes";
@@ -16,17 +15,20 @@ function Home() {
     const [isPreferencesModalOpen, setIsPreferencesModalOpen] = useState(false);
 
     const navigate = useNavigate();
-    const toProductSearch = (preferencesModalData) => {
+    const toProductSearch = (showRecommendations, preferencesModalData, isPreferencesSkipped) => {
         navigate(routes.productSearch, {state: {
             query: searchQuery,
             preferences: preferencesModalData,
+            "showRecommendations": showRecommendations,
+            "isPreferencesSkipped": isPreferencesSkipped,
         }})
     }
 
     const handlePreferencesModalSubmit = (data) => {
         setIsPreferencesModalOpen(false);
-        Object.keys(data).forEach(k => data[k] = data[k].includes("no-preference") ? "" : data[k])
-        toProductSearch(data);
+        Object.keys(data).forEach(k => data[k] = data[k].includes("no-preference") ? "" : data[k]);
+        const isPreferencesSkipped = Object.values(data).every(v => v === "");
+        toProductSearch(true, data, isPreferencesSkipped);
     }
 
 	return (
@@ -49,9 +51,7 @@ function Home() {
                 query={searchQuery}
                 setQuery={setSearchQuery}
             />
-            <button className="learn-more-button">
-                <a className="body-1-medium learn-more-link" href="#learn-more-jump">Learn more <ArrowDownOutlined /></a>
-            </button>
+            <button className="body-1-medium skip-recommendations" onClick={() => toProductSearch(false)}>Skip recommendations</button>
             <HowItWorks />
             <DataPipeline />
             <Footer />

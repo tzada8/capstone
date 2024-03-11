@@ -24,6 +24,7 @@ function Comparisons() {
         videos: [],
     }
 
+    const [showRecommendations, setShowRecommendations] = useState(null);
     const [showMoreRecommendations, setShowMoreRecommendations] = useState(false);
     const [products, setProducts] = useState(Array(numDisplayed).fill(defaultProductStructure));
     const [recommendations, setRecommendations] = useState([]);
@@ -39,6 +40,8 @@ function Comparisons() {
             "importance": location.state.featurePriority,
             "selected_products": location.state.selectedProducts,
         }
+        const showRecommendations = location.state === null ? null : location.state.showRecommendations;
+        setShowRecommendations(showRecommendations);
         console.log("RECOMMENDATION DATA", recommendationData)
 
         // TODO: Remove. Temp just to rename products.
@@ -49,26 +52,30 @@ function Comparisons() {
 
         // const unsortedProducts = recommendationData["selected_products"];
         const unsortedProducts = renameProducts;
+        setProducts(unsortedProducts);
+        setProductTitles(unsortedProducts.map(p => p.basic_info.title));
 
         // TODO: Comment out dummy recommendations for actual data.
-        const recEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/recommendation`;
-        fetch(recEndpoint).then(res => res.json()).then(data => {
-            setRecommendations(data);
-            unsortedProducts.sort((a, b) => data.indexOf(a) - data.indexOf(b));
-            setProducts(unsortedProducts);
-            setProductTitles(unsortedProducts.map(p => p.basic_info.title));
-        });
-        // const recEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/recommendation`;
-        // fetch(recEndpoint, {
-        //     method: "POST",
-        //     headers: {"Content-Type": "application/json"},
-        //     body: JSON.stringify(recommendationData),
-        // }).then(res => res.json()).then(data => {
-        //     setRecommendations(data);
-        //     unsortedProducts.sort((a, b) => data.indexOf(a) - data.indexOf(b));
-        //     setProducts(unsortedProducts);
-        //     setProductTitles(unsortedProducts.map(p => p.basic_info.title));
-        // });        
+        if (showRecommendations) {
+            const recEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/recommendation`;
+            fetch(recEndpoint).then(res => res.json()).then(data => {
+                setRecommendations(data);
+                unsortedProducts.sort((a, b) => data.indexOf(a) - data.indexOf(b));
+                setProducts(unsortedProducts);
+                setProductTitles(unsortedProducts.map(p => p.basic_info.title));
+            });
+            // const recEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/recommendation`;
+            // fetch(recEndpoint, {
+            //     method: "POST",
+            //     headers: {"Content-Type": "application/json"},
+            //     body: JSON.stringify(recommendationData),
+            // }).then(res => res.json()).then(data => {
+            //     setRecommendations(data);
+            //     unsortedProducts.sort((a, b) => data.indexOf(a) - data.indexOf(b));
+            //     setProducts(unsortedProducts);
+            //     setProductTitles(unsortedProducts.map(p => p.basic_info.title));
+            // });
+        }
     }, [location.state]);
 
     const handleProductSwitch = (event) => {
@@ -86,7 +93,7 @@ function Comparisons() {
 		<div>
             <Navbar isComparisonNav={true} />
 
-            <div className="recommendation-section">
+            {showRecommendations && <div className="recommendation-section">
                 <h1 className="center-text max-width-heading">Recommend items by likeability</h1>
                 <br/>
                 <p className="body-1 center-text max-width-body">Scored by how much we think you'll like it based upon learning your preferences and reviews.</p>
@@ -97,11 +104,10 @@ function Comparisons() {
                     onClick={() => setShowMoreRecommendations(!showMoreRecommendations)}
                     className="alternative-button primary-button-size center-button"
                 >{showMoreRecommendations ? "Show less" : "Show more"}</button>}
-            </div>
-
-            <br/>
-            <br/>
-            <br/>
+                <br/>
+                <br/>
+                <br/>
+            </div>}
 
             <div className="page-margin">
                 <h1 className="center-text max-width-heading">Compare products</h1>
