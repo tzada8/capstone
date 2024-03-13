@@ -3,7 +3,9 @@ dummy_product = {
     "badges": {
       "top_rated": True
     },
-    "images": ["https://pisces.bbystatic.com/prescaled/500/500/image2/BestBuy_US/images/products/6522/6522416_sd.jpg"],
+    "images": [
+      "https://pisces.bbystatic.com/prescaled/500/500/image2/BestBuy_US/images/products/6522/6522416_sd.jpg"
+    ],
     "manufacturer": "Sony",
     "model_number": "ZV1F/B",
     "price": {
@@ -15,7 +17,7 @@ dummy_product = {
     "rating": 4.6,
     "source": "Best Buy",
     "title": "Sony - ZV-1F Vlog Camera for Content Creators and Vloggers - Black",
-    "total_reviews": 634,
+    "total_reviews": 641,
     "upc": "027242926288",
     "us_item_id": ""
   },
@@ -26,28 +28,6 @@ dummy_product = {
       "score": "76/100",
       "source": "Consumer Reports"
     },
-    "ratings": [
-      {
-        "count": 1,
-        "stars": 1
-      },
-      {
-        "count": 0,
-        "stars": 2
-      },
-      {
-        "count": 1,
-        "stars": 3
-      },
-      {
-        "count": 25,
-        "stars": 4
-      },
-      {
-        "count": 67,
-        "stars": 5
-      }
-    ],
     "summary": [
         "Camera is best suited for beginners or as a practice camera, not for professional use.",
         "Misleading advertising, additional items shown not included in package.",
@@ -127,7 +107,7 @@ dummy_product = {
       "published_date": "1 year ago",
       "thumbnail": "https://i.ytimg.com/vi/1qoHgeO6I6Y/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCAPFZBbW3y78khv083XAwiKO-SFw",
       "title": "Sony ZV1F - Watch This BEFORE You Buy!!",
-      "views": "153.9k"
+      "views": "155.7k"
     },
     {
       "channel_name": "iJustine",
@@ -136,61 +116,7 @@ dummy_product = {
       "published_date": "1 year ago",
       "thumbnail": "https://i.ytimg.com/vi/dx-gJeB-WCQ/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCJHjnJODGEC01_TotJBlVIMnTAmA",
       "title": "NEW Sony Vlogging Camera ZV-1F  Unboxing and review",
-      "views": "170.2k"
-    },
-    {
-      "channel_name": "Nicolas Chae",
-      "length": "10:30",
-      "link": "https://www.youtube.com/watch?v=zVBNnV_ZaD0",
-      "published_date": "1 year ago",
-      "thumbnail": "https://i.ytimg.com/vi/zVBNnV_ZaD0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA08c3BKGeqCQU9BXxwBY8wU38Gmg",
-      "title": "The ONLY Camera You Need for Content Creation in 2024",
-      "views": "354.8k"
-    },
-    {
-      "channel_name": "Sony | Camera Channel",
-      "length": "3:13",
-      "link": "https://www.youtube.com/watch?v=RYyvHs8-wks",
-      "published_date": "1 year ago",
-      "thumbnail": "https://i.ytimg.com/vi/RYyvHs8-wks/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDIoY9sFChws-9wiik4NBIVf7_9mw",
-      "title": "Introducing vlog camera ZV-1F | Sony",
-      "views": "317.6k"
-    },
-    {
-      "channel_name": "The Film Alliance",
-      "length": "10:36",
-      "link": "https://www.youtube.com/watch?v=bQeTl6y8pWo",
-      "published_date": "1 year ago",
-      "thumbnail": "https://i.ytimg.com/vi/bQeTl6y8pWo/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCh-RdDl_KYHQVqDGNc2-v46bYfeA",
-      "title": "Sony ZV-1F vs Sony ZV-1 || WATCH BEFORE YOU BUY!!",
-      "views": "208.7k"
-    },
-    {
-      "channel_name": "Sia M Tarawallie",
-      "length": "10:47",
-      "link": "https://www.youtube.com/watch?v=ERhxoxyy2qM",
-      "published_date": "8 months ago",
-      "thumbnail": "https://i.ytimg.com/vi/ERhxoxyy2qM/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCAI-6J-P4JK-L6kwqcjHkUfRQB6A",
-      "title": "Sony ZV-1F: Ultimate Beginner Vlogging Setup Guide",
-      "views": "46.1k"
-    },
-    {
-      "channel_name": "Sofia Elise ",
-      "length": "7:34",
-      "link": "https://www.youtube.com/watch?v=pdJBuWDc3wM",
-      "published_date": "8 months ago",
-      "thumbnail": "https://i.ytimg.com/vi/pdJBuWDc3wM/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBrkl6UnyrUZSifoWYWHoQOYFaiRA",
-      "title": "buying my first camera \u2661 | sony zv1f + unboxing",
-      "views": "13.9k"
-    },
-    {
-      "channel_name": "Tech Through The Lens",
-      "length": "9:15",
-      "link": "https://www.youtube.com/watch?v=BsLMg_TuAXo",
-      "published_date": "1 year ago",
-      "thumbnail": "https://i.ytimg.com/vi/BsLMg_TuAXo/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA0CQQXYQM7EKhbEb_SxUNgqYL4mw",
-      "title": "Sony ZV-1F Review - Watch Before You Buy",
-      "views": "78.3k"
+      "views": "170.8k"
     },
     {
       "channel_name": "ShariChavonne",
@@ -199,106 +125,7 @@ dummy_product = {
       "published_date": "2 months ago",
       "thumbnail": "https://i.ytimg.com/vi/oquKb79L6IU/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCqLIfGsHap1IsFCSQa3KMp71WtkQ",
       "title": "SONY ZV-1F UNBOXING | my new vlogging camera, Accessories, Quality Test,Is It Worth Buying + MORE",
-      "views": "2.7k"
-    },
-    {
-      "channel_name": "Mark Bennett's Camera Crisis",
-      "length": "11:58",
-      "link": "https://www.youtube.com/watch?v=HqrZ9c1U2wE",
-      "published_date": "11 months ago",
-      "thumbnail": "https://i.ytimg.com/vi/HqrZ9c1U2wE/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBpwks6FoUkypXNcEm9hNoIw5-F6Q",
-      "title": "Sony ZV1-F Vlogging Camera - The Complete Review",
-      "views": "23.8k"
-    },
-    {
-      "channel_name": "Jason Vong",
-      "length": "13:18",
-      "link": "https://www.youtube.com/watch?v=xL8-OWSREoA",
-      "published_date": "1 year ago",
-      "thumbnail": "https://i.ytimg.com/vi/xL8-OWSREoA/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDWmnVtkpat1PLmUebPj6HbOFvsww",
-      "title": "Sony ZV-1F | Beginners\u2019 VIDEO Camera for VLOGs, Tik Tok, & IG",
-      "views": "98.2k"
-    },
-    {
-      "channel_name": "Gemini Connect",
-      "length": "8:21",
-      "link": "https://www.youtube.com/watch?v=EbotmAx11tE",
-      "published_date": "1 year ago",
-      "thumbnail": "https://i.ytimg.com/vi/EbotmAx11tE/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDMNGhp7v9IlmnatMvGIu03i-_OnA",
-      "title": "Sony ZV-1F | 10 Reasons This is a Good Vlogging Camera",
-      "views": "31.0k"
-    },
-    {
-      "channel_name": "Jazmyn Renae",
-      "length": "24:02",
-      "link": "https://www.youtube.com/watch?v=UQmXIlfXS3I",
-      "published_date": "1 year ago",
-      "thumbnail": "https://i.ytimg.com/vi/UQmXIlfXS3I/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLChk7zrmDR9QWz6sg3YPQvRAavScw",
-      "title": "Sony ZV1 Camera Unboxing | Becoming A Content Creator In 2023!",
-      "views": "16.6k"
-    },
-    {
-      "channel_name": "Jacob Randall Holmes",
-      "length": "14:58",
-      "link": "https://www.youtube.com/watch?v=J_GKmvl_SNo",
-      "published_date": "7 months ago",
-      "thumbnail": "https://i.ytimg.com/vi/J_GKmvl_SNo/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB1wK1bWi4YvlYRQ1S1LJ7YEkHGZQ",
-      "title": "I bought the CHEAPEST Sony Camera | Sony ZV-1F Review",
-      "views": "14.4k"
-    },
-    {
-      "channel_name": "Greg Toope",
-      "length": "11:00",
-      "link": "https://www.youtube.com/watch?v=fzu8ZXUwf7k",
-      "published_date": "11 months ago",
-      "thumbnail": "https://i.ytimg.com/vi/fzu8ZXUwf7k/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCDqixE8c3UMIkTq7sQZjAmmr-14A",
-      "title": "Make The Sony ZV-1F the Ultimate Vlogging camera with these Accessories!!",
-      "views": "22.1k"
-    },
-    {
-      "channel_name": "Jessica Stansberry",
-      "length": "11:27",
-      "link": "https://www.youtube.com/watch?v=9U1OhsubiTU",
-      "published_date": "1 year ago",
-      "thumbnail": "https://i.ytimg.com/vi/9U1OhsubiTU/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB4SPrYtNAvqi-U7PI1AHNTNM-TRw",
-      "title": "Sony made the ULTIMATE Vlog Camera [Sony ZV-1F]",
-      "views": "26.4k"
-    },
-    {
-      "channel_name": "Sony Electronics | Support (US)",
-      "length": "0:53",
-      "link": "https://www.youtube.com/watch?v=gu6cuLaXtds",
-      "published_date": "1 year ago",
-      "thumbnail": "https://i.ytimg.com/vi/gu6cuLaXtds/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLD44skEc3PRqsa3xchmh0La31TbiA",
-      "title": "Sony | USB Livestream - ZV-1F Compact Vlog Camera",
-      "views": "8.9k"
-    },
-    {
-      "channel_name": "Dunna Did It",
-      "length": "13:50",
-      "link": "https://www.youtube.com/watch?v=zMPVO2c4HjM",
-      "published_date": "8 months ago",
-      "thumbnail": "https://i.ytimg.com/vi/zMPVO2c4HjM/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBHVnIMtCcRnW3tN7qOLO74dy1LDw",
-      "title": "Is It Worth It? Sony Zv-1 Mark ii vs iPhone 14 Pro",
-      "views": "247.1k"
-    },
-    {
-      "channel_name": "Gemini Connect",
-      "length": "12:52",
-      "link": "https://www.youtube.com/watch?v=xMgJIAG9rUk",
-      "published_date": "10 months ago",
-      "thumbnail": "https://i.ytimg.com/vi/xMgJIAG9rUk/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBHozBjWECgL_zryrlKSXQpGW7hjQ",
-      "title": "Is the Sony ZV-1 Vlogging Camera Worth Buying in 2023?",
-      "views": "53.0k"
-    },
-    {
-      "channel_name": "iJustine",
-      "length": "6:36",
-      "link": "https://www.youtube.com/watch?v=fhxs42MAlyY",
-      "published_date": "9 months ago",
-      "thumbnail": "https://i.ytimg.com/vi/fhxs42MAlyY/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBHbPumXeWCeMSOdMRdKt0eE1d8pg",
-      "title": "Sony's NEW Vlogging Camera - ZV-1 Mark II",
-      "views": "121.7k"
+      "views": "2.8k"
     }
   ]
 }

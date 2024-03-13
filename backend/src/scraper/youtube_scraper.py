@@ -53,5 +53,5 @@ def scrape_videos(q: str) -> Dict:
                     "length": vr.get("length"),
                     "thumbnail": vr.get("thumbnail", {}).get("static"),
                 } for vr in video_results
-            ]
+            ][:3]
         }

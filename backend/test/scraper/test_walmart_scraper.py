@@ -91,13 +91,6 @@ class TestWalmartProduct(unittest.TestCase):
         result = WalmartProduct._product_reviews(product_id)
         expected = {
             "reviews": {
-                "ratings": [
-                    {"count": 1, "stars": 1},
-                    {"count": 100, "stars": 2},
-                    {"count": 100, "stars": 3},
-                    {"count": 50, "stars": 4},
-                    {"count": 1000, "stars": 5}
-                ],
                 "reviews": ["Good", "Bad", "Okay", "Terrible", "The best"],
                 "top_negative": {
                     "rating": 1, "text": "Do not buy this product", "title": "Worst Product",
@@ -129,13 +122,6 @@ class TestWalmartProduct(unittest.TestCase):
         result = WalmartProduct._product_reviews(product_id)
         expected = {
             "reviews": {
-                "ratings": [
-                    {"count": 1, "stars": 1},
-                    {"count": 100, "stars": 2},
-                    {"count": 100, "stars": 3},
-                    {"count": 50, "stars": 4},
-                    {"count": 1000, "stars": 5}
-                ],
                 "reviews": ["Good", "Bad", "Okay", "Terrible", "The best"],
                 "top_negative": {"rating": None, "text": None, "title": None},
                 "top_positive": {"rating": None, "text": None, "title": None},
@@ -169,13 +155,6 @@ class TestWalmartProduct(unittest.TestCase):
                 {"name": "Size", "value": "Small"},
             ],
             "reviews": {
-                "ratings": [
-                    {"count": 1, "stars": 1},
-                    {"count": 100, "stars": 2},
-                    {"count": 100, "stars": 3},
-                    {"count": 50, "stars": 4},
-                    {"count": 1000, "stars": 5}
-                ],
                 "reviews": ["Good", "Bad", "Okay", "Terrible", "The best"],
                 "top_negative": {
                     "rating": 1, "text": "Do not buy this product", "title": "Worst Product",
