@@ -78,7 +78,8 @@ def scrape_expert_reviews(q: str, id_check: str, id_field: str) -> Dict:
             name = er.get('slugName')[:index]
             model = er.get('slugName')[index + 1:]
             link = f"https://www.consumerreports.org/electronics-computers/cameras/{name}/m{model}/"
-            status = requests.get(link).status_code
+            headers = {"User-Agent": "Mozilla/5.0 (X11; CrOS x86_64 12871.102.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.141 Safari/537.36"}
+            status = requests.get(link, headers = headers).status_code
             if status != 200:
                 link = None
 
