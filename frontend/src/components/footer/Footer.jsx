@@ -14,8 +14,6 @@ function Footer() {
             </div>
             <div className="footer-options-container">
                 <Link className="body-1-bold footer-option" to={routes.home}>About the Tool</Link>
-                <Link className="body-1-bold footer-option" to={routes.home}>Help</Link>
-                <Link className="body-1-bold footer-option" to={routes.home}>Contact Us</Link>
             </div>
         </footer>
     )
