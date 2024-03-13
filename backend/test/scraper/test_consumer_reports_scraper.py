@@ -12,10 +12,10 @@ class TestConsumerReportsScraper(unittest.TestCase):
     def tearDown(self):
         self.mock_search.stop()
 
-    def test_scrape_expert_reviews_upc_exists(self):
+    def test_scrape_expert_reviews_match(self):
         self.mock_search.side_effect = [all_products_returned, expert_reviews_returned, valid_status]
         query = "AAAAA"
-        result = scrape_expert_reviews(query, 11111, "defaultUpc")
+        result = scrape_expert_reviews(query)
         expected = {
             "expert_review": {
                 "review": "It was okay.",
@@ -26,24 +26,22 @@ class TestConsumerReportsScraper(unittest.TestCase):
         }
         self.assertEqual(result, expected)
 
-    def test_scrape_expert_reviews_walmart_id_exists(self):
+    def test_scrape_expert_reviews_no_match(self):
         self.mock_search.side_effect = [all_products_returned, expert_reviews_returned, valid_status]
-        query = "AAAAA"
-        result = scrape_expert_reviews(query, "11111", "walmartId")
+        query = "ZZZZZ"
+        result = scrape_expert_reviews(query)
         expected = {
             "expert_review": {
-                "review": "It was okay.",
-                "score": "75/100",
-                "source": "Consumer Reports",
-                "link": "https://www.consumerreports.org/electronics-computers/cameras/brand-model/m111/",
-            } 
+                "product": "ZZZZZ",
+                "error": "The review for this product does not exist.",
+            }
         }
         self.assertEqual(result, expected)
 
     def test_scrape_expert_reviews_no_bottomline(self):
         self.mock_search.side_effect = [all_products_returned, expert_reviews_no_bottomline, valid_status]
         query = "AAAAA"
-        result = scrape_expert_reviews(query, "11111", "walmartId")
+        result = scrape_expert_reviews(query)
         expected = {
             "expert_review": {
                 "review": "It was okay.",
@@ -54,34 +52,10 @@ class TestConsumerReportsScraper(unittest.TestCase):
         }
         self.assertEqual(result, expected)
 
-    def test_scrape_expert_reviews_upc_no_match(self):
-        self.mock_search.side_effect = [all_products_returned, expert_reviews_returned, valid_status]
-        query = "AAAAA"
-        result = scrape_expert_reviews(query, 22222, "defaultUpc")
-        expected = {
-            "expert_review": {
-                "product": "AAAAA",
-                "error": "The review for this product does not exist.",
-            }
-        }
-        self.assertEqual(result, expected)
-
-    def test_scrape_expert_reviews_walmart_id_no_match(self):
-        self.mock_search.side_effect = [all_products_returned, expert_reviews_returned, valid_status]
-        query = "AAAAA"
-        result = scrape_expert_reviews(query, "22222", "walmartId")
-        expected = {
-            "expert_review": {
-                "product": "AAAAA",
-                "error": "The review for this product does not exist.",
-            }
-        }
-        self.assertEqual(result, expected)
-
     def test_scrape_expert_reviews_invalid_link(self):
         self.mock_search.side_effect = [all_products_returned, expert_reviews_returned, invalid_status]
         query = "AAAAA"
-        result = scrape_expert_reviews(query, 11111, "defaultUpc")
+        result = scrape_expert_reviews(query)
         expected = {
             "expert_review": {
                 "review": "It was okay.",
@@ -95,7 +69,7 @@ class TestConsumerReportsScraper(unittest.TestCase):
     def test_scrape_expert_reviews_search_api_error(self):
         self.mock_search.return_value = api_error
         query = "AAAAA"
-        result = scrape_expert_reviews(query, 11111, "defaultUpc")
+        result = scrape_expert_reviews(query)
         expected = {
             "expert_review": {
                 "error": "Could not complete request.",
@@ -107,7 +81,7 @@ class TestConsumerReportsScraper(unittest.TestCase):
     def test_scrape_expert_reviews_product_api_error(self):
         self.mock_search.side_effect = [all_products_returned, api_error]
         query = "AAAAA"
-        result = scrape_expert_reviews(query, 11111, "defaultUpc")
+        result = scrape_expert_reviews(query)
         expected = {
             "expert_review": {
                 "error": "Could not complete request.",
