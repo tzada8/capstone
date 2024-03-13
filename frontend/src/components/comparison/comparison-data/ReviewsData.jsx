@@ -16,7 +16,11 @@ function ReviewsData(props) {
 
 	return (
 		<div>
-            {props.reviews.summary && <p className="body-1">{props.reviews.summary}</p>}
+            {props.reviews.summary.length > 0 && <ul className="summary-bullet-container">
+                {props.reviews.summary.map((point, i) => (
+                    <li className="body-1 summary-bullet" key={i}>{point}</li>
+                ))}
+            </ul>}
             <br/>
             <br/>
             {props.reviews.top_positive && <MostReview

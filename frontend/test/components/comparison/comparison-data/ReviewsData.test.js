@@ -4,7 +4,7 @@ import { render } from "@testing-library/react";
 import ReviewsData from "../../../../src/components/comparison/comparison-data/ReviewsData";
 
 const reviewsData = {
-    summary: "This is a summary of the reviews",
+    summary: ["This is a summary of the reviews", "A second review"],
     top_positive: {
         rating: 5,
         title: "Positive Review Title",
@@ -22,6 +22,7 @@ describe("ReviewsData", () => {
         const { getByText } = render(<ReviewsData reviews={reviewsData} />);
 
         expect(getByText("This is a summary of the reviews")).toBeInTheDocument();
+        expect(getByText("A second review")).toBeInTheDocument();
         expect(getByText("MOST POSITIVE REVIEW")).toBeInTheDocument();
         expect(getByText("MOST NEGATIVE REVIEW")).toBeInTheDocument();
         expect(getByText("5")).toBeInTheDocument();
@@ -31,7 +32,7 @@ describe("ReviewsData", () => {
     });
 
     it("renders without crashing if top_positive and top_negative are not provided", () => {
-        const reviewsDataWithoutReviews = { summary: "No reviews available" };
+        const reviewsDataWithoutReviews = { summary: ["No reviews available"] };
         const { getByText } = render(<ReviewsData reviews={reviewsDataWithoutReviews} />);
 
         expect(getByText("No reviews available")).toBeInTheDocument();
@@ -39,7 +40,7 @@ describe("ReviewsData", () => {
 
     it("renders without crashing if top_positive or top_negative are null", () => {
         const reviewsDataWithNullReviews = {
-            summary: "Reviews are present but null values for positive and negative reviews",
+            summary: ["Reviews are present but null values for positive and negative reviews"],
             top_positive: null,
             top_negative: null,
         };

@@ -18,8 +18,7 @@ function Comparisons() {
     const numDisplayed = 3;
     const defaultProductStructure = {
         basic_info: { images: [], price: {} },
-        reviews: { top_positive: {}, top_negative: {} },
-        expert_review: {},
+        reviews: { top_positive: {}, top_negative: {}, expert_review: {}, summary: [] },
         specifications: [],
         videos: [],
     }

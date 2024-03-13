@@ -48,6 +48,15 @@
 }
 
 /* REVIEWS */
+.summary-bullet-container {
+    list-style-position: inside;
+    margin-left: 18px;
+}
+
+.summary-bullet {
+    list-style: disc;
+}
+
 .most-review-container, .expert-reviews-container {
 	border: 1px solid var(--GREY);
 	border-radius: 8px;
@@ -67,6 +76,7 @@
 }
 
 .show-more-text {
+	background: none;
 	color: var(--DARK-BLUE);
 }
 

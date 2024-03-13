@@ -20,7 +20,7 @@ def summarize(reviews: List[str]) -> List[str]:
     try:
         client = OpenAI(api_key=environ.get("OPENAI_API_KEY"))
         bullet_reviews = "\n- ".join(shorted_reviews)
-        prompt = f"Summarize and aggregate the following list of product reviews into a list of bullet points using at most 100 words and no more than 6 bullet points in total:\n- {bullet_reviews}"
+        prompt = f"Summarize and aggregate the following list of product reviews into a list of bullet points using at most 100 words and no more than 4 bullet points in total:\n- {bullet_reviews}"
         response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[{"role": "user", "content": prompt}]
