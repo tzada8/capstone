@@ -14,6 +14,12 @@ const reviewsData = {
         rating: 1,
         title: "Negative Review Title",
         text: "This is a negative review text."
+    },
+    expert_review: {
+        link: null,
+        review: "The product is good",
+        score: "50/100",
+        source: "Consumer Reports"
     }
 };
 
@@ -32,17 +38,23 @@ describe("ReviewsData", () => {
     });
 
     it("renders without crashing if top_positive and top_negative are not provided", () => {
-        const reviewsDataWithoutReviews = { summary: ["No reviews available"] };
+        const reviewsDataWithoutReviews = {
+            summary: ["No reviews available"],
+            top_positive: {},
+            top_negative: {},
+            expert_review: {},
+        };
         const { getByText } = render(<ReviewsData reviews={reviewsDataWithoutReviews} />);
 
         expect(getByText("No reviews available")).toBeInTheDocument();
     });
 
-    it("renders without crashing if top_positive or top_negative are null", () => {
+    it("renders without crashing if top_positive or top_negative are empty", () => {
         const reviewsDataWithNullReviews = {
             summary: ["Reviews are present but null values for positive and negative reviews"],
-            top_positive: null,
-            top_negative: null,
+            top_positive: {},
+            top_negative: {},
+            expert_review: {},
         };
         const { getByText } = render(<ReviewsData reviews={reviewsDataWithNullReviews} />);
 
