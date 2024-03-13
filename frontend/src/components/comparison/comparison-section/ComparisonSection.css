@@ -6,6 +6,7 @@
     background: none;
     border: none;
     border-bottom: 2px solid var(--PRIMARY-BLUE);
+    border-radius: 0px;
     width: 100%;
     display: flex;
     align-items: center;

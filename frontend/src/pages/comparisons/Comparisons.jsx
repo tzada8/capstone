@@ -90,7 +90,7 @@ function Comparisons() {
 
 	return (
 		<div>
-            <Navbar isComparisonNav={true} />
+            <Navbar isComparisonNav={true} showRecommendations={showRecommendations} />
 
             {showRecommendations && <div className="recommendation-section">
                 <h1 className="center-text max-width-heading">Recommend items by likeability</h1>
