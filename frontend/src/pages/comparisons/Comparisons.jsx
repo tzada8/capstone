@@ -18,8 +18,7 @@ function Comparisons() {
     const numDisplayed = 3;
     const defaultProductStructure = {
         basic_info: { images: [], price: {} },
-        reviews: { top_positive: {}, top_negative: {} },
-        expert_review: {},
+        reviews: { top_positive: {}, top_negative: {}, expert_review: {}, summary: [] },
         specifications: [],
         videos: [],
     }
@@ -91,7 +90,7 @@ function Comparisons() {
 
 	return (
 		<div>
-            <Navbar isComparisonNav={true} />
+            <Navbar isComparisonNav={true} showRecommendations={showRecommendations} />
 
             {showRecommendations && <div className="recommendation-section">
                 <h1 className="center-text max-width-heading">Recommend items by likeability</h1>

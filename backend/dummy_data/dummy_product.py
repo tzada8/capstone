@@ -48,7 +48,12 @@ dummy_product = {
         "stars": 5
       }
     ],
-    "summary": "Overall, the Sony ZV-1 camera receives high praise for its quality and ease of use, particularly for vloggers and beginners in videography and photography. Users appreciate its compact size, high-resolution video and picture quality, and versatility for various content creation purposes. The camera is commended for features such as quick setup, excellent autofocus, and user-friendly controls. While some note limitations such as battery life, zoom range, and the lack of a stabilizer, the majority of reviewers recommend the Sony ZV-1 for its quality, functionality, and portability, making it a popular choice for vloggers, content creators, and social media users.",
+    "summary": [
+        "Camera is best suited for beginners or as a practice camera, not for professional use.",
+        "Misleading advertising, additional items shown not included in package.",
+        "Poor quality pictures, issues with charging cable and SD card slot.",
+        "Customers express disappointment in overall quality, pixelation, and functionality of the camera.",
+    ],
     "top_negative": {
       "rating": 1,
       "text": "Bought this mainly for the streamimg functionality but the power it takes through the USB isnt even enough to keep it charged while streaming! And the stream is even limited to 720p60 through the USB. This is just awful outdated charging technology. On a $900 camera i think its fair to expect it to be used in the use cases they advertise.",

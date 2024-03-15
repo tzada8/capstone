@@ -14,12 +14,21 @@ function ReviewsData(props) {
     const displayableText = numWords > wordLimit ? shortenedText + "..." : shortenedText;
     const buttonText = numWords > wordLimit ? (showMore ? "Less" : "More") : "";
 
+    const noReviews = props.reviews.summary.length === 0 &&
+                        Object.keys(props.reviews.top_positive).length === 0 &&
+                        Object.keys(props.reviews.top_negative).length === 0 &&
+                        props.reviews.expert_review.hasOwnProperty("error");
+
 	return (
-		<div>
-            {props.reviews.summary && <p className="body-1">{props.reviews.summary}</p>}
+		noReviews ? <p className="body-1">Product has no reviews.</p> : <div>
+            {props.reviews.summary.length > 0 && <ul className="summary-bullet-container">
+                {props.reviews.summary.map((point, i) => (
+                    <li className="body-1 summary-bullet" key={i}>{point}</li>
+                ))}
+            </ul>}
             <br/>
             <br/>
-            {props.reviews.top_positive && <MostReview
+            {Object.keys(props.reviews.top_positive).length > 0 && <MostReview
                 isPositive={true}
                 rating={props.reviews.top_positive?.rating}
                 title={props.reviews.top_positive?.title}
@@ -27,7 +36,7 @@ function ReviewsData(props) {
             />}
             <br/>
             <br/>
-            {props.reviews.top_negative && <MostReview
+            {Object.keys(props.reviews.top_negative).length > 0 && <MostReview
                 isPositive={false}
                 rating={props.reviews.top_negative?.rating}
                 title={props.reviews.top_negative?.title}
@@ -35,7 +44,7 @@ function ReviewsData(props) {
             />}
             <br/>
             <br/>
-            {props.reviews.expert_review && <div className="expert-reviews-container">
+            {props.reviews.expert_review.hasOwnProperty("error") && <div className="expert-reviews-container">
                 <div className="expert-reviews-title-position">
                     <img className="expert-reviews-icon" src={consumerReportsIcon} alt=""/>
                     <h4 className="expert-reviews-source">{props.reviews.expert_review?.source}</h4>
