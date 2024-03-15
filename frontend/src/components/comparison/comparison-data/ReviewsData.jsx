@@ -17,7 +17,7 @@ function ReviewsData(props) {
     const noReviews = props.reviews.summary.length === 0 &&
                         Object.keys(props.reviews.top_positive).length === 0 &&
                         Object.keys(props.reviews.top_negative).length === 0 &&
-                        Object.keys(props.reviews.expert_review).length === 0;
+                        props.reviews.expert_review.hasOwnProperty("error");
 
 	return (
 		noReviews ? <p className="body-1">Product has no reviews.</p> : <div>
@@ -44,7 +44,7 @@ function ReviewsData(props) {
             />}
             <br/>
             <br/>
-            {Object.keys(props.reviews.expert_review).length > 0 && <div className="expert-reviews-container">
+            {props.reviews.expert_review.hasOwnProperty("error") && <div className="expert-reviews-container">
                 <div className="expert-reviews-title-position">
                     <img className="expert-reviews-icon" src={consumerReportsIcon} alt=""/>
                     <h4 className="expert-reviews-source">{props.reviews.expert_review?.source}</h4>
