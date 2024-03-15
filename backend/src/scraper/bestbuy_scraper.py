@@ -9,6 +9,15 @@ from src.sentiment.sentiment import sentiment
 
 class BestBuyProduct:
     @staticmethod
+    def _product_images(product_dict: Dict, key: str) -> List:
+        if key in product_dict:
+            if isinstance(product_dict[key], list):
+                return product_dict[key]
+            elif isinstance(product_dict[key], str):
+                return [product_dict["image"]]
+        return []
+
+    @staticmethod
     def _product_specs(product_id: str) -> Dict:
         params = {
             "product_id": product_id,
@@ -56,7 +65,7 @@ class BestBuyProduct:
                         "amount": product_result.get("regularPrice"),
                         "currency": "USD" if product_result.get("regularPrice") is not None else None,
                     },
-                    "images": product_result.get("image", []),
+                    "images": BestBuyProduct._product_images(product_result, "image"),
                     "total_reviews": product_result.get("customerReviewCount"),
                     "rating": product_result.get("customerReviewAverage"),
                     "badges": {
@@ -156,28 +165,6 @@ class BestBuyProduct:
             else:
                 return {
                     "reviews": {
-                        "ratings": [
-                            {
-                                "count": review_info.get('RatingSummary').get('OneStarCount'),
-                                "stars": 1
-                            },
-                            {
-                                "count": review_info.get('RatingSummary').get('TwoStarCount'),
-                                "stars": 2
-                            },
-                            {
-                                "count": review_info.get('RatingSummary').get('ThreeStarCount'),
-                                "stars": 3
-                            },
-                            {
-                                "count": review_info.get('RatingSummary').get('FourStarCount'),
-                                "stars": 4
-                            },
-                            {
-                                "count": review_info.get('RatingSummary').get('FiveStarCount'),
-                                "stars": 5
-                            }
-                        ],
                         "top_positive": {
                             "title": positive_negative.get("top_positive").get("title"),
                             "text": positive_negative.get("top_positive").get("text"),

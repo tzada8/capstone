@@ -94,7 +94,6 @@ class WalmartProduct:
             reviews = results.get("reviews", [])
             return {
                 "reviews": {
-                    "ratings": results.get("ratings"),
                     "top_positive": {
                         "title": top_positive.get("title"),
                         "text": top_positive.get("text"),

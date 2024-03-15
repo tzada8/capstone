@@ -30,7 +30,6 @@ class TestGoogleShoppingScraper(unittest.TestCase):
                         "price": 100.00,
                         "rating": 4.5,
                         "reviews": 2,
-                        "extensions": ["Black", "Videos"],
                         "thumbnail": "https://thumbnail1.com",
                     },
                     {
@@ -42,7 +41,6 @@ class TestGoogleShoppingScraper(unittest.TestCase):
                         "price": 500.00,
                         "rating": 4.3,
                         "reviews": 100,
-                        "extensions": ["Black"],
                         "thumbnail": "https://thumbnail2.com",
                     },
                 ],
