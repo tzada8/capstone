@@ -42,11 +42,11 @@ h4 {
 }
 
 .max-width-heading {
-    max-width: 90%;
+    max-width: 100%;
 }
 
 .max-width-body {
-    max-width: 65%;
+    max-width: 75%;
 }
 
 .body-1, .body-1-medium, .body-1-bold {
@@ -108,11 +108,11 @@ h4 {
 /* DESKTOP SCREEN */
 @media screen and (min-width: 1500px) {
     .max-width-heading {
-        max-width: 80%;
+        max-width: 90%;
     }
     
     .max-width-body {
-        max-width: 50%;
+        max-width: 65%;
     }
 }
 

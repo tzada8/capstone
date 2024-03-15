@@ -1,19 +1,20 @@
 .how-it-works {
-    background: var(--LIGHTER-BLUE);
+    /* background: var(--LIGHTER-BLUE); */
     width: 100%;
     height: 100%;
     border-radius: 12px;
-    display: grid;
-    grid-auto-flow: column;
-    grid-column-gap: 10%;
-    margin: 5% 0;
-    padding: 2% 7%;
+    display: flex;
+    justify-content: space-between;
+    /* grid-column-gap: 10%; */
+    margin: 2% 0%;
+    padding: 2% 4%;
 }
 
 .how-it-works-text-container {
     text-align: left;
     justify-content: left;
-    margin-top: 16%;
+    min-width: 50%;
+    margin-top: 1%;
 }
 
 .how-it-works-title {
@@ -22,33 +23,37 @@
 
 .steps-container {
     list-style-position: inside;
-    margin-top: 5%;
-    margin-left: 20px;
+    /* margin-top: 5%; */
+    /* margin-left: 20px; */
 }
 
-.how-it-works-step {
-    list-style: decimal;
+.how-it-works-h4 {
+    padding-top: 2rem;
+    padding-bottom: 0.5rem;
+    margin-left: 0rem;
 }
 
 .diagram-container {
-    width: 400px;
+    max-width: 40%;
+    /* width: 400px;
     height: 500px;
     box-shadow: 0 0 20px rgba(49, 130, 206, 0.25);
-    margin-top: 3%;
+    margin-top: 3%; */
 }
 
 .how-it-works-diagram {
     width: 100%;
-    height: 100%;
+    height: auto;
     max-width: 100%;
-    max-height: 100%;
+    /* box-shadow: 0 0 20px rgba(49, 130, 206, 0.25); */
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 /* DESKTOP SCREEN */
 @media screen and (min-width: 1500px) {
-    .how-it-works-text-container {
+    /* .how-it-works-text-container {
         margin-top: 10%;
-    }
+    } */
 }
 
 /* SMALL SCREEN */

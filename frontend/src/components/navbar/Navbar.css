@@ -29,3 +29,18 @@
 .navbar-restart-button {
     padding-right: 7%;
 }
+
+.navbar-options-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-option {
+    margin: 1.65rem;
+    color: var(--OFF-BLACK);
+}
+
+.primary-button-inverted-list {
+    margin-left: 1.65rem;
+}

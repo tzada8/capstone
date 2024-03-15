@@ -105,9 +105,9 @@ function PreferencesModal({ onSubmit, isOpen, onClose }) {
                         ))}
                     </div>
                 ))}
-                <button type="submit" className="primary-button form-button-spacing form-button-size">Next</button>
-                <button onClick={handleSkip} className="primary-button-inverted form-button-size">Skip</button>
             </form>
+            <button type="submit" className="primary-button form-button-spacing form-button-size">Next</button>
+            <button onClick={handleSkip} className="primary-button-inverted form-button-size">Skip</button>
         </Modal>
 	);
 }

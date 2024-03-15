@@ -1,5 +1,16 @@
 .data-pipeline-diagram {
     display: block;
-    margin: 5% auto 8% auto;
+    margin: 4% auto 0% auto;
     width: 80%;
+}
+
+.content-data-pipeline {
+    height: 68vh;
+    display: flex;
+}
+
+.content-data-pipeline-body {
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-bottom: 1.5rem;
 }

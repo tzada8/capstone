@@ -1,4 +1,4 @@
-.skip-recommendations {
+/* .skip-recommendations {
     background: none;
     color: var(--OFF-BLACK);
     display: flex;
@@ -6,4 +6,15 @@
     text-decoration-thickness: 2px;
     margin: 4% auto;
     align-items: center;
+} */
+
+.hero {
+    height: 70vh;
+    display: flex;
+}
+
+.hero-body {
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-bottom: 1rem;
 }

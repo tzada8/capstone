@@ -1,5 +1,5 @@
 .footer {
-    margin: 4% 7% 4% 7%;
+    margin: 6% 0% 4% 0%;
 }
 
 .footer-hr {
@@ -11,6 +11,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 4%;
 }
 
 .center-logo { 
