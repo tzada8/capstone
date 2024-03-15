@@ -92,6 +92,7 @@
 }
 
 .expert-reviews-source {
+	color: var(--OFF-BLACK);
 	line-height: 100%;
 }
 

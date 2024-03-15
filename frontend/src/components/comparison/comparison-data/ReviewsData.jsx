@@ -44,10 +44,18 @@ function ReviewsData(props) {
             />}
             <br/>
             <br/>
-            {props.reviews.expert_review.hasOwnProperty("error") && <div className="expert-reviews-container">
+            {!(props.reviews.expert_review.hasOwnProperty("error")) && <div className="expert-reviews-container">
                 <div className="expert-reviews-title-position">
                     <img className="expert-reviews-icon" src={consumerReportsIcon} alt=""/>
-                    <h4 className="expert-reviews-source">{props.reviews.expert_review?.source}</h4>
+                    <h4 className="expert-reviews-source">
+                        {props.reviews.expert_review?.link ? <a
+                            className="expert-reviews-source"
+                            href={props.reviews.expert_review?.link}
+                            target="_blank"
+                            rel="noreferrer"
+                        >{props.reviews.expert_review?.source}</a> :
+                        props.reviews.expert_review?.source}
+                    </h4>
                 </div>
                 <p className="body-3 expert-reviews-score">{props.reviews.expert_review?.score}</p>
                 <p className="body-1">
