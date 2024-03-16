@@ -4,7 +4,7 @@ from typing import Dict
 
 class WalmartProduct:
     @staticmethod
-    def _product_specs(product_id: str) -> Dict:
+    def product_specs(product_id: str) -> Dict:
         params = {
             "engine": "walmart_product",
             "product_id": product_id,
@@ -38,7 +38,7 @@ class WalmartProduct:
             return {
                 "basic_info": {
                     "us_item_id": product_result.get("us_item_id"),
-                    "product_id": product_result.get("product_id"),
+                    "product_id": product_id,
                     "upc": product_result.get("upc", ""),
                     "title": product_result.get("title"),
                     "product_page_url": product_result.get("product_page_url"),
@@ -61,7 +61,7 @@ class WalmartProduct:
             }
 
     @staticmethod
-    def _product_reviews(product_id: str) -> Dict:
+    def product_reviews(product_id: str) -> Dict:
         params = {
             "engine": "walmart_product_reviews",
             "product_id": product_id,
@@ -106,9 +106,3 @@ class WalmartProduct:
                     "reviews": [r.get("text") for r in reviews if r.get("text") is not None],
                 }
             }
-
-    @staticmethod
-    def aggregate_data(product_id: str) -> Dict:
-        specs_dict = WalmartProduct._product_specs(product_id)
-        reviews_dict = WalmartProduct._product_reviews(product_id)
-        return specs_dict | reviews_dict

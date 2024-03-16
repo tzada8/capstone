@@ -38,16 +38,28 @@ def recommendation():
     data = request.get_json()
     return Recommendation.aggregate_data(data["preferences"], data["importance"], data["selected_products"])
 
-@app.route("/api/product")
-def product():
+@app.route("/api/product/basic-info")
+def product_basic_info():
     product_id = request.args.get("product_id")
+    source = request.args.get("source")
+
+    if "Best Buy" in source:
+        return BestBuyProduct.product_specs(product_id)
+    elif "Walmart" in source:
+        return WalmartProduct.product_specs(product_id)
+    return {}
+
+@app.route("/api/product/detailed-info")
+def product_detailed_info():
+    product_id = request.args.get("product_id")
+    product_title = request.args.get("product_title")
     source = request.args.get("source")
 
     product_data = {}
     if "Best Buy" in source:
-        product_data = BestBuyProduct.aggregate_data(product_id)
+        product_data = BestBuyProduct.product_reviews(product_title)
     elif "Walmart" in source:
-        product_data = WalmartProduct.aggregate_data(product_id)
+        product_data = WalmartProduct.product_reviews(product_id)
 
     # Summarize reviews.
     text_reviews = product_data["reviews"].get("reviews")
@@ -56,14 +68,11 @@ def product():
         product_data["reviews"].update(summary)
         del product_data["reviews"]["reviews"]
 
-    # Scrape YouTube videos.
-    title = product_data["basic_info"].get("title")
-    if title:
-        product_data.update(scrape_videos(title))
-
-    # Scrape Expert reviews.
-    if title:
-        product_data["reviews"].update(scrape_expert_reviews(title))
+    if product_title:
+        # Scrape YouTube videos.
+        product_data.update(scrape_videos(product_title))
+        # Scrape Expert reviews.
+        product_data["reviews"].update(scrape_expert_reviews(product_title))
 
     return product_data
 
