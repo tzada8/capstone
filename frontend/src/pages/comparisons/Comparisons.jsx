@@ -117,9 +117,6 @@ function Comparisons() {
             <div className="page-margin">
                 <br/>
                 <br/>
-                <br/>
-                <br/>
-                <br/>
                 <h1 className="center-text max-width-heading">Compare products</h1>
                 <br/>
                 <p className="body-1 center-text max-width-body">Get help choosing from analyzed insights, fast.</p>

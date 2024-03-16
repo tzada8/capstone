@@ -241,3 +241,7 @@
 20:35:16,252 werkzeug INFO 127.0.0.1 - - [15/Mar/2024 20:35:16] "GET /api/dummy/product HTTP/1.1" 200 -
 20:35:16,303 werkzeug INFO 127.0.0.1 - - [15/Mar/2024 20:35:16] "GET /api/dummy/recommendation HTTP/1.1" 200 -
 20:35:16,315 werkzeug INFO 127.0.0.1 - - [15/Mar/2024 20:35:16] "GET /api/dummy/recommendation HTTP/1.1" 200 -
+20:41:17,193 werkzeug INFO 127.0.0.1 - - [15/Mar/2024 20:41:17] "GET /api/dummy/search-products?q=test HTTP/1.1" 200 -
+20:41:21,475 werkzeug INFO 127.0.0.1 - - [15/Mar/2024 20:41:21] "GET /api/dummy/product HTTP/1.1" 200 -
+20:41:23,502 werkzeug INFO 127.0.0.1 - - [15/Mar/2024 20:41:23] "GET /api/dummy/product HTTP/1.1" 200 -
+20:41:25,520 werkzeug INFO 127.0.0.1 - - [15/Mar/2024 20:41:25] "GET /api/dummy/product HTTP/1.1" 200 -
