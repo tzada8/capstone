@@ -6,12 +6,12 @@ import Modal from "../../base-modal/Modal";
 function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
     // TODO: Maybe have list of features dependant on preferences to backend (allows for dynamic set of products/options).
     const [featurePriority, setFeaturePriority] = useState([
-        { value: "brand", display: "Brand" },
-        { value: "megapixels", display: "Number of megapixels" },
-        { value: "lens_type", display: "Lens type" },
-        { value: "camera_type", display: "Camera type" },
         { value: "budget", display: "Budget" },
+        { value: "camera_type", display: "Camera type" },
         { value: "product_rating", display: "Peer reviews and ratings" },
+        { value: "brand", display: "Brand" },
+        { value: "lens_type", display: "Lens type" },
+        { value: "megapixels", display: "Number of megapixels" },
     ]);
     const dragFeature = useRef(0);
     const draggedOverFeature = useRef(0);
