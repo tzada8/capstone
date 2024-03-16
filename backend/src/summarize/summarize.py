@@ -1,7 +1,6 @@
 from openai import OpenAI, OpenAIError, APIError, APIConnectionError, RateLimitError
 from os import environ
 from typing import List
-import logging
 
 def summarize(reviews: List[str]) -> List[str]:
     if len(reviews) == 0:
@@ -28,16 +27,16 @@ def summarize(reviews: List[str]) -> List[str]:
         text_resp = response.choices[0].message.content.strip()
         return text_resp.replace("- ", "").split("\n")
     except OpenAIError as e:
-        logging.error(f"OpenAI Summarize => {e}")
+        print(f"OpenAI Summarize => {e}")
         return []
     except APIError as e:
-        logging.error(f"OpenAI Summarize => OpenAI API returned an API Error: {e}")
+        print(f"OpenAI Summarize => OpenAI API returned an API Error: {e}")
         return []
     except APIConnectionError as e:
-        logging.error(f"OpenAI Summarize => Failed to connect to OpenAI API: {e}")
+        print(f"OpenAI Summarize => Failed to connect to OpenAI API: {e}")
         return []
     except RateLimitError as e:
-        logging.error(f"OpenAI Summarize => OpenAI API request exceeded rate limit: {e}")
+        print(f"OpenAI Summarize => OpenAI API request exceeded rate limit: {e}")
         return []
     except:
         return []

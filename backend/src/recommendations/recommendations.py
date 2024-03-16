@@ -1,7 +1,6 @@
 from os import environ
 from typing import Dict, List
 import requests
-import logging
 import re
 
 class Recommendation:
@@ -26,9 +25,9 @@ class Recommendation:
 
         if "errorCode" in trending.keys() or "errorCode" in most_popular.keys():
             if "errorCode" in trending.keys():
-                logging.error(f"Trending => Error Code: {trending.get('errorCode')} - {trending.get('errorMessage')}")
+                print(f"Trending => Error Code: {trending.get('errorCode')} - {trending.get('errorMessage')}")
             if "errorCode" in most_popular.keys():
-                logging.error(f"Most Popular => Error Code: {most_popular.get('errorCode')} - {most_popular.get('errorMessage')}")
+                print(f"Most Popular => Error Code: {most_popular.get('errorCode')} - {most_popular.get('errorMessage')}")
             return [{}, 0, 0]
         elif len(trending.get("results")) == 0 or len(most_popular.get("results")) == 0:
             return [{}, len(trending.get("results")), len(most_popular.get("results"))]
@@ -53,7 +52,7 @@ class Recommendation:
             except:
                 results = {"total": 0}
             if "errorCode" in results.keys():
-                logging.error(f"Recommendation Product SKU-UPC => Error Code: {results.get('errorCode')} - {results.get('errorMessage')}")
+                print(f"Recommendation Product SKU-UPC => Error Code: {results.get('errorCode')} - {results.get('errorMessage')}")
                 return [{}, 0, 0]
             elif results.get("total") == 0:
                 return [{}, 0, 0]

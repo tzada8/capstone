@@ -1,7 +1,6 @@
 from flask import Flask, request
 from flask_cors import CORS
 from os import environ
-import logging
 
 from src.scraper.google_shopping_scraper import scrape_google_products
 from src.recommendations.recommendations import Recommendation
@@ -21,11 +20,6 @@ from dummy_data.dummy_preferences import dummy_preferences, dummy_importance
 
 app = Flask(__name__)
 CORS(app)
-
-logging.basicConfig(filename="warnings",
-                    filemode='a',
-                    format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
-                    datefmt='%H:%M:%S')
 
 @app.route("/")
 def default_backend():

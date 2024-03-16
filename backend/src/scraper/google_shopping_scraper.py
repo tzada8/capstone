@@ -2,7 +2,6 @@ from os import environ
 from serpapi import GoogleSearch
 from typing import Dict, Optional
 from urllib import parse
-import logging
 
 SELLER_FILTERS = {
     "walmart": "g8299768%7Cm125210027%7Cm120798572%7Cm113137360%7Cm5073604987%7Cm585399882",
@@ -45,7 +44,7 @@ def scrape_google_products(q: str, start: int) -> Dict:
         results = {}
 
     if "error" in results.keys():
-        logging.error(f"Google Shopping => {results.get('error')}")
+        print(f"Google Shopping => {results.get('error')}")
         return {
             "shopping_results": {
                 "status": "Error",
