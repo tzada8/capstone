@@ -14,7 +14,7 @@ from src.summarize.summarize import summarize
 import time
 from dummy_data.dummy_search_products import dummy_search_products, dummy_search_products2
 from dummy_data.dummy_recommendation import dummy_recommendation
-from dummy_data.dummy_product import dummy_product
+from dummy_data.dummy_product import dummy_product, dummy_product_basic_info, dummy_product_detailed_info
 from dummy_data.dummy_recommendation_products import dummy_recommendation_products
 from dummy_data.dummy_preferences import dummy_preferences, dummy_importance
 
@@ -144,6 +144,16 @@ def dummy_api_recommendation():
 def dummy_api_product():
     time.sleep(2)
     return dummy_product
+
+# TODO: DELETE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
+@app.route("/api/dummy/product/basic-info")
+def dummy_api_product_basic_info():
+    return dummy_product_basic_info
+
+# TODO: DELETE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
+@app.route("/api/dummy/product/detailed-info")
+def dummy_api_product_detailed_info():
+    return dummy_product_detailed_info
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", threaded=True, port=5000)

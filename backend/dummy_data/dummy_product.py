@@ -129,3 +129,106 @@ dummy_product = {
     }
   ]
 }
+
+dummy_product_basic_info = {
+  "basic_info": {
+    "badges": {
+      "bestseller": True,
+      "customer_pick": False
+    },
+    "images": [
+      "https://i5.walmartimages.com/seo/REDTIGER-Dash-Cam-Front-Rear-4K-WiFi-GPS-4K-2-5K-Front-1080P-Rear-Camera-View-Night-Vision-LCD-Screen-Display-Loop-Recording-Black_7056930e-fc01-4040-9c98-7a3b96c302fa.e9f1eab954551ae8c698025b516a644d.jpeg",
+      "https://i5.walmartimages.com/asr/632d689b-06c0-46fa-96ae-b5d0492b42e3.06d5557af664c5859e12a853a0a9a93d.jpeg",
+      "https://i5.walmartimages.com/asr/40aa2e78-dc4c-4c94-8595-d814ecf6873e.629eedac0d1a725e44db363d64a8e6bc.jpeg",
+      "https://i5.walmartimages.com/asr/e45f64c2-90b7-482c-86e7-7a9c8c022dd7.ab30d63809acfa773cd2ead3e23f38f1.jpeg",
+    ],
+    "price": {
+      "amount": 109.99,
+      "currency": "USD"
+    },
+    "product_id": "712633092",
+    "product_page_url": "https://www.walmart.com/ip/REDTIGER-Dash-Cam-Front-Rear-4K-WiFi-GPS-4K-2-5K-Front-1080P-Rear-Camera-View-Night-Vision-LCD-Screen-Display-Loop-Recording-Black/712633092",
+    "rating": 4.6,
+    "source": "Walmart",
+    "title": "REDTIGER Dash Cam Front and Rear, 4K Dash Cam with WiFi & GPS, 4K/2.5K Front+1080P Rear Dash Camera with View Night Vision, LCD Screen Display, Loop Recording,Black",
+    "total_reviews": 754,
+    "upc": "715377138453",
+    "us_item_id": "712633092"
+  },
+  "specifications": [
+    {
+      "name": "Features",
+      "value": "Built In Camera, Camera With G-Sensor, Car Backup Camera, Motion Detection, Parking Monitor, Rear/Front View Camera, Super Night Vision, USB/SD Port, Universal Fit, Video & Night Vision, Wide Viewing Angle, Wide Angle Front, Wireless"
+    },
+    {
+      "name": "Assembled Product Weight",
+      "value": "1.34 lb"
+    },
+    {
+      "name": "Brand",
+      "value": "REDTIGER"
+    },
+    {
+      "name": "Manufacturer Part Number",
+      "value": "REDTIGER"
+    },
+    {
+      "name": "Assembled Product Dimensions (L x W x H)",
+      "value": "3.82 x 1.26 x 0.79 Inches"
+    }
+  ]
+}
+
+dummy_product_detailed_info = {
+  "reviews": {
+    "expert_review": {
+      "error": "The review for this product does not exist.",
+      "product": "REDTIGER Dash Cam Front and Rear, 4K Dash Cam with WiFi "
+    },
+    "summary": [
+      "Customers received good quality cameras with clear pictures and easy settings",
+      "Excellent customer service who offered free accessories upon request",
+      "Some issues reported with battery drainage when continuously plugged in",
+      "Several installation challenges mentioned, including difficult cabling and problems with the hardwire kit cutting off power and requiring manual restarts"
+    ],
+    "top_negative": {
+      "rating": 1,
+      "text": "It was broken when I first powered it on.",
+      "title": "Dead on arrival"
+    },
+    "top_positive": {
+      "rating": 5,
+      "text": "Good deal and nice quality",
+      "title": "Nice for the price"
+    }
+  },
+  "videos": [
+    {
+      "channel_name": "HowMuchTech",
+      "length": "5:07",
+      "link": "https://www.youtube.com/watch?v=OjK8VFA3MCA",
+      "published_date": "2 years ago",
+      "thumbnail": "https://i.ytimg.com/vi/OjK8VFA3MCA/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC6bxPH1bQBoJ49T0V416jMxlQlSQ",
+      "title": "REDTIGER F7N Review \u2013 The Best 4K Dual Dash Cam",
+      "views": "100.7k"
+    },
+    {
+      "channel_name": "REDTIGER DASH CAM",
+      "length": "2:49",
+      "link": "https://www.youtube.com/watch?v=sOvSSK8j02s",
+      "published_date": "11 months ago",
+      "thumbnail": "https://i.ytimg.com/vi/sOvSSK8j02s/hq720.jpg?sqp=-oaymwE2COgCEMoBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhlIFsoVDAP&rs=AOn4CLCnqu02JT54LNZM1_6QtCv_NME7aQ",
+      "title": "Redtiger F7NP 4K Dual DashCam Install",
+      "views": "174.4k"
+    },
+    {
+      "channel_name": "REDTIGER DASH CAM",
+      "length": "2:36",
+      "link": "https://www.youtube.com/watch?v=pgRJH_pf4QU",
+      "published_date": "11 months ago",
+      "thumbnail": "https://i.ytimg.com/vi/pgRJH_pf4QU/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAMuYdayQE0Gg_CJdcBpsM6wziuGg",
+      "title": "Redtiger Dash Cam | How to Connect to WiFi in 2023",
+      "views": "52.2k"
+    }
+  ]
+}
