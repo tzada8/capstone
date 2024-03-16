@@ -9,6 +9,15 @@ from src.sentiment.sentiment import sentiment
 
 class BestBuyProduct:
     @staticmethod
+    def _product_images(product_dict: Dict, key: str) -> List:
+        if key in product_dict:
+            if isinstance(product_dict[key], list):
+                return product_dict[key]
+            elif isinstance(product_dict[key], str):
+                return [product_dict["image"]]
+        return []
+
+    @staticmethod
     def _product_specs(product_id: str) -> Dict:
         params = {
             "product_id": product_id,
@@ -56,7 +65,7 @@ class BestBuyProduct:
                         "amount": product_result.get("regularPrice"),
                         "currency": "USD" if product_result.get("regularPrice") is not None else None,
                     },
-                    "images": product_result.get("image", []),
+                    "images": BestBuyProduct._product_images(product_result, "image"),
                     "total_reviews": product_result.get("customerReviewCount"),
                     "rating": product_result.get("customerReviewAverage"),
                     "badges": {
@@ -86,7 +95,7 @@ class BestBuyProduct:
     def _product_reviews(product_name: str) -> Dict:
         # Search for product by name (first 5 words).
         params = {
-            "product_name": ' '.join(product_name.split()[:5]).lower(),
+            "product_name": ' '.join(product_name.split()[:5]).replace(" - ", " ").lower(),
             "headers": {"User-Agent": "Mozilla/5.0 (X11; CrOS x86_64 12871.102.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.141 Safari/537.36"},
         }
         try:
@@ -117,8 +126,8 @@ class BestBuyProduct:
             for product in sorted_products:
                 shortened_canada_name = ' '.join(product.get('name').split()[:3]).lower()
                 similarity = SequenceMatcher(None, shortened_us_name, shortened_canada_name).ratio()
-                # If more than 75% similar, use that product's reviews.
-                if similarity >= 0.75:
+                # If more than 65% similar, use that product's reviews.
+                if similarity >= 0.65:
                     compatible_sku = product.get('sku')
                     try:
                         search_sku = requests.get(f"https://www.bestbuy.ca/api/v2/json/reviews/{compatible_sku}?page=1&source=us", headers = params.get('headers'))
@@ -156,28 +165,6 @@ class BestBuyProduct:
             else:
                 return {
                     "reviews": {
-                        "ratings": [
-                            {
-                                "count": review_info.get('RatingSummary').get('OneStarCount'),
-                                "stars": 1
-                            },
-                            {
-                                "count": review_info.get('RatingSummary').get('TwoStarCount'),
-                                "stars": 2
-                            },
-                            {
-                                "count": review_info.get('RatingSummary').get('ThreeStarCount'),
-                                "stars": 3
-                            },
-                            {
-                                "count": review_info.get('RatingSummary').get('FourStarCount'),
-                                "stars": 4
-                            },
-                            {
-                                "count": review_info.get('RatingSummary').get('FiveStarCount'),
-                                "stars": 5
-                            }
-                        ],
                         "top_positive": {
                             "title": positive_negative.get("top_positive").get("title"),
                             "text": positive_negative.get("top_positive").get("text"),

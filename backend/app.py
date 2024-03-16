@@ -50,14 +50,10 @@ def product():
     source = request.args.get("source")
 
     product_data = {}
-    source_details = {}
     if "Best Buy" in source:
         product_data = BestBuyProduct.aggregate_data(product_id)
-        # TODO: Could match expert reviews on model_number/defaultMpc too.
-        source_details = {"product_id": product_data["basic_info"].get("upc"), "id_field": "defaultUpc"}
     elif "Walmart" in source:
         product_data = WalmartProduct.aggregate_data(product_id)
-        source_details = {"product_id": product_id, "id_field": "walmartId"}
 
     # Summarize reviews.
     text_reviews = product_data["reviews"].get("reviews")
@@ -73,7 +69,7 @@ def product():
 
     # Scrape Expert reviews.
     if title:
-        product_data["reviews"].update(scrape_expert_reviews(title, source_details["product_id"], source_details["id_field"]))
+        product_data["reviews"].update(scrape_expert_reviews(title))
 
     return product_data
 

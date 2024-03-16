@@ -7,7 +7,7 @@ import Logo from "../logo/Logo";
 
 function Navbar(props) {
     const navigate = useNavigate();
-    const navbarClass = props.isComparisonNav ? "comparison-navbar" : "regular-navbar"
+    const navbarClass = props.isComparisonNav && props.showRecommendations ? "comparison-navbar" : "regular-navbar"
     return (
         <div className={`navbar ${navbarClass}`}>
             <div className={props.isComparisonNav ? "navbar-logo" : ""}>

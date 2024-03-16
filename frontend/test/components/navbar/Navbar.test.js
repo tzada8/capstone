@@ -18,7 +18,7 @@ describe("Navbar", () => {
     it("renders comparison navbar", () => {
         const { container } = render(
             <Router>
-                <Navbar isComparisonNav />
+                <Navbar isComparisonNav showRecommendations />
             </Router>
         );
         const navbar = container.querySelector(".comparison-navbar");

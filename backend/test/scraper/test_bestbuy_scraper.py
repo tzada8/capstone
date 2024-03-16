@@ -95,13 +95,6 @@ class TestBestBuyProduct(unittest.TestCase):
         result = BestBuyProduct._product_reviews("New Product Title")
         expected = {
             "reviews": {
-                "ratings": [
-                    {"count": 1, "stars": 1},
-                    {"count": 100, "stars": 2},
-                    {"count": 100, "stars": 3},
-                    {"count": 50, "stars": 4},
-                    {"count": 1000, "stars": 5}
-                ],
                 "reviews": ["Good", "Bad", "Okay", "Terrible", "The best"],
                 "top_negative": {'rating': 1, 'text': "Terrible", 'title': "Terrible"},
                 "top_positive": {'rating': 5, 'text': "The best", 'title': "The best"}
@@ -156,13 +149,6 @@ class TestBestBuyProduct(unittest.TestCase):
             },
             "specifications": [],
             "reviews": {
-                "ratings": [
-                    {"count": 1, "stars": 1},
-                    {"count": 100, "stars": 2},
-                    {"count": 100, "stars": 3},
-                    {"count": 50, "stars": 4},
-                    {"count": 1000, "stars": 5}
-                ],
                 "reviews": ["Good", "Bad", "Okay", "Terrible", "The best"],
                 "top_negative": {'rating': 1, 'text': "Terrible", 'title': "Terrible"},
                 "top_positive": {'rating': 5, 'text': "The best", 'title': "The best"}

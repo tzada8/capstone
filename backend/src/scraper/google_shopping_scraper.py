@@ -75,7 +75,6 @@ def scrape_google_products(q: str, start: int) -> Dict:
                         "price": sr.get("extracted_price"),
                         "rating": sr.get("rating"),
                         "reviews": sr.get("reviews"),
-                        "extensions": sr.get("extensions"),
                         "thumbnail": sr.get("thumbnail"),
                     } for sr in shopping_results
                 ],
