@@ -92,7 +92,12 @@
 }
 
 .expert-reviews-source {
+	color: var(--OFF-BLACK);
 	line-height: 100%;
+}
+
+.expert-reviews-clickable {
+	text-decoration: underline;
 }
 
 .expert-reviews-score {

@@ -23,7 +23,7 @@ dummy_product = {
   },
   "reviews": {
     "expert_review": {
-      "link": None,
+      "link": "https://www.consumerreports.org/electronics-computers/cameras/slr-camera/c37124/",
       "review": "A 20-megapixel camera from Sony with a 1-inch sensor and a 3-inch LCD. ",
       "score": "76/100",
       "source": "Consumer Reports"
