@@ -9,7 +9,7 @@ import Footer from "../../../components/footer/Footer";
 function DataPipeline() {
     return (
         <div className="page-margin">
-            <Navbar isComparisonNav={false} />
+            <Navbar/>
             <div className="content-data-pipeline">
                 <div className="content-data-pipeline-body">
                     <div className="data-pipeline">

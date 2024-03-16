@@ -33,7 +33,7 @@ function Home() {
 
 	return (
 		<div className="page-margin">
-            <Navbar isComparisonNav={false} />
+            <Navbar/>
             <div className="hero">
                 <div className="hero-body">
                     <PreferencesModal

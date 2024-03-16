@@ -2,3 +2,7 @@
     background: var(--LIGHTEST-BLUE);
     padding-bottom: 60px;
 }
+
+.blue-bg {
+    background: var(--LIGHTEST-BLUE);
+}

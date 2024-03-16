@@ -29,7 +29,7 @@
 
 .how-it-works-h4 {
     padding-top: 2rem;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.65rem;
     margin-left: 0rem;
 }
 
@@ -47,6 +47,10 @@
     max-width: 100%;
     /* box-shadow: 0 0 20px rgba(49, 130, 206, 0.25); */
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.steps-indent {
+    padding-left: 1.5rem;
 }
 
 /* DESKTOP SCREEN */

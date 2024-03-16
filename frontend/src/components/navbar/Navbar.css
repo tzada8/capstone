@@ -4,15 +4,16 @@
     height: 120px;
     display: flex;
     align-items: center;
+    background-color: transparent;
 }
 
-.regular-navbar {
-    background-color: var(--OFF-WHITE);
+/* .regular-navbar {
+    background-color: transparent;
 }
 
 .comparison-navbar {
     background-color: var(--LIGHTEST-BLUE);
-}
+} */
 
 .navbar-logo, .navbar-restart-button {
     flex: 0 0 auto;

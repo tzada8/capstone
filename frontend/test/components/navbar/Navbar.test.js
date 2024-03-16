@@ -15,16 +15,6 @@ describe("Navbar", () => {
         expect(navbar).toBeInTheDocument();
     });
 
-    it("renders comparison navbar", () => {
-        const { container } = render(
-            <Router>
-                <Navbar isComparisonNav showRecommendations />
-            </Router>
-        );
-        const navbar = container.querySelector(".comparison-navbar");
-        expect(navbar).toBeInTheDocument();
-    });
-
     it("renders clickable logo link", () => {
         const { getByRole } = render(
             <Router>
@@ -34,18 +24,6 @@ describe("Navbar", () => {
         const logoLink = getByRole("link", { name: /Ju x tapose/i });
         fireEvent.click(logoLink);
         expect(logoLink).toBeInTheDocument();
-        expect(window.location.pathname).toEqual("/");
-    });
-
-    it("renders clickable restart button in comparison navbar", () => {
-        const { getByRole } = render(
-            <Router>
-                <Navbar isComparisonNav />
-            </Router>
-        );
-        const restartButton = getByRole("button", { name: /Restart Search/i });
-        fireEvent.click(restartButton);
-        expect(restartButton).toBeInTheDocument();
         expect(window.location.pathname).toEqual("/");
     });
 });

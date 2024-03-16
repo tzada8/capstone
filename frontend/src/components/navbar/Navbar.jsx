@@ -7,7 +7,6 @@ import Logo from "../logo/Logo";
 
 function Navbar(props) {
     const navigate = useNavigate();
-    const navbarClass = props.isComparisonNav && props.showRecommendations ? "comparison-navbar" : "regular-navbar"
 
     const [searchQuery, setSearchQuery] = useState("");
     const toProductSearch = (showRecommendations, preferencesModalData, isPreferencesSkipped) => {
@@ -20,16 +19,9 @@ function Navbar(props) {
     }
 
     return (
-        <div className={`navbar ${navbarClass}`}>
-            <div className={props.isComparisonNav ? "navbar-logo" : ""}>
-                <Link to={routes.home}><Logo /></Link>
-            </div>
+        <div className={`navbar`}>
+            <Link to={routes.home}><Logo /></Link>
             <div className="navbar-middle" />
-            <div className="navbar-restart-button">
-                {props.isComparisonNav && <button 
-                    onClick={() => navigate(routes.home)} className="primary-button primary-button-size"
-                >Restart Search</button>}
-            </div>
             <div className="navbar-options-container">
                 <Link className="body-1-medium navbar-option" to={routes.how_it_works}>How it works</Link>
                 <Link className="body-1-medium navbar-option" to={routes.data_pipeline}>Our data</Link>

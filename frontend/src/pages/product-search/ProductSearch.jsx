@@ -150,7 +150,7 @@ function ProductSearch() {
                     onClose={() => setIsFeaturePriorityModalOpen(false)}
                 />
 
-                <Navbar isComparisonNav={false} />
+                <Navbar/>
 
                 <Link className="body-1-medium back" to={routes.home}>← Back</Link>
 
@@ -181,7 +181,7 @@ function ProductSearch() {
                     {showRecommendations && !isPreferencesSkipped && <div>
                         <br/>
                         <h4>Picked for you</h4>
-                        <p className="body-1 max-width-body">Based on how much you liked previous recommendation rankings and answers to question</p>
+                        <p className="body-1">Based on how much you liked previous recommendation rankings and answers to question</p>
                         <br/>
                         <div className="picked-for-you">
                             {productData.slice(0, numPickedForYou).map(product => (
@@ -192,6 +192,8 @@ function ProductSearch() {
                                 />
                             ))}
                         </div>
+                        <br/>
+                        <br/>
                         <br/>
                         <br/>
                     </div>}
