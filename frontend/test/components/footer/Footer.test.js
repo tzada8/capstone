@@ -26,6 +26,8 @@ describe("Footer", () => {
         );
 
         expect(getByText("About the Tool")).toHaveAttribute("href", "/");
+        expect(getByText("Help")).toHaveAttribute("href", "/");
+        expect(getByText("Contact Us")).toHaveAttribute("href", "/");
     });
 
     it("renders hr element in footer", () => {
