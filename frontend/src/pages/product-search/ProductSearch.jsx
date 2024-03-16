@@ -119,7 +119,7 @@ function ProductSearch() {
             const moreProdData = data.shopping_results.data;
             setProductData([...productData, ...moreProdData])
         });
-        setPaginationStart(paginationStart + 100);
+        setPaginationStart(paginationStart + 40);
     }
 
     const isNextButtonDisabled = numProductsSelected < minProductsSelected || numProductsSelected > maxProductsSelected;

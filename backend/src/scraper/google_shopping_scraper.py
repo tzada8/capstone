@@ -35,7 +35,7 @@ def scrape_google_products(q: str, start: int) -> Dict:
         "hl": "en",
         "gl": "us",
         "location": "United States",
-        "num": "100",
+        "num": "40",
         "tbs": f"mr:1,merchagg:{sellers}",
     }
     try:
