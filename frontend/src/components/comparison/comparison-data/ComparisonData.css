@@ -96,6 +96,10 @@
 	line-height: 100%;
 }
 
+.expert-reviews-clickable {
+	text-decoration: underline;
+}
+
 .expert-reviews-score {
 	color: var(--DARK-GREY);
 	margin-top: 5px;

@@ -49,7 +49,7 @@ function ReviewsData(props) {
                     <img className="expert-reviews-icon" src={consumerReportsIcon} alt=""/>
                     <h4 className="expert-reviews-source">
                         {props.reviews.expert_review?.link ? <a
-                            className="expert-reviews-source"
+                            className="expert-reviews-source expert-reviews-clickable"
                             href={props.reviews.expert_review?.link}
                             target="_blank"
                             rel="noreferrer"
