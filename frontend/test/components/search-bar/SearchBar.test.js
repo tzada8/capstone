@@ -9,8 +9,8 @@ describe("SearchBar", () => {
             <SearchBar query="initial query" setQuery={() => {}} onSearchSubmit={() => {}} />
         );
 
-        expect(getByPlaceholderText("Search for a camera")).toBeInTheDocument();
-        expect(getByPlaceholderText("Search for a camera")).toHaveValue("initial query");
+        expect(getByPlaceholderText("Search products")).toBeInTheDocument();
+        expect(getByPlaceholderText("Search products")).toHaveValue("initial query");
     });
 
     it("calls setQuery when input value changes", () => {
@@ -19,7 +19,7 @@ describe("SearchBar", () => {
             <SearchBar query="" setQuery={setQueryMock} onSearchSubmit={() => {}} />
         );
 
-        fireEvent.change(getByPlaceholderText("Search for a camera"), { target: { value: "new query" } });
+        fireEvent.change(getByPlaceholderText("Search products"), { target: { value: "new query" } });
         expect(setQueryMock).toHaveBeenCalledWith("new query");
     });
 

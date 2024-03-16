@@ -1,16 +1,22 @@
 import React from "react";
 import { render } from "@testing-library/react";
+import { BrowserRouter as Router } from "react-router-dom";
 
 import HowItWorks from "../../../../src/pages/home/how-it-works/HowItWorks";
 
 describe("HowItWorks", () => {
     it("renders HowItWorks component", () => {
-        const { getByText } = render(<HowItWorks />);
+        const { getByText } = render(
+            <Router>
+                <HowItWorks />
+            </Router>
+        );
 
         expect(getByText("it works")).toBeInTheDocument();
-        expect(getByText(/Search for products that interest you./i)).toBeInTheDocument();
-        expect(getByText(/Provide your product preferences and prioritization of features./i)).toBeInTheDocument();
-        expect(getByText(/View your recommended products and make comparisons./i)).toBeInTheDocument();
+        expect(getByText("1. Search")).toBeInTheDocument();
+        expect(getByText("2. Set filters & preferences")).toBeInTheDocument();
+        expect(getByText("3. View recommendations")).toBeInTheDocument();
+        expect(getByText("4. Compare")).toBeInTheDocument();
         expect(document.querySelector(".how-it-works-diagram")).toBeInTheDocument();
     });
 });

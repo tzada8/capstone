@@ -5,16 +5,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Navbar from "../../../src/components/navbar/Navbar";
 
 describe("Navbar", () => {
-    it("renders regular navbar", () => {
-        const { container } = render(
-            <Router>
-                <Navbar />
-            </Router>
-        );
-        const navbar = container.querySelector(".regular-navbar");
-        expect(navbar).toBeInTheDocument();
-    });
-
     it("renders clickable logo link", () => {
         const { getByRole } = render(
             <Router>
