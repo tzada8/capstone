@@ -34,13 +34,13 @@ function Home() {
 	return (
 		<div className="page-margin">
             <Navbar/>
+            <PreferencesModal
+                isOpen={isPreferencesModalOpen}
+                onSubmit={handlePreferencesModalSubmit}
+                onClose={() => setIsPreferencesModalOpen(false)}
+            />
             <div className="hero">
                 <div className="hero-body">
-                    <PreferencesModal
-                        isOpen={isPreferencesModalOpen}
-                        onSubmit={handlePreferencesModalSubmit}
-                        onClose={() => setIsPreferencesModalOpen(false)}
-                    />
                     <h1 className="center-text max-width-heading">Making purchasing decisions easier with <span className="text-highlight">simplified</span> specs & product reviews</h1>
                     <br/>
                     <p className="body-1 center-text max-width-body">
@@ -54,7 +54,6 @@ function Home() {
                     />
                 </div>
             </div>
-            {/* <button className="body-1-medium skip-recommendations" onClick={() => toProductSearch(false)}>Skip recommendations</button> */}
             <Footer />
 		</div>
 	);

@@ -3,8 +3,8 @@ import React from "react";
 import "./HowItWorks.css";
 import comparisonLayout from "../../../images/home/comparison-layout.png";
 
-import Navbar from "../../../components/navbar/Navbar";
 import Footer from "../../../components/footer/Footer";
+import Navbar from "../../../components/navbar/Navbar";
 
 function HowItWorks() {
     return (
@@ -34,6 +34,4 @@ function HowItWorks() {
     )
 }
 
-
-{/* <HowItWorks /> */}
 export default HowItWorks;

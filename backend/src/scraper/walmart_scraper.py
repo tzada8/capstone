@@ -1,5 +1,5 @@
 from os import environ
-# from serpapi import GoogleSearch
+from serpapi import GoogleSearch
 from typing import Dict
 import logging
 
@@ -11,11 +11,11 @@ class WalmartProduct:
             "product_id": product_id,
             "api_key": environ.get("SERPAPI_API_KEY"),
         }
-        # try:
-        #     search = GoogleSearch(params)
-        #     results = search.get_dict()
-        # except:
-        results = {}
+        try:
+            search = GoogleSearch(params)
+            results = search.get_dict()
+        except:
+            results = {}
 
         if "error" in results:
             logging.error(f"Walmart Specs => {results.get('error')}")

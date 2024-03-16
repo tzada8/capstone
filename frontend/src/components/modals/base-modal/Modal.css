@@ -34,14 +34,12 @@
 
 .modal-header-container {
     margin-top: 1.5rem;
-    /* position: fixed; */
     margin-bottom: 1.5rem;
 }
 
 .form-extra-title-spacing {
     margin-bottom: 10px;
 }
-
 
 /* SMALL SCREEN */
 @media screen and (max-width: 1200px) {

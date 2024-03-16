@@ -1,5 +1,5 @@
 from os import environ
-# from serpapi import GoogleSearch
+from serpapi import GoogleSearch
 from typing import Dict
 import logging
 
@@ -21,11 +21,11 @@ def scrape_videos(q: str) -> Dict:
         "gl": "us",
         "hl": "en",
     }
-    # try:
-    #     search = GoogleSearch(params)
-    #     results = search.get_dict()
-    # except:
-    results = {}
+    try:
+        search = GoogleSearch(params)
+        results = search.get_dict()
+    except:
+        results = {}
 
     if "error" in results:
         logging.error(f"YouTube => {results.get('error')}")

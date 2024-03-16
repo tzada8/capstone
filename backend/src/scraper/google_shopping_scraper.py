@@ -1,5 +1,5 @@
 from os import environ
-# from serpapi import GoogleSearch
+from serpapi import GoogleSearch
 from typing import Dict, Optional
 from urllib import parse
 import logging
@@ -38,11 +38,11 @@ def scrape_google_products(q: str, start: int) -> Dict:
         "num": "40",
         "tbs": f"mr:1,merchagg:{sellers}",
     }
-    # try:
-    #     search = GoogleSearch(params)
-    #     results = search.get_dict()
-    # except:
-    results = {}
+    try:
+        search = GoogleSearch(params)
+        results = search.get_dict()
+    except:
+        results = {}
 
     if "error" in results.keys():
         logging.error(f"Google Shopping => {results.get('error')}")

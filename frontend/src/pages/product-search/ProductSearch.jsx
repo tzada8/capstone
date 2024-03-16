@@ -130,18 +130,14 @@ function ProductSearch() {
 
             {productData.length > 0 && numProductsSelected > 2 && <div className="fixed-buttons-container">
                 <div className="fixed-buttons">
-                    {/* <button
-                        onClick={() => navigate(routes.home)}
-                        className="primary-button-inverted primary-button-size"
-                    >Cancel</button> */}
                     <button
                         // disabled={isNextButtonDisabled}
                         onClick={() => showRecommendations ? setIsFeaturePriorityModalOpen(true) : toComparisons()}
                         // className={`${isNextButtonDisabled ? "disabled-button" : "primary-button"} primary-button-size`}
-                        className={`primary-button primary-button-size`}
+                        className="primary-button primary-button-size"
                     >Next</button>
                 </div>
-            </div> }
+            </div>}
             
             <div className="page-margin">
                 <FeaturePriorityModal
@@ -178,7 +174,7 @@ function ProductSearch() {
                         <p className="body-1">Search for an item, or enter the specific URL of the products you want to compare</p>
                     </div>}
 
-                    {showRecommendations && !isPreferencesSkipped && <div>
+                    {productData.length > 0 && showRecommendations && !isPreferencesSkipped && <div>
                         <br/>
                         <h4>Picked for you</h4>
                         <p className="body-1">Based on how much you liked previous recommendation rankings and answers to question</p>

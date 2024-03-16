@@ -1,11 +1,8 @@
 .how-it-works {
-    /* background: var(--LIGHTER-BLUE); */
     width: 100%;
     height: 100%;
-    border-radius: 12px;
     display: flex;
     justify-content: space-between;
-    /* grid-column-gap: 10%; */
     margin: 2% 0%;
     padding: 2% 4%;
 }
@@ -23,8 +20,6 @@
 
 .steps-container {
     list-style-position: inside;
-    /* margin-top: 5%; */
-    /* margin-left: 20px; */
 }
 
 .how-it-works-h4 {
@@ -35,29 +30,17 @@
 
 .diagram-container {
     max-width: 40%;
-    /* width: 400px;
-    height: 500px;
-    box-shadow: 0 0 20px rgba(49, 130, 206, 0.25);
-    margin-top: 3%; */
 }
 
 .how-it-works-diagram {
     width: 100%;
     height: auto;
     max-width: 100%;
-    /* box-shadow: 0 0 20px rgba(49, 130, 206, 0.25); */
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 .steps-indent {
     padding-left: 1.5rem;
-}
-
-/* DESKTOP SCREEN */
-@media screen and (min-width: 1500px) {
-    /* .how-it-works-text-container {
-        margin-top: 10%;
-    } */
 }
 
 /* SMALL SCREEN */

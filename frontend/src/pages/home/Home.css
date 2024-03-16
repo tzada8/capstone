@@ -1,13 +1,3 @@
-/* .skip-recommendations {
-    background: none;
-    color: var(--OFF-BLACK);
-    display: flex;
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
-    margin: 4% auto;
-    align-items: center;
-} */
-
 .hero {
     height: 70vh;
     display: flex;
