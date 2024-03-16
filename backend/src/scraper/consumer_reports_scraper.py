@@ -1,6 +1,5 @@
 from os import environ
 import requests
-import logging
 from typing import Dict
 import difflib
 
@@ -23,7 +22,7 @@ def scrape_expert_reviews(q: str) -> Dict:
         all_prod_results = {"content": []}
 
     if "message" in all_prod_results.keys():
-        logging.error(f"Consumer Reports Search => Error: {all_prod_results.get('message')}")
+        print(f"Consumer Reports Search => Error: {all_prod_results.get('message')}")
         return {
             "expert_review": {
                 "product": q,
@@ -60,7 +59,7 @@ def scrape_expert_reviews(q: str) -> Dict:
                 er = {}
 
             if "message" in er.keys():
-                logging.error(f"Consumer Reports Product => Error: {er.get('message')}")
+                print(f"Consumer Reports Product => Error: {er.get('message')}")
                 return {
                     "expert_review": {
                         "product": q,

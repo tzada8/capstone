@@ -1,7 +1,6 @@
 from os import environ
 from serpapi import GoogleSearch
 from typing import Dict
-import logging
 
 def _convert_video_views(num: int) -> str:
     suffixes = ["","k", "M", "B", "T"]
@@ -28,7 +27,7 @@ def scrape_videos(q: str) -> Dict:
         results = {}
 
     if "error" in results:
-        logging.error(f"YouTube => {results.get('error')}")
+        print(f"YouTube => {results.get('error')}")
         return {
             "videos": {
                 "error": results.get("error"),

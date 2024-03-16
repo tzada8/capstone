@@ -1,7 +1,6 @@
 from os import environ
 from typing import Dict, List
 import requests
-import logging
 from difflib import SequenceMatcher
 from multiprocessing import Pool
 from itertools import repeat
@@ -35,7 +34,7 @@ class BestBuyProduct:
              "Maximum Focal Length", "Scene Modes"]
 
         if "errorCode" in results.keys():
-            logging.error(f"Best Buy Specs => Error Code: {results.get('errorCode')} - {results.get('errorMessage')}")
+            print(f"Best Buy Specs => Error Code: {results.get('errorCode')} - {results.get('errorMessage')}")
             return {
                 "basic_info": {
                     "product_id": params.get("product_id"),
@@ -87,7 +86,7 @@ class BestBuyProduct:
             review_results = {"reviews": []}
         
         if "ErrorCode" in review_results.keys():
-            logging.error(f"Best Buy Pull Reviews => Error Code: {review_results.get('ErrorCode')} - {review_results.get('ErrorMessage')}")
+            print(f"Best Buy Pull Reviews => Error Code: {review_results.get('ErrorCode')} - {review_results.get('ErrorMessage')}")
         reviews = review_results.get("reviews", [])
         return reviews
 
@@ -105,7 +104,7 @@ class BestBuyProduct:
             results = {"total": 0}
 
         if "ErrorCode" in results.keys():
-            logging.error(f"Best Buy Reviews => Error Code: {results.get('ErrorCode')} - {results.get('ErrorMessage')}")
+            print(f"Best Buy Reviews => Error Code: {results.get('ErrorCode')} - {results.get('ErrorMessage')}")
             return {
                 "reviews": {
                     "error": f"Error Code: {results.get('ErrorCode')} - {results.get('ErrorMessage')}",
@@ -136,7 +135,7 @@ class BestBuyProduct:
                         review_info = {"total": 0}
 
                     if "ErrorCode" in review_info.keys():
-                        logging.error(f"Best Buy Pull Reviews => Error Code: {review_info.get('ErrorCode')} - {review_info.get('ErrorMessage')}")
+                        print(f"Best Buy Pull Reviews => Error Code: {review_info.get('ErrorCode')} - {review_info.get('ErrorMessage')}")
                     elif review_info.get("total") > 0:
                         total_pages = review_info.get('totalPages')
                         # Parallel API calls for each page of reviews.

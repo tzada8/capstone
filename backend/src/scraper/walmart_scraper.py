@@ -1,7 +1,6 @@
 from os import environ
 from serpapi import GoogleSearch
 from typing import Dict
-import logging
 
 class WalmartProduct:
     @staticmethod
@@ -18,7 +17,7 @@ class WalmartProduct:
             results = {}
 
         if "error" in results:
-            logging.error(f"Walmart Specs => {results.get('error')}")
+            print(f"Walmart Specs => {results.get('error')}")
             return {
                 "basic_info": {
                     "product_id": product_id,
@@ -76,7 +75,7 @@ class WalmartProduct:
             results = {}
 
         if "error" in results:
-            logging.error(f"Walmart Reviews => {results.get('error')}")
+            print(f"Walmart Reviews => {results.get('error')}")
             return {
                 "reviews": {
                     "error": results.get("error"),
