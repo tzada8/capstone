@@ -95,7 +95,7 @@ class BestBuyProduct:
     def _product_reviews(product_name: str) -> Dict:
         # Search for product by name (first 5 words).
         params = {
-            "product_name": ' '.join(product_name.split()[:5]).lower(),
+            "product_name": ' '.join(product_name.split()[:5]).replace(" - ", " ").lower(),
             "headers": {"User-Agent": "Mozilla/5.0 (X11; CrOS x86_64 12871.102.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.141 Safari/537.36"},
         }
         try:
@@ -126,8 +126,8 @@ class BestBuyProduct:
             for product in sorted_products:
                 shortened_canada_name = ' '.join(product.get('name').split()[:3]).lower()
                 similarity = SequenceMatcher(None, shortened_us_name, shortened_canada_name).ratio()
-                # If more than 75% similar, use that product's reviews.
-                if similarity >= 0.75:
+                # If more than 65% similar, use that product's reviews.
+                if similarity >= 0.65:
                     compatible_sku = product.get('sku')
                     try:
                         search_sku = requests.get(f"https://www.bestbuy.ca/api/v2/json/reviews/{compatible_sku}?page=1&source=us", headers = params.get('headers'))
