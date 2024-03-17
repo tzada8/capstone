@@ -8,8 +8,8 @@
 
 .modal {
     width: 35%;
-    height: 90%;
-    padding: 2.5rem 2.5rem 2.5rem 3.25rem;
+    max-height: 90%;
+    padding: 2.5rem 2.5rem;
     border: 0;
     border-radius: 8px;
     box-shadow: hsl(0 0% 0% / 10%) 0 0 0.5rem 0.25rem;
