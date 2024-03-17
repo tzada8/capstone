@@ -83,13 +83,18 @@ function ProductSearch() {
             const recResponse = await fetch(recEndpoint);
             const recResults = await recResponse.json();
 
-            // TODO: Remove, temp rename products.
+            // TODO: Remove below 6 lines.
+            for (let i = 0; i < productsBasicInfo.length; i++) {
+                productsBasicInfo[i].basic_info.title = `Product ${i + 1}`;
+            }
             for (let i = 0; i < productsBasicInfo.length; i++) {
                 productsBasicInfo[i].basic_info.product_id = String(i + 1).repeat(3);
             }
+            const recMap = new Map(recResults.map((item, index) => [item.title, index]));
+            productsBasicInfo.sort((a, b) => recMap.get(a.basic_info.title) - recMap.get(b.basic_info.title));
 
-            const recMap = new Map(recResults.map((item, index) => [item.product_id, index]));
-            productsBasicInfo.sort((a, b) => recMap.get(a.basic_info.product_id) - recMap.get(b.basic_info.product_id));
+            // const recMap = new Map(recResults.map((item, index) => [item.product_id, index]));
+            // productsBasicInfo.sort((a, b) => recMap.get(a.basic_info.product_id) - recMap.get(b.basic_info.product_id));
             recommendationResults = recResults;
             setLoadingPercent(prevLoadingPercent => prevLoadingPercent + loadingInterval);
         }

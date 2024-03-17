@@ -25,11 +25,11 @@ function SwitchProduct(props) {
                     className="body-1 product-switch-dropdown"
                     id={`switch-product-${props.i}`}
                     name={`switch-product-${props.i}`}
-                    value={props.selectedTitle}
+                    value={props.selectedId}
                     onChange={props.handleSwitch}
                 >
-                    {props.productTitles.map(title => (
-                        <option value={title}>{title}</option>
+                    {props.productTitles.map(option => (
+                        <option disabled={option.disabled} value={option.product_id} key={option.product_id}>{option.title}</option>
                     ))}
                 </select>
             </div>

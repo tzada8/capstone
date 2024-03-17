@@ -44,17 +44,46 @@ function Comparisons() {
         setShowRecommendations(comparisonsData.showRecommendations);
         setRecommendations(comparisonsData.recommendations);
         setProducts(comparisonsData.selectedProducts);
-        setProductTitles(comparisonsData.selectedProducts.map(p => p.basic_info.title));
-        
+        setProductTitles(comparisonsData.selectedProducts.map((p, i) => {
+            return {
+                product_id: p.basic_info.product_id,
+                title: p.basic_info.title,
+                disabled: (i < numDisplayed ? true : false),
+            };
+        }));
         console.log("COMPARISONS DATA", comparisonsData);
     }, [location.state]);
 
-    const handleProductSwitch = (event) => {
+    const handleProductSwitch = async (event) => {
         const previousProducts = [...products];
+        // TODO: Set loading functionality.
+
         const currIndex = Number(event.target.name.replace("switch-product-", ""))
-        const newTitle = event.target.value;
-        const newIndex = previousProducts.findIndex(p => p.basic_info.title === newTitle);
+        const newIndex = previousProducts.findIndex(p => p.basic_info.product_id === event.target.value);
+        const newProduct = previousProducts[newIndex];
+
+        // Get detailed info if don't already have it saved.
+        const detailedDataKeys = ["reviews", "videos"];
+        const isMissingDetailedInfo = !(detailedDataKeys.some(e => Object.keys(newProduct).includes(e)));
+        if (isMissingDetailedInfo) {
+            // const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/product/detailed-info?source=${newProduct.basic_info.source}&product_id=${newProduct.basic_info.product_id}&product_title={newProduct.basic_info.title}`;
+            const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/product/detailed-info`;
+            const response = await fetch(productEndpoint);
+            const detailedData = await response.json();
+            const newDetailedProduct = {...newProduct, ...detailedData};
+            previousProducts[newIndex] = newDetailedProduct;
+        }
+
+        // Update disabled state.
         const tempCurr = previousProducts[currIndex];
+        const previousProductTitles = [...productTitles];
+        const currTitleIndex = previousProductTitles.findIndex(p => p.product_id === tempCurr.basic_info.product_id);
+        const newTitleIndex = previousProductTitles.findIndex(p => p.product_id === newProduct.basic_info.product_id);
+        previousProductTitles[currTitleIndex].disabled = false;
+        previousProductTitles[newTitleIndex].disabled = true;
+        setProductTitles(previousProductTitles);
+
+        // Switch products.
         previousProducts[currIndex] = previousProducts[newIndex];
         previousProducts[newIndex] = tempCurr;
         setProducts(previousProducts);
@@ -98,7 +127,7 @@ function Comparisons() {
 
                 {showRecommendations && <ComparisonSection
                     products={products.slice(0, numDisplayed).map((p, i) => {
-                        return <SwitchProduct i={i} selectedTitle={p.basic_info.title} productTitles={productTitles} handleSwitch={handleProductSwitch} />
+                        return <SwitchProduct i={i} selectedId={p.basic_info.product_id} productTitles={productTitles} handleSwitch={handleProductSwitch} />
                     })}
                 />}
 
