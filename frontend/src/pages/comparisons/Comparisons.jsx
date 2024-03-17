@@ -144,7 +144,7 @@ function Comparisons() {
                     />
                     <ComparisonSection
                         sectionTitle="Most helpful video reviews"
-                        products={products.slice(0, numDisplayed).map(p => <VideosData videos={p.videos.slice(0, numDisplayed)} />)}
+                        products={products.slice(0, numDisplayed).map(p => <VideosData videos={p.videos} />)}
                     />
                 </div>
                 <Footer />
