@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import "./Comparisons.css";
 
 import ComparisonSection from "../../components/comparison/comparison-section/ComparisonSection";
+import ConstantLoading from "../../components/loading/ConstantLoading";
 import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navbar/Navbar";
 import RecommendationTable from "../../components/recommendation-table/RecommendationTable";
@@ -23,6 +24,7 @@ function Comparisons() {
         videos: [],
     }
 
+    const [isLoading, setIsLoading] = useState(false);
     const [showRecommendations, setShowRecommendations] = useState(null);
     const [isFirstSection, setisFirstSection] = useState(true);
     const [products, setProducts] = useState(Array(numDisplayed).fill(defaultProductStructure));
@@ -55,6 +57,7 @@ function Comparisons() {
     }, [location.state]);
 
     const handleProductSwitch = async (event) => {
+        setIsLoading(true);
         const previousProducts = [...products];
         // TODO: Set loading functionality.
 
@@ -87,10 +90,13 @@ function Comparisons() {
         previousProducts[currIndex] = previousProducts[newIndex];
         previousProducts[newIndex] = tempCurr;
         setProducts(previousProducts);
+
+        setIsLoading(false);
     }
 
 	return (
 		<div>
+            <ConstantLoading isLoading={isLoading} />
             {showRecommendations && !isFirstSection ?
                 <div className="recommendation-section-nav"><Navbar/></div> :
                 <div className="page-margin"><Navbar/></div>
