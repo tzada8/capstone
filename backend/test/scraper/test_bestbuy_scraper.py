@@ -4,17 +4,15 @@ from unittest.mock import patch
 from test.scraper.data.bestbuy.product_specs import \
     product_specs_exists, product_specs_nonexistent, product_specs_missing_keys, spec_api_error
 from test.scraper.data.bestbuy.product_reviews import \
-    all_products_returned, no_products_returned, product_reviews_exists, product_reviews_exists_threading, product_reviews_nonexistent, review_api_error
+    all_products_returned, no_products_returned, product_reviews_exists, product_reviews_nonexistent, review_api_error
 from src.scraper.bestbuy_scraper import BestBuyProduct
 
 class TestBestBuyProduct(unittest.TestCase):
     def setUp(self):
         self.mock_search = patch("src.scraper.bestbuy_scraper.requests.get").start()
-        self.mock_pool = patch("src.scraper.bestbuy_scraper.Pool").start()
 
     def tearDown(self):
         self.mock_search.stop()
-        self.mock_pool.stop()
 
     def test_product_specs_id_exists(self):
         self.mock_search.return_value = product_specs_exists
@@ -91,7 +89,6 @@ class TestBestBuyProduct(unittest.TestCase):
 
     def test_product_reviews_id_exists(self):
         self.mock_search.side_effect = [all_products_returned, product_reviews_exists]
-        self.mock_pool.return_value = product_reviews_exists_threading
         result = BestBuyProduct._product_reviews("New Product Title")
         expected = {
             "reviews": {
@@ -126,7 +123,6 @@ class TestBestBuyProduct(unittest.TestCase):
 
     def test_aggregate_data_id_exists(self):
         self.mock_search.side_effect = [product_specs_exists, all_products_returned, product_reviews_exists]
-        self.mock_pool.return_value = product_reviews_exists_threading
         product_id = "11111"
         result = BestBuyProduct.aggregate_data(product_id)
         expected = {
