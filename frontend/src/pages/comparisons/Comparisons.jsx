@@ -32,49 +32,21 @@ function Comparisons() {
     const location = useLocation();
 
     useEffect(() => {
-        const recommendationData = location.state === null ? { 
-            "preferences": {}, "importance": {}, "selected_products": [],
+        const comparisonsData = location.state === null ? { 
+            "selectedProducts": Array(numDisplayed).fill(defaultProductStructure),
+            "showRecommendations": null,
+            "recommendations": [],
         } : {
-            "preferences": location.state.preferences,
-            "importance": location.state.featurePriority,
-            "selected_products": location.state.selectedProducts,
+            "selectedProducts": location.state.selectedProducts,
+            "showRecommendations": location.state.showRecommendations,
+            "recommendations": location.state.recommendations,
         }
-        const showRecommendations = location.state === null ? null : location.state.showRecommendations;
-        setShowRecommendations(showRecommendations);
-        console.log("RECOMMENDATION DATA", recommendationData)
-
-        // TODO: Remove. Temp just to rename products.
-        const renameProducts = recommendationData["selected_products"].map((p, i) => {
-            p.basic_info.title = `Product ${i + 1}`
-            return p;
-        })
-
-        // const unsortedProducts = recommendationData["selected_products"];
-        const unsortedProducts = renameProducts;
-        setProducts(unsortedProducts);
-        setProductTitles(unsortedProducts.map(p => p.basic_info.title));
-
-        // TODO: Comment out dummy recommendations for actual data.
-        if (showRecommendations) {
-            const recEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/recommendation`;
-            fetch(recEndpoint).then(res => res.json()).then(data => {
-                setRecommendations(data);
-                unsortedProducts.sort((a, b) => data.indexOf(a) - data.indexOf(b));
-                setProducts(unsortedProducts);
-                setProductTitles(unsortedProducts.map(p => p.basic_info.title));
-            });
-            // const recEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/recommendation`;
-            // fetch(recEndpoint, {
-            //     method: "POST",
-            //     headers: {"Content-Type": "application/json"},
-            //     body: JSON.stringify(recommendationData),
-            // }).then(res => res.json()).then(data => {
-            //     setRecommendations(data);
-            //     unsortedProducts.sort((a, b) => data.indexOf(a) - data.indexOf(b));
-            //     setProducts(unsortedProducts);
-            //     setProductTitles(unsortedProducts.map(p => p.basic_info.title));
-            // });
-        }
+        setShowRecommendations(comparisonsData.showRecommendations);
+        setRecommendations(comparisonsData.recommendations);
+        setProducts(comparisonsData.selectedProducts);
+        setProductTitles(comparisonsData.selectedProducts.map(p => p.basic_info.title));
+        
+        console.log("COMPARISONS DATA", comparisonsData);
     }, [location.state]);
 
     const handleProductSwitch = (event) => {

@@ -137,6 +137,7 @@ def dummy_api_search_products2():
 # TODO: DELETE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
 @app.route("/api/dummy/recommendation")
 def dummy_api_recommendation():
+    time.sleep(2)
     return dummy_recommendation
 
 # TODO: DELETE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
@@ -148,11 +149,13 @@ def dummy_api_product():
 # TODO: DELETE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
 @app.route("/api/dummy/product/basic-info")
 def dummy_api_product_basic_info():
+    time.sleep(3)
     return dummy_product_basic_info
 
 # TODO: DELETE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
 @app.route("/api/dummy/product/detailed-info")
 def dummy_api_product_detailed_info():
+    time.sleep(5)
     return dummy_product_detailed_info
 
 if __name__ == "__main__":
