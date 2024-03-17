@@ -9,7 +9,7 @@
 .modal {
     width: 35%;
     max-height: 90%;
-    padding: 2.5rem;
+    padding: 2.5rem 2.5rem;
     border: 0;
     border-radius: 8px;
     box-shadow: hsl(0 0% 0% / 10%) 0 0 0.5rem 0.25rem;
@@ -32,9 +32,9 @@
     right: 30px;
 }
 
-.modal-title-container {
-    margin-top: 5%;
-    margin-bottom: 20px;
+.modal-header-container {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .form-extra-title-spacing {

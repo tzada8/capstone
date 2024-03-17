@@ -40,7 +40,7 @@ function Modal(
                     <CloseOutlined />
                 </button>
             )}
-            <div className="modal-title-container">
+            <div className="modal-header-container">
                 <h3 className="form-extra-title-spacing">{title}</h3>
                 <p className="body-2">{description}</p>
             </div>

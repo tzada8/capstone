@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import "./ProductSearch.css";
 import { routes } from "../../routes/Routes";
@@ -127,19 +127,18 @@ function ProductSearch() {
 	return (
         <div>
             <Loading isLoading={isLoading} percent={loadingPercent} size={200} strokeWidth={12} />
-            <div className="fixed-buttons-container">
+
+            {productData.length > 0 && numProductsSelected > 2 && <div className="fixed-buttons-container">
                 <div className="fixed-buttons">
                     <button
-                        onClick={() => navigate(routes.home)}
-                        className="primary-button-inverted primary-button-size"
-                    >Cancel</button>
-                    <button
-                        disabled={isNextButtonDisabled}
+                        // disabled={isNextButtonDisabled}
                         onClick={() => showRecommendations ? setIsFeaturePriorityModalOpen(true) : toComparisons()}
-                        className={`${isNextButtonDisabled ? "disabled-button" : "primary-button"} primary-button-size`}
+                        // className={`${isNextButtonDisabled ? "disabled-button" : "primary-button"} primary-button-size`}
+                        className="primary-button primary-button-size"
                     >Next</button>
                 </div>
-            </div>
+            </div>}
+            
             <div className="page-margin">
                 <FeaturePriorityModal
                     isOpen={isFeaturePriorityModalOpen}
@@ -147,44 +146,54 @@ function ProductSearch() {
                     onClose={() => setIsFeaturePriorityModalOpen(false)}
                 />
 
-                <Navbar isComparisonNav={false} />
+                <Navbar/>
 
-                <h1 className="center-text max-width-heading">Compare products</h1>
-                <br/>
-                <div className="search-and-selected">
-                    <p className="body-1">
-                        <span className="body-1-bold">Select 3 or more</span> products to compare predicted likability and details
-                    </p>
-                    <p className="body-1-medium num-selected min-selection">
-                        {numProductsSelected} Selected
-                    </p>
-                </div>
-                <SearchBar
-                    isButtonInsideBar={true}
-                    onSearchSubmit={onSearchSubmit}
-                    query={searchQuery}
-                    setQuery={setSearchQuery}
-                />
+                <Link className="body-1-medium back" to={routes.home}>← Back</Link>
 
-                {showRecommendations && !isPreferencesSkipped && <div>
+                <div className="content-product-search">
+                    <h1 className="center-text max-width-heading">Compare products</h1>
                     <br/>
-                    <h4>Picked for you</h4>
-                    <p className="body-1 max-width-body">Based on how much you liked previous recommendation rankings and answers to question</p>
-                    <br/>
-                    <div className="picked-for-you">
-                        {productData.slice(0, numPickedForYou).map(product => (
-                            <ProductOption
-                                data={product}
-                                selectionNumber={productSelectionNumber(product)}
-                                changeSelection={onProductSelection}
-                            />
-                        ))}
+                    <div className="search-and-selected">
+                        <p className="body-1">
+                            <span className="body-1-bold">Select 3 or more</span> products to compare predicted likability and details
+                        </p>
+                        <p className="body-1-medium num-selected min-selection">
+                            {numProductsSelected} Selected
+                        </p>
                     </div>
+                    <SearchBar
+                        isButtonInsideBar={true}
+                        onSearchSubmit={onSearchSubmit}
+                        query={searchQuery}
+                        setQuery={setSearchQuery}
+                    />
                     <br/>
-                    <br/>
-                </div>}
 
-                <div>
+                    {productData.length == 0 && <div className="all-products-empty">
+                        <h4>Search products</h4>
+                        <p className="body-1">Search for an item, or enter the specific URL of the products you want to compare</p>
+                    </div>}
+
+                    {productData.length > 0 && showRecommendations && !isPreferencesSkipped && <div>
+                        <br/>
+                        <h4>Picked for you</h4>
+                        <p className="body-1">Based on how much you liked previous recommendation rankings and answers to question</p>
+                        <br/>
+                        <div className="picked-for-you">
+                            {productData.slice(0, numPickedForYou).map(product => (
+                                <ProductOption
+                                    data={product}
+                                    selectionNumber={productSelectionNumber(product)}
+                                    changeSelection={onProductSelection}
+                                />
+                            ))}
+                        </div>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                    </div>}
+
                     {productData.length > 0 && <h4>All products</h4>}
                     <br/>
                     <div className="all-products">
@@ -203,14 +212,13 @@ function ProductSearch() {
                             />
                         ))}
                     </div>
+                    <br/>
+                    {productData.length > 0 && <button
+                        onClick={handleLoadMoreProducts}
+                        className="alternative-button primary-button-size center-button"
+                    >Load more</button>}
                 </div>
-
-                <br/>
-                {productData.length > 0 && <button
-                    onClick={handleLoadMoreProducts}
-                    className="alternative-button primary-button-size center-button"
-                >Load more</button>}
-                <Footer />
+                {/* <Footer /> */}
             </div>
         </div>
 	);

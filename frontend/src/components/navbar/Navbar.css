@@ -4,28 +4,24 @@
     height: 120px;
     display: flex;
     align-items: center;
-}
-
-.regular-navbar {
-    background-color: var(--OFF-WHITE);
-}
-
-.comparison-navbar {
-    background-color: var(--LIGHTEST-BLUE);
-}
-
-.navbar-logo, .navbar-restart-button {
-    flex: 0 0 auto;
-}
-
-.navbar-logo {
-    padding-left: 7%;
+    background-color: transparent;
 }
 
 .navbar-middle {
     flex: 1;
 }
 
-.navbar-restart-button {
-    padding-right: 7%;
+.navbar-options-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-option {
+    margin: 1.65rem;
+    color: var(--OFF-BLACK);
+}
+
+.primary-button-inverted-list {
+    margin-left: 1.65rem;
 }

@@ -5,19 +5,20 @@ import "./Navbar.css";
 import { routes } from "../../routes/Routes";
 import Logo from "../logo/Logo";
 
-function Navbar(props) {
+function Navbar() {
     const navigate = useNavigate();
-    const navbarClass = props.isComparisonNav && props.showRecommendations ? "comparison-navbar" : "regular-navbar"
+
     return (
-        <div className={`navbar ${navbarClass}`}>
-            <div className={props.isComparisonNav ? "navbar-logo" : ""}>
-                <Link to={routes.home}><Logo /></Link>
-            </div>
-            <div className="navbar-middle" />
-            <div className="navbar-restart-button">
-                {props.isComparisonNav && <button 
-                    onClick={() => navigate(routes.home)} className="primary-button primary-button-size"
-                >Restart Search</button>}
+        <div className="navbar">
+            <Link to={routes.home}><Logo /></Link>
+            <div className="navbar-middle"/>
+            <div className="navbar-options-container">
+                <Link className="body-1-medium navbar-option" to={routes.howItWorks}>How it works</Link>
+                <Link className="body-1-medium navbar-option" to={routes.dataPipeline}>Our data</Link>
+                <button
+                    onClick={() => navigate(routes.productSearch, {state: {query: "", "showRecommendations": false}})}
+                    className="primary-button-inverted primary-button-size primary-button-inverted-list"
+                >Compare products</button>
             </div>
         </div>
     )

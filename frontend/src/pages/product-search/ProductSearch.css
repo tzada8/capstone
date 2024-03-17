@@ -1,7 +1,7 @@
 .fixed-buttons-container {
     background: linear-gradient(
         to top,
-        rgba(251, 251, 251, 1) 30%,
+        rgba(251, 251, 251, 1) 50%,
         rgba(251, 251, 251, 0.8) 100%
     );
     position: fixed;
@@ -14,7 +14,7 @@
     display: grid;
     grid-auto-flow: column;
     grid-column-gap: 1%;
-    margin: 3% 7% 3% 0;
+    margin: 2.25% 14% 2.75% 0;
     justify-content: end;
     align-items: end;
 }
@@ -39,10 +39,37 @@
     grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.content-product-search {
+    margin: 1% 5% 12% 5%;
+}
+
+.content-product-search > .search-and-selected {
+    margin-bottom: 1.1rem;
+}
+
+.all-products-empty {
+    background: var(--LIGHTER-GREY);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 24rem;
+    padding: 6% 8% 8% 10%;
+}
+
+.all-products-empty > h4 {
+    margin-bottom: 0.5rem;
+}
+
+.back {
+    color: var(--OFF-BLACK);
+}
+
 /* DESKTOP SCREEN */
 @media screen and (min-width: 1500px) {
 	.picked-for-you, .all-products {
-		grid-template-columns: repeat(5, minmax(0, 1fr));
+		grid-template-columns: repeat(4, minmax(0, 1fr));
 	}
 }
 
