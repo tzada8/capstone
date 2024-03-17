@@ -47,17 +47,6 @@ product_reviews_exists.json = mock.Mock(
     }
 )
 
-product_reviews_exists_threading = requests_mock.Mocker()
-product_reviews_exists_threading.starmap = mock.ThreadingMock(
-    return_value = [[
-            {"comment": "[This review was collected as part of a promotion.] Good", "rating": 4, "title": "Good"},
-            {"comment": "Bad", "rating": 2, "title": "Bad"},
-            {"comment": "[This review was collected as part of a promotion.] Okay", "rating": 3, "title": "Okay"},
-            {"comment": "Terrible", "rating": 1, "title": "Terrible"},
-            {"comment": "The best", "rating": 5, "title": "The best"},
-        ]]
-)
-
 product_reviews_nonexistent = requests_mock.Mocker()
 product_reviews_nonexistent.json = mock.Mock(
     return_value = {

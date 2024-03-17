@@ -2,8 +2,6 @@ from os import environ
 from typing import Dict, List
 import requests
 from difflib import SequenceMatcher
-from multiprocessing import Pool
-from itertools import repeat
 from src.sentiment.sentiment import sentiment
 
 class BestBuyProduct:
@@ -76,19 +74,6 @@ class BestBuyProduct:
                     { "name": s.get("name"), "value": s.get("value") } for s in spec_highlights if s.get("name") in S
                 ],
             }
-        
-    @staticmethod    
-    def _pull_reviews(i: int, sku: int, params: Dict) -> List[str]:
-        try:
-            search_sku = requests.get(f"https://www.bestbuy.ca/api/v2/json/reviews/{sku}?page={i}&source=us", headers = params.get('headers'))
-            review_results = search_sku.json()
-        except:
-            review_results = {"reviews": []}
-        
-        if "ErrorCode" in review_results.keys():
-            print(f"Best Buy Pull Reviews => Error Code: {review_results.get('ErrorCode')} - {review_results.get('ErrorMessage')}")
-        reviews = review_results.get("reviews", [])
-        return reviews
 
     @staticmethod
     def _product_reviews(product_name: str) -> Dict:
@@ -129,7 +114,7 @@ class BestBuyProduct:
                 if similarity >= 0.65:
                     compatible_sku = product.get('sku')
                     try:
-                        search_sku = requests.get(f"https://www.bestbuy.ca/api/v2/json/reviews/{compatible_sku}?page=1&source=us", headers = params.get('headers'))
+                        search_sku = requests.get(f"https://www.bestbuy.ca/api/v2/json/reviews/{compatible_sku}?pageSize=100&source=us", headers = params.get('headers'))
                         review_info = search_sku.json()
                     except:
                         review_info = {"total": 0}
@@ -137,12 +122,8 @@ class BestBuyProduct:
                     if "ErrorCode" in review_info.keys():
                         print(f"Best Buy Pull Reviews => Error Code: {review_info.get('ErrorCode')} - {review_info.get('ErrorMessage')}")
                     elif review_info.get("total") > 0:
-                        total_pages = review_info.get('totalPages')
-                        # Parallel API calls for each page of reviews.
-                        with Pool(5) as p:
-                            reviews_temp = p.starmap(BestBuyProduct._pull_reviews, zip(range(1, min(total_pages, 10) + 1), repeat(compatible_sku), repeat(params)))
-                        reviews = [x for xs in reviews_temp for x in xs if x.get("comment") is not None]
-
+                        reviews_temp = review_info.get("reviews")
+                        reviews = [x for x in reviews_temp if (x.get("comment") is not None and x.get("comment") != "")]
                         if len(reviews) > 0:
                             # Replace promo message in reviews.
                             promo_string = "[This review was collected as part of a promotion.] "
