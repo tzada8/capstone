@@ -79,6 +79,7 @@ def product_detailed_info():
         product_data["reviews"].update(scrape_expert_reviews(product_title))
     else:
         product_data["videos"] = []
+        product_data["reviews"]["expert_review"] = {}
 
     return product_data
 
