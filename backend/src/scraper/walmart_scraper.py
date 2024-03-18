@@ -89,20 +89,28 @@ class WalmartProduct:
             }
         else:
             top_positive = results.get("top_positive", {})
+            if top_positive.get("text") is not None:
+                top_positive_details = {
+                    "title": top_positive.get("title"),
+                    "text": top_positive.get("text"),
+                    "rating": top_positive.get("rating"),
+                }
+            else:
+                top_positive_details = {}
             top_negative = results.get("top_negative", {})
+            if top_negative.get("text") is not None:
+                top_negative_details = {
+                    "title": top_negative.get("title"),
+                    "text": top_negative.get("text"),
+                    "rating": top_negative.get("rating"),
+                }
+            else:
+                top_negative_details = {}
             reviews = results.get("reviews", [])
             return {
                 "reviews": {
-                    "top_positive": {
-                        "title": top_positive.get("title"),
-                        "text": top_positive.get("text"),
-                        "rating": top_positive.get("rating"),
-                    },
-                    "top_negative": {
-                        "title": top_negative.get("title"),
-                        "text": top_negative.get("text"),
-                        "rating": top_negative.get("rating"),
-                    },
+                    "top_positive": top_positive_details,
+                    "top_negative": top_negative_details,
                     "reviews": [r.get("text") for r in reviews if r.get("text") is not None],
                 }
             }

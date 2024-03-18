@@ -123,8 +123,8 @@ class TestWalmartProduct(unittest.TestCase):
         expected = {
             "reviews": {
                 "reviews": ["Good", "Bad", "Okay", "Terrible", "The best"],
-                "top_negative": {"rating": None, "text": None, "title": None},
-                "top_positive": {"rating": None, "text": None, "title": None},
+                "top_negative": {},
+                "top_positive": {},
             }
         }
         self.assertEqual(result, expected)
