@@ -4,7 +4,7 @@ from typing import List
 
 def summarize(reviews: List[str]) -> List[str]:
     if len(reviews) == 0:
-        return "Product has no reviews."
+        return []
 
     # Limit to under 4000 tokens.
     shorted_reviews = []

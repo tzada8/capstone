@@ -1,6 +1,4 @@
-.custom-loading {
-    background: var(--OFF-WHITE);
-    color: var(--OFF-BLACK);
+.custom-loading, .custom-constant-loading {
     position: fixed;
     top: 0;
     left: 0;
@@ -10,6 +8,15 @@
     align-items: center;
     justify-content: center;
     z-index: 1000000;
+}
+
+.custom-loading {
+    background: var(--OFF-WHITE);
+    color: var(--OFF-BLACK);
+}
+
+.custom-constant-loading {
+    background: hsl(0 0% 0% / 70%);
 }
 
 .circular-progress {
@@ -34,4 +41,9 @@
 .progress-text {
     font-size: 36px;
     fill: var(--OFF-BLACK);
+}
+
+.constant-loading-circle {
+    color: var(--PRIMARY-BLUE);
+    font-size: 100px;
 }

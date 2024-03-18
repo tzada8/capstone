@@ -11,11 +11,11 @@ class BestBuyProduct:
             if isinstance(product_dict[key], list):
                 return product_dict[key]
             elif isinstance(product_dict[key], str):
-                return [product_dict["image"]]
+                return [product_dict[key]]
         return []
 
     @staticmethod
-    def _product_specs(product_id: str) -> Dict:
+    def product_specs(product_id: str) -> Dict:
         params = {
             "product_id": product_id,
             "api_key": environ.get("BESTBUY_API_KEY"),
@@ -52,7 +52,7 @@ class BestBuyProduct:
             return {
                 "basic_info": {
                     "us_item_id": product_result.get("us_item_id", ""),
-                    "product_id": product_result.get("sku"),
+                    "product_id": product_id,
                     "manufacturer": product_result.get("manufacturer"),
                     "model_number": product_result.get("modelNumber"),
                     "upc": product_result.get("upc"),
@@ -76,7 +76,7 @@ class BestBuyProduct:
             }
 
     @staticmethod
-    def _product_reviews(product_name: str) -> Dict:
+    def product_reviews(product_name: str) -> Dict:
         # Search for product by name (first 5 words).
         params = {
             "product_name": ' '.join(product_name.split()[:5]).replace(" - ", " ").lower(),
@@ -158,9 +158,3 @@ class BestBuyProduct:
                         "reviews": [r.get('comment') for r in reviews],
                     }
                 }
-
-    @staticmethod
-    def aggregate_data(product_id: str) -> Dict:
-        specs_dict = BestBuyProduct._product_specs(product_id)
-        reviews_dict = BestBuyProduct._product_reviews(specs_dict.get('basic_info').get('title', ''))
-        return specs_dict | reviews_dict

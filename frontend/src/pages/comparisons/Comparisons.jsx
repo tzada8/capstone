@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import "./Comparisons.css";
 
 import ComparisonSection from "../../components/comparison/comparison-section/ComparisonSection";
+import ConstantLoading from "../../components/loading/ConstantLoading";
 import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navbar/Navbar";
 import RecommendationTable from "../../components/recommendation-table/RecommendationTable";
@@ -23,6 +24,7 @@ function Comparisons() {
         videos: [],
     }
 
+    const [isLoading, setIsLoading] = useState(false);
     const [showRecommendations, setShowRecommendations] = useState(null);
     const [isFirstSection, setisFirstSection] = useState(true);
     const [products, setProducts] = useState(Array(numDisplayed).fill(defaultProductStructure));
@@ -32,64 +34,69 @@ function Comparisons() {
     const location = useLocation();
 
     useEffect(() => {
-        const recommendationData = location.state === null ? { 
-            "preferences": {}, "importance": {}, "selected_products": [],
+        const comparisonsData = location.state === null ? { 
+            "selectedProducts": Array(numDisplayed).fill(defaultProductStructure),
+            "showRecommendations": null,
+            "recommendations": [],
         } : {
-            "preferences": location.state.preferences,
-            "importance": location.state.featurePriority,
-            "selected_products": location.state.selectedProducts,
+            "selectedProducts": location.state.selectedProducts,
+            "showRecommendations": location.state.showRecommendations,
+            "recommendations": location.state.recommendations,
         }
-        const showRecommendations = location.state === null ? null : location.state.showRecommendations;
-        setShowRecommendations(showRecommendations);
-        console.log("RECOMMENDATION DATA", recommendationData)
-
-        // TODO: Remove. Temp just to rename products.
-        const renameProducts = recommendationData["selected_products"].map((p, i) => {
-            p.basic_info.title = `Product ${i + 1}`
-            return p;
-        })
-
-        // const unsortedProducts = recommendationData["selected_products"];
-        const unsortedProducts = renameProducts;
-        setProducts(unsortedProducts);
-        setProductTitles(unsortedProducts.map(p => p.basic_info.title));
-
-        // TODO: Comment out dummy recommendations for actual data.
-        if (showRecommendations) {
-            const recEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/recommendation`;
-            fetch(recEndpoint).then(res => res.json()).then(data => {
-                setRecommendations(data);
-                unsortedProducts.sort((a, b) => data.indexOf(a) - data.indexOf(b));
-                setProducts(unsortedProducts);
-                setProductTitles(unsortedProducts.map(p => p.basic_info.title));
-            });
-            // const recEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/recommendation`;
-            // fetch(recEndpoint, {
-            //     method: "POST",
-            //     headers: {"Content-Type": "application/json"},
-            //     body: JSON.stringify(recommendationData),
-            // }).then(res => res.json()).then(data => {
-            //     setRecommendations(data);
-            //     unsortedProducts.sort((a, b) => data.indexOf(a) - data.indexOf(b));
-            //     setProducts(unsortedProducts);
-            //     setProductTitles(unsortedProducts.map(p => p.basic_info.title));
-            // });
-        }
+        setShowRecommendations(comparisonsData.showRecommendations);
+        setRecommendations(comparisonsData.recommendations);
+        setProducts(comparisonsData.selectedProducts);
+        setProductTitles(comparisonsData.selectedProducts.map((p, i) => {
+            return {
+                product_id: p.basic_info.product_id,
+                title: p.basic_info.title,
+                disabled: (i < numDisplayed ? true : false),
+            };
+        }));
+        console.log("COMPARISONS DATA", comparisonsData);
     }, [location.state]);
 
-    const handleProductSwitch = (event) => {
+    const handleProductSwitch = async (event) => {
+        setIsLoading(true);
         const previousProducts = [...products];
+        // TODO: Set loading functionality.
+
         const currIndex = Number(event.target.name.replace("switch-product-", ""))
-        const newTitle = event.target.value;
-        const newIndex = previousProducts.findIndex(p => p.basic_info.title === newTitle);
+        const newIndex = previousProducts.findIndex(p => p.basic_info.product_id === event.target.value);
+        const newProduct = previousProducts[newIndex];
+
+        // Get detailed info if don't already have it saved.
+        const detailedDataKeys = ["reviews", "videos"];
+        const isMissingDetailedInfo = !(detailedDataKeys.some(e => Object.keys(newProduct).includes(e)));
+        if (isMissingDetailedInfo) {
+            // const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/product/detailed-info?source=${newProduct.basic_info.source}&product_id=${newProduct.basic_info.product_id}&product_title=${newProduct.basic_info.title}`;
+            const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/product/detailed-info`;
+            const response = await fetch(productEndpoint);
+            const detailedData = await response.json();
+            const newDetailedProduct = {...newProduct, ...detailedData};
+            previousProducts[newIndex] = newDetailedProduct;
+        }
+
+        // Update disabled state.
         const tempCurr = previousProducts[currIndex];
+        const previousProductTitles = [...productTitles];
+        const currTitleIndex = previousProductTitles.findIndex(p => p.product_id === tempCurr.basic_info.product_id);
+        const newTitleIndex = previousProductTitles.findIndex(p => p.product_id === newProduct.basic_info.product_id);
+        previousProductTitles[currTitleIndex].disabled = false;
+        previousProductTitles[newTitleIndex].disabled = true;
+        setProductTitles(previousProductTitles);
+
+        // Switch products.
         previousProducts[currIndex] = previousProducts[newIndex];
         previousProducts[newIndex] = tempCurr;
         setProducts(previousProducts);
+
+        setIsLoading(false);
     }
 
 	return (
 		<div>
+            <ConstantLoading isLoading={isLoading} />
             {showRecommendations && !isFirstSection ?
                 <div className="recommendation-section-nav"><Navbar/></div> :
                 <div className="page-margin"><Navbar/></div>
@@ -126,7 +133,7 @@ function Comparisons() {
 
                 {showRecommendations && <ComparisonSection
                     products={products.slice(0, numDisplayed).map((p, i) => {
-                        return <SwitchProduct i={i} selectedTitle={p.basic_info.title} productTitles={productTitles} handleSwitch={handleProductSwitch} />
+                        return <SwitchProduct i={i} selectedId={p.basic_info.product_id} productTitles={productTitles} handleSwitch={handleProductSwitch} />
                     })}
                 />}
 
@@ -144,7 +151,7 @@ function Comparisons() {
                     />
                     <ComparisonSection
                         sectionTitle="Most helpful video reviews"
-                        products={products.slice(0, numDisplayed).map(p => <VideosData videos={p.videos.slice(0, numDisplayed)} />)}
+                        products={products.slice(0, numDisplayed).map(p => <VideosData videos={p.videos} />)}
                     />
                 </div>
                 <Footer />

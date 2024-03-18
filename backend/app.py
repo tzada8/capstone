@@ -14,7 +14,7 @@ from src.summarize.summarize import summarize
 import time
 from dummy_data.dummy_search_products import dummy_search_products, dummy_search_products2
 from dummy_data.dummy_recommendation import dummy_recommendation
-from dummy_data.dummy_product import dummy_product
+from dummy_data.dummy_product import dummy_product, dummy_product_basic_info, dummy_product_detailed_info
 from dummy_data.dummy_recommendation_products import dummy_recommendation_products
 from dummy_data.dummy_preferences import dummy_preferences, dummy_importance
 
@@ -38,16 +38,28 @@ def recommendation():
     data = request.get_json()
     return Recommendation.aggregate_data(data["preferences"], data["importance"], data["selected_products"])
 
-@app.route("/api/product")
-def product():
+@app.route("/api/product/basic-info")
+def product_basic_info():
     product_id = request.args.get("product_id")
+    source = request.args.get("source")
+
+    if "Best Buy" in source:
+        return BestBuyProduct.product_specs(product_id)
+    elif "Walmart" in source:
+        return WalmartProduct.product_specs(product_id)
+    return {}
+
+@app.route("/api/product/detailed-info")
+def product_detailed_info():
+    product_id = request.args.get("product_id")
+    product_title = request.args.get("product_title")
     source = request.args.get("source")
 
     product_data = {}
     if "Best Buy" in source:
-        product_data = BestBuyProduct.aggregate_data(product_id)
+        product_data = BestBuyProduct.product_reviews(product_title)
     elif "Walmart" in source:
-        product_data = WalmartProduct.aggregate_data(product_id)
+        product_data = WalmartProduct.product_reviews(product_id)
 
     # Summarize reviews.
     text_reviews = product_data["reviews"].get("reviews")
@@ -55,15 +67,19 @@ def product():
         summary = {"summary": summarize(text_reviews)}
         product_data["reviews"].update(summary)
         del product_data["reviews"]["reviews"]
+    else:
+        product_data["reviews"]["summary"] = []
+        product_data["reviews"]["top_positive"] = {}
+        product_data["reviews"]["top_negative"] = {}
 
-    # Scrape YouTube videos.
-    title = product_data["basic_info"].get("title")
-    if title:
-        product_data.update(scrape_videos(title))
-
-    # Scrape Expert reviews.
-    if title:
-        product_data["reviews"].update(scrape_expert_reviews(title))
+    if product_title:
+        # Scrape YouTube videos.
+        product_data.update(scrape_videos(product_title))
+        # Scrape Expert reviews.
+        product_data["reviews"].update(scrape_expert_reviews(product_title))
+    else:
+        product_data["videos"] = []
+        product_data["reviews"]["expert_review"] = {}
 
     return product_data
 
@@ -128,6 +144,7 @@ def dummy_api_search_products2():
 # TODO: DELETE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
 @app.route("/api/dummy/recommendation")
 def dummy_api_recommendation():
+    time.sleep(2)
     return dummy_recommendation
 
 # TODO: DELETE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
@@ -135,6 +152,18 @@ def dummy_api_recommendation():
 def dummy_api_product():
     time.sleep(2)
     return dummy_product
+
+# TODO: DELETE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
+@app.route("/api/dummy/product/basic-info")
+def dummy_api_product_basic_info():
+    time.sleep(3)
+    return dummy_product_basic_info
+
+# TODO: DELETE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
+@app.route("/api/dummy/product/detailed-info")
+def dummy_api_product_detailed_info():
+    time.sleep(5)
+    return dummy_product_detailed_info
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", threaded=True, port=5000)
