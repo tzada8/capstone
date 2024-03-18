@@ -11,7 +11,7 @@ class BestBuyProduct:
             if isinstance(product_dict[key], list):
                 return product_dict[key]
             elif isinstance(product_dict[key], str):
-                return [product_dict["image"]]
+                return [product_dict[key]]
         return []
 
     @staticmethod

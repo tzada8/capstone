@@ -67,12 +67,18 @@ def product_detailed_info():
         summary = {"summary": summarize(text_reviews)}
         product_data["reviews"].update(summary)
         del product_data["reviews"]["reviews"]
+    else:
+        product_data["reviews"]["summary"] = []
+        product_data["reviews"]["top_positive"] = {}
+        product_data["reviews"]["top_negative"] = {}
 
     if product_title:
         # Scrape YouTube videos.
         product_data.update(scrape_videos(product_title))
         # Scrape Expert reviews.
         product_data["reviews"].update(scrape_expert_reviews(product_title))
+    else:
+        product_data["videos"] = []
 
     return product_data
 

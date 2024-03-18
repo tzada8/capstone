@@ -8,7 +8,7 @@ class TestSummarize(unittest.TestCase):
     def test_summarize_no_reviews(self):
         reviews = []
         result = summarize(reviews)
-        expected = "Product has no reviews."
+        expected = []
         self.assertEqual(result, expected)
 
     @patch("src.summarize.summarize.OpenAI")

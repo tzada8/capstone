@@ -69,7 +69,7 @@ function Comparisons() {
         const detailedDataKeys = ["reviews", "videos"];
         const isMissingDetailedInfo = !(detailedDataKeys.some(e => Object.keys(newProduct).includes(e)));
         if (isMissingDetailedInfo) {
-            // const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/product/detailed-info?source=${newProduct.basic_info.source}&product_id=${newProduct.basic_info.product_id}&product_title={newProduct.basic_info.title}`;
+            // const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/product/detailed-info?source=${newProduct.basic_info.source}&product_id=${newProduct.basic_info.product_id}&product_title=${newProduct.basic_info.title}`;
             const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/product/detailed-info`;
             const response = await fetch(productEndpoint);
             const detailedData = await response.json();

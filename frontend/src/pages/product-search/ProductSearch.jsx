@@ -101,11 +101,11 @@ function ProductSearch() {
 
         // Get detailed info for top 3 products.
         const top3ProductParams = productsBasicInfo.slice(0, 3).map(p => (
-            { product_id: p.product_id, source: p.source, product_title: p.title }
+            { product_id: p.basic_info.product_id, source: p.basic_info.source, product_title: p.basic_info.title }
         ));
         const productsDetailedInfo = await Promise.all(top3ProductParams.map(async p => {
             // TODO: Comment out dummy detailed info for actual data.
-            // const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/product/detailed-info?source=${p.source}&product_id=${p.product_id}&product_title={p.title}`;
+            // const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/product/detailed-info?source=${p.source}&product_id=${p.product_id}&product_title=${p.product_title}`;
             const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/product/detailed-info`;
             const response = await fetch(productEndpoint);
             setLoadingPercent(prevLoadingPercent => prevLoadingPercent + loadingInterval);
@@ -126,6 +126,8 @@ function ProductSearch() {
             setProductData([]);
             return;
         }
+        // TODO: Comment out dummy product search info for actual search.
+        // const searchEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/search-products?q=${q}`;
         const searchEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/search-products?q=${q}`;
         fetch(searchEndpoint).then(res => res.json()).then(data => {
             setProductData(data.shopping_results.data);
