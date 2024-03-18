@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 
 import "./Comparisons.css";
@@ -17,12 +17,12 @@ import VideosData from "../../components/comparison/comparison-data/VideosData";
 
 function Comparisons() {
     const numDisplayed = 3;
-    const defaultProductStructure = {
+    const defaultProductStructure = useMemo(() => ({
         basic_info: { images: [], price: {} },
         reviews: { top_positive: {}, top_negative: {}, expert_review: {}, summary: [] },
         specifications: [],
         videos: [],
-    }
+    }), []);
 
     const [isLoading, setIsLoading] = useState(false);
     const [showRecommendations, setShowRecommendations] = useState(null);
@@ -54,7 +54,7 @@ function Comparisons() {
             };
         }));
         console.log("COMPARISONS DATA", comparisonsData);
-    }, [location.state]);
+    }, [location.state, defaultProductStructure]);
 
     const handleProductSwitch = async (event) => {
         setIsLoading(true);
@@ -69,12 +69,16 @@ function Comparisons() {
         const detailedDataKeys = ["reviews", "videos"];
         const isMissingDetailedInfo = !(detailedDataKeys.some(e => Object.keys(newProduct).includes(e)));
         if (isMissingDetailedInfo) {
-            // const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/product/detailed-info?source=${newProduct.basic_info.source}&product_id=${newProduct.basic_info.product_id}&product_title=${newProduct.basic_info.title}`;
-            const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/product/detailed-info`;
-            const response = await fetch(productEndpoint);
-            const detailedData = await response.json();
-            const newDetailedProduct = {...newProduct, ...detailedData};
-            previousProducts[newIndex] = newDetailedProduct;
+            try {
+                // const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/product/detailed-info?source=${newProduct.basic_info.source}&product_id=${newProduct.basic_info.product_id}&product_title=${newProduct.basic_info.title}`;
+                const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/product/detailed-info`;
+                const response = await fetch(productEndpoint);
+                const detailedData = await response.json();
+                const newDetailedProduct = {...newProduct, ...detailedData};
+                previousProducts[newIndex] = newDetailedProduct;
+            } catch (e) {
+                console.log("Error fetching detailed info:", e);
+            }
         }
 
         // Update disabled state.

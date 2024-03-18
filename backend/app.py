@@ -134,6 +134,7 @@ def walmart_product():
 # TODO: DELETE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
 @app.route("/api/dummy/search-products")
 def dummy_api_search_products():
+    time.sleep(5)
     return dummy_search_products
 
 # TODO: DELETE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.

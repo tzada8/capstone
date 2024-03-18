@@ -5,8 +5,8 @@ import "./ComparisonData.css";
 function VideosData(props) {
 	return (
 		<div>
-            {props.videos.map(video => (
-                <div className="related-videos-spacing">
+            {props.videos.map((video, i) => (
+                <div key={`video-${i}`} className="related-videos-spacing">
                     <a key={video.title} href={video.link} target="_blank" rel="noreferrer">
                         <figure className="related-videos-container" data-category={video.length}>
                             <img className="related-videos-thumbnail" src={video.thumbnail} alt={video.title} />
