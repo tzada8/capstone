@@ -4,7 +4,7 @@
     min-width: 50%;
     max-width: 70%;
     max-width: 30%;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
 }
 
 .recommendation-table thead tr {

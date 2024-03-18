@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 import "./Comparisons.css";
 
@@ -40,7 +40,7 @@ function Comparisons() {
             "selected_products": location.state.selectedProducts,
         }
         const showRecommendations = location.state === null ? null : location.state.showRecommendations;
-        setShowRecommendations(showRecommendations);
+        setShowRecommendations(!showRecommendations);
         console.log("RECOMMENDATION DATA", recommendationData)
 
         // TODO: Remove. Temp just to rename products.
@@ -93,49 +93,61 @@ function Comparisons() {
             <Navbar/>
             {showRecommendations && <div className="recommendation-section">
                 <br/>
+                <h2 className="center-text max-width-heading">All product scores</h2>
                 <br/>
-                <h1 className="center-text max-width-heading">Recommend items by likeability</h1>
+                <RecommendationTable recommendations={recommendations} />
                 <br/>
-                <p className="body-1 center-text max-width-body">Scored by how much we think you'll like it based upon learning your preferences and reviews.</p>
+                <button className="body-1-bold scroll-down" onClick={() => document.getElementById("compare").scrollIntoView()}>Scroll to see comparison table ↓</button>
+            </div>}
+
+            {showRecommendations && <div className="page-margin">
                 <br/>
-                <RecommendationTable recommendations={showMoreRecommendations ? recommendations : recommendations.slice(0, numDisplayed)} />
                 <br/>
-                {recommendations.length > numDisplayed && <button
-                    onClick={() => setShowMoreRecommendations(!showMoreRecommendations)}
-                    className="alternative-button primary-button-size center-button"
-                >{showMoreRecommendations ? "Show less" : "Show more"}</button>}
+                <br/>
+                <br/>
+                <h2 className="center-text max-width-heading" id="compare">Compare products</h2>
+                <br/>
+                <p className="body-1 center-text max-width-body">Get help choosing from analyzed insights, fast.</p>
+                <br/>
+                <br/>
+                
+            </div>}
+
+            {!showRecommendations && <div className="page-margin">
+                <p className="body-1 center-text max-width-body">Based on your preferences and product reviews</p>
+                <br/>
+                <h2 className="center-text max-width-heading" id="compare">We think you’ll like...</h2>
+                <br/>
+                <button className="body-1-bold all-comparisons" onClick={() => setShowRecommendations(!showRecommendations)}>See how other products are scored →</button>
+                <br/>
                 <br/>
             </div>}
 
-            <br/>
-            <br/>
-            <h1 className="center-text max-width-heading">Compare products</h1>
-            <br/>
-            <p className="body-1 center-text max-width-body">Get help choosing from analyzed insights, fast.</p>
-            <br/>
-            <br/>
-            <br/>
+            {showRecommendations && <div className="page-margin">
+                <ComparisonSection
+                    products={products.slice(0, numDisplayed).map((p, i) => {
+                        return <SwitchProduct i={i} selectedTitle={p.basic_info.title} productTitles={productTitles} handleSwitch={handleProductSwitch} />
+                    })}
+                />
+            </div>}
 
-            <ComparisonSection
-                products={products.slice(0, numDisplayed).map((p, i) => {
-                    return <SwitchProduct i={i} selectedTitle={p.basic_info.title} productTitles={productTitles} handleSwitch={handleProductSwitch} />
-                })}
-            />
-            <ComparisonSection
-                products={products.slice(0, numDisplayed).map(p => <BasicInfoData basicInfo={p.basic_info} />)}
-            />
-            <ComparisonSection
-                sectionTitle="Specifications"
-                products={products.slice(0, numDisplayed).map(p => <SpecificationsData specifications={p.specifications} />)}
-            />
-            <ComparisonSection
-                sectionTitle="Summary of written reviews"
-                products={products.slice(0, numDisplayed).map(p => <ReviewsData reviews={p.reviews} />)}
-            />
-            <ComparisonSection
-                sectionTitle="Most helpful video reviews"
-                products={products.slice(0, numDisplayed).map(p => <VideosData videos={p.videos.slice(0, numDisplayed)} />)}
-            />
+            <div className="page-margin">
+                <ComparisonSection
+                    products={products.slice(0, numDisplayed).map(p => <BasicInfoData basicInfo={p.basic_info} />)}
+                />
+                <ComparisonSection
+                    sectionTitle="Specifications"
+                    products={products.slice(0, numDisplayed).map(p => <SpecificationsData specifications={p.specifications} />)}
+                />
+                <ComparisonSection
+                    sectionTitle="Summary of written reviews"
+                    products={products.slice(0, numDisplayed).map(p => <ReviewsData reviews={p.reviews} />)}
+                />
+                <ComparisonSection
+                    sectionTitle="Most helpful video reviews"
+                    products={products.slice(0, numDisplayed).map(p => <VideosData videos={p.videos.slice(0, numDisplayed)} />)}
+                />
+            </div>
             <Footer />
 		</div>
 	);

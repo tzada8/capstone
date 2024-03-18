@@ -5,24 +5,37 @@
 .section-title-container {
     background: none;
     border: none;
-    border-bottom: 2px solid var(--PRIMARY-BLUE);
+    /* border-bottom: 2px solid var(--OFF-BLACK); */
     border-radius: 0px;
     width: 100%;
     display: flex;
     align-items: center;
-    margin: 40px 0;
-    padding-bottom: 10px;
+    margin: 3.75rem 0rem 2.75rem 0rem;
 }
 
 .comparison-section-title {
-    color: var(--PRIMARY-BLUE);
+    color: var(--OFF-BLACK);
     text-align: left;
     width: 100%;
+    padding-top: 2.5rem;
+    border-bottom: 2px solid var(--OFF-BLACK);
+    width: 100%;
+    line-height: 0.1em;
+    /* margin: 10px 0px; */
 }
 
-.collapsible-section-arrow {
-    color: var(--PRIMARY-BLUE);
+.comparison-section-title > span {
+    background: var(--OFF-WHITE);
+    padding: 0rem 1.75rem 0rem 0rem;
+    /* H3 styling */
+    font-family: var(--HEADING-FONT);
+    letter-spacing: -2%;
+    font-size: 34px;
 }
+
+/* .collapsible-section-arrow {
+    color: var(--OFF-BLACK);
+} */
 
 .column-layout {
     grid-template-columns: repeat(3, 1fr);
