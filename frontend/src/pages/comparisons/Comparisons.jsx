@@ -89,8 +89,18 @@ function Comparisons() {
     }
 
 	return (
-		<div className="page-margin">
-            <Navbar/>
+        // We can't place the whole thing inside the page margins class or else it affects the blue background. The top part has to be its own div, the rest of the page can be in the margins class 
+		<div>
+            {/* I also don't know if this is the best way to structure the code but it works--I tried merging it with other sections but I couldn't get it to work that way, the nav would show up twice */}
+            {showRecommendations && !isFirstSection && <div className="recommendation-section-nav">
+                <Navbar/>
+            </div>}
+            {!showRecommendations && isFirstSection && <div className="page-margin">
+                <Navbar/>
+            </div>}
+            {showRecommendations && isFirstSection && <div className="page-margin">
+                <Navbar/>
+            </div>}
 
             {showRecommendations && !isFirstSection && <div className="recommendation-section">
                 <br/>
@@ -101,52 +111,52 @@ function Comparisons() {
                 <button className="body-1-bold scroll-down" onClick={() => document.getElementById("compare").scrollIntoView()}>Scroll to see comparison table ↓</button>
             </div>}
 
-            {(!showRecommendations || !isFirstSection) && <div className="page-margin">
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <h2 className="center-text max-width-heading" id="compare">Compare products</h2>
-                <br/>
-                <p className="body-1 center-text max-width-body">Get help choosing from analyzed insights, fast.</p>
-                <br/>
-                <br/>
-                
-            </div>}
-
-            {showRecommendations && isFirstSection && <div className="page-margin">
-                <p className="body-1 center-text max-width-body">Based on your preferences and product reviews</p>
-                <br/>
-                <h2 className="center-text max-width-heading" id="compare">We think you'll like...</h2>
-                <br/>
-                <button className="body-1-bold all-comparisons" onClick={() => setisFirstSection(!isFirstSection)}>See how other products are scored →</button>
-                <br/>
-                <br/>
-            </div>}
-
             <div className="page-margin">
+                {(!showRecommendations || !isFirstSection) && <div>
+                    <br/>
+                    <h2 className="center-text max-width-heading" id="compare">Compare products</h2>
+                    <br/>
+                    <p className="body-1 center-text max-width-body">Get help choosing from analyzed insights, fast.</p>
+                    <br/>
+                    <br/>
+                </div>}
+
+                {showRecommendations && isFirstSection && <div>
+                    <p className="body-1 center-text max-width-body">Based on your preferences and product reviews</p>
+                    <br/>
+                    <h2 className="center-text max-width-heading" id="compare">We think you'll like...</h2>
+                    <br/>
+                    <button className="body-1-bold all-comparisons" onClick={() => setisFirstSection(!isFirstSection)}>See how other products are scored →</button>
+                    <br/>
+                    <br/>
+                </div>}
+
+                {/* Idk y but I can't seem to fix the bug where the navbar jumps?? I've been trying but if anything we can just leave it rip */}
                 {showRecommendations && <ComparisonSection
                     products={products.slice(0, numDisplayed).map((p, i) => {
                         return <SwitchProduct i={i} selectedTitle={p.basic_info.title} productTitles={productTitles} handleSwitch={handleProductSwitch} />
                     })}
                 />}
-                <ComparisonSection
-                    products={products.slice(0, numDisplayed).map(p => <BasicInfoData basicInfo={p.basic_info} />)}
-                />
-                <ComparisonSection
-                    sectionTitle="Specifications"
-                    products={products.slice(0, numDisplayed).map(p => <SpecificationsData specifications={p.specifications} />)}
-                />
-                <ComparisonSection
-                    sectionTitle="Summary of written reviews"
-                    products={products.slice(0, numDisplayed).map(p => <ReviewsData reviews={p.reviews} />)}
-                />
-                <ComparisonSection
-                    sectionTitle="Most helpful video reviews"
-                    products={products.slice(0, numDisplayed).map(p => <VideosData videos={p.videos.slice(0, numDisplayed)} />)}
-                />
+
+                <div>
+                    <ComparisonSection
+                        products={products.slice(0, numDisplayed).map(p => <BasicInfoData basicInfo={p.basic_info} />)}
+                    />
+                    <ComparisonSection
+                        sectionTitle="Specifications"
+                        products={products.slice(0, numDisplayed).map(p => <SpecificationsData specifications={p.specifications} />)}
+                    />
+                    <ComparisonSection
+                        sectionTitle="Summary of written reviews"
+                        products={products.slice(0, numDisplayed).map(p => <ReviewsData reviews={p.reviews} />)}
+                    />
+                    <ComparisonSection
+                        sectionTitle="Most helpful video reviews"
+                        products={products.slice(0, numDisplayed).map(p => <VideosData videos={p.videos.slice(0, numDisplayed)} />)}
+                    />
+                </div>
+                <Footer />
             </div>
-            <Footer />
 		</div>
 	);
 }

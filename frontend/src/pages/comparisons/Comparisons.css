@@ -1,6 +1,12 @@
 .recommendation-section {
     background: var(--LIGHTEST-BLUE);
     padding-bottom: 60px;
+    margin-bottom: 4rem;
+}
+
+.recommendation-section-nav {
+    background: var(--LIGHTEST-BLUE);
+    margin: 0% 10%;
 }
 
 .scroll-down {
