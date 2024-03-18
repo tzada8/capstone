@@ -10,7 +10,7 @@ from src.scraper.consumer_reports_scraper import scrape_expert_reviews
 from src.scraper.youtube_scraper import scrape_videos
 from src.summarize.summarize import summarize
 
-# TODO: DELETE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
+# HARDCODED DUMMY DATA USED WHEN IMPLEMENTING FRONTEND.
 import time
 from dummy_data.dummy_search_products import dummy_search_products, dummy_search_products2
 from dummy_data.dummy_recommendation import dummy_recommendation
@@ -38,6 +38,9 @@ def recommendation():
     data = request.get_json()
     return Recommendation.aggregate_data(data["preferences"], data["importance"], data["selected_products"])
 
+# Note: For basic testing, can try:
+    # source=Best Buy&product_id=6522416
+    # source=Walmart&product_id=711035416
 @app.route("/api/product/basic-info")
 def product_basic_info():
     product_id = request.args.get("product_id")
@@ -84,83 +87,31 @@ def product_detailed_info():
     return product_data
 
 
-# TODO: Can remove endpoint.
-# Note: Was testing with product_id "6522416" (exists) and "0" (does not exist).
-@app.route("/api/bestbuy-product")
-def bestbuy_product():
-    product_id = request.args.get("product_id")
-    product_data = BestBuyProduct.aggregate_data(product_id)
-
-    text_reviews = product_data["reviews"].get("reviews")
-    if text_reviews:
-        # TODO: Can probably drop "reviews" field.
-        summary = {"summary": summarize(text_reviews)}
-        product_data["reviews"].update(summary)
-
-    # Scrape YouTube videos.
-    title = product_data["basic_info"].get("title")
-    if title:
-        product_data.update(scrape_videos(title))
-
-    if title:
-        product_data.update(scrape_expert_reviews(title, product_data["basic_info"].get("upc"), "defaultUpc"))
-    
-    return product_data
-
-# TODO: Can remove endpoint.
-# Note: Was testing with product_id "711035416" (exists) and "123" (does not exist).
-@app.route("/api/walmart-product")
-def walmart_product():
-    product_id = request.args.get("product_id")
-    product_data = WalmartProduct.aggregate_data(product_id)
-
-    # Summarize reviews.
-    text_reviews = product_data["reviews"].get("reviews")
-    if text_reviews:
-        # TODO: Can probably drop "reviews" field.
-        summary = {"summary": summarize(text_reviews)}
-        product_data["reviews"].update(summary)
-
-    # Scrape YouTube videos.
-    title = product_data["basic_info"].get("title")
-    if title:
-        product_data.update(scrape_videos(title))
-
-    if title:
-        product_data.update(scrape_expert_reviews(title, product_id, "walmartId"))
-
-    return product_data
-
-# TODO: DELETE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
+# HARDCODED DUMMY DATA USED WHEN IMPLEMENTING FRONTEND.
 @app.route("/api/dummy/search-products")
 def dummy_api_search_products():
     time.sleep(5)
     return dummy_search_products
 
-# TODO: DELETE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
 @app.route("/api/dummy/search-products2")
 def dummy_api_search_products2():
     return dummy_search_products2
 
-# TODO: DELETE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
 @app.route("/api/dummy/recommendation")
 def dummy_api_recommendation():
     time.sleep(2)
     return dummy_recommendation
 
-# TODO: DELETE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
 @app.route("/api/dummy/product")
 def dummy_api_product():
     time.sleep(2)
     return dummy_product
 
-# TODO: DELETE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
 @app.route("/api/dummy/product/basic-info")
 def dummy_api_product_basic_info():
     time.sleep(3)
     return dummy_product_basic_info
 
-# TODO: DELETE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
 @app.route("/api/dummy/product/detailed-info")
 def dummy_api_product_detailed_info():
     time.sleep(5)
