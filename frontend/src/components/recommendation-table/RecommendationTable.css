@@ -21,6 +21,7 @@
 }
 
 .recommendation-table tbody tr {
+    background: var(--PURE-WHITE);
     border-bottom: 1px solid var(--LIGHT-GREY);
     text-align: center;
 }
