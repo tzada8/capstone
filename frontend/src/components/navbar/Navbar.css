@@ -11,24 +11,12 @@
     background-color: var(--OFF-WHITE);
 }
 
-.regular-navbar > div > a:hover {
+.navbar-option:hover, .navbar > a:hover {
     text-decoration: none;
 }
 
 .comparison-navbar {
     background-color: var(--LIGHTEST-BLUE);
-}
-
-.comparison-navbar > div > a:hover {
-    text-decoration: none;
-}
-
-.navbar-logo, .navbar-restart-button {
-    flex: 0 0 auto;
-}
-
-.navbar-logo {
-    padding-left: 7%;
 }
 
 .navbar-middle {
