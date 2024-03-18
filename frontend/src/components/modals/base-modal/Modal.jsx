@@ -35,16 +35,18 @@ function Modal(
 
 	return (
         <dialog ref={modalRef} onKeyDown={handleKeyDown} className="modal modal-center">
-            {hasCloseBtn && (
-                <button className="modal-close-btn" onClick={handleCloseModal}>
-                    <CloseOutlined />
-                </button>
-            )}
-            <div className="modal-header-container">
-                <h3 className="form-extra-title-spacing">{title}</h3>
-                <p className="body-2">{description}</p>
+            <div className="modal-content">
+                {hasCloseBtn && (
+                    <button className="modal-close-btn" onClick={handleCloseModal}>
+                        <CloseOutlined />
+                    </button>
+                )}
+                <div className="modal-header-container">
+                    <h3 className="form-extra-title-spacing">{title}</h3>
+                    <p className="body-2">{description}</p>
+                </div>
+                {children}
             </div>
-            {children}
         </dialog>
 	);
 }

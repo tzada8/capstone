@@ -93,21 +93,25 @@ function PreferencesModal({ onSubmit, isOpen, onClose }) {
             isOpen={isOpen}
             onClose={onClose}
         >
-            <form onSubmit={handleSubmit}>
-                {Object.keys(preferencesForm).map(question => (
-                    <div className="form-row-radio">
-                        <p className="body-2 radio-label-question">{preferencesForm[question].label}</p>
-                        {preferencesForm[question].options.map(option => (
-                            <div>
-                                <input type="radio" id={option.value} name={question} value={option.value} onChange={handleInputChange}/>
-                                <label htmlFor={option.value} className="body-1-medium radio-label">{option.display}</label>
-                            </div>
-                        ))}
-                    </div>
-                ))}
-                <button type="submit" className="primary-button form-button-spacing form-button-size">Next</button>
+            <div className="modal-scrollable-content">
+                <form>
+                    {Object.keys(preferencesForm).map(question => (
+                        <div className="form-row-radio">
+                            <p className="body-2 radio-label-question">{preferencesForm[question].label}</p>
+                            {preferencesForm[question].options.map(option => (
+                                <div>
+                                    <input type="radio" id={option.value} name={question} value={option.value} onChange={handleInputChange}/>
+                                    <label htmlFor={option.value} className="body-1-medium radio-label">{option.display}</label>
+                                </div>
+                            ))}
+                        </div>
+                    ))}
+                </form>
+            </div>
+            <div className="modal-fixed-content form-button-spacing">
+                <button onClick={handleSubmit} className="primary-button form-button-size">Next</button>
                 <button onClick={handleSkip} className="primary-button-inverted form-button-size">Skip</button>
-            </form>
+            </div>
         </Modal>
 	);
 }
