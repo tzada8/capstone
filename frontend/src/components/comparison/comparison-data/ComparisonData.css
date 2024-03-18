@@ -59,14 +59,11 @@
 	background: var(--LIGHT-BLUE);
 	color: var(--DARK-BLUE);
 	border: 2px solid var(--DARK-BLUE);
-	/* position: absolute;
-	top: 3%;
-	right: 3%; */
 	height: 3rem;
 	width: 3rem;
 	border-radius: 50%;
 	text-align: center;
-	line-height: 295%;
+	line-height: 3rem;
 	margin-left: 1rem;
 	margin-top: 1rem;
 }
@@ -140,6 +137,10 @@
 /* VIDEOS */
 .related-videos-spacing + .related-videos-spacing {
 	margin-top: 10%;
+}
+
+.related-videos-spacing > a:hover {
+    text-decoration: none;
 }
 
 .related-videos-container {

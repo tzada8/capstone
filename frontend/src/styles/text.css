@@ -40,10 +40,6 @@ h5 {
     font-weight: 400;
 }
 
-.related-videos-spacing > a:hover {
-    text-decoration: none;
-}
-
 a:hover {
 	text-decoration: underline;
 }

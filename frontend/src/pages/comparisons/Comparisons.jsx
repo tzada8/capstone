@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import "./Comparisons.css";
 
@@ -24,7 +24,7 @@ function Comparisons() {
     }
 
     const [showRecommendations, setShowRecommendations] = useState(null);
-    const [showMoreRecommendations, setShowMoreRecommendations] = useState(false);
+    const [isFirstSection, setisFirstSection] = useState(true);
     const [products, setProducts] = useState(Array(numDisplayed).fill(defaultProductStructure));
     const [recommendations, setRecommendations] = useState([]);
     const [productTitles, setProductTitles] = useState([]);
@@ -40,7 +40,7 @@ function Comparisons() {
             "selected_products": location.state.selectedProducts,
         }
         const showRecommendations = location.state === null ? null : location.state.showRecommendations;
-        setShowRecommendations(!showRecommendations);
+        setShowRecommendations(showRecommendations);
         console.log("RECOMMENDATION DATA", recommendationData)
 
         // TODO: Remove. Temp just to rename products.
@@ -91,7 +91,8 @@ function Comparisons() {
 	return (
 		<div className="page-margin">
             <Navbar/>
-            {showRecommendations && <div className="recommendation-section">
+
+            {showRecommendations && !isFirstSection && <div className="recommendation-section">
                 <br/>
                 <h2 className="center-text max-width-heading">All product scores</h2>
                 <br/>
@@ -100,7 +101,7 @@ function Comparisons() {
                 <button className="body-1-bold scroll-down" onClick={() => document.getElementById("compare").scrollIntoView()}>Scroll to see comparison table ↓</button>
             </div>}
 
-            {showRecommendations && <div className="page-margin">
+            {(!showRecommendations || !isFirstSection) && <div className="page-margin">
                 <br/>
                 <br/>
                 <br/>
@@ -113,25 +114,22 @@ function Comparisons() {
                 
             </div>}
 
-            {!showRecommendations && <div className="page-margin">
+            {showRecommendations && isFirstSection && <div className="page-margin">
                 <p className="body-1 center-text max-width-body">Based on your preferences and product reviews</p>
                 <br/>
-                <h2 className="center-text max-width-heading" id="compare">We think you’ll like...</h2>
+                <h2 className="center-text max-width-heading" id="compare">We think you'll like...</h2>
                 <br/>
-                <button className="body-1-bold all-comparisons" onClick={() => setShowRecommendations(!showRecommendations)}>See how other products are scored →</button>
+                <button className="body-1-bold all-comparisons" onClick={() => setisFirstSection(!isFirstSection)}>See how other products are scored →</button>
                 <br/>
                 <br/>
-            </div>}
-
-            {showRecommendations && <div className="page-margin">
-                <ComparisonSection
-                    products={products.slice(0, numDisplayed).map((p, i) => {
-                        return <SwitchProduct i={i} selectedTitle={p.basic_info.title} productTitles={productTitles} handleSwitch={handleProductSwitch} />
-                    })}
-                />
             </div>}
 
             <div className="page-margin">
+                {showRecommendations && <ComparisonSection
+                    products={products.slice(0, numDisplayed).map((p, i) => {
+                        return <SwitchProduct i={i} selectedTitle={p.basic_info.title} productTitles={productTitles} handleSwitch={handleProductSwitch} />
+                    })}
+                />}
                 <ComparisonSection
                     products={products.slice(0, numDisplayed).map(p => <BasicInfoData basicInfo={p.basic_info} />)}
                 />

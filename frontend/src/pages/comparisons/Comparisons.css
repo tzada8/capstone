@@ -22,16 +22,3 @@
 .all-comparisons:hover {
     text-decoration: underline;
 }
-
-.score-number {
-	background: var(--LIGHTEST-BLUE);
-	color: var(--DARK-BLUE);
-	position: absolute;
-	top: 3%;
-	right: 3%;
-	height: 32px;
-	width: 32px;
-	border-radius: 50%;
-	text-align: center;
-	line-height: 32px;
-}
