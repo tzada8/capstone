@@ -143,6 +143,10 @@
     text-decoration: none;
 }
 
+.related-videos-spacing:hover .video-title-spacing {
+	text-decoration: underline;
+}
+
 .related-videos-container {
 	position: relative;
 }
@@ -177,7 +181,7 @@
 
 .channel-details-container {
 	color: var(--OFF-BLACK);
-	padding-top: 2%;
+	padding-top: 3%;
 }
 
 /* SMALL SCREEN */
