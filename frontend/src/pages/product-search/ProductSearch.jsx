@@ -4,7 +4,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./ProductSearch.css";
 import { routes } from "../../routes/Routes";
 import FeaturePriorityModal from "../../components/modals/content/feature-priority/FeaturePriorityModal";
-import Footer from "../../components/footer/Footer";
 import Loading from "../../components/loading/Loading";
 import Navbar from "../../components/navbar/Navbar";
 import ProductOption from "../../components/product-option/ProductOption";
@@ -131,10 +130,9 @@ function ProductSearch() {
             {productData.length > 0 && numProductsSelected > 2 && <div className="fixed-buttons-container">
                 <div className="fixed-buttons">
                     <button
-                        // disabled={isNextButtonDisabled}
+                        disabled={isNextButtonDisabled}
                         onClick={() => showRecommendations ? setIsFeaturePriorityModalOpen(true) : toComparisons()}
-                        // className={`${isNextButtonDisabled ? "disabled-button" : "primary-button"} primary-button-size`}
-                        className="primary-button primary-button-size"
+                        className={`${isNextButtonDisabled ? "disabled-button" : "primary-button"} primary-button-size`}
                     >Next</button>
                 </div>
             </div>}
@@ -169,7 +167,7 @@ function ProductSearch() {
                     />
                     <br/>
 
-                    {productData.length == 0 && <div className="all-products-empty">
+                    {productData.length === 0 && <div className="all-products-empty">
                         <h4>Search products</h4>
                         <p className="body-1">Search for an item, or enter the specific URL of the products you want to compare</p>
                     </div>}
@@ -218,7 +216,6 @@ function ProductSearch() {
                         className="alternative-button primary-button-size center-button"
                     >Load more</button>}
                 </div>
-                {/* <Footer /> */}
             </div>
         </div>
 	);
