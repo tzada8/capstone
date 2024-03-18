@@ -17,7 +17,7 @@ function ReviewsData(props) {
     const noReviews = props.reviews.summary.length === 0 &&
                         Object.keys(props.reviews.top_positive).length === 0 &&
                         Object.keys(props.reviews.top_negative).length === 0 &&
-                        (props.reviews.expert_review.hasOwnProperty("error") && Object.keys(props.reviews.expert_review).length === 0);
+                        (props.reviews.expert_review.hasOwnProperty("error") || Object.keys(props.reviews.expert_review).length === 0);
 
 	return (
 		noReviews ? <p className="body-1">Product has no reviews.</p> : <div>
