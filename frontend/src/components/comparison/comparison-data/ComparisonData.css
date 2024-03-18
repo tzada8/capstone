@@ -2,23 +2,31 @@
 .product-switch-container {
 	background: var(--OFF-WHITE);
 	z-index: 10;
+	border-radius: 6px;
 }
 
 .sticky-dropdown {
 	position: fixed;
 	top: 0;
 	padding-top: 10px;
-	width: 25%;
+	width: 20%;
 }
 
 .product-switch-dropdown {
+	-webkit-appearance: none;
+  	appearance: none;
 	background: var(--PURE-WHITE);
 	color: var(--PURE-BLACK);
-	border: 1px solid var(--GREY);
 	border-radius: 6px;
+	border: 1px solid var(--GREY);
 	width: 100%;
 	height: 50px;
 	padding: 10px 15px;
+
+	background-image: url("../../../images/comparisons/caret-down-light.svg");
+	background-size: 24px;
+	background-repeat: no-repeat;
+	background-position: calc(100% - 8px) center;
 }
 
 .product-switch-dropdown:focus {
@@ -45,6 +53,19 @@
 
 .product-page-link {
 	color: var(--DARK-BLUE);
+}
+
+.comparison-score {
+	background: var(--LIGHT-BLUE);
+	color: var(--DARK-BLUE);
+	border: 2px solid var(--DARK-BLUE);
+	height: 3rem;
+	width: 3rem;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 3rem;
+	margin-left: 1rem;
+	margin-top: 1rem;
 }
 
 /* REVIEWS */
@@ -78,6 +99,11 @@
 .show-more-text {
 	background: none;
 	color: var(--DARK-BLUE);
+	font-size: 16px;
+}
+
+.show-more-text:hover {
+	text-decoration: underline;
 }
 
 .expert-reviews-title-position {
@@ -93,22 +119,28 @@
 
 .expert-reviews-source {
 	color: var(--OFF-BLACK);
-	line-height: 100%;
+	line-height: 90%;
+	font-size: 20px;
 }
 
-.expert-reviews-clickable {
+.expert-reviews-clickable:hover {
 	text-decoration: underline;
 }
 
 .expert-reviews-score {
 	color: var(--DARK-GREY);
-	margin-top: 5px;
+	margin-top: 0px;
 	margin-left: 36px;
+	margin-bottom: 0.75rem;
 }
 
 /* VIDEOS */
 .related-videos-spacing + .related-videos-spacing {
 	margin-top: 10%;
+}
+
+.related-videos-spacing > a:hover {
+    text-decoration: none;
 }
 
 .related-videos-container {

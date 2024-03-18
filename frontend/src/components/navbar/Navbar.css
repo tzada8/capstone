@@ -7,6 +7,18 @@
     background-color: transparent;
 }
 
+.regular-navbar {
+    background-color: var(--OFF-WHITE);
+}
+
+.navbar-option:hover, .navbar > a:hover {
+    text-decoration: none;
+}
+
+.comparison-navbar {
+    background-color: var(--LIGHTEST-BLUE);
+}
+
 .navbar-middle {
     flex: 1;
 }

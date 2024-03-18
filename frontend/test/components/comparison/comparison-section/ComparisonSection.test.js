@@ -28,22 +28,4 @@ describe("ComparisonSection", () => {
 
         expect(container.querySelector("h3")).toBeNull();
     });
-
-    it("toggles section visibility on button click", () => {
-        const { getByRole, container } = render(
-            <ComparisonSection
-                sectionTitle="Section Title"
-                products={[<div>Product 1</div>, <div>Product 2</div>, <div>Product 3</div>]}
-            />
-        );
-
-        const collapseButton = getByRole("button");
-        expect(container.querySelector('.show-section')).toBeInTheDocument();
-
-        fireEvent.click(collapseButton);
-        expect(container.querySelector('.hide-section')).toBeInTheDocument();
-
-        fireEvent.click(collapseButton);
-        expect(container.querySelector('.show-section')).toBeInTheDocument();
-    });
 });

@@ -151,7 +151,7 @@ function ProductSearch() {
                 <Link className="body-1-medium back" to={routes.home}>← Back</Link>
 
                 <div className="content-product-search">
-                    <h1 className="center-text max-width-heading">Compare products</h1>
+                    <h2 className="center-text max-width-heading">Compare products</h2>
                     <br/>
                     <div className="search-and-selected">
                         <p className="body-1">

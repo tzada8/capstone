@@ -2,3 +2,23 @@
     background: var(--LIGHTEST-BLUE);
     padding-bottom: 60px;
 }
+
+.scroll-down {
+    background: none;
+    color: var(--OFF-BLACK);
+    display: flex;
+    margin: 0.75rem auto;
+    align-items: center;
+}
+
+.all-comparisons {
+    background: none;
+    color: var(--PRIMARY-BLUE);
+    display: flex;
+    margin: 0.75rem auto;
+    align-items: center;
+}
+
+.all-comparisons:hover {
+    text-decoration: underline;
+}

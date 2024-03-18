@@ -9,26 +9,39 @@ h1, h2, h3 {
 }
 
 h1 {
-    font-size: 54px;
-    line-height: 124%;
+    font-size: 50px;
+    line-height: 120%;
 }
 
 h2 {
-    font-size: 44px;
-    line-height: 124%;
+    font-size: 46px;
+    line-height: 120%;
     text-align: center;
 }
 
 h3 {
-    font-size: 36px;
+    font-size: 34px;
     line-height: 132%;
 }
 
 h4 {
-    font-size: 26px;
+    font-size: 24px;
     font-family: var(--BODY-FONT);
     letter-spacing: 0%;
-    line-height: 140%;
+    line-height: 160%;
+}
+
+h5 {
+    font-size: 20px;
+    font-family: var(--BODY-FONT);
+    letter-spacing: 0%;
+    line-height: 120%;
+    padding-bottom: 0.5rem;
+    font-weight: 400;
+}
+
+a:hover {
+	text-decoration: underline;
 }
 
 .text-highlight {
@@ -50,10 +63,10 @@ h4 {
 }
 
 .body-1, .body-1-medium, .body-1-bold {
-    font-size: 18px;
+    font-size: 16px;
     font-family: var(--BODY-FONT);
     letter-spacing: 1%;
-    line-height: 156%;
+    line-height: 165%;
     font-variation-settings: "slnt" 0;
 }
 

@@ -10,20 +10,20 @@ function RecommendationTable(props) {
             <thead>
                 <tr className="body-2-medium">
                     <th>Rank</th>
+                    <th>Score (out of 5) <Tooltip content={scoreDescription}/></th>
                     <th>Item</th>
                     <th>Price</th>
                     <th>Source</th>
-                    <th>Score (out of 5) <Tooltip content={scoreDescription}/></th>
                 </tr>
             </thead>
             <tbody>
                 {props.recommendations.map((product, i) => (
                     <tr className="body-2" key={i + 1}>
                         <td>{i + 1}</td>
+                        <td>{product.score}</td>
                         <td>{product.title}</td>
                         <td>${product.price}</td>
                         <td>{product.source}</td>
-                        <td>{product.score}</td>
                     </tr>
                 ))}
             </tbody>

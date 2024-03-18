@@ -12,7 +12,7 @@
 .tooltip-content {
     margin-top: -100%;
     position: absolute;
-    background: var(--PRIMARY-BLUE);
+    background: var(--OFF-BLACK);
     color: var(--OFF-WHITE);
     margin-left: 135%;
     padding: 8px;
@@ -29,5 +29,5 @@
     top: 5%;
     right: 100%;
     border-width: 5px;
-    border-color: transparent var(--PRIMARY-BLUE) transparent transparent;
+    border-color: transparent var(--OFF-BLACK) transparent transparent;
 }
