@@ -135,9 +135,15 @@ function Comparisons() {
                     <br/>
                 </div>}
 
-                {showRecommendations && <ComparisonSection
+                {<ComparisonSection
                     products={products.slice(0, numDisplayed).map((p, i) => {
-                        return <SwitchProduct i={i} selectedId={p.basic_info.product_id} productTitles={productTitles} handleSwitch={handleProductSwitch} />
+                        return <SwitchProduct
+                            i={i}
+                            selectedId={p.basic_info.product_id}
+                            productTitles={productTitles}
+                            recalculateTop={!isFirstSection}
+                            handleSwitch={handleProductSwitch}
+                        />
                     })}
                 />}
 

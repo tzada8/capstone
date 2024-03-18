@@ -21,7 +21,7 @@
 	border: 1px solid var(--GREY);
 	width: 100%;
 	height: 50px;
-	padding: 10px 15px;
+	padding: 10px 30px 10px 15px;
 
 	background-image: url("../../../images/comparisons/caret-down-light.svg");
 	background-size: 24px;
