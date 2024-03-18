@@ -89,18 +89,11 @@ function Comparisons() {
     }
 
 	return (
-        // We can't place the whole thing inside the page margins class or else it affects the blue background. The top part has to be its own div, the rest of the page can be in the margins class 
 		<div>
-            {/* I also don't know if this is the best way to structure the code but it works--I tried merging it with other sections but I couldn't get it to work that way, the nav would show up twice */}
-            {showRecommendations && !isFirstSection && <div className="recommendation-section-nav">
-                <Navbar/>
-            </div>}
-            {!showRecommendations && isFirstSection && <div className="page-margin">
-                <Navbar/>
-            </div>}
-            {showRecommendations && isFirstSection && <div className="page-margin">
-                <Navbar/>
-            </div>}
+            {showRecommendations && !isFirstSection ?
+                <div className="recommendation-section-nav"><Navbar/></div> :
+                <div className="page-margin"><Navbar/></div>
+            }
 
             {showRecommendations && !isFirstSection && <div className="recommendation-section">
                 <br/>
@@ -131,7 +124,6 @@ function Comparisons() {
                     <br/>
                 </div>}
 
-                {/* Idk y but I can't seem to fix the bug where the navbar jumps?? I've been trying but if anything we can just leave it rip */}
                 {showRecommendations && <ComparisonSection
                     products={products.slice(0, numDisplayed).map((p, i) => {
                         return <SwitchProduct i={i} selectedTitle={p.basic_info.title} productTitles={productTitles} handleSwitch={handleProductSwitch} />
