@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import "./ProductSearch.css";
 import { routes } from "../../routes/Routes";
+import ConstantLoading from "../../components/loading/ConstantLoading";
 import FeaturePriorityModal from "../../components/modals/content/feature-priority/FeaturePriorityModal";
 import Loading from "../../components/loading/Loading";
 import Navbar from "../../components/navbar/Navbar";
@@ -14,6 +15,7 @@ function ProductSearch() {
     const minProductsSelected = 3;
     const maxProductsSelected = 10;
 
+    const [isSearchLoading, setIsSearchLoading] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [loadingPercent, setLoadingPercent] = useState(0);
 
@@ -133,6 +135,7 @@ function ProductSearch() {
     }
 
     const _fetchProductSearch = async (q) => {
+        setIsSearchLoading(true);
         try {
             // TODO: Comment out dummy product search info for actual search.
             // const searchEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/search-products?q=${q}`;
@@ -143,6 +146,7 @@ function ProductSearch() {
         } catch (e) {
             console.log("Error fetching initial products:", e);
         }
+        setIsSearchLoading(false);
     }
 
     const _searchProductsHelper = useCallback((q) => {
@@ -191,6 +195,7 @@ function ProductSearch() {
     }
 
     const handleLoadMoreProducts = async () => {
+        setIsSearchLoading(true);
         try {
             // TODO: Comment out dummy load more for actual load more search.
             // const searchEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/search-products?q=${searchQuery}&start=${paginationStart}`;
@@ -203,12 +208,14 @@ function ProductSearch() {
         } catch (e) {
             console.log("Error loading more products:", e);
         }
+        setIsSearchLoading(false);
     }
 
     const isNextButtonDisabled = numProductsSelected < minProductsSelected || numProductsSelected > maxProductsSelected;
 
 	return (
         <div>
+            <ConstantLoading isLoading={isSearchLoading} />
             <Loading isLoading={isLoading} percent={loadingPercent} size={200} strokeWidth={12} />
 
             {productData.length > 0 && numProductsSelected > 2 && <div className="fixed-buttons-container">
