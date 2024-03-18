@@ -7,6 +7,7 @@ function BasicInfoData(props) {
 	return (
 		<div>
             {/* TODO: {props.basicInfo.score} */}
+            {/* When you fix the score, we also need to hide the score somehow if there's no score available?? I cannot figure that one out either tho :( ) */}
             <p className="body-1-bold comparison-score">3.3</p>
             <img className="comparison-product-image" src={props.basicInfo.images[0]} alt=""/>
             <h4 className="center-text basic-info-title-spacing">{props.basicInfo.title}</h4>
