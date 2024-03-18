@@ -95,11 +95,11 @@ function PreferencesModal({ onSubmit, isOpen, onClose }) {
         >
             <div className="modal-scrollable-content">
                 <form>
-                    {Object.keys(preferencesForm).map(question => (
-                        <div className="form-row-radio">
+                    {Object.keys(preferencesForm).map((question, i) => (
+                        <div key={`${question}-${i}`} className="form-row-radio">
                             <p className="body-2 radio-label-question">{preferencesForm[question].label}</p>
                             {preferencesForm[question].options.map(option => (
-                                <div>
+                                <div key={`${question}-${option.value}`}>
                                     <input type="radio" id={option.value} name={question} value={option.value} onChange={handleInputChange}/>
                                     <label htmlFor={option.value} className="body-1-medium radio-label">{option.display}</label>
                                 </div>

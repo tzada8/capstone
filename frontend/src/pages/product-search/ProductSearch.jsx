@@ -269,8 +269,9 @@ function ProductSearch() {
                         <p className="body-1">Based on how much you liked previous recommendation rankings and answers to question</p>
                         <br/>
                         <div className="picked-for-you">
-                            {productData.slice(0, numPickedForYou).map(product => (
+                            {productData.slice(0, numPickedForYou).map((product, i) => (
                                 <ProductOption
+                                    key={i}
                                     data={product}
                                     selectionNumber={productSelectionNumber(product)}
                                     changeSelection={onProductSelection}
@@ -286,15 +287,17 @@ function ProductSearch() {
                     {productData.length > 0 && <h4>All products</h4>}
                     <br/>
                     <div className="all-products">
-                        {mainSelectedProducts.map(product => (
+                        {mainSelectedProducts.map((product, i) => (
                             <ProductOption
+                                key={i}
                                 data={product}
                                 selectionNumber={productSelectionNumber(product)}
                                 changeSelection={onProductSelection}
                             />
                         ))}
-                        {productData.slice(numPickedForYou).map(product => (
+                        {productData.slice(numPickedForYou).map((product, i) => (
                             <ProductOption
+                                key={i}
                                 data={product}
                                 selectionNumber={productSelectionNumber(product)}
                                 changeSelection={onProductSelection}
