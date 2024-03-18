@@ -59,8 +59,6 @@ function Comparisons() {
     const handleProductSwitch = async (event) => {
         setIsLoading(true);
         const previousProducts = [...products];
-        // TODO: Set loading functionality.
-
         const currIndex = Number(event.target.name.replace("switch-product-", ""))
         const newIndex = previousProducts.findIndex(p => p.basic_info.product_id === event.target.value);
         const newProduct = previousProducts[newIndex];

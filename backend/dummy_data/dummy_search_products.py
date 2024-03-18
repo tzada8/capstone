@@ -1,4 +1,3 @@
-# TODO: DELETE FILE AFTER FRONTEND FUNCTIONALITY IS IMPLEMENTED.
 dummy_search_products = {
   "shopping_results": {
     "data": [
