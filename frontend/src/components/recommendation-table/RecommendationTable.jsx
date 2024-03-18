@@ -23,7 +23,14 @@ function RecommendationTable(props) {
                         <td>{product.score}</td>
                         <td>{product.title}</td>
                         <td>${product.price}</td>
-                        <td>{product.source}</td>
+                        <td>
+                            <a
+                                href={product.product_page_url}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="body-2-medium product-page-link"
+                            >{product.source}</a>
+                        </td>
                     </tr>
                 ))}
             </tbody>

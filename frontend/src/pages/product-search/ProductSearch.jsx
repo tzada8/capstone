@@ -104,6 +104,7 @@ function ProductSearch() {
                 // productsBasicInfo.sort((a, b) => recMap.get(a.basic_info.product_id) - recMap.get(b.basic_info.product_id));
                 for (let i = 0; i < productsBasicInfo.length; i++) {
                     productsBasicInfo[i].basic_info.score = recResults[i].score;
+                    recResults[i].product_page_url = productsBasicInfo[i].basic_info.product_page_url;
                 }
                 recommendationResults = recResults;
                 setLoadingPercent(prevLoadingPercent => prevLoadingPercent + loadingInterval);
