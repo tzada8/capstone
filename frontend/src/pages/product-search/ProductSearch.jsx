@@ -102,6 +102,9 @@ function ProductSearch() {
 
                 // const recMap = new Map(recResults.map((item, index) => [item.product_id, index]));
                 // productsBasicInfo.sort((a, b) => recMap.get(a.basic_info.product_id) - recMap.get(b.basic_info.product_id));
+                for (let i = 0; i < productsBasicInfo.length; i++) {
+                    productsBasicInfo[i].basic_info.score = recResults[i].score;
+                }
                 recommendationResults = recResults;
                 setLoadingPercent(prevLoadingPercent => prevLoadingPercent + loadingInterval);
             } catch (e) {

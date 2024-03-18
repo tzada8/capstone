@@ -5,17 +5,26 @@ import "./ComparisonData.css";
 function SwitchProduct(props) {
     const [isSticky, setIsSticky] = useState(false);
     const [initialTop, setInitialTop] = useState(null);
+    const [hasBeenRecalculated, sethasBeenRecalculated] = useState(false);
     const dropdownRef = useRef(null);
 
     useEffect(() => {
         const handleScroll = () => {
             const rect = dropdownRef.current.getBoundingClientRect();
-            initialTop === null ? setInitialTop(window.scrollY + rect.top) : setIsSticky(window.scrollY + 10 > initialTop);
+            const currTopDist = window.scrollY + rect.top;
+            if (initialTop === null) {
+                setInitialTop(currTopDist);
+            } else if (props.recalculateTop && !hasBeenRecalculated) {
+                setInitialTop(currTopDist);
+                sethasBeenRecalculated(true);
+            } else {
+                setIsSticky(window.scrollY + 10 > initialTop);
+            }
         };
 
         window.addEventListener("scroll", handleScroll);
         return () => (window.removeEventListener("scroll", handleScroll));
-    }, [initialTop]);
+    }, [initialTop, props.recalculateTop, hasBeenRecalculated]);
 
 	return (
 		<div>
