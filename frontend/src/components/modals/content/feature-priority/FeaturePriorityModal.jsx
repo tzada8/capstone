@@ -45,35 +45,39 @@ function FeaturePriorityModal({ onSubmit, isOpen, onClose }) {
             isOpen={isOpen}
             onClose={onClose}
         >
-            <form onSubmit={handleSubmit}>
-                {featurePriority.map((feature, index) => (
-                    <div className="form-row-select">
-                        <p className="body-1-medium select-label-question">{String(index + 1)}</p>
-                        <div
-                            className="draggable-option"
-                            draggable
-                            onDragStart={() => dragFeature.current = index}
-                            onDragEnter={() => draggedOverFeature.current = index}
-                            onDragEnd={handleSort}
-                            onDragOver={(e) => e.preventDefault()}
-                        >
-                            <div className="select-label body-1">{feature.display}</div>
-                            <div className="drag-outline-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-                                    <path
-                                        fill="currentColor"
-                                        fill-rule="evenodd"
-                                        d="M19 10a4 4 0 1 1-8 0a4 4 0 0 1 8 0m-4 18a4 4 0 1 0 0-8a4 4 0 0 0 0 8m0 14a4 4 0 1 0 0-8a4 4 0 0 0 0 8m22-32a4 4 0 1 1-8 0a4 4 0 0 1 8 0m-4 18a4 4 0 1 0 0-8a4 4 0 0 0 0 8m0 14a4 4 0 1 0 0-8a4 4 0 0 0 0 8"
-                                        clip-rule="evenodd"
-                                    />
-                                </svg>
+            <div className="modal-scrollable-content">
+                <form>
+                    {featurePriority.map((feature, index) => (
+                        <div className="form-row-select">
+                            <p className="body-1-medium select-label-question">{String(index + 1)}</p>
+                            <div
+                                className="draggable-option"
+                                draggable
+                                onDragStart={() => dragFeature.current = index}
+                                onDragEnter={() => draggedOverFeature.current = index}
+                                onDragEnd={handleSort}
+                                onDragOver={(e) => e.preventDefault()}
+                            >
+                                <div className="select-label body-1">{feature.display}</div>
+                                <div className="drag-outline-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                                        <path
+                                            fill="currentColor"
+                                            fill-rule="evenodd"
+                                            d="M19 10a4 4 0 1 1-8 0a4 4 0 0 1 8 0m-4 18a4 4 0 1 0 0-8a4 4 0 0 0 0 8m0 14a4 4 0 1 0 0-8a4 4 0 0 0 0 8m22-32a4 4 0 1 1-8 0a4 4 0 0 1 8 0m-4 18a4 4 0 1 0 0-8a4 4 0 0 0 0 8m0 14a4 4 0 1 0 0-8a4 4 0 0 0 0 8"
+                                            clip-rule="evenodd"
+                                        />
+                                    </svg>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
-                <button type="submit" className="primary-button form-button-spacing form-button-size">Next</button>
+                    ))}
+                </form>
+            </div>
+            <div className="modal-fixed-content form-button-spacing">
+                <button onClick={handleSubmit} className="primary-button form-button-size">Next</button>
                 <button onClick={handleSkip} className="primary-button-inverted form-button-size">Skip</button>
-            </form>
+            </div>
         </Modal>
 	);
 }
