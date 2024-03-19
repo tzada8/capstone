@@ -14,6 +14,7 @@ function ProductSearch() {
     const numPickedForYou = 3;
     const minProductsSelected = 3;
     const maxProductsSelected = 10;
+    const paginatedInterval = 40;
 
     const [isSearchLoading, setIsSearchLoading] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -21,7 +22,7 @@ function ProductSearch() {
 
     const [searchQuery, setSearchQuery] = useState("");
     const [productData, setProductData] = useState([]);
-    const [paginationStart, setPaginationStart] = useState(0);
+    const [paginationStart, setPaginationStart] = useState(paginatedInterval);
     const [mainSelectedProducts, setMainSelectedProducts] = useState([]);
     const [currentSelectedProducts, setCurrentSelectedProducts] = useState([]);
     const allSelectedProducts = [...mainSelectedProducts, ...currentSelectedProducts];
@@ -208,7 +209,7 @@ function ProductSearch() {
             const data =  await response.json();
             const moreProdData = data.shopping_results.data;
             setProductData([...productData, ...moreProdData]);
-            setPaginationStart(paginationStart + 40);
+            setPaginationStart(paginationStart + paginatedInterval);
         } catch (e) {
             console.log("Error loading more products:", e);
         }
