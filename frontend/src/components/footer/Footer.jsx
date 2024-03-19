@@ -13,8 +13,8 @@ function Footer() {
                 <Link className="center-logo" to={routes.home}><Logo /></Link>
             </div>
             <div className="footer-options-container">
+                <Link className="body-1-medium footer-option" to={routes.dataPipeline}>Instructions</Link>
                 <Link className="body-1-medium footer-option" to={routes.howItWorks}>How it works</Link>
-                <Link className="body-1-medium footer-option" to={routes.dataPipeline}>Our data</Link>
             </div>
         </footer>
     )

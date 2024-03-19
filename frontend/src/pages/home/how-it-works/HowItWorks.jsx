@@ -12,7 +12,7 @@ function HowItWorks() {
             <Navbar/>
             <div className="how-it-works">
                 <div className="how-it-works-text-container">
-                    <h1 className="how-it-works-title max-width-heading"><span className="text-highlight">How</span> it works</h1>
+                    <h1 className="how-it-works-title max-width-heading"><span className="text-highlight">How</span> to use Juxtapose</h1>
                     <ul className="steps-container">
                         <li><h4 className="how-it-works-h4">1. Search</h4></li>
                         <li className="body-1 steps-indent">Search for product category (ex. DSLR cameras)</li>
@@ -21,7 +21,7 @@ function HowItWorks() {
                         <li><h4 className="how-it-works-h4">3. View recommendations</h4></li>
                         <li className="body-1 steps-indent">See the products we think you’ll like</li>
                         <li><h4 className="how-it-works-h4">4. Compare</h4></li>
-                        <li className="body-1 steps-indent">Compare products with the help of the Rich Comparison View</li>
+                        <li className="body-1 steps-indent">Compare products and pick your favourite one!</li>
                     </ul>
                 </div>
                 <div className="diagram-container">

@@ -107,7 +107,7 @@ function Comparisons() {
 
             {showRecommendations && !isFirstSection && <div className="recommendation-section">
                 <br/>
-                <h2 className="center-text max-width-heading">All product scores</h2>
+                <h2 className="center-text max-width-heading">All product for you</h2>
                 <br/>
                 <RecommendationTable recommendations={recommendations} />
                 <br/>
@@ -119,13 +119,13 @@ function Comparisons() {
                     <br/>
                     <h2 className="center-text max-width-heading" id="compare">Compare products</h2>
                     <br/>
-                    <p className="body-1 center-text max-width-body">Get help choosing from analyzed insights, fast.</p>
+                    <p className="body-1 center-text max-width-body">Use dropdowns to compare any combination of products</p>
                     <br/>
                     <br/>
                 </div>}
 
                 {showRecommendations && isFirstSection && <div>
-                    <p className="body-1 center-text max-width-body">Based on your preferences and product reviews</p>
+                    <p className="body-1 center-text max-width-body">Based on your preferences and our scoring system</p>
                     <br/>
                     <h2 className="center-text max-width-heading" id="compare">We think you'll like...</h2>
                     <br/>
@@ -159,7 +159,7 @@ function Comparisons() {
                         products={products.slice(0, numDisplayed).map(p => <SummaryReviewsData summary={p.reviews.summary} />)}
                     />
                     <ComparisonSection
-                        sectionTitle="Picked reviews for you"
+                        sectionTitle="Curated reviews for you"
                         products={products.slice(0, numDisplayed).map(p => <ReviewsData reviews={p.reviews} />)}
                     />
                     <ComparisonSection

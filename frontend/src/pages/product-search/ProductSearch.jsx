@@ -244,11 +244,11 @@ function ProductSearch() {
                 <Link className="body-1-medium back" to={routes.home}>← Back</Link>
 
                 <div className="content-product-search">
-                    <h2 className="center-text max-width-heading">Compare products</h2>
+                    <h2 className="center-text max-width-heading">Select multiple products to compare</h2>
                     <br/>
                     <div className="search-and-selected">
                         <p className="body-1">
-                            <span className="body-1-bold">Select 3 or more</span> products to compare predicted likability and details
+                            <span className="body-1-bold">Select 3 or more</span> products that you are interested in
                         </p>
                         <p className="body-1-medium num-selected min-selection">
                             {numProductsSelected} Selected
