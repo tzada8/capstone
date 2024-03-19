@@ -14,7 +14,7 @@ function ProductSearch() {
     const numPickedForYou = 3;
     const minProductsSelected = 3;
     const maxProductsSelected = 10;
-    const paginatedInterval = 40;
+    const paginatedInterval = 20;
 
     const [isSearchLoading, setIsSearchLoading] = useState(false);
     const [isLoading, setIsLoading] = useState(false);

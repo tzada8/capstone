@@ -1606,7 +1606,7 @@ dummy_search_products = {
         "thumbnail": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRfBEz9Zx7IbIvPJmIZl8JzL5PPjLaEzDOb-2eY3cTZIg-NOXxCHJeW5R7YXfPOGpCnQG15DgwgpAove9ksVZPL5hWkXKV4rvyYNuBUYEvy3_shXiFKXOFF&usqp=CAE",
         "title": "Canon Eos Rebel T100 DSLR Camera EF-S 18-55mm f/3.5-5.6 DC III"
       }
-    ][:40],
+    ][:20],
     "pagination": {
       "current": 1,
       "next": "https://serpapi.com/search.json?device=desktop&engine=google_shopping&gl=us&google_domain=google.com&hl=en&location=United+States&num=40&q=DSLR+Camera&start=40&tbs=mr%3A1%2Cmerchagg%3Ag8299768%7Cm125210027%7Cm120798572%7Cm113137360%7Cm5073604987%7Cm585399882%7Cg8299768%7Cg7187155%7Cm125210027%7Cm120798572%7Cm113137360%7Cm5073604987%7Cm585399882%7Cm1311674%2Cvw%3Ad",

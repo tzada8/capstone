@@ -10,15 +10,17 @@ function SwitchProduct(props) {
 
     useEffect(() => {
         const handleScroll = () => {
-            const rect = dropdownRef.current.getBoundingClientRect();
-            const currTopDist = window.scrollY + rect.top;
-            if (initialTop === null) {
-                setInitialTop(currTopDist);
-            } else if (props.recalculateTop && !hasBeenRecalculated) {
-                setInitialTop(currTopDist);
-                sethasBeenRecalculated(true);
-            } else {
-                setIsSticky(window.scrollY + 10 > initialTop);
+            if (dropdownRef !== null) {
+                const rect = dropdownRef.current.getBoundingClientRect();
+                const currTopDist = window.scrollY + rect.top;
+                if (initialTop === null) {
+                    setInitialTop(currTopDist);
+                } else if (props.recalculateTop && !hasBeenRecalculated) {
+                    setInitialTop(currTopDist);
+                    sethasBeenRecalculated(true);
+                } else {
+                    setIsSticky(window.scrollY + 10 > initialTop);
+                }
             }
         };
 

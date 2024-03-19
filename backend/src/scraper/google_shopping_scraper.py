@@ -16,7 +16,9 @@ def _extract_product_id(url: str) -> Optional[str]:
 
 def _cleanup_source(source: str) -> str:
     refined_source = source
-    if "Best Buy" in source:
+    if source is None:
+        refined_source = ""
+    elif "Best Buy" in source:
         refined_source = "Best Buy"
     elif "Walmart" in source:
         refined_source = "Walmart"
@@ -34,7 +36,7 @@ def scrape_google_products(q: str, start: int) -> Dict:
         "hl": "en",
         "gl": "us",
         "location": "United States",
-        "num": "40",
+        "num": "20",
         "tbs": f"mr:1,merchagg:{sellers}",
     }
     try:
