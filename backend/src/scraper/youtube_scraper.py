@@ -29,15 +29,11 @@ def scrape_videos(q: str) -> Dict:
     if "error" in results:
         print(f"YouTube => {results.get('error')}")
         return {
-            "videos": {
-                "error": results.get("error"),
-            }
+            "videos": []
         }
     elif len(results) == 0:
         return {
-            "videos": {
-                "error": "The API call failed.",
-            }
+            "videos": []
         }
     else:
         video_results = results.get("video_results", [])

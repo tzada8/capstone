@@ -53,8 +53,6 @@ class TestYoutubeScraper(unittest.TestCase):
         query = "Best Food Ever"
         result = scrape_videos(query)
         expected = {
-            "videos": {
-                "error": "Could not complete request."
-            }
+            "videos": []
         }
         self.assertEqual(result, expected)
