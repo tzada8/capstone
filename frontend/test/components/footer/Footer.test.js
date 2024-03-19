@@ -25,8 +25,8 @@ describe("Footer", () => {
         </Router>
         );
 
+        expect(getByText("Instructions")).toHaveAttribute("href", "/instructions");
         expect(getByText("How it works")).toHaveAttribute("href", "/how-it-works");
-        expect(getByText("Our data")).toHaveAttribute("href", "/our-data");
     });
 
     it("renders hr element in footer", () => {

@@ -59,7 +59,7 @@ a:hover {
 }
 
 .max-width-body {
-    max-width: 75%;
+    max-width: 55%;
 }
 
 .body-1, .body-1-medium, .body-1-bold {
@@ -118,6 +118,11 @@ a:hover {
     font-weight: 700;
 }
 
+.g-title-font {
+    font-family: var(--G-TITLE-FONT);
+    font-weight: 600;
+}
+
 /* DESKTOP SCREEN */
 @media screen and (min-width: 1500px) {
     .max-width-heading {
@@ -125,7 +130,7 @@ a:hover {
     }
     
     .max-width-body {
-        max-width: 65%;
+        max-width: 45%;
     }
 }
 
