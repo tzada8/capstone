@@ -53,7 +53,7 @@ function ProductSearch() {
         
         setIsLoading(true);
         setLoadingPercent(0);
-        const numExtraApiCalls = 4;
+        const numExtraApiCalls = showRecommendations ? 4 : 3;
         const loadingInterval = 100 / (basicProductParams.length + numExtraApiCalls);
 
         // Basic info for all products.
