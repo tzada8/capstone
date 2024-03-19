@@ -16,7 +16,9 @@ def _extract_product_id(url: str) -> Optional[str]:
 
 def _cleanup_source(source: str) -> str:
     refined_source = source
-    if "Best Buy" in source:
+    if source is None:
+        refined_source = ""
+    elif "Best Buy" in source:
         refined_source = "Best Buy"
     elif "Walmart" in source:
         refined_source = "Walmart"
