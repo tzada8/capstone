@@ -1,27 +1,53 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 
 import SpecificationsData from "../../../../src/components/comparison/comparison-data/SpecificationsData";
 
-const specifications = [
-    { name: "Color", value: "Black" },
-    { name: "Size", value: "Large" },
-    { name: "Weight", value: "10 lbs" }
-];
-
 describe("SpecificationsData", () => {
-    it("renders correctly with specifications data", () => {
-        const { getByText } = render(<SpecificationsData specifications={specifications} />);
+    const specifications = [
+        { name: "Spec 1", value: "Value 1" },
+        { name: "Spec 2", value: "Value 2" },
+        { name: "Spec 3", value: "Value 3" },
+        { name: "Spec 4", value: "Value 4" },
+        { name: "Spec 5", value: "Value 5" },
+    ];
 
-        expect(getByText("Color: Black")).toBeInTheDocument();
-        expect(getByText("Size: Large")).toBeInTheDocument();
-        expect(getByText("Weight: 10 lbs")).toBeInTheDocument();
+    it("renders the component with limited specs initially", () => {
+        const { getByText, queryByText } = render(
+            <SpecificationsData specifications={specifications} />
+        );
+
+        specifications.slice(0, 4).forEach((spec) => {
+            expect(getByText(`${spec.name}:`)).toBeInTheDocument();
+            expect(getByText(spec.value)).toBeInTheDocument();
+        });
+
+        expect(queryByText("Spec 5")).not.toBeInTheDocument();
     });
 
-    it("renders without crashing if specifications data is not provided", () => {
-        const { container } = render(<SpecificationsData specifications={[]} />);
+    it("toggles full details when the button is clicked", () => {
+        const { getByText, queryByText } = render(
+            <SpecificationsData specifications={specifications} />
+        );
 
-        expect(container.querySelector("div")).toBeInTheDocument();
-        expect(container.querySelector("div")).toBeEmptyDOMElement();
+        const button = getByText("Show full details");
+        fireEvent.click(button);
+
+        specifications.forEach((spec) => {
+            expect(getByText(`${spec.name}:`)).toBeInTheDocument();
+            expect(getByText(spec.value)).toBeInTheDocument();
+        });
+
+        expect(queryByText("Hide full details")).toBeInTheDocument();
+
+        fireEvent.click(button);
+
+        specifications.slice(0, 4).forEach((spec) => {
+            expect(getByText(`${spec.name}:`)).toBeInTheDocument();
+            expect(getByText(spec.value)).toBeInTheDocument();
+        });
+
+        expect(queryByText("Spec 5")).not.toBeInTheDocument();
+        expect(queryByText("Show full details")).toBeInTheDocument();
     });
 });
