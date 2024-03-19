@@ -60,8 +60,8 @@ function ProductSearch() {
         const productsBasicInfo = await Promise.all(basicProductParams.map(async p => {
             try {
                 // TODO: Comment out dummy basic info for actual data.
-                // const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/product/basic-info?source=${p.source}&product_id=${p.product_id}`;
-                const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/product/basic-info`;
+                const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/product/basic-info?source=${p.source}&product_id=${p.product_id}`;
+                // const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/product/basic-info`;
                 const response = await fetch(productEndpoint);
                 setLoadingPercent(prevLoadingPercent => prevLoadingPercent + loadingInterval);
                 return await response.json();
@@ -75,33 +75,33 @@ function ProductSearch() {
         if (showRecommendations) {
             try {
                 // TODO: Comment out dummy recommendations for actual data.
-                // const recEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/recommendation`;
-                // const recommendationData = {
-                //     "preferences": preferences,
-                //     "importance": importance,
-                //     "selected_products": productsBasicInfo,
-                // }
-                // const recResponse = await fetch(recEndpoint, {
-                //     method: "POST",
-                //     headers: {"Content-Type": "application/json"},
-                //     body: JSON.stringify(recommendationData),
-                // });
-                const recEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/recommendation`;
-                const recResponse = await fetch(recEndpoint);
+                const recEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/recommendation`;
+                const recommendationData = {
+                    "preferences": preferences,
+                    "importance": importance,
+                    "selected_products": productsBasicInfo,
+                }
+                const recResponse = await fetch(recEndpoint, {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify(recommendationData),
+                });
+                // const recEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/recommendation`;
+                // const recResponse = await fetch(recEndpoint);
                 const recResults = await recResponse.json();
 
                 // TODO: Remove below 6 lines.
-                for (let i = 0; i < productsBasicInfo.length; i++) {
-                    productsBasicInfo[i].basic_info.title = `Product ${i + 1}`;
-                }
-                for (let i = 0; i < productsBasicInfo.length; i++) {
-                    productsBasicInfo[i].basic_info.product_id = String(i + 1).repeat(3);
-                }
-                const recMap = new Map(recResults.map((item, index) => [item.title, index]));
-                productsBasicInfo.sort((a, b) => recMap.get(a.basic_info.title) - recMap.get(b.basic_info.title));
+                // for (let i = 0; i < productsBasicInfo.length; i++) {
+                //     productsBasicInfo[i].basic_info.title = `Product ${i + 1}`;
+                // }
+                // for (let i = 0; i < productsBasicInfo.length; i++) {
+                //     productsBasicInfo[i].basic_info.product_id = String(i + 1).repeat(3);
+                // }
+                // const recMap = new Map(recResults.map((item, index) => [item.title, index]));
+                // productsBasicInfo.sort((a, b) => recMap.get(a.basic_info.title) - recMap.get(b.basic_info.title));
+                const recMap = new Map(recResults.map((item, index) => [item.product_id, index]));
+                productsBasicInfo.sort((a, b) => recMap.get(a.basic_info.product_id) - recMap.get(b.basic_info.product_id));
 
-                // const recMap = new Map(recResults.map((item, index) => [item.product_id, index]));
-                // productsBasicInfo.sort((a, b) => recMap.get(a.basic_info.product_id) - recMap.get(b.basic_info.product_id));
                 for (let i = 0; i < productsBasicInfo.length; i++) {
                     productsBasicInfo[i].basic_info.score = recResults[i].score;
                     recResults[i].product_page_url = productsBasicInfo[i].basic_info.product_page_url;
@@ -120,8 +120,8 @@ function ProductSearch() {
         const productsDetailedInfo = await Promise.all(top3ProductParams.map(async p => {
             try {
                 // TODO: Comment out dummy detailed info for actual data.
-                // const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/product/detailed-info?source=${p.source}&product_id=${p.product_id}&product_title=${p.product_title}`;
-                const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/product/detailed-info`;
+                const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/product/detailed-info?source=${p.source}&product_id=${p.product_id}&product_title=${p.product_title}`;
+                // const productEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/product/detailed-info`;
                 const response = await fetch(productEndpoint);
                 setLoadingPercent(prevLoadingPercent => prevLoadingPercent + loadingInterval);
                 return await response.json();
@@ -142,8 +142,8 @@ function ProductSearch() {
         setIsSearchLoading(true);
         try {
             // TODO: Comment out dummy product search info for actual search.
-            // const searchEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/search-products?q=${q}`;
-            const searchEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/search-products?q=${q}`;
+            const searchEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/search-products?q=${q}`;
+            // const searchEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/search-products?q=${q}`;
             const response = await fetch(searchEndpoint);
             const data = await response.json();
             setProductData(data.shopping_results.data);
@@ -202,8 +202,8 @@ function ProductSearch() {
         setIsSearchLoading(true);
         try {
             // TODO: Comment out dummy load more for actual load more search.
-            // const searchEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/search-products?q=${searchQuery}&start=${paginationStart}`;
-            const searchEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/search-products?q=${searchQuery}&start=${paginationStart}`;
+            const searchEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/search-products?q=${searchQuery}&start=${paginationStart}`;
+            // const searchEndpoint = `${process.env.REACT_APP_BACKEND_BASE_API}/api/dummy/search-products?q=${searchQuery}&start=${paginationStart}`;
             const response = await fetch(searchEndpoint);
             const data =  await response.json();
             const moreProdData = data.shopping_results.data;
