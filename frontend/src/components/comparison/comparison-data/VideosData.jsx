@@ -3,8 +3,10 @@ import React from "react";
 import "./ComparisonData.css";
 
 function VideosData(props) {
+    const noVideos = props.videos.length === 0;
+
 	return (
-		<div>
+		noVideos ? <p className="body-1">Product has no related videos.</p> : <div>
             {props.videos.map((video, i) => (
                 <div key={`video-${i}`} className="related-videos-spacing">
                     <a key={video.title} href={video.link} target="_blank" rel="noreferrer">

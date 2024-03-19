@@ -31,9 +31,8 @@ describe("VideosData", () => {
     });
 
     it("renders without crashing if videos data is not provided", () => {
-        const { container } = render(<VideosData videos={[]} />);
+        const { getByText } = render(<VideosData videos={[]} />);
 
-        expect(container.querySelector("div")).toBeInTheDocument();
-        expect(container.querySelector("div")).toBeEmptyDOMElement();
+        expect(getByText("Product has no related videos.")).toBeInTheDocument();
     });
 });
