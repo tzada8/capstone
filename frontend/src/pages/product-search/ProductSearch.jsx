@@ -53,7 +53,7 @@ function ProductSearch() {
         
         setIsLoading(true);
         setLoadingPercent(0);
-        const numExtraApiCalls = 4;
+        const numExtraApiCalls = showRecommendations ? 4 : 3;
         const loadingInterval = 100 / (basicProductParams.length + numExtraApiCalls);
 
         // Basic info for all products.
@@ -104,6 +104,7 @@ function ProductSearch() {
                 // productsBasicInfo.sort((a, b) => recMap.get(a.basic_info.product_id) - recMap.get(b.basic_info.product_id));
                 for (let i = 0; i < productsBasicInfo.length; i++) {
                     productsBasicInfo[i].basic_info.score = recResults[i].score;
+                    recResults[i].product_page_url = productsBasicInfo[i].basic_info.product_page_url;
                 }
                 recommendationResults = recResults;
                 setLoadingPercent(prevLoadingPercent => prevLoadingPercent + loadingInterval);

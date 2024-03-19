@@ -12,6 +12,7 @@ import RecommendationTable from "../../components/recommendation-table/Recommend
 import BasicInfoData from "../../components/comparison/comparison-data/BasicInfoData";
 import ReviewsData from "../../components/comparison/comparison-data/ReviewsData";
 import SpecificationsData from "../../components/comparison/comparison-data/SpecificationsData";
+import SummaryReviewsData from "../../components/comparison/comparison-data/SummaryReviewsData";
 import SwitchProduct from "../../components/comparison/comparison-data/SwitchProduct";
 import VideosData from "../../components/comparison/comparison-data/VideosData";
 
@@ -150,15 +151,19 @@ function Comparisons() {
                         products={products.slice(0, numDisplayed).map(p => <BasicInfoData basicInfo={p.basic_info} />)}
                     />
                     <ComparisonSection
-                        sectionTitle="Specifications"
+                        sectionTitle="Product details"
                         products={products.slice(0, numDisplayed).map(p => <SpecificationsData specifications={p.specifications} />)}
                     />
                     <ComparisonSection
-                        sectionTitle="Summary of written reviews"
+                        sectionTitle="Summary of all reviews"
+                        products={products.slice(0, numDisplayed).map(p => <SummaryReviewsData summary={p.reviews.summary} />)}
+                    />
+                    <ComparisonSection
+                        sectionTitle="Picked reviews for you"
                         products={products.slice(0, numDisplayed).map(p => <ReviewsData reviews={p.reviews} />)}
                     />
                     <ComparisonSection
-                        sectionTitle="Most helpful video reviews"
+                        sectionTitle="Video reviews"
                         products={products.slice(0, numDisplayed).map(p => <VideosData videos={p.videos} />)}
                     />
                 </div>
