@@ -134,7 +134,7 @@ function Comparisons() {
                     <br/>
                 </div>}
 
-                {<ComparisonSection
+                {(!showRecommendations || !isFirstSection) && <ComparisonSection
                     products={products.slice(0, numDisplayed).map((p, i) => {
                         return <SwitchProduct
                             i={i}
