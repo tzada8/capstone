@@ -108,7 +108,7 @@ function Comparisons() {
 
             {showRecommendations && !isFirstSection && <div className="recommendation-section">
                 <br/>
-                <h2 className="center-text max-width-heading">All product for you</h2>
+                <h2 className="center-text max-width-heading">All products for you</h2>
                 <br/>
                 <RecommendationTable recommendations={recommendations} />
                 <br/>
