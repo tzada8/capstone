@@ -1,61 +1,278 @@
-# Capstone
+<a name="readme-top"></a>
 
-## Deployment
-All deployments are through [Render](https://dashboard.render.com/)
-- `capstone-frontend` Deploy: https://capstone-frontend-u9ds.onrender.com
-- `capstone-backend` Deploy: https://capstone-backend-zup0.onrender.com
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+    <a href="https://github.com/tzada8/capstone">
+        <img src="frontend/src/images/logo/Juxtapose.png" alt="Juxtapose" width="240" height="51">
+    </a>
+    <h3 align="center">Juxtapose</h3>
+    <p align="center">
+        Juxtapose is a web application designed to help online shoppers tackle the difficulty of making well-informed and confident purchasing decisions by alleviating decision paralysis and information overload.
+        <br />
+        <br />
+        <a href="https://capstone-backend-zup0.onrender.com">Backend Production</a>
+        ·
+        <a href="https://juxtapose-4a7f46fad866.herokuapp.com/">Frontend Production</a>
+        </p>
+</div>
 
-## Local Setup
+<!-- TABLE OF CONTENTS -->
+<details>
+    <summary>Table of Contents</summary>
+    <ol>
+        <li>
+            <a href="#about-the-project">About The Project</a>
+        </li>
+        <li>
+            <a href="#getting-started">Getting Started</a>
+            <ul>
+                <li><a href="#installations">Installations</a></li>
+                <li><a href="#backend-setup">Backend Setup</a></li>
+                <li><a href="#frontend-setup">Frontend Setup</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#adding-additional-packages">Adding Additional Packages</a>
+            <ul>
+                <li><a href="#backend-packages">Backend Packages</a></li>
+                <li><a href="#frontend-packages">Frontend Packages</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#starting-the-app">Starting the App</a>
+            <ul>
+                <li><a href="#backend-startup">Backend Startup</a></li>
+                <li><a href="#frontend-startup">Frontend Startup</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#testing">Testing</a>
+            <ul>
+                <li><a href="#backend-tests">Backend Tests</a></li>
+                <li><a href="#frontend-tests">Frontend Tests</a></li>
+            </ul>
+        </li>
+        <li><a href="#acknowledgments">Acknowledgments</a></li>
+    </ol>
+</details>
 
-### Installations
-The following applications must be installed locally (if you don't already have it):
-- Node: https://nodejs.org/en/download
-- Python: https://www.python.org/downloads/
 
-### Cloning the Repo
-1. Follow GitHub's instructions [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) to setup an SSH key connecting GitHub to your local laptop (if one doesn't already exist)
-2. Copy the SSH command from the repo
-3. Locally run: `git clone <copied_key>`
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
+<div align="center">
+    <img src="frontend/src/images/home/comparison-layout.png" alt="Comparison Layout" width="400" height="480">
+</div>
+<br/>
+
+Juxtapose helps shoppers make improved purchasing decisions by ensuring they feel less overwhelmed by the number of product options and volume of information available. By aggregating specifications, peer reviews, expert reviews, and related videos, and providing tailored recommendations, shoppers can reach purchasing decisions with ease!
+
+To use Juxtapose, you can:
+
+1. <b>Search</b>: Search for product category (ex. DSLR cameras)
+2. <b>Set filters & preferences</b>: Set filters and rank your feature preferences
+3. <b>View recommendations</b>: See the products we think you’ll like
+4. <b>Compare</b>: Compare products and pick your favourite one
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<!-- GETTING STARTED -->
 ## Getting Started
 
-Setup Backend:
-1. Open new terminal
-2. Change directory: `cd backend`
-3. Create local virtual environment: `python3 -m venv .venv` (or use `python`)
-4. Activate virtual environment: `source .venv/bin/activate`
-5. Install dependencies: `pip install -r requirements.txt`
-6. Install NLTK dependencies: `python3 -m nltk.downloader vader_lexicon` (if you are running into an error, try running `pip install certifi /Applications/Python\ {PYTHON_VERSION}/Install\ Certificates.command` first and then re-installing the NLTK dependencies. Make sure {PYTHON_VERSION} is the same as what exists in your File Explorer!)
-7. Request environment variables from team: `.env` file
-8. Deactivate local virtual environment (when needed): `deactivate`
+To get a local copy up and running, follow these simple steps. You must always have 2 terminals open, where one terminal points to the `backend` folder and the other points to the `frontend` folder.
 
-Adding Additional Packages:
-1. Change directory: `cd backend`
-2. Activate your virtual environment: `source .venv/bin/activate`
-3. Install packages in terminal: (e.g., `pip install pandas`)
-4. Update requirements: `pip freeze > requirements.txt`
-5. Commit `requirements.txt`
+### Installations
 
-Setup Frontend:
-1. Open new terminal
-2. Change directory: `cd frontend`
-3. Install dependencies: `npm install`
-4. Request environment variables from team: `.env` file
+Ensure the following applications are locally installed:
 
-## Starting Application
+- [Node](https://nodejs.org/en/download)
+- [Python](https://www.python.org/downloads/)
 
-Backend:
-1. Open new terminal
-2. Change directory: `cd backend`
-3. Activate virtual environment: `source .venv/bin/activate`
-4. Start service: `flask --debug run --no-debugger`
+### Backend Setup
 
-Frontend:
-1. Open new terminal
-2. Change directory: `cd frontend`
-3. Start service: `npm start`
+Follow the steps listed below to setup your backend environment.
 
+1. Open a new terminal
+2. Change directory to the `backend` folder
+    ```
+    cd backend
+    ```
+3. Create a local virtual environment
+    ```
+    python3 -m venv .venv
+    ```
+4. Activate the virtual environment
+    ```
+    source .venv/bin/activate
+    ```
+5. Install `requirements` dependencies
+    ```
+    pip install -r requirements.txt
+    ```
+6. Install `NLTK` dependencies
+    ```
+    python3 -m nltk.downloader vader_lexicon
+    ```
+    Ensure your `{PYTHON_VERSION}` is identical to what's listed in your File Explorer. If you run into an error, try running
+    ```
+    pip install certifi /Applications/Python\ {PYTHON_VERSION}/Install\ Certificates.command
+    ```
+7. Create a `.env` file
+    ```
+    touch .env
+    ```
+8. Reach out to the team for the environment variables, adding them to the `.env` file
+9. When needed, deactivate the local virtual environment
+    ```
+    deactivate
+    ```
+
+### Frontend Setup
+
+Follow the steps listed below to setup your frontend environment.
+
+1. Open a new terminal
+2. Change directory to the `frontend` folder
+    ```
+    cd frontend
+    ```
+3. Install node dependencies
+    ```
+    npm install
+    ```
+4. Create a `.env` file
+    ```
+    touch .env
+    ```
+5. Reach out to the team for the environment variables, adding them to the `.env` file
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<!-- ADDING ADDITIONAL PACKAGES -->
+## Adding Additional Packages
+
+To add additional packages when developing, follow these steps.
+
+### Backend Packages
+
+1. Change directory to the `backend` folder
+    ```
+    cd backend
+    ```
+2. Activate your virtual environment
+    ```
+    source .venv/bin/activate
+    ```
+3. Install the additional packages. As as example:
+    ```
+    pip install pandas
+    ```
+4. Update the `requirements` dependencies
+    ```
+    pip freeze > requirements.txt
+    ```
+5. Commit the `requirements.txt` file
+
+### Frontend Packages
+
+1. Change directory to the `frontend` folder
+    ```
+    cd frontend
+    ```
+2. Install the additional packages. As as example:
+    ```
+    npm install antd
+    ```
+3. Commit the `package.json` and `package-lock.json` files
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<!-- STARTING THE APP -->
+## Starting the App
+
+To locally run the application, the following steps can be run. The `backend` can be run independently, but to run the `frontend`, the `backend` needs to also be run.
+
+### Backend Startup
+
+1. Change directory to the `backend` folder
+    ```
+    cd backend
+    ```
+2. Activate your virtual environment
+    ```
+    source .venv/bin/activate
+    ```
+3. Start the `backend` service
+    ```
+    flask --debug run --no-debugger
+    ```
+
+### Frontend Startup
+
+1. Change directory to the `frontend` folder
+    ```
+    cd frontend
+    ```
+2. Start the `frontend` service
+    ```
+    npm start
+    ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<!-- TESTING -->
 ## Testing
 
-Backend: In `backend` folder, run `python3 -m unittest discover`
-Frontend: In `frontend` folder, run `npm test`
+To locally run the `backend` and `frontend` automated tests, run the following steps.
+
+### Backend Tests
+
+1. Change directory to the `backend` folder
+    ```
+    cd backend
+    ```
+2. Activate your virtual environment
+    ```
+    source .venv/bin/activate
+    ```
+3. Run the `backend` tests
+    ```
+    python3 -m unittest discover
+    ```
+
+### Frontend Tests
+
+1. Change directory to the `frontend` folder
+    ```
+    cd frontend
+    ```
+2. Run the `frontend` tests
+    ```
+    npm test
+    ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
+
+Several acknowledgements to be made includes Prof. Kejia Zhu along with the following technologies
+
+Backend APIs
+
+- [Best Buy API](https://developer.bestbuy.com)
+- [OpenAI](https://platform.openai.com)
+- [SerpAPI](https://serpapi.com)
+
+Frontend Libraries
+- [Ant Design Icons](https://ant.design/components/icon)
+- [Google Fonts](https://fonts.google.com/)
+- [React Icons](https://react-icons.github.io/react-icons/search)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
