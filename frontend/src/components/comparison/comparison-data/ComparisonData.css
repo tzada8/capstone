@@ -68,6 +68,15 @@
 	margin-top: 1rem;
 }
 
+/* SPECIFICATIONS */
+.spec-section {
+	margin-bottom: 16px;
+}
+
+.spec-more-details-button {
+	margin-top: 16px;
+}
+
 /* REVIEWS */
 .summary-bullet-container {
     list-style-position: inside;

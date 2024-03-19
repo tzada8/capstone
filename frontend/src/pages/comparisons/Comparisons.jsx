@@ -151,7 +151,7 @@ function Comparisons() {
                         products={products.slice(0, numDisplayed).map(p => <BasicInfoData basicInfo={p.basic_info} />)}
                     />
                     <ComparisonSection
-                        sectionTitle="Specifications"
+                        sectionTitle="Product details"
                         products={products.slice(0, numDisplayed).map(p => <SpecificationsData specifications={p.specifications} />)}
                     />
                     <ComparisonSection
@@ -163,7 +163,7 @@ function Comparisons() {
                         products={products.slice(0, numDisplayed).map(p => <ReviewsData reviews={p.reviews} />)}
                     />
                     <ComparisonSection
-                        sectionTitle="Most helpful video reviews"
+                        sectionTitle="Video reviews"
                         products={products.slice(0, numDisplayed).map(p => <VideosData videos={p.videos} />)}
                     />
                 </div>
