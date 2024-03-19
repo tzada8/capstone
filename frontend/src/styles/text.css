@@ -118,6 +118,11 @@ a:hover {
     font-weight: 700;
 }
 
+.g-title-font {
+    font-family: var(--G-TITLE-FONT);
+    font-weight: 600;
+}
+
 /* DESKTOP SCREEN */
 @media screen and (min-width: 1500px) {
     .max-width-heading {

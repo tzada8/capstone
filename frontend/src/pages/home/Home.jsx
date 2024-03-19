@@ -39,7 +39,7 @@ function Home() {
             />
             <div className="hero">
                 <div className="hero-body">
-                    <h1 className="center-text max-width-heading">Making purchasing decisions easier with <span className="text-highlight">simplified</span> specs & product reviews</h1>
+                    <h1 className="center-text max-width-heading">Making purchasin<span className="g-title-font">g</span> decisions easier with <span className="text-highlight">simplified</span> specs & product reviews</h1>
                     <br/>
                     <p className="body-1 center-text max-width-body">
                         Enter items and obtain a score of likeability - how much we think you'll like the product based on your preferences. Compare products in a comparison table and see all.
