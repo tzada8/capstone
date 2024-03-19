@@ -1,4 +1,4 @@
-<a name="readme-top"></a>
+<a id="readme-top"></a>
 
 <!-- PROJECT LOGO -->
 <br />
@@ -6,7 +6,7 @@
     <a href="https://github.com/tzada8/capstone">
         <img src="frontend/src/images/logo/Juxtapose.png" alt="Juxtapose" width="240" height="51">
     </a>
-    <h3 align="center">Juxtapose</h3>
+    <h3 align="center">Juxtapose: Recommendation & Comparison Application for Improving Purchasing Decisions</h3>
     <p align="center">
         Juxtapose is a web application designed to help online shoppers tackle the difficulty of making well-informed and confident purchasing decisions by alleviating decision paralysis and information overload.
         <br />
@@ -268,6 +268,7 @@ Backend APIs
 
 - [Best Buy API](https://developer.bestbuy.com)
 - [OpenAI](https://platform.openai.com)
+- [RapidAPI](https://rapidapi.com/hub)
 - [SerpAPI](https://serpapi.com)
 
 Frontend Libraries
