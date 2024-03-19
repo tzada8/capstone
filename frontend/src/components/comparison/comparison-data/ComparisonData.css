@@ -76,6 +76,7 @@
 
 .summary-bullet {
     list-style: disc;
+	margin-bottom: 8px;
 }
 
 .most-review-container, .expert-reviews-container {

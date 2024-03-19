@@ -14,20 +14,12 @@ function ReviewsData(props) {
     const displayableText = numWords > wordLimit ? shortenedText + "..." : shortenedText;
     const buttonText = numWords > wordLimit ? (showMore ? "Less" : "More") : "";
 
-    const noReviews = props.reviews.summary.length === 0 &&
-                        Object.keys(props.reviews.top_positive).length === 0 &&
+    const noReviews = Object.keys(props.reviews.top_positive).length === 0 &&
                         Object.keys(props.reviews.top_negative).length === 0 &&
                         (props.reviews.expert_review.hasOwnProperty("error") || Object.keys(props.reviews.expert_review).length === 0);
 
 	return (
 		noReviews ? <p className="body-1">Product has no reviews.</p> : <div>
-            {props.reviews.summary.length > 0 && <ul className="summary-bullet-container">
-                {props.reviews.summary.map((point, i) => (
-                    <li className="body-1 summary-bullet" key={i}>{point}</li>
-                ))}
-            </ul>}
-            <br/>
-            <br/>
             {Object.keys(props.reviews.top_positive).length > 0 && <MostReview
                 isPositive={true}
                 rating={props.reviews.top_positive?.rating}
