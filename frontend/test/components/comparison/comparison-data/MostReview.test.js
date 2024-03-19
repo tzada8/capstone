@@ -13,7 +13,7 @@ describe("MostReview", () => {
         />
         );
 
-        expect(getByText("MOST POSITIVE REVIEW")).toBeInTheDocument();
+        expect(getByText("MOST HELPFUL POSITIVE REVIEW")).toBeInTheDocument();
         expect(getByText("4.5")).toBeInTheDocument();
         expect(getByText("This is a positive review.")).toBeInTheDocument();
     });
@@ -27,7 +27,7 @@ describe("MostReview", () => {
         />
         );
 
-        expect(getByText("MOST NEGATIVE REVIEW")).toBeInTheDocument();
+        expect(getByText("MOST HELPFUL CRITICAL REVIEW")).toBeInTheDocument();
         expect(getByText("2.5")).toBeInTheDocument();
         expect(getByText("This is a negative review.")).toBeInTheDocument();
     });

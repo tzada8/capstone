@@ -12,7 +12,7 @@ describe("HowItWorks", () => {
             </Router>
         );
 
-        expect(getByText("it works")).toBeInTheDocument();
+        expect(getByText("to use Juxtapose")).toBeInTheDocument();
         expect(getByText("1. Search")).toBeInTheDocument();
         expect(getByText("2. Set filters & preferences")).toBeInTheDocument();
         expect(getByText("3. View recommendations")).toBeInTheDocument();

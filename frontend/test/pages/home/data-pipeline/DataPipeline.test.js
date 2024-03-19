@@ -12,9 +12,7 @@ describe("DataPipeline", () => {
             </Router>
         );
 
-        expect(getByText("pipeline")).toBeInTheDocument();
-        expect(getByText(/Products are sourced from major retailers/i)).toBeInTheDocument();
-        expect(getByText(/learning algorithms to make the final selection as easy as possible/i)).toBeInTheDocument();
+        expect(getByText("recommendations")).toBeInTheDocument();
         expect(document.querySelector(".data-pipeline-diagram")).toBeInTheDocument();
     });
 });

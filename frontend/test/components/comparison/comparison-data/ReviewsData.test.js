@@ -26,8 +26,8 @@ describe("ReviewsData", () => {
     it("renders correctly with reviews data", () => {
         const { getByText } = render(<ReviewsData reviews={reviewsData} />);
 
-        expect(getByText("MOST POSITIVE REVIEW")).toBeInTheDocument();
-        expect(getByText("MOST NEGATIVE REVIEW")).toBeInTheDocument();
+        expect(getByText("MOST HELPFUL POSITIVE REVIEW")).toBeInTheDocument();
+        expect(getByText("MOST HELPFUL CRITICAL REVIEW")).toBeInTheDocument();
         expect(getByText("5")).toBeInTheDocument();
         expect(getByText("This is a positive review text.")).toBeInTheDocument();
         expect(getByText("1")).toBeInTheDocument();
