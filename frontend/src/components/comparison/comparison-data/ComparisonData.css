@@ -92,6 +92,7 @@
 	border: 1px solid var(--GREY);
 	border-radius: 8px;
 	padding: 7%;
+	margin-bottom: 35px;
 }
 
 .positive-review-title {

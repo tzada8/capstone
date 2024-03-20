@@ -26,16 +26,12 @@ function ReviewsData(props) {
                 title={props.reviews.top_positive?.title}
                 text={props.reviews.top_positive?.text}
             />}
-            <br/>
-            <br/>
             {Object.keys(props.reviews.top_negative).length > 0 && <MostReview
                 isPositive={false}
                 rating={props.reviews.top_negative?.rating}
                 title={props.reviews.top_negative?.title}
                 text={props.reviews.top_negative?.text}
             />}
-            <br/>
-            <br/>
             {(!(props.reviews.expert_review.hasOwnProperty("error")) && Object.keys(props.reviews.expert_review).length > 0) && <div className="expert-reviews-container">
                 <div className="expert-reviews-title-position">
                     <img className="expert-reviews-icon" src={consumerReportsIcon} alt=""/>
