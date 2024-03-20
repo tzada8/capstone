@@ -56,7 +56,8 @@ class TestGoogleShoppingScraper(unittest.TestCase):
         expected = {
             "shopping_results": {
                 "status": "Error",
-                "error": "An error occurred while attempting to pull products."
+                "error": "An error occurred while attempting to pull products.",
+                "data": [],
             }
         }
         self.assertEqual(result, expected)
@@ -69,7 +70,8 @@ class TestGoogleShoppingScraper(unittest.TestCase):
         expected = {
             "shopping_results": {
                 "status": "Error",
-                "error": "Could not complete request."
+                "error": "Could not complete request.",
+                "data": [],
             }
         }
         self.assertEqual(result, expected)
