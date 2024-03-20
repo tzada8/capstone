@@ -15,7 +15,7 @@ function DataPipeline() {
                     <h1 className="center-text max-width-heading">How we make <span className="text-highlight">recommendations</span></h1>
                     <br/>
                     <p className="body-1 center-text" style={{maxWidth: "80%"}}>
-                    We aggregate products from major retailers and score them based on your preferences, popularity and consumer reports to recommend the products we think you'll like best
+                    We aggregate products from major retailers and score them based on your preferences, popularity and product ratings to recommend the products we think you'll like best
                     </p>
                     <br/>
                     <img className="data-pipeline-diagram" src={dataPipelineDiagram} alt=""/>
