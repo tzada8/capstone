@@ -51,6 +51,7 @@ def scrape_google_products(q: str, start: int) -> Dict:
             "shopping_results": {
                 "status": "Error",
                 "error": results.get("error"),
+                "data": [],
             }
         }
     elif len(results) == 0:
@@ -58,6 +59,7 @@ def scrape_google_products(q: str, start: int) -> Dict:
             "shopping_results": {
                 "status": "Error",
                 "error": "The API call failed.",
+                "data": [],
             }
         }
     else:
