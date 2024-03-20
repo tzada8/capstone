@@ -10,7 +10,7 @@ function SwitchProduct(props) {
 
     useEffect(() => {
         const handleScroll = () => {
-            if (dropdownRef !== null) {
+            if (dropdownRef !== null && dropdownRef.current !== null) {
                 const rect = dropdownRef.current.getBoundingClientRect();
                 const currTopDist = window.scrollY + rect.top;
                 if (initialTop === null) {
