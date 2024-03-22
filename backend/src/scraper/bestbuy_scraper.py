@@ -70,9 +70,9 @@ class BestBuyProduct:
                     },
                     "source": "Best Buy",
                 },
-                "specifications": [
+                "specifications": sorted([
                     { "name": s.get("name"), "value": s.get("value") } for s in spec_highlights if s.get("name") in S
-                ],
+                ], key=lambda spec: spec.get("name")),
             }
 
     @staticmethod
