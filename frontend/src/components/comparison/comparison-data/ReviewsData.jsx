@@ -19,7 +19,7 @@ function ReviewsData(props) {
                         (props.reviews.expert_review.hasOwnProperty("error") || Object.keys(props.reviews.expert_review).length === 0);
 
 	return (
-		noReviews ? <p className="body-1">Product has no reviews.</p> : <div>
+		noReviews ? <p className="body-1">Product does not have specific review types.</p> : <div>
             {Object.keys(props.reviews.top_positive).length > 0 && <MostReview
                 isPositive={true}
                 rating={props.reviews.top_positive?.rating}
