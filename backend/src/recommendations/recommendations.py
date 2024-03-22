@@ -162,7 +162,7 @@ class Recommendation:
                 lower_bound = 1
                 upper_bound = int(preferences.get("megapixels")[preferences.get("megapixels").index("<") + 1:])
             elif ">" in preferences.get("megapixels"):
-                lower_bound = int(preferences.get("megapixels")[:preferences.get("megapixels").index(">")])
+                lower_bound = int(preferences.get("megapixels")[preferences.get("megapixels").index(">") + 1:])
                 upper_bound = 10000
             else: # If no preference.
                 lower_bound = 0
