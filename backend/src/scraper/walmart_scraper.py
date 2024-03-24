@@ -55,9 +55,9 @@ class WalmartProduct:
                     },
                     "source": "Walmart",
                 },
-                "specifications": [
+                "specifications": sorted([
                     { "name": s.get("display_name"), "value": s.get("value") } for s in spec_highlights
-                ],
+                ], key=lambda spec: spec.get("name")),
             }
 
     @staticmethod
