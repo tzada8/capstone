@@ -13,7 +13,7 @@
         <br />
         <a href="https://capstone-backend-zup0.onrender.com">Backend Production</a>
         ·
-        <a href="https://juxtapose-4a7f46fad866.herokuapp.com/">Frontend Production</a>
+        <a href="https://juxtapose.netlify.app">Frontend Production</a>
         </p>
 </div>
 
